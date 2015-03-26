@@ -3,17 +3,17 @@ package edu.chl.roborally.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ProjectTest {
+public class RoboRallyTest {
 	private static final int NUM_INCREMENTATIONS = 128;
 
 	@Test
 	public void testIncrementResult() {
-		final Project project = new Project();
+		final RoboRally roboRally = new RoboRally();
 
 		for (int i = 0; i < NUM_INCREMENTATIONS; i++) {
-			project.incrementPresses();
+			roboRally.incrementPresses();
 		}
 
-		Assert.assertEquals(NUM_INCREMENTATIONS, project.getPresses());
+		Assert.assertEquals(NUM_INCREMENTATIONS, roboRally.getPresses());
 	}
 }

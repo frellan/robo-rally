@@ -33,19 +33,19 @@
 		</properties>
 	</rule>
 	<rule ref="rulesets/internal/all-java.xml/SingularField">
-		<!-- Project Lombok -->
+		<!-- RoboRally Lombok -->
 		<properties>
 			<property name="violationSuppressXPath" value="..[Annotation//Name[@Image='Getter']]" />
 		</properties>
 	</rule>
 	<rule ref="rulesets/internal/all-java.xml/UnusedPrivateField">
-		<!-- Project Lombok -->
+		<!-- RoboRally Lombok -->
 		<properties>
 			<property name="violationSuppressXPath" value="../../..[Annotation//Name[(@Image='Getter') or (@Image='Setter')]]" />
 		</properties>
 	</rule>
 	<rule ref="rulesets/internal/all-java.xml/UseSingleton">
-		<!-- Project Lombok -->
+		<!-- RoboRally Lombok -->
 		<properties>
 			<property name="violationSuppressXPath" value="../..[Annotation//Name[(@Image='NoArgsConstructor') or  (@Image='RequiredArgsConstructor')  (@Image='AllArgsConstructor')]]" />
 			<property name="violationSuppressXPath" value="//PrimaryPrefix//Name[@Image='AccessLevel.PRIVATE']" />
