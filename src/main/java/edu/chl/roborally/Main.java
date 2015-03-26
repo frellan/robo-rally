@@ -1,8 +1,8 @@
-package edu.chl.change2projectname;
+package edu.chl.roborally;
 
-import edu.chl.change2projectname.controller.ProjectController;
-import edu.chl.change2projectname.model.Project;
-import edu.chl.change2projectname.view.ProjectView;
+import edu.chl.roborally.controller.ProjectController;
+import edu.chl.roborally.model.Project;
+import edu.chl.roborally.view.ProjectView;
 import javax.swing.SwingUtilities;
 
 /*

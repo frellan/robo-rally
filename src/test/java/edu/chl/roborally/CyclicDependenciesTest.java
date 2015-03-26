@@ -1,4 +1,4 @@
-package edu.chl.change2projectname;
+package edu.chl.roborally;
 
 import java.io.IOException;
 import jdepend.framework.JDepend;

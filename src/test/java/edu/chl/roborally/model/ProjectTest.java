@@ -1,6 +1,5 @@
-package edu.chl.change2projectname.model;
+package edu.chl.roborally.model;
 
-import edu.chl.change2projectname.model.Project;
 import org.junit.Assert;
 import org.junit.Test;
 

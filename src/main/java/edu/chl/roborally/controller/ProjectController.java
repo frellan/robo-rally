@@ -1,7 +1,7 @@
-package edu.chl.change2projectname.controller;
+package edu.chl.roborally.controller;
 
-import edu.chl.change2projectname.model.Project;
-import edu.chl.change2projectname.view.ProjectView;
+import edu.chl.roborally.model.Project;
+import edu.chl.roborally.view.ProjectView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
