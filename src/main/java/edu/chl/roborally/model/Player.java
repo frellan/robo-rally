@@ -5,22 +5,43 @@ package edu.chl.roborally.model;
  */
 public class Player {
 
+    private String name;
+    private int lifeTokens;
+    private int damageTokens;
+
+
     //Constructor
+
+    public Player(String name, int lifeTokens, int damageTokens) {
+        this.name = name;
+        this.lifeTokens = lifeTokens;
+        this.damageTokens = damageTokens;
+    }
    
 
     //Queries
 
     public String getName() {
-
-        return "HankTheTank2";
+        return name;
     }
 
     public int getLifeTokens() {
-        return 3;
+        return lifeTokens;
     }
 
-
+    public int getDamagetokens() {
+        return damageTokens;
+    }
 
     //Commands
+
+    public void loseLifeToken() {
+        this.lifeTokens = (lifeTokens--);
+    }
+
+    public void takeDamage() {
+        this.damageTokens = (damageTokens--);
+    }
+
 
 }
