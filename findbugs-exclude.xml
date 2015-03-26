@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<FindBugsFilter>
+	<Match>
+		<Bug pattern="S508C_NON_TRANSLATABLE_STRING" />
+	</Match>
+	<!-- Disable certain bugs (often false positives) in JUnit tests -->
+	<Match>
+		<Class name="~.*\.*Test" />
+		<Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
+	</Match>
+</FindBugsFilter>
