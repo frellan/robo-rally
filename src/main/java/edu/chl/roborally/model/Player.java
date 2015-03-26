@@ -14,7 +14,7 @@ public class Player {
 
     public String getName() {
 
-        return "HankTheTank";
+        return "HankTheTank2";
     }
 
     public int getLifeTokens() {
