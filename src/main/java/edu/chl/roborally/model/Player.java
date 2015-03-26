@@ -8,6 +8,7 @@ public class Player {
     private String name;
     private int lifeTokens;
     private int damageTokens;
+    private int iD;
 
 
     //Constructor
@@ -16,10 +17,11 @@ public class Player {
         this.name = name;
     }
 
-    public Player(String name, int lifeTokens, int damageTokens) {
+    public Player(String name, int lifeTokens, int damageTokens, int iD) {
         this.name = name;
         this.lifeTokens = lifeTokens;
         this.damageTokens = damageTokens;
+        this.iD = iD;
     }
    
 
@@ -35,6 +37,10 @@ public class Player {
 
     public int getDamagetokens() {
         return damageTokens;
+    }
+
+    public int getiD() {
+        return iD;
     }
 
     //Commands
