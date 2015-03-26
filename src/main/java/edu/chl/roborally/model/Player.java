@@ -6,9 +6,7 @@ package edu.chl.roborally.model;
 public class Player {
 
     //Constructor
-    public Player {
-
-    }
+   
 
     //Queries
 
