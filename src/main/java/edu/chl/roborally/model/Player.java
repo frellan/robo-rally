@@ -10,11 +10,12 @@ public class Player {
     private int damageTokens;
     private int iD;
 
-
     //Constructor
 
     public Player(String name) {
         this.name = name;
+        this.lifeTokens = 3;
+        this.damageTokens = 0;
     }
 
     public Player(String name, int lifeTokens, int damageTokens, int iD) {
@@ -23,7 +24,6 @@ public class Player {
         this.damageTokens = damageTokens;
         this.iD = iD;
     }
-   
 
     //Queries
 
@@ -46,12 +46,11 @@ public class Player {
     //Commands
 
     public void loseLifeToken() {
-        this.lifeTokens = (lifeTokens--);
+        this.lifeTokens = lifeTokens--;
     }
 
-    public void takeDamage() {
-        this.damageTokens = (damageTokens--);
+    public void takeDamage(int amount) {
+        this.damageTokens = damageTokens - amount;
     }
-
 
 }

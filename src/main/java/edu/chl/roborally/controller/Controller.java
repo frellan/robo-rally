@@ -56,7 +56,6 @@ public class Controller {
 
     private void play(){
 
-        System.out.println("Running");
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
 
