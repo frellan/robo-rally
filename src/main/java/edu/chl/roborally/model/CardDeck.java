@@ -1,5 +1,7 @@
 package edu.chl.roborally.model;
 
+import sun.jvm.hotspot.asm.Register;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,7 +13,7 @@ public class CardDeck {
     private ArrayList<RegisterCard> deck;
 
     public CardDeck() {
-        
+
         deck = new ArrayList<>();
 
         // MOVE_ONE Cards
@@ -62,6 +64,10 @@ public class CardDeck {
             deck.add(new RegisterCard(RegisterCard.MoveTypes.U_TURN,point));
             point = point + 10;
         }
+    }
+
+    public ArrayList<RegisterCard> getDeck() {
+        return deck;
     }
 
     public void shuffle() {
