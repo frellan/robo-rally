@@ -6,7 +6,6 @@ package edu.chl.roborally.model;
 public class RegisterCard {
 
     private enum MoveTypes {
-
         MOVE_ONE,
         MOVE_TWO,
         MOVE_THREE,
