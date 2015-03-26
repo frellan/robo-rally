@@ -8,7 +8,7 @@ public class RoboRally {
 
     public void newGame() {
         for (int i = 0; i < numbersOfPlayers; i++) {
-            players.add(new Player("Kalle"));
+            players.add(new Player("Kalle2"));
         }
     }
 
