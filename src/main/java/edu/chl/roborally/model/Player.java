@@ -13,6 +13,8 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        this.lifeTokens = 3;
+        this.damageTokens = 0;
     }
 
     public Player(String name, int lifeTokens, int damageTokens) {
@@ -20,7 +22,6 @@ public class Player {
         this.lifeTokens = lifeTokens;
         this.damageTokens = damageTokens;
     }
-   
 
     //Queries
 
@@ -45,6 +46,5 @@ public class Player {
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens - amount;
     }
-
 
 }
