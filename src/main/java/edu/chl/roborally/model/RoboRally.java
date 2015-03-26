@@ -4,11 +4,11 @@ import java.util.*;
 
 public class RoboRally {
     private int numbersOfPlayers;
-    private ArrayList<Player> players = new ArrayList<Player>();
+    private ArrayList<Player> players = new ArrayList<>();
 
     public void newGame() {
         for (int i = 0; i < numbersOfPlayers; i++) {
-            players.add(new Player());
+            players.add(new Player("Kalle"));
         }
     }
 
