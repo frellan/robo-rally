@@ -18,18 +18,28 @@ public class Controller {
         play();
 	}
 
-    private String userInput() {
+    private String userInputString() {
         Scanner in = new Scanner(System.in);
         System.out.print(">");
         String s = in.nextLine();
         return s;
     }
 
+    private int userInputInt() {
+        Scanner in = new Scanner(System.in);
+        System.out.print(">");
+        int i = in.nextInt();
+        return i;
+    }
+
+
     private void actionFromInput(String s) {
         if(s.equals("New Game")) {
-            System.out.println("Starting new game...");
+            System.out.println("How many players?");
+            roboRally.setNumbersOfPlayers(userInputInt());
+            System.out.println("Starting new game with " + roboRally.getNumbersOfPlayers() + " players");
         }
-        else if (s.equals("End")) {
+        else if (s.equals("End") || s.equals("end")) {
             stopGame();
         }
         else if(s.equals("Help")) {
@@ -51,7 +61,7 @@ public class Controller {
         System.out.println("type Help if you get stuck!");
 
         while(run) {
-            actionFromInput(userInput());
+            actionFromInput(userInputString());
         }
 
         System.out.println("Game Ended");
