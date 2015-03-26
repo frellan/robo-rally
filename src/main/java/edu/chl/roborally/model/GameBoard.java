@@ -6,9 +6,12 @@ package edu.chl.roborally.model;
 public abstract class GameBoard {
 
     private GameTile [][] board;
+    private GameTile [][] startBoard;
+
 
     public GameBoard (){
 
+        this.startBoard = new GameTile[4][12];
         this.board = new GameTile[12][12];
 
     }
