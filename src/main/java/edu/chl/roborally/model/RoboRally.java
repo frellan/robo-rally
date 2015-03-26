@@ -10,6 +10,19 @@ public class RoboRally {
 
     }
 
+    public void initRound() {
+        // TODO shuffle cards
+        // TODO deal cards to players
+        // TODO wait for players to pick cards
+        initTurn();
+        // Wait
+        initTurn();
+    }
+
+    public void initTurn() {
+
+    }
+
     public int getNumbersOfPlayers() {
         return numbersOfPlayers;
     }
