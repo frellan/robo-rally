@@ -2,6 +2,7 @@ package edu.chl.roborally;
 
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.view.View;
 
 public final class Main {
 	private Main() {
@@ -9,7 +10,10 @@ public final class Main {
 	}
 
 	public static void main(String[] args) {
-		final RoboRally roboRally = new RoboRally();
-		Controller.create(roboRally);
+
+        final RoboRally roboRally = new RoboRally();
+        final View view = new View();
+
+        Controller.create(roboRally, view);
 	}
 }
