@@ -5,15 +5,30 @@ package edu.chl.roborally.model;
  */
 public abstract class GameBoard {
 
+
     private GameTile [][] startBoard;
+
+    private static final int NUM_COLS = 12;
+    private static final int NUM_ROWS = 12;
     private GameTile [][] board;
+
+
 
 
     public GameBoard (){
 
-        this.startBoard = new GameTile[4][12];
-        this.board = new GameTile[12][12];
 
+        this.board = new GameTile[NUM_COLS][NUM_ROWS];
+
+        for (int row = 0; row <= NUM_ROWS; row ++){
+            for(int col = 0; col <= NUM_COLS; col++){
+                board[row][col] = new BlankTile();
+            }
+        }
     }
+    
+
+    public abstract void fillGameBoard();
+
 
 }
