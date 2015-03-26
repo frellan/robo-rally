@@ -9,7 +9,6 @@ public class Player {
     private int lifeTokens;
     private int damageTokens;
 
-
     //Constructor
 
     public Player(String name) {
@@ -40,11 +39,11 @@ public class Player {
     //Commands
 
     public void loseLifeToken() {
-        this.lifeTokens = (lifeTokens--);
+        this.lifeTokens = lifeTokens--;
     }
 
-    public void takeDamage() {
-        this.damageTokens = (damageTokens--);
+    public void takeDamage(int amount) {
+        this.damageTokens = damageTokens - amount;
     }
 
 
