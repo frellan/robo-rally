@@ -12,6 +12,10 @@ public class Player {
 
     //Constructor
 
+    public Player(String name) {
+        this.name = name;
+    }
+
     public Player(String name, int lifeTokens, int damageTokens) {
         this.name = name;
         this.lifeTokens = lifeTokens;
