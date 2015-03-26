@@ -66,7 +66,7 @@ public class CardDeck {
         }
     }
 
-    public ArrayList<RegisterCard> getDeck() {
+    public ArrayList<RegisterCard> getCards() {
         return deck;
     }
 
