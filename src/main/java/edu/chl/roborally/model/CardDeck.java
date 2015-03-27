@@ -1,7 +1,5 @@
 package edu.chl.roborally.model;
 
-import sun.jvm.hotspot.asm.Register;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -19,49 +17,49 @@ public class CardDeck {
         // MOVE_ONE Cards
         int point = 490;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.MOVE_ONE,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.MOVE_ONE,point));
             point = point + 10;
         }
 
         // MOVE_TWO Cards
         point = 670;
         for (int i = 1; i <= 12; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.MOVE_TWO,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.MOVE_TWO,point));
             point = point + 10;
         }
 
         // MOVE_THREE Cards
         point = 790;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.MOVE_THREE,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.MOVE_THREE,point));
             point = point + 10;
         }
 
         // BACKUP Cards
         point = 430;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.BACKUP,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.BACKUP,point));
             point = point + 10;
         }
 
         // ROTATE_LEFT Cards
         point = 70;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.ROTATE_LEFT,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.ROTATE_LEFT,point));
             point = point + 20;
         }
 
         // ROTATE_RIGHT Cards
         point = 80;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.ROTATE_RIGHT,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.ROTATE_RIGHT,point));
             point = point + 20;
         }
 
         // U_TURN Cards
         point = 10;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new RegisterCard(RegisterCard.MoveTypes.U_TURN,point));
+            deck.add(new RegisterCard(Constants.MoveTypes.U_TURN,point));
             point = point + 10;
         }
     }

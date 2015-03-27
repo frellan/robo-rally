@@ -5,24 +5,12 @@ package edu.chl.roborally.model;
  */
 public class RegisterCard {
 
-    // Card types
-
-    public enum MoveTypes {
-        MOVE_ONE,
-        MOVE_TWO,
-        MOVE_THREE,
-        BACKUP,
-        ROTATE_LEFT,
-        ROTATE_RIGHT,
-        U_TURN;
-    }
-
-    private MoveTypes type;
+    private Constants.MoveTypes type;
     private int points;
 
     // Constructor
 
-    protected RegisterCard(MoveTypes type,int points) {
+    protected RegisterCard(Constants.MoveTypes type,int points) {
         this.type = type;
         this.points = points;
     }
