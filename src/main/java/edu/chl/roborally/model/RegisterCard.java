@@ -8,11 +8,17 @@ public class RegisterCard {
     private Constants.MoveTypes type;
     private int points;
 
-    // Constructor
-
-    protected RegisterCard(Constants.MoveTypes type,int points) {
+    public RegisterCard(Constants.MoveTypes type,int points) {
         this.type = type;
         this.points = points;
+    }
+
+    public Constants.MoveTypes getType () {
+        return type;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public String toString() {

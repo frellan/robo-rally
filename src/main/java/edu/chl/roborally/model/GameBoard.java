@@ -5,8 +5,8 @@ package edu.chl.roborally.model;
  */
 public abstract class GameBoard {
 
-    private GameTile [][] board;
     private GameTile [][] startBoard;
+    private GameTile [][] board;
 
 
     public GameBoard (){
