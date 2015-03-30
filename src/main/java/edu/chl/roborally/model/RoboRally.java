@@ -1,5 +1,7 @@
 package edu.chl.roborally.model;
 
+import edu.chl.roborally.controller.Controller;
+
 import java.util.*;
 
 public class RoboRally {
@@ -9,15 +11,43 @@ public class RoboRally {
     private GameBoard gameBoard;
     private ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
+    private Controller controller;
 
     public RoboRally() {
         // TODO gameBoard = new GameBoard();
         // TODO create players
     }
 
+    public void setController(Controller c) {
+        this.controller = c;
+    }
+
     public void newGame() {
-        // TODO place players in start positions on game board
+        // TODO split up metohod in many methods
+
+        System.out.println("How many players?");
+        numbersOfPlayers = controller.userInputInt();
+        setNames();
+        System.out.println("Starting new game with " + numbersOfPlayers + " players");
+        int i = 1;
+        for (Player p : players) {
+            System.out.println("Player " + i + " : " + p.getName());
+            i++;
+        }
+
+        Position[] start = gameBoard.getStartPositions(numbersOfPlayers);
+        for (int i = 0; i<players.size(); i++) {
+            players.indexOf(i).setCheckpoint(start[i]);
+        }
+
         initRound();
+    }
+
+    private void setNames() {
+        for (int i = 1; i < getNumbersOfPlayers()+1; i++) {
+            System.out.println("Name on Player " + i + "?");
+            players.add(new Player(controller.userInputString()));
+        }
     }
 
     public void initRound() {
@@ -37,10 +67,12 @@ public class RoboRally {
     }
 
     public int getNumbersOfPlayers() {
+
         return numbersOfPlayers;
     }
 
     public void setNumbersOfPlayers(int i) {
+
         this.numbersOfPlayers = i;
     }
 }

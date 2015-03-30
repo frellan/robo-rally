@@ -13,7 +13,7 @@ public final class Main {
 
         final RoboRally roboRally = new RoboRally();
         final View view = new View();
-
-        Controller.create(roboRally, view);
+        final Controller controller = new Controller(roboRally, view);
+        roboRally.setController(controller);
 	}
 }
