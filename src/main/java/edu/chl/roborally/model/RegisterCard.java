@@ -22,6 +22,6 @@ public class RegisterCard {
     }
 
     public String toString() {
-        return "Move: " + type + "Points: " + points;
+        return "Move: " + type + " Points: " + points;
     }
 }

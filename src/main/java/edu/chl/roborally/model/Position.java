@@ -35,6 +35,11 @@ public class Position {
     }
 
     @Override
+    public String toString() {
+        return "X=" + this.x + " Y=" + this.y;
+    }
+
+    @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;

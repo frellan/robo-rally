@@ -70,11 +70,13 @@ public class RoboRally {
         ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
         for (int i = 0; i<players.size(); i++) {
             players.get(i).setCheckpoint(start.get(i));
+            System.out.println(players.get(i).getPlayerPos());
         }
     }
 
     private void initRound() {
         deck.shuffle();
+        // Set players Hand
         for (Player p : players) {
             // TODO check p damagetokens and return right nbr of cards
             p.setHand(deck.getCards(9));
