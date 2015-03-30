@@ -6,24 +6,26 @@ package edu.chl.roborally.model;
 public class ConveyorTile implements GameTile{
 
 
-    private Constants.Direction d;
+    private Constants.Directions d;
+    private Boolean isExpress;
 
 
-    public ConveyorTile(Constants.Direction d){
+    public ConveyorTile(Constants.Directions d, Boolean isExpress){
         this.d = d;
+        this.isExpress = isExpress;
     }
 
-    public Position getNewPosition(Position p){
-        if(d = Constants.Directions.EAST) {
+    public Position getNewPosition(Position p, Boolean isExpress){
+        if(d == Constants.Directions.EAST) {
             return new Position(p.getX() + 1, p.getY());
         }
-        else if(d = Constants.Directions.WEST){
+        else if(d ==(Constants.Directions.WEST)){
             return new Position(p.getX()-1, p.getY());
         }
-        else if(d = Constants.Directions.NORTH){
+        else if(d == Constants.Directions.NORTH){
             return new Position(p.getX(), p.getY()+1);
         }
-        else if(d = Constants.Directions.SOUTH){
+        else if(d == Constants.Directions.SOUTH){
             return new Position(p.getX(), p.getY()-1);
         }
         System.out.println("Unknown direction -getNewPosition");
