@@ -30,7 +30,7 @@ public class Player {
         this.choosenCards = new ArrayList<>();
     }
 
-    //Queries
+    //Getters
 
     public String getName() {
         return name;
@@ -55,17 +55,6 @@ public class Player {
     public Constants.Directions getDirection() {
         return direction;
     }
-
-    //Commands
-
-    public void loseLifeToken() {
-        this.lifeTokens = lifeTokens--;
-    }
-
-    public void takeDamage(int amount) {
-        this.damageTokens = damageTokens - amount;
-    }
-
     public void setCheckpoint(Position checkpoint) {
         this.playerPos = checkpoint;
     }
@@ -74,24 +63,40 @@ public class Player {
         return playerPos;
     }
 
+    public ArrayList<RegisterCard> getHand() {
+        return this.hand;
+    }
+
+    public ArrayList<RegisterCard> getChoosenCards() {
+        return this.choosenCards;
+    }
+    
+    public RegisterCard getCardFromHand(int index) {
+        return this.hand.get(index);
+    }
+
+    // Setters
+
     public void setHand(ArrayList<RegisterCard> cards) {
         this.hand = cards;
     }
 
-    public ArrayList<RegisterCard> getHand() {
-        return this.hand;
-    }
-    public ArrayList<RegisterCard> getChoosenCards() {
-        return this.choosenCards;
-    }
-    public RegisterCard getCardFromHand(int index) {
-        return this.hand.get(index);
-    }
     public void setChoosenCards(RegisterCard c) {
         this.choosenCards.add(c);
     }
+
     public void setDirection(Constants.Directions newDirection) {
         this.direction = newDirection;
+    }
+
+    // Commands
+
+    public void loseLifeToken() {
+        this.lifeTokens = lifeTokens--;
+    }
+
+    public void takeDamage(int amount) {
+        this.damageTokens = damageTokens - amount;
     }
 
 }

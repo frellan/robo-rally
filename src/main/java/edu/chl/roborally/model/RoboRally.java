@@ -81,8 +81,12 @@ public class RoboRally {
         deck.shuffle();
         // Set players Hand
         for (Player p : players) {
-            // TODO check p damagetokens and return right nbr of cards
-            p.setHand(deck.getCards(9));
+            // TODO check that 5 damgetokens is the limit, maybe it should be 4?
+            if (p.getDamageTokens() > 5) {
+                p.setHand(deck.getCards(9 - p.getDamageTokens()));
+            } else {
+                p.setHand(deck.getCards(9));
+            }
         }
 
         for (Player p : players) {
