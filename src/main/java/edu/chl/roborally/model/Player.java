@@ -1,6 +1,8 @@
 package edu.chl.roborally.model;
 
 
+import java.util.ArrayList;
+
 /**
  * Created by Pertta on 15-03-26.
  */
@@ -11,21 +13,15 @@ public class Player {
     private int damageTokens;
     private int iD;
     private Position playerPos;
+    private ArrayList<RegisterCard> hand;
 
     //Constructor
 
-    public Player(String name) {
+    public Player(int iD, String name) {
+        this.iD = iD;
         this.name = name;
         this.lifeTokens = 3;
         this.damageTokens = 0;
-    }
-
-    public Player(String name, int lifeTokens, int damageTokens, int iD, Position startPosition) {
-        this.name = name;
-        this.lifeTokens = lifeTokens;
-        this.damageTokens = damageTokens;
-        this.iD = iD;
-        this.playerPos = startPosition;
     }
 
     //Queries
