@@ -5,7 +5,4 @@ package edu.chl.roborally.model;
  */
 public interface GameTile {
 
-
-     
-
 }
