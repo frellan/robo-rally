@@ -31,7 +31,7 @@ public class ConveyorTile implements GameTile {
         else if(d == Constants.Directions.SOUTH){
             return new Position(p.getX(), p.getY()-1);
         }
-        System.out.println("Unknown direction -getNewPosition");
+        System.out.println("Unknown Direction -getNewPosition");
         return p;
     }
 
