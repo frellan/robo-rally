@@ -11,6 +11,14 @@ public class CardDeck {
     private ArrayList<RegisterCard> deck;
 
     public CardDeck() {
+        resetDeck();
+    }
+
+    /*
+    Resets the deck and recreates all the cards in order. "Unshuffles them".
+    Use this after the getCards() method to get a full deck again.
+     */
+    public void resetDeck() {
 
         deck = new ArrayList<>();
 
@@ -64,11 +72,30 @@ public class CardDeck {
         }
     }
 
-    public ArrayList<RegisterCard> getCards() {
+    /*
+    Shuffles the deck.
+     */
+    public void shuffle() {
+        Collections.shuffle(deck);
+    }
+
+    /*
+    Returns the deck in its entirety.
+     */
+    public ArrayList<RegisterCard> getAllCards() {
         return deck;
     }
 
-    public void shuffle() {
-        Collections.shuffle(deck);
+    /*
+    Return the desired amount of cards and then removes them from the deck.
+    This happens to prevent retrieving doubles of the same card.
+     */
+    public ArrayList<RegisterCard> getCards(int amount) {
+        ArrayList<RegisterCard> tempDeck = new ArrayList<>();;
+        for (int i = 0; i < amount; i++) {
+            tempDeck.add(deck.get(i));
+            deck.remove(i);
+        }
+        return tempDeck;
     }
 }
