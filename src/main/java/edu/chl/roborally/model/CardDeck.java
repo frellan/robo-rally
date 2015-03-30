@@ -15,7 +15,7 @@ public class CardDeck {
     //Constructor
 
     public CardDeck() {
-        resetDeck();
+        reset();
     }
 
     //Queries
@@ -31,7 +31,7 @@ public class CardDeck {
     /**
      * Return the desired amount of cards and then removes them from the deck.
      * This happens to prevent retrieving doubles of the same card.
-     * Use resetDeck() before a new round.
+     * Use reset() before a new round.
      * @param amount The desired amount of cards.
      * @return The amount of cards.
      */
@@ -50,7 +50,7 @@ public class CardDeck {
      * Resets the deck and recreates all the cards in order. "Unshuffles them".
      * Use this after the getCards() method to get a full deck again.
      */
-    public void resetDeck() {
+    public void reset() {
 
         deck = new ArrayList<>();
 

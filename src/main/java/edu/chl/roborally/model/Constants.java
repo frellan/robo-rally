@@ -6,7 +6,7 @@ package edu.chl.roborally.model;
 public class Constants {
 
     // Card move types
-    protected enum MoveTypes {
+    public enum MoveTypes {
         MOVE_ONE,
         MOVE_TWO,
         MOVE_THREE,
@@ -17,7 +17,7 @@ public class Constants {
     }
 
     // Player & tile directions
-    protected enum Directions {
+    public enum Directions {
         NORTH,
         WEST,
         EAST,

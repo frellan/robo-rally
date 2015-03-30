@@ -1,6 +1,7 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.Controller;
+import edu.chl.roborally.controller.*;
+import edu.chl.roborally.view.*;
 import edu.chl.roborally.model.maps.*;
 
 import java.util.*;
@@ -9,10 +10,12 @@ public class RoboRally {
 
     // Variables
 
+    private Controller controller;
+    private View view;
     private GameBoard gameBoard;
+
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
-    private Controller controller;
     private CardDeck deck;
 
     // Constructor
@@ -27,32 +30,39 @@ public class RoboRally {
         this.controller = c;
     }
 
-    public void newGame() {
-        // TODO split up metohod in many methods
+    public void setView(View v) {
+        this.view = v;
+    }
 
-        System.out.println("How many players?");
+    public void newGame() {
+        view.print("How many players?");
         numbersOfPlayers = controller.userInputInt();
         setNames();
-        System.out.println("Starting new game with " + numbersOfPlayers + " players");
+        view.print("Starting new game with " + numbersOfPlayers + " players");
 
         int j = 1;
-
         for (Player p : players) {
-            System.out.println("Player " + j + " : " + p.getName());
+            view.print("Player " + j + " : " + p.getName());
             j++;
         }
 
-        deck = new CardDeck();
-        gameBoard = new BlankMap();
-
+        resetDeck();
+        initMap("Blank");
         initStartPositions();
         initRound();
     }
 
-    private void setNames() {
-        for (int i = 1; i < numbersOfPlayers+1; i++) {
-            System.out.println("Name on Player " + i + "?");
-            players.add(new Player(i, controller.userInputString()));
+    private void resetDeck() {
+        if (deck == null) {
+            deck = new CardDeck();
+        } else {
+            deck.reset();
+        }
+    }
+
+    private void initMap(String map) {
+        if (map.equals("Blank")) {
+            gameBoard = new BlankMap();
         }
     }
 
@@ -63,7 +73,7 @@ public class RoboRally {
         }
     }
 
-    public void initRound() {
+    private void initRound() {
         deck.shuffle();
         for (Player p : players) {
             // TODO check p damagetokens and return right nbr of cards
@@ -80,17 +90,28 @@ public class RoboRally {
         }
     }
 
-    public void initTurn() {
+    private void initTurn() {
         // TODO move players in order
         // TODO execute actions on game board
         // TODO update player status (life tokens, damage etc)
     }
 
+    //Getters
+
     public int getNumbersOfPlayers() {
         return numbersOfPlayers;
     }
 
-    public void setNumbersOfPlayers(int i) {
+    //Setters
+
+    private void setNumbersOfPlayers(int i) {
         this.numbersOfPlayers = i;
+    }
+
+    private void setNames() {
+        for (int i = 1; i < numbersOfPlayers+1; i++) {
+            System.out.println("Name on Player " + i + "?");
+            players.add(new Player(i, controller.userInputString()));
+        }
     }
 }
