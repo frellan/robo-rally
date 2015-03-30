@@ -10,7 +10,7 @@ public class RoboRally {
     // Variables
 
     private GameBoard gameBoard;
-    private ArrayList<Player> players = new ArrayList<>();
+    public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
     private Controller controller;
     private CardDeck deck;

@@ -54,7 +54,6 @@ import java.util.Scanner;
     }
 
     private void play(){
-
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
 

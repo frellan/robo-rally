@@ -13,7 +13,15 @@ public class Constants {
         BACKUP,
         ROTATE_LEFT,
         ROTATE_RIGHT,
-        U_TURN;
+        U_TURN
+    }
+
+    // Player directions
+    protected enum Directions {
+        NORTH,
+        WEST,
+        EAST,
+        SOUTH
     }
 
 }
