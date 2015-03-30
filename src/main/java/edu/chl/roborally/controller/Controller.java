@@ -1,18 +1,18 @@
 package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.RoboRally;
-import edu.chl.roborally.view.View;
+import edu.chl.roborally.view.ViewKUK;
 import java.util.Scanner;
 
     public class Controller {
 	private final RoboRally roboRally;
-    private final View view;
+    private final ViewKUK viewKUK;
 
     private boolean run;
 
-	public Controller(RoboRally roboRally, View view) {
+	public Controller(RoboRally roboRally, ViewKUK viewKUK) {
 		this.roboRally = roboRally;
-        this.view = view;
+        this.viewKUK = viewKUK;
         this.run = true;
         roboRally.setController(this);
         play();
