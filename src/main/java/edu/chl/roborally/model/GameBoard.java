@@ -9,14 +9,13 @@ public abstract class GameBoard {
     private GameTile [][] startBoard;
 
     private static final int NUM_COLS = 12;
-    private static final int NUM_ROWS = 12;
+    private static final int NUM_ROWS = 16;
     private GameTile [][] board;
 
 
 
 
     public GameBoard (){
-
 
         this.board = new GameTile[NUM_COLS][NUM_ROWS];
 
