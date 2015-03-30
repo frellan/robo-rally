@@ -46,7 +46,9 @@ public class Player {
         return iD;
     }
 
-    public Position() { return playerPos;}
+    public Position getPlayerPos() {
+        return playerPos;
+    }
 
     //Commands
 
