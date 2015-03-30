@@ -1,6 +1,5 @@
 package edu.chl.roborally.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,11 +8,43 @@ import java.util.Collections;
  */
 public class CardDeck {
 
+    //Variables
+
     private ArrayList<RegisterCard> deck;
+
+    //Constructor
 
     public CardDeck() {
         resetDeck();
     }
+
+    //Queries
+
+    /**
+     * Returns the deck in its entirety.
+     * @return All cards.
+     */
+    public ArrayList<RegisterCard> getAllCards() {
+        return deck;
+    }
+
+    /**
+     * Return the desired amount of cards and then removes them from the deck.
+     * This happens to prevent retrieving doubles of the same card.
+     * Use resetDeck() before a new round.
+     * @param amount The desired amount of cards.
+     * @return The amount of cards.
+     */
+    public ArrayList<RegisterCard> getCards(int amount) {
+        ArrayList<RegisterCard> tempDeck = new ArrayList<>();;
+        for (int i = 0; i < amount; i++) {
+            tempDeck.add(deck.get(i));
+            deck.remove(i);
+        }
+        return tempDeck;
+    }
+
+    //Commands
 
     /**
      * Resets the deck and recreates all the cards in order. "Unshuffles them".
@@ -78,30 +109,6 @@ public class CardDeck {
      */
     public void shuffle() {
         Collections.shuffle(deck);
-    }
-
-    /**
-     * Returns the deck in its entirety.
-     * @return All cards.
-     */
-    public ArrayList<RegisterCard> getAllCards() {
-        return deck;
-    }
-
-    /**
-     * Return the desired amount of cards and then removes them from the deck.
-     * This happens to prevent retrieving doubles of the same card.
-     * Use resetDeck() before a new round.
-     * @param amount The desired amount of cards.
-     * @return The amount of cards.
-     */
-    public ArrayList<RegisterCard> getCards(int amount) {
-        ArrayList<RegisterCard> tempDeck = new ArrayList<>();;
-        for (int i = 0; i < amount; i++) {
-            tempDeck.add(deck.get(i));
-            deck.remove(i);
-        }
-        return tempDeck;
     }
 
     /**

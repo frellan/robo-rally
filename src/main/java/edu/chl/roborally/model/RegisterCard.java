@@ -13,7 +13,7 @@ public class RegisterCard {
         this.points = points;
     }
 
-    public Constants.MoveTypes getType () {
+    public Constants.MoveTypes getType() {
         return type;
     }
 
