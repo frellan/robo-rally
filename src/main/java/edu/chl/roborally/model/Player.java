@@ -16,6 +16,7 @@ public class Player {
     private int iD;
     private Position playerPos;
     private ArrayList<RegisterCard> hand;
+    private ArrayList<RegisterCard> choosenCards;
     private Constants.Directions direction;
 
     //Constructor
@@ -26,6 +27,7 @@ public class Player {
         this.lifeTokens = 3;
         this.damageTokens = 0;
         this.direction = Constants.Directions.NORTH;
+        this.choosenCards = new ArrayList<>();
     }
 
     //Queries
@@ -78,6 +80,15 @@ public class Player {
 
     public ArrayList<RegisterCard> getHand() {
         return this.hand;
+    }
+    public ArrayList<RegisterCard> getChoosenCards() {
+        return this.choosenCards;
+    }
+    public RegisterCard getCardFromHand(int index) {
+        return this.hand.get(index);
+    }
+    public void setChoosenCards(RegisterCard c) {
+        this.choosenCards.add(c);
     }
     public void setDirection(Constants.Directions newDirection) {
         this.direction = newDirection;

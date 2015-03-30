@@ -32,8 +32,11 @@ public class RoboRally {
     public void newGame() {
         running = true;
         view.print("How many players?");
+
         numbersOfPlayers = controller.userInputInt();
-        setNames();
+
+        setPlayersNames();
+
         view.print("Starting new game with " + numbersOfPlayers + " players");
 
         for (Player p : players) {
@@ -81,15 +84,36 @@ public class RoboRally {
             // TODO check p damagetokens and return right nbr of cards
             p.setHand(deck.getCards(9));
         }
+
         for (Player p : players) {
-            for(RegisterCard c : p.getHand()) {
-                System.out.println(c.toString() + " | ");
-            }
+            printCardOnHand(p);
         }
-        // TODO wait for players to pick cards
+
+        chooseCardsToPlay();
+
         for (int i = 1; i <= 5; i++) {
             initTurn();
         }
+    }
+    // TODO maybe better to have this in the player class?
+    private void printCardOnHand(Player p) {
+        for(RegisterCard c : p.getHand()) {
+            System.out.println(p.getHand().indexOf(c) + " " + c.toString() + " | ");
+        }
+    }
+    private void chooseCardsToPlay() {
+        System.out.println("Time to choose cards to play");
+        for (Player p : players) {
+            System.out.println(p.getName() + " time to choose five cards, type index of card in your hand to place it.");
+            for (int i = 0; i<5; i++) {
+                int j = i+1;
+                System.out.print("Card number " + j  + " ");
+                // TODO check so index that player choice are not out of bounds and not already picked
+                p.setChoosenCards(p.getCardFromHand(controller.userInputInt()));
+            }
+            System.out.println(p.getName() + " have choosen the following cards: " + p.getChoosenCards());
+        }
+
     }
 
     private void initTurn() {
@@ -100,13 +124,9 @@ public class RoboRally {
 
     // Getters
 
-    public int getNumbersOfPlayers() {
-        return numbersOfPlayers;
-    }
-
     // Setters
 
-    private void setNames() {
+    private void setPlayersNames() {
         for (int i = 1; i < numbersOfPlayers+1; i++) {
             System.out.println("Name on Player " + i + "?");
             players.add(new Player(i, controller.userInputString()));

@@ -36,7 +36,7 @@ public class Controller {
         s = s.toLowerCase();
         switch (s) {
             case "new game":
-                if (!roboRally.running) {
+                if (roboRally == null) {
                     roboRally = new RoboRally(this, this.view);
                 } else {
                     System.out.println("Game already running");
