@@ -4,10 +4,10 @@ import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.view.View;
 import java.util.Scanner;
 
-    public class Controller {
+public class Controller {
+
 	private final RoboRally roboRally;
     private final View view;
-
     private boolean run;
 
 	public Controller(RoboRally roboRally, View view) {
