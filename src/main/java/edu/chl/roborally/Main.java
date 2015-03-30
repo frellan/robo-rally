@@ -11,8 +11,7 @@ public final class Main {
 
 	public static void main(String[] args) {
 
-        final RoboRally roboRally = new RoboRally();
         final View view = new View();
-        final Controller controller = new Controller(roboRally, view);
+        final Controller controller = new Controller(view);
 	}
 }

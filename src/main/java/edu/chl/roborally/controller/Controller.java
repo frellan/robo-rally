@@ -2,20 +2,19 @@ package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.view.View;
+
+import java.nio.ReadOnlyBufferException;
 import java.util.Scanner;
 
 public class Controller {
 
-	private final RoboRally roboRally;
+	private RoboRally roboRally;
     private final View view;
     private boolean run;
 
-	public Controller(RoboRally roboRally, View view) {
-		this.roboRally = roboRally;
+	public Controller(View view) {
         this.view = view;
         this.run = true;
-        roboRally.setController(this);
-        roboRally.setView(view);
         play();
 	}
 
@@ -37,13 +36,17 @@ public class Controller {
         s = s.toLowerCase();
         switch (s) {
             case "new game":
-                roboRally.newGame();
+                if (!roboRally.running) {
+                    roboRally = new RoboRally(this, this.view);
+                } else {
+                    System.out.println("Game already running");
+                }
                 break;
             case "end":
                 stopGame();
                 break;
             case "help":
-                System.out.println("Commands: 'New Game', 'End'");
+                System.out.println("Commands: 'new Game', 'end'");
                 break;
             default:
                 System.out.println(s + " not a command");

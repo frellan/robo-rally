@@ -13,28 +13,24 @@ public class RoboRally {
     private Controller controller;
     private View view;
     private GameBoard gameBoard;
-
+    public boolean running;
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
     private CardDeck deck;
 
     // Constructor
 
-    public RoboRally() {
+    public RoboRally(Controller c, View v) {
+        this.controller = c;
+        this.view = v;
 
+        newGame();
     }
 
     // Game logic
 
-    public void setController(Controller c) {
-        this.controller = c;
-    }
-
-    public void setView(View v) {
-        this.view = v;
-    }
-
     public void newGame() {
+        running = true;
         view.print("How many players?");
         numbersOfPlayers = controller.userInputInt();
         setNames();
