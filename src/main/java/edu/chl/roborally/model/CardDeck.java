@@ -31,7 +31,7 @@ public class CardDeck {
     /**
      * Return the desired amount of cards and then removes them from the deck.
      * This happens to prevent retrieving doubles of the same card.
-     * Use reset() before a new round.
+     * Use shuffle() before a new round.
      * @param amount The desired amount of cards.
      * @return The amount of cards.
      */
