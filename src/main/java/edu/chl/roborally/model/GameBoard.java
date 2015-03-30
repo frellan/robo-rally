@@ -20,7 +20,7 @@ public abstract class GameBoard {
 
         this.board = new GameTile[NUM_ROWS][NUM_COLS];
 
-        //fills the gameboard with blanktiles
+        //Fills the board with BlankTiles
         for (int row = 0; row < NUM_ROWS; row ++){
             for(int col = 0; col < NUM_COLS; col++){
                 board[row][col] = new BlankTile();
@@ -34,11 +34,11 @@ public abstract class GameBoard {
         startPositions.add(new Position(2,2));
     }
 
-    //used to create a specific gameboard
+    //Used to create a specific gameboard
     public abstract void fillGameBoard();
 
 
-    //returns startpositions depending on number of players
+    //Returns startpositions depending on number of players
     public ArrayList<Position> getStartPosition(int nbrOfPlayers){
         ArrayList<Position> tempList = new ArrayList<>();
         for (int i = 0; i <= nbrOfPlayers; i ++){
@@ -46,4 +46,10 @@ public abstract class GameBoard {
         }
         return tempList;
     }
+
+    //Returns the board
+    public GameTile[][] getBoard(){
+        return board;
+    }
+
 }
