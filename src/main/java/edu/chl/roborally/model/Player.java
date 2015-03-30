@@ -60,4 +60,8 @@ public class Player {
         this.playerPos = checkpoint;
     }
 
+    public void setHand(ArrayList<RegisterCard> cards) {
+        this.hand = cards;
+    }
+
 }

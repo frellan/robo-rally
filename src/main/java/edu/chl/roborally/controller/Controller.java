@@ -15,6 +15,7 @@ import java.util.Scanner;
 		this.roboRally = roboRally;
         this.view = view;
         this.run = true;
+        roboRally.setController(this);
         play();
 	}
 
