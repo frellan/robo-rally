@@ -8,19 +8,19 @@ import java.util.List;
  */
 public abstract class GameBoard {
 
-    private static final int NUM_COLS = 12;
     private static final int NUM_ROWS = 16;
+    private static final int NUM_COLS = 12;
     private GameTile [][] board;
     private List<Position> startPositions = new ArrayList<>();
 
 
-    public GameBoard (){
+    public GameBoard(){
 
-        this.board = new GameTile[NUM_COLS][NUM_ROWS];
+        this.board = new GameTile[NUM_ROWS][NUM_COLS];
 
         //fills the gameboard with blanktiles
-        for (int row = 0; row <= NUM_ROWS; row ++){
-            for(int col = 0; col <= NUM_COLS; col++){
+        for (int row = 0; row < NUM_ROWS; row ++){
+            for(int col = 0; col < NUM_COLS; col++){
                 board[row][col] = new BlankTile();
             }
         }

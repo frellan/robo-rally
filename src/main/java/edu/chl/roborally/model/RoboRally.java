@@ -13,10 +13,13 @@ public class RoboRally {
     private Controller controller;
     private CardDeck deck;
 
+    // Constructor
+
     public RoboRally() {
 
-
     }
+
+    // Game logic
 
     public void setController(Controller c) {
         this.controller = c;
@@ -24,11 +27,8 @@ public class RoboRally {
 
     public void newGame() {
         // TODO split up metohod in many methods
-        // TODO gameBoard = new GameBoard();
         System.out.println("How many players?");
-        System.out.println("OK");
         numbersOfPlayers = controller.userInputInt();
-        System.out.println("OK");
         setNames();
         System.out.println("Starting new game with " + numbersOfPlayers + " players");
 
@@ -39,12 +39,10 @@ public class RoboRally {
             j++;
         }
 
-
         deck = new CardDeck();
         gameBoard = new BlankMap();
 
-        List<Position> start = new ArrayList<>();
-        start.add(gameBoard.getStartPosition(numbersOfPlayers));
+        ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
         for (int i = 0; i<players.size(); i++) {
             players.get(i).setCheckpoint(start.get(i));
         }
@@ -53,7 +51,7 @@ public class RoboRally {
     }
 
     private void setNames() {
-        for (int i = 1; i < getNumbersOfPlayers()+1; i++) {
+        for (int i = 1; i < numbersOfPlayers+1; i++) {
             System.out.println("Name on Player " + i + "?");
             players.add(new Player(i, controller.userInputString()));
         }
@@ -78,12 +76,10 @@ public class RoboRally {
     }
 
     public int getNumbersOfPlayers() {
-
         return numbersOfPlayers;
     }
 
     public void setNumbersOfPlayers(int i) {
-
         this.numbersOfPlayers = i;
     }
 }
