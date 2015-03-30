@@ -7,15 +7,11 @@ import java.util.ArrayList;
  */
 public abstract class GameBoard {
 
-
-    private GameTile [][] startBoard;
-
     private static final int NUM_COLS = 12;
     private static final int NUM_ROWS = 16;
     private GameTile [][] board;
-    private ArrayList <Position> startPosition;
-
-
+    private ArrayList<Position> startPositions = new ArrayList<>(new Position(2,6), new Position(2,7),
+    new Position(2,4), new Position(2,9), new Position(2,2));
 
 
     public GameBoard (){
@@ -28,21 +24,18 @@ public abstract class GameBoard {
                 board[row][col] = new BlankTile();
             }
         }
-
-
-
     }
 
     //used to create a specific gameboard
     public abstract void fillGameBoard();
 
 
-
-    //returns a number of starttiles depending on number of players
-    public Position getStartPosition(int nbrofplayers){
-
-        return null;
+    //returns startpositions depending on number of players
+    public ArrayList<Position> getStartPosition(int nbrOfPlayers){
+        ArrayList<Position> tempList = new ArrayList<>();
+        for (int i = 0; i <= nbrOfPlayers; i ++){
+            tempList.add(startPositions.get(i));
+        }
+        return tempList;
     }
-
-
 }
