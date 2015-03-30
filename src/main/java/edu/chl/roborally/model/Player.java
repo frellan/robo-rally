@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Player {
 
+    //Variables
+
     private String name;
     private int lifeTokens;
     private int damageTokens;
@@ -36,7 +38,7 @@ public class Player {
         return lifeTokens;
     }
 
-    public int getDamagetokens() {
+    public int getDamageTokens() {
         return damageTokens;
     }
 
@@ -44,7 +46,7 @@ public class Player {
         return iD;
     }
 
-    public Position getPlayerPos() {
+    public Position getPosition() {
         return playerPos;
     }
 

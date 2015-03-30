@@ -1,9 +1,12 @@
-package edu.chl.roborally.model;
+package edu.chl.roborally.model.tiles;
+
+import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.model.Position;
 
 /**
  * Created by axel on 2015-03-30.
  */
-public class ConveyorTile implements GameTile{
+public class ConveyorTile implements GameTile {
 
 
     private Constants.Directions d;

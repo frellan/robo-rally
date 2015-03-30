@@ -1,6 +1,8 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.Controller;
+import edu.chl.roborally.model.maps.*;
+
 import java.util.*;
 
 public class RoboRally {
@@ -43,11 +45,7 @@ public class RoboRally {
         deck = new CardDeck();
         gameBoard = new BlankMap();
 
-        ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
-        for (int i = 0; i<players.size(); i++) {
-            players.get(i).setCheckpoint(start.get(i));
-        }
-
+        initStartPositions();
         initRound();
     }
 
@@ -55,6 +53,13 @@ public class RoboRally {
         for (int i = 1; i < numbersOfPlayers+1; i++) {
             System.out.println("Name on Player " + i + "?");
             players.add(new Player(i, controller.userInputString()));
+        }
+    }
+
+    private void initStartPositions() {
+        ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
+        for (int i = 0; i<players.size(); i++) {
+            players.get(i).setCheckpoint(start.get(i));
         }
     }
 

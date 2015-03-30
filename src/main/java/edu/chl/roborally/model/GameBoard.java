@@ -1,5 +1,7 @@
 package edu.chl.roborally.model;
 
+import edu.chl.roborally.model.tiles.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public abstract class GameBoard {
 
     private static final int NUM_ROWS = 16;
     private static final int NUM_COLS = 12;
-    private GameTile [][] board;
+    private GameTile[][] board;
     private List<Position> startPositions = new ArrayList<>();
 
 
