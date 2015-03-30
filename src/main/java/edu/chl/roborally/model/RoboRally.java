@@ -36,17 +36,18 @@ public class RoboRally {
         setNames();
         view.print("Starting new game with " + numbersOfPlayers + " players");
 
-        int j = 1;
         for (Player p : players) {
-            view.print("Player " + j + " : " + p.getName());
-            j++;
+            view.print("Player " + players.indexOf(p) + " : " + p.getName());
         }
 
+        // Init all dependencies
         resetDeck();
         initMap("Blank");
         initStartPositions();
+        // Start round
         initRound();
     }
+
 
     private void resetDeck() {
         if (deck == null) {
@@ -56,12 +57,14 @@ public class RoboRally {
         }
     }
 
+    // Create a new map, input should be a name on the map
     private void initMap(String map) {
         if (map.equals("Blank")) {
             gameBoard = new BlankMap();
         }
     }
 
+    // Set startpostions and put players on the board
     private void initStartPositions() {
         ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
         for (int i = 0; i<players.size(); i++) {
@@ -70,6 +73,7 @@ public class RoboRally {
         }
     }
 
+    // Start a round
     private void initRound() {
         deck.shuffle();
         // Set players Hand
@@ -94,17 +98,13 @@ public class RoboRally {
         // TODO update player status (life tokens, damage etc)
     }
 
-    //Getters
+    // Getters
 
     public int getNumbersOfPlayers() {
         return numbersOfPlayers;
     }
 
-    //Setters
-
-    private void setNumbersOfPlayers(int i) {
-        this.numbersOfPlayers = i;
-    }
+    // Setters
 
     private void setNames() {
         for (int i = 1; i < numbersOfPlayers+1; i++) {
