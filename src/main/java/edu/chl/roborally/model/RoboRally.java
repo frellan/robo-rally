@@ -52,9 +52,10 @@ public class RoboRally {
 
     public void initRound() {
         // TODO shuffle cards
+        CardDeck deck = new CardDeck();
+        deck.shuffle();
         // TODO deal cards to players
         // TODO wait for players to pick cards
-        
         for (int i = 1; i <= 5; i++) {
             initTurn();
         }

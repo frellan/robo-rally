@@ -1,5 +1,6 @@
 package edu.chl.roborally.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -101,5 +102,23 @@ public class CardDeck {
             deck.remove(i);
         }
         return tempDeck;
+    }
+
+    /**
+     * Adds a card back to the deck.
+     * @param card A single card to be added back to the deck.
+     */
+    public void addCard(RegisterCard card) {
+        deck.add(card);
+    }
+
+    /**
+     * Adds a set of cards back to the deck.
+     * @param cards A set of cards to be added back to the deck.
+     */
+    public void addCards(ArrayList<RegisterCard> cards) {
+        for (RegisterCard card : cards) {
+            deck.add(card);
+        }
     }
 }

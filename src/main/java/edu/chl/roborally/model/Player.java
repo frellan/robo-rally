@@ -1,5 +1,6 @@
 package edu.chl.roborally.model;
 
+
 /**
  * Created by Pertta on 15-03-26.
  */
@@ -9,6 +10,7 @@ public class Player {
     private int lifeTokens;
     private int damageTokens;
     private int iD;
+    private Position playerPos;
 
     //Constructor
 
@@ -18,11 +20,12 @@ public class Player {
         this.damageTokens = 0;
     }
 
-    public Player(String name, int lifeTokens, int damageTokens, int iD) {
+    public Player(String name, int lifeTokens, int damageTokens, int iD, Position startPosition) {
         this.name = name;
         this.lifeTokens = lifeTokens;
         this.damageTokens = damageTokens;
         this.iD = iD;
+        this.playerPos = startPosition;
     }
 
     //Queries
@@ -43,6 +46,8 @@ public class Player {
         return iD;
     }
 
+    public Position() { return playerPos;}
+
     //Commands
 
     public void loseLifeToken() {
@@ -51,6 +56,10 @@ public class Player {
 
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens - amount;
+    }
+
+    public void setCheckpoint(Position checkpoint) {
+        this.playerPos = checkpoint;
     }
 
 }
