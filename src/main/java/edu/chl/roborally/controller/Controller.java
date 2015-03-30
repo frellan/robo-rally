@@ -1,6 +1,5 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.view.View;
 import java.util.Scanner;
@@ -34,22 +33,24 @@ import java.util.Scanner;
     }
 
     private void actionFromInput(String s) {
-        if(s.equals("New Game")) {
-            roboRally.newGame();
-        }
-        else if (s.equals("End") || s.equals("end")) {
-            stopGame();
-        }
-        else if(s.equals("Help")) {
-            System.out.println("Commands: 'New Game', 'End'");
-        }
-        else {
-            System.out.println(s + " not a command");
+        s = s.toLowerCase();
+        switch (s) {
+            case "new game":
+                roboRally.newGame();
+                break;
+            case "end":
+                stopGame();
+                break;
+            case "help":
+                System.out.println("Commands: 'New Game', 'End'");
+                break;
+            default:
+                System.out.println(s + " not a command");
+                break;
         }
     }
 
     private void stopGame() {
-
         this.run = false;
     }
 

@@ -16,12 +16,15 @@ public class Constants {
         U_TURN
     }
 
-    // Player directions
+    // Player & tile directions
     protected enum Directions {
         NORTH,
         WEST,
         EAST,
-        SOUTH
+        SOUTH,
+        NORTH_WEST,
+        NORTH_EAST,
+        SOUTH_WEST,
+        SOUTH_EAST
     }
-
 }

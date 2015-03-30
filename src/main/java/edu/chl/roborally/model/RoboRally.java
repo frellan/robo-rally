@@ -1,8 +1,6 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.Controller;
-import javafx.geometry.Pos;
-
 import java.util.*;
 
 public class RoboRally {
