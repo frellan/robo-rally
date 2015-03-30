@@ -69,6 +69,10 @@ public class Player {
     public void setHand(ArrayList<RegisterCard> cards) {
         this.hand = cards;
     }
+
+    public ArrayList<RegisterCard> getHand() {
+        return this.hand;
+    }
     public void setDirection(Constants.Directions newDirection) {
         this.direction = newDirection;
     }

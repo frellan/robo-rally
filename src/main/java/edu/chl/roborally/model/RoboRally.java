@@ -27,6 +27,7 @@ public class RoboRally {
 
     public void newGame() {
         // TODO split up metohod in many methods
+
         System.out.println("How many players?");
         numbersOfPlayers = controller.userInputInt();
         setNames();
@@ -62,6 +63,11 @@ public class RoboRally {
         for (Player p : players) {
             // TODO check p damagetokens and return right nbr of cards
             p.setHand(deck.getCards(9));
+        }
+        for (Player p : players) {
+            for(RegisterCard c : p.getHand()) {
+                System.out.println(c.toString() + " | ");
+            }
         }
         // TODO wait for players to pick cards
         for (int i = 1; i <= 5; i++) {
