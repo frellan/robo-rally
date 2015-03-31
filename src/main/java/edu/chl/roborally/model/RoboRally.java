@@ -43,7 +43,7 @@ public class RoboRally {
         initStartPositions();
 
         // Start round
-        new Round(controller, view, deck, players);
+        new Round(this);
     }
 
     private void resetDeck() {
@@ -78,6 +78,22 @@ public class RoboRally {
     }
 
     // Getters
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public View getView() {
+        return view;
+    }
+
+    public CardDeck getDeck() {
+        return deck;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 
     // Setters
 

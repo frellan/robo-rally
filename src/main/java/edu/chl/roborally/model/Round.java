@@ -10,17 +10,18 @@ import java.util.ArrayList;
  */
 public class Round {
 
+    private RoboRally model;
     private Controller controller;
     private View view;
-
     private CardDeck deck;
     private ArrayList<Player> players;
 
-    public Round(Controller c, View v, CardDeck d, ArrayList<Player> p) {
-        controller = c;
-        view = v;
-        deck = d;
-        players = p;
+    public Round(RoboRally r) {
+        model = r;
+        controller = model.getController();
+        view = model.getView();
+        deck = model.getDeck();
+        players = model.getPlayers();
         startRound();
     }
 
@@ -29,7 +30,7 @@ public class Round {
         dealCards();
         chooseCardsToPlay();
         for (int i = 1; i <= Constants.NUMBER_OF_TURNS; i++) {
-            // initTurn();
+            // new Turn(model);
         }
     }
 
