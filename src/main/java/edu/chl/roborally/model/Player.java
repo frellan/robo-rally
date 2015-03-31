@@ -90,6 +90,7 @@ public class Player {
     public void setPosition(Position p) {
         this.position = p;
     }
+    public void setX
 
     public void setCheckpoint(Position p) {
         this.checkpoint = p;
