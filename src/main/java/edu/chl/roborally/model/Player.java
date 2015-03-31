@@ -14,10 +14,11 @@ public class Player {
     private int lifeTokens;
     private int damageTokens;
     private int iD;
-    private Position playerPos;
-    private ArrayList<RegisterCard> hand;
-    private ArrayList<RegisterCard> choosenCards;
+    private Position position;
+    private Position checkpoint;
     private Constants.Directions direction;
+    private ArrayList<RegisterCard> dealtCards;
+    private ArrayList<RegisterCard> choosenCards;
 
     //Constructor
 
@@ -30,7 +31,7 @@ public class Player {
         this.choosenCards = new ArrayList<>();
     }
 
-    //Getters
+    //Queries
 
     public String getName() {
         return name;
@@ -49,47 +50,26 @@ public class Player {
     }
 
     public Position getPosition() {
-        return playerPos;
+        return position;
     }
 
     public Constants.Directions getDirection() {
         return direction;
     }
-    public void setCheckpoint(Position checkpoint) {
-        this.playerPos = checkpoint;
+
+    public RegisterCard getDealtCard(int index) {
+        return this.dealtCards.get(index);
     }
 
-    public Position getPlayerPos() {
-        return playerPos;
-    }
-
-    public ArrayList<RegisterCard> getHand() {
-        return this.hand;
+    public ArrayList<RegisterCard> getDealtCards() {
+        return this.dealtCards;
     }
 
     public ArrayList<RegisterCard> getChoosenCards() {
         return this.choosenCards;
     }
-    
-    public RegisterCard getCardFromHand(int index) {
-        return this.hand.get(index);
-    }
 
-    // Setters
-
-    public void setHand(ArrayList<RegisterCard> cards) {
-        this.hand = cards;
-    }
-
-    public void setChoosenCards(RegisterCard c) {
-        this.choosenCards.add(c);
-    }
-
-    public void setDirection(Constants.Directions newDirection) {
-        this.direction = newDirection;
-    }
-
-    // Commands
+    //Commands
 
     public void loseLifeToken() {
         this.lifeTokens = lifeTokens--;
@@ -97,6 +77,32 @@ public class Player {
 
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens - amount;
+    }
+
+    public void toCheckpoint() {
+        if (checkpoint != null) {
+            this.position = checkpoint;
+        }
+    }
+
+    public void setPosition(Position p) {
+        this.position = p;
+    }
+
+    public void setCheckpoint(Position p) {
+        this.checkpoint = p;
+    }
+
+    public void setDirection(Constants.Directions d) {
+        this.direction = d;
+    }
+
+    public void setDealtCards(ArrayList<RegisterCard> cards) {
+        this.dealtCards = cards;
+    }
+
+    public void setChoosenCards(RegisterCard c) {
+        this.choosenCards.add(c);
     }
 
 }

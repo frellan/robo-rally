@@ -16,25 +16,27 @@ public class RotationTile implements GameTile {
     }
 
     public Constants.Directions getNewDirection(Constants.Directions d){
-        if(rotationRight) {
-            if (d == Constants.Directions.EAST) {
-                return Constants.Directions.SOUTH;
-            } else if (d == Constants.Directions.SOUTH) {
-                return Constants.Directions.WEST;
-            } else if (d == Constants.Directions.WEST) {
-                return Constants.Directions.NORTH;
-            } else if (d == Constants.Directions.NORTH) {
-                return Constants.Directions.EAST;
+        if (rotationRight) {
+            switch (d) {
+                case EAST:
+                    return Constants.Directions.SOUTH;
+                case SOUTH:
+                    return Constants.Directions.WEST;
+                case WEST:
+                    return Constants.Directions.NORTH;
+                case NORTH:
+                    return Constants.Directions.EAST;
             }
-        }else{
-            if (d == Constants.Directions.EAST) {
-                return Constants.Directions.NORTH;
-            } else if (d == Constants.Directions.SOUTH) {
-                return Constants.Directions.EAST;
-            } else if (d == Constants.Directions.WEST) {
-                return Constants.Directions.SOUTH;
-            } else if (d == Constants.Directions.NORTH) {
-                return Constants.Directions.WEST;
+        } else {
+            switch (d) {
+                case EAST:
+                    return Constants.Directions.NORTH;
+                case SOUTH:
+                    return Constants.Directions.EAST;
+                case WEST:
+                    return Constants.Directions.SOUTH;
+                case NORTH:
+                    return Constants.Directions.WEST;
             }
         }
 
