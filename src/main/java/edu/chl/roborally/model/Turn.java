@@ -1,9 +1,12 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.Controller;
+import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.view.View;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by henriknilson on 31/03/15.
@@ -15,6 +18,8 @@ public class Turn {
     private View view;
     private CardDeck deck;
     private ArrayList<Player> players;
+    private ArrayList<RegisterCard> activeCards;
+    private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
 
     private int index;
 
@@ -30,16 +35,19 @@ public class Turn {
 
     private void startTurn() {
         revealProgrammedCards();
-        movePlayers();
+        sortActiveCards();
     }
 
     private void revealProgrammedCards() {
         for (Player p : players) {
-            p.getProgrammedCard(index).setHidden(false);
+            RegisterCard c = p.getProgrammedCard(index);
+            c.setHidden(false);
+            activeCards.add(c);
+            activeCardPlayer.put(c,p);
         }
     }
 
-    private void movePlayers() {
-        // TODO
+    private void sortActiveCards() {
+        java.util.Collections.sort(activeCards,);
     }
 }
