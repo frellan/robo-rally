@@ -23,12 +23,6 @@ public abstract class RegisterCard {
         return points;
     }
 
-    public int compare(RegisterCard c1, RegisterCard c2) {
-        Integer a = new Integer(c1.getPoints());
-        Integer b = new Integer(c2.getPoints());
-        return a.compareTo(b);
-    }
-
     public String toString() {
         return "Points: " + points;
     }
