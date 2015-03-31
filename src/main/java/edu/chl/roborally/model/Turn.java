@@ -19,7 +19,6 @@ public class Turn {
     private RoboRally model;
     private Controller controller;
     private View view;
-    private CardDeck deck;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards;
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
@@ -30,7 +29,6 @@ public class Turn {
         model = r;
         controller = model.getController();
         view = model.getView();
-        deck = model.getDeck();
         players = model.getPlayers();
         this.index = index;
         startTurn();
@@ -43,11 +41,11 @@ public class Turn {
     }
 
     private void revealProgrammedCards() {
-        for (Player p : players) {
-            RegisterCard c = p.getProgrammedCard(index);
-            c.setHidden(false);
-            activeCards.add(c);
-            activeCardPlayer.put(c,p);
+        for (Player player : players) {
+            RegisterCard card = player.getProgrammedCard(index);
+            card.setHidden(false);
+            activeCards.add(card);
+            activeCardPlayer.put(card,player);
         }
     }
 
@@ -56,8 +54,8 @@ public class Turn {
     }
 
     private void executeActiveCards() {
-        for (RegisterCard c : activeCards) {
-            Player p = activeCardPlayer.get(c);
+        for (RegisterCard card : activeCards) {
+            Player player = activeCardPlayer.get(card);
             // c.doAction(p);
         }
     }
