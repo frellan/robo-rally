@@ -9,6 +9,6 @@ public class RegisterCardCompare implements Comparator<RegisterCard> {
 
     @Override
     public int compare(RegisterCard o1, RegisterCard o2) {
-        return 0;
+        return o1.getPoints() - o2.getPoints();
     }
 }

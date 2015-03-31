@@ -2,9 +2,11 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +50,6 @@ public class Turn {
     }
 
     private void sortActiveCards() {
-        java.util.Collections.sort(activeCards,);
+        Collections.sort(activeCards, new RegisterCardCompare);
     }
 }
