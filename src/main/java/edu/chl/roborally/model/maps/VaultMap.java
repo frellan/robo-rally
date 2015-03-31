@@ -22,35 +22,35 @@ public class VaultMap extends GameBoard {
     public void fillGameBoard(){
 
         //Conveyors East
-        board[1][10] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[3][6] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[4][6] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[5][6] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[9][6] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[10][6] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[11][6] = new ConveyorTile(Constants.Directions.EAST, false);
-        board[12][6] = new ConveyorTile(Constants.Directions.EAST, false);
+        board[1][10] = new ConveyorTile(Constants.Directions.EAST);
+        board[3][6] = new ConveyorTile(Constants.Directions.EAST);
+        board[4][6] = new ConveyorTile(Constants.Directions.EAST);
+        board[5][6] = new ConveyorTile(Constants.Directions.EAST);
+        board[9][6] = new ConveyorTile(Constants.Directions.EAST);
+        board[10][6] = new ConveyorTile(Constants.Directions.EAST);
+        board[11][6] = new ConveyorTile(Constants.Directions.EAST);
+        board[12][6] = new ConveyorTile(Constants.Directions.EAST);
 
         //Conveyors West
-        board[15][1] = new ConveyorTile(Constants.Directions.WEST, false);
-        board[15][5] = new ConveyorTile(Constants.Directions.WEST, false);
-        board[15][6] = new ConveyorTile(Constants.Directions.WEST, false);
-        board[15][7] = new ConveyorTile(Constants.Directions.WEST, false);
-        board[15][8] = new ConveyorTile(Constants.Directions.WEST, false);
-        board[15][10] = new ConveyorTile(Constants.Directions.WEST, false);
+        board[15][1] = new ConveyorTile(Constants.Directions.WEST);
+        board[15][5] = new ConveyorTile(Constants.Directions.WEST);
+        board[15][6] = new ConveyorTile(Constants.Directions.WEST);
+        board[15][7] = new ConveyorTile(Constants.Directions.WEST);
+        board[15][8] = new ConveyorTile(Constants.Directions.WEST);
+        board[15][10] = new ConveyorTile(Constants.Directions.WEST);
 
         //Express Conveyors East
-        board[10][11] = new ConveyorTile(Constants.Directions.EAST, true);
-        board[10][12] = new ConveyorTile(Constants.Directions.EAST, true);
-        board[13][12] = new ConveyorTile(Constants.Directions.EAST, true);
+        board[10][11] = new ConveyorTile(Constants.Directions.EAST);
+        board[10][12] = new ConveyorTile(Constants.Directions.EAST);
+        board[13][12] = new ConveyorTile(Constants.Directions.EAST);
 
         //Express Conveyors South
-        board[15][11] = new ConveyorTile(Constants.Directions.SOUTH, true);
-        board[14][11] = new ConveyorTile(Constants.Directions.SOUTH, true);
+        board[15][11] = new ConveyorTile(Constants.Directions.SOUTH);
+        board[14][11] = new ConveyorTile(Constants.Directions.SOUTH);
 
         //Rotators Right
-        board[15][4] = new RotationTile(true);
-        board[16][11] = new RotationTile(true);
+        board[15][4] = new RotationTile(Constants.Directions.EAST);
+        board[16][11] = new RotationTile(Constants.Directions.EAST);
 
 
 

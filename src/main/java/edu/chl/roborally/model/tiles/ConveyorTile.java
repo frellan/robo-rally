@@ -1,7 +1,9 @@
 package edu.chl.roborally.model.tiles;
 
 import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.Position;
+import edu.chl.roborally.model.gameactions.MovePlayer;
 
 /**
  * Created by axel on 2015-03-30.
@@ -9,27 +11,13 @@ import edu.chl.roborally.model.Position;
 public class ConveyorTile implements GameTile {
 
     private Constants.Directions d;
-    private Boolean isExpress;
 
-    public ConveyorTile(Constants.Directions d, Boolean isExpress){
+    public ConveyorTile(Constants.Directions d){
         this.d = d;
-        this.isExpress = isExpress;
     }
 
-    public Position getNewPosition(Position p){
-        switch (d) {
-            case EAST:
-                return new Position(p.getX() + 1, p.getY());
-            case WEST:
-                return new Position(p.getX()-1, p.getY());
-            case NORTH:
-                return new Position(p.getX(), p.getY()+1);
-            case SOUTH:
-                return new Position(p.getX(), p.getY()-1);
-            default:
-                System.out.println("Unknown Direction -getNewPosition");
-                return p;
-        }
-    }
 
+    public void doAction(Player p){
+        new MovePlayer(p, d);
+    }
 }

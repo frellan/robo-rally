@@ -4,17 +4,20 @@ import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.Player;
 
 /**
- * Created by axel on 2015-03-30.
+ * Created by axel on 2015-03-31.
  */
-public class RotationTile implements GameTile {
+public class WallTile implements GameTile{
 
     private Constants.Directions d;
 
-    public RotationTile(Constants.Directions d){
-        this.d = d;
+    public WallTile(Constants.Directions d){
+        this.d=d;
     }
 
     public void doAction(Player p){
-        new RotatePlayer(p,d);
+        new StopPlayer(p, d);
     }
+
+
+
 }
