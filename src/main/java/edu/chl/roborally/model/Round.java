@@ -21,14 +21,13 @@ public class Round {
         view = v;
         deck = d;
         players = p;
-        initRound();
+        startRound();
     }
 
-    public void initRound() {
+    public void startRound() {
         deck.shuffle();
         dealCards();
         chooseCardsToPlay();
-
         for (int i = 1; i <= Constants.NUMBER_OF_TURNS; i++) {
             // initTurn();
         }
@@ -45,7 +44,6 @@ public class Round {
     }
 
     private void chooseCardsToPlay() {
-        view.print("Time to choose cards to play");
         for (Player p : players) {
             view.print(p.getName() + " choose 5 cards.");
             view.print("Type the index of the card in the order you want to place them, separated by commas");
@@ -53,9 +51,9 @@ public class Round {
             for (String value : s) {
                 p.setChoosenCard(p.getDealtCard(Integer.parseInt(value)));
             }
-            view.print(p.getName() + " have choosen the following cards: " + p.getChoosenCards());
+            view.print(p.getName() + " have choosen the following cards:");
+            view.print(p.getChoosenCards().toString());
         }
-
     }
 
     //View
