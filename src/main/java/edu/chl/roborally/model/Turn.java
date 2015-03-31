@@ -24,7 +24,8 @@ public class Turn {
         initTurn();
     }
 
-    private initTurn() {
+    private void initTurn() {
         // TODO Loop the players and their cards
+        //
     }
 }
