@@ -29,7 +29,7 @@ public class Round {
         deck.shuffle();
         dealCards();
         chooseCardsToPlay();
-        for (int i = 1; i <= Constants.NUMBER_OF_TURNS; i++) {
+        for (int i = 0; i <= Constants.NUMBER_OF_TURNS-1; i++) {
             new Turn(model,i);
         }
     }
@@ -52,7 +52,8 @@ public class Round {
             int index = 0;
             for (String value : s) {
                 int nr = Integer.parseInt(value);
-                p.setProgrammedCard(index, p.getDealtCard(nr));
+                p.setProgrammedCard(index,p.getDealtCard(nr));
+                System.out.println("added card" + index);
                 index++;
             }
             view.print(p.getName() + " have choosen the following cards:");

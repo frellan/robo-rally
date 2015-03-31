@@ -70,7 +70,12 @@ public class Player {
     }
 
     public RegisterCard getProgrammedCard(int index) {
-        return programmedCards[index];
+        if (index >= 0 && index < 5) {
+            return programmedCards[index];
+        }
+        else {
+            throw new IllegalArgumentException("Index must be between 0 and 4");
+        }
     }
 
     public RegisterCard[] getProgrammedCards() {
@@ -118,7 +123,12 @@ public class Player {
     }
 
     public void setProgrammedCard(int index, RegisterCard c) {
-        this.programmedCards[index] = c;
+        if (index >= 0 && index < 5) {
+            programmedCards[index] = c;
+        }
+        else {
+            throw new IllegalArgumentException("Index must be between 0 and 4");
+        }
     }
 
     public void setStatus(Constants.Status s) {
