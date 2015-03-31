@@ -5,6 +5,13 @@ package edu.chl.roborally.model;
  */
 public class Constants {
 
+    //RoboRally
+    public static final int NUMBER_OF_TURNS = 5;
+
+    // GameBoard
+    public static final int NUM_ROWS = 16;
+    public static final int NUM_COLS = 12;
+
     // Card move types
     public enum MoveTypes {
         MOVE_ONE,

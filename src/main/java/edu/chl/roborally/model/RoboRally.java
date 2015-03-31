@@ -17,7 +17,6 @@ public class RoboRally {
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
     private CardDeck deck;
-    private static final int NUMBER_OF_TURNS = 5;
 
     // Constructor
 
@@ -30,7 +29,7 @@ public class RoboRally {
 
     // Game logic
 
-    public void newGame() {
+    private void newGame() {
         running = true;
         view.print("How many players?");
 
@@ -52,7 +51,6 @@ public class RoboRally {
         initRound();
     }
 
-
     private void resetDeck() {
         if (deck == null) {
             deck = new CardDeck();
@@ -70,7 +68,7 @@ public class RoboRally {
 
     // Set startpostions and put players on the board
     private void initStartPositions() {
-        ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
+        ArrayList<Position> start = gameBoard.getStartPositions(numbersOfPlayers);
         for (int i = 0; i<players.size(); i++) {
             players.get(i).setCheckpoint(start.get(i));
             players.get(i).toCheckpoint();
@@ -93,7 +91,7 @@ public class RoboRally {
 
         chooseCardsToPlay();
 
-        for (int i = 1; i <= NUMBER_OF_TURNS; i++) {
+        for (int i = 1; i <= Constants.NUMBER_OF_TURNS; i++) {
             initTurn();
         }
     }

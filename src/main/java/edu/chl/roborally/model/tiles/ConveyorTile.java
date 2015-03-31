@@ -8,10 +8,8 @@ import edu.chl.roborally.model.Position;
  */
 public class ConveyorTile implements GameTile {
 
-
     private Constants.Directions d;
     private Boolean isExpress;
-
 
     public ConveyorTile(Constants.Directions d, Boolean isExpress){
         this.d = d;
@@ -28,9 +26,10 @@ public class ConveyorTile implements GameTile {
                 return new Position(p.getX(), p.getY()+1);
             case SOUTH:
                 return new Position(p.getX(), p.getY()-1);
+            default:
+                System.out.println("Unknown Direction -getNewPosition");
+                return p;
         }
-        System.out.println("Unknown Direction -getNewPosition");
-        return p;
     }
 
 }

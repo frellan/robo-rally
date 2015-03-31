@@ -26,6 +26,9 @@ public class RotationTile implements GameTile {
                     return Constants.Directions.NORTH;
                 case NORTH:
                     return Constants.Directions.EAST;
+                default:
+                    System.out.println("Unknown Direction -getNewDirection");
+                    return d;
             }
         } else {
             switch (d) {
@@ -37,10 +40,10 @@ public class RotationTile implements GameTile {
                     return Constants.Directions.SOUTH;
                 case NORTH:
                     return Constants.Directions.WEST;
+                default:
+                    System.out.println("Unknown Direction -getNewDirection");
+                    return d;
             }
         }
-
-        System.out.println("Unknown Direction -getNewDirection");
-        return d;
     }
 }
