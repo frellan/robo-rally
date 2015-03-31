@@ -3,6 +3,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.view.View;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class Turn {
     private void startTurn() {
         revealProgrammedCards();
         sortActiveCards();
+        executeActiveCards();
     }
 
     private void revealProgrammedCards() {
@@ -51,5 +53,12 @@ public class Turn {
 
     private void sortActiveCards() {
         Collections.sort(activeCards, new RegisterCardCompare());
+    }
+
+    private void executeActiveCards() {
+        for (RegisterCard c : activeCards) {
+            Player p = activeCardPlayer.get(c);
+            // c.doAction(p);
+        }
     }
 }
