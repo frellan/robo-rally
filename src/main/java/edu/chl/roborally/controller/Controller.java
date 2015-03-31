@@ -30,8 +30,7 @@ public class Controller {
     }
 
     private void actionFromInput(String s) {
-        s = s.toLowerCase();
-        switch (s) {
+        switch (s.toLowerCase()) {
             case "new game":
                 if (model == null) {
                     model = new RoboRally(this, this.view);
