@@ -13,7 +13,6 @@ public class RoboRally {
     private Controller controller;
     private View view;
     private GameBoard gameBoard;
-    public boolean running;
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
     private CardDeck deck;
@@ -30,7 +29,6 @@ public class RoboRally {
     // Game logic
 
     private void newGame() {
-        running = true;
         view.print("How many players?");
 
         numbersOfPlayers = controller.userInputInt();
