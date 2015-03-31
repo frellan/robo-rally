@@ -9,10 +9,12 @@ public abstract class RegisterCard {
 
     private int points;
     private boolean isHidden;
+    private String name;
 
-    public RegisterCard(int points, boolean isHidden) {
+    public RegisterCard(int points, boolean isHidden, String name ) {
         this.points = points;
         this.isHidden = isHidden;
+        this.name = name;
     }
 
     public abstract void doAction(Player p);
@@ -30,6 +32,6 @@ public abstract class RegisterCard {
     }
 
     public String toString() {
-        return "Points: " + points;
+        return name + " " + "Points: " + points;
     }
 }

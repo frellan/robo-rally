@@ -9,7 +9,7 @@ import edu.chl.roborally.model.gameactions.MovePlayer;
 public class BackupCard extends RegisterCard{
 
     public BackupCard(int points, boolean isHidden) {
-        super(points,isHidden);
+        super(points,isHidden, "Back Up");
     }
 
     public void doAction(Player p) {

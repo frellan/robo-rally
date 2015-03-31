@@ -14,7 +14,7 @@ public class UTurnCard extends RegisterCard{
 
 
     public UTurnCard(int points, boolean isHidden) {
-        super(points,isHidden);
+        super(points,isHidden, "U-Turn");
         this.d = Constants.Directions.WEST;
     }
 

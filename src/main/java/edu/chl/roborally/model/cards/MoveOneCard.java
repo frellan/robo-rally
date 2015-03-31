@@ -9,7 +9,7 @@ import edu.chl.roborally.model.gameactions.MovePlayer;
 public class MoveOneCard extends RegisterCard{
 
     public MoveOneCard(int points, boolean isHidden) {
-        super(points,isHidden);
+        super(points,isHidden, "Move One");
     }
 
     public void doAction(Player p) {

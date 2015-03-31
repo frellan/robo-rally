@@ -13,7 +13,7 @@ public class RotateRightCard extends RegisterCard{
     private Constants.Directions d;
 
     public RotateRightCard(int points, boolean isHidden) {
-        super(points,isHidden);
+        super(points,isHidden, "Rotate Right");
         this.d = Constants.Directions.EAST;
     }
 
