@@ -15,6 +15,10 @@ public abstract class RegisterCard {
 
     public abstract void doAction();
 
+    public void setHidden(boolean b) {
+        isHidden = b;
+    }
+
     public int getPoints() {
         return points;
     }

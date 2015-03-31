@@ -29,6 +29,12 @@ public class Turn {
     }
 
     private void startTurn() {
-        // TODO Loop the players and their cards
+        revealProgrammedCards();
+    }
+
+    private void revealProgrammedCards() {
+        for (Player p : players) {
+            p.getProgrammedCard(index).setHidden(false);
+        }
     }
 }
