@@ -30,6 +30,6 @@ public abstract class RegisterCard {
     }
 
     public String toString() {
-        return "Points: " + points;
+        return this.getClass().toString() + " Points: " + points;
     }
 }

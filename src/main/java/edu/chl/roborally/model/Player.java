@@ -31,7 +31,7 @@ public class Player {
         this.lifeTokens = 3;
         this.damageTokens = 0;
         this.direction = Constants.Directions.NORTH;
-        this.programmedCards = new RegisterCard[4];
+        this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
     }
 
