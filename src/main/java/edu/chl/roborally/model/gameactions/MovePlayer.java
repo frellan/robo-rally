@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.gameactions;
 
-import com.sun.tools.javac.code.Attribute;
 import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.Position;
@@ -17,6 +16,9 @@ public class MovePlayer implements GameAction {
         this.p = p;
         this.d = d;
         action();
+        System.out.println("Moved " + p.getName());
+        System.out.println("New positon " + p.getPosition().toString());
+        System.out.println("");
     }
 
     public MovePlayer(Player p) {

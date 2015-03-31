@@ -39,6 +39,8 @@ public class Turn {
         executeActiveCards();
     }
 
+    // Executing methods
+
     private void revealProgrammedCards() {
         for (Player player : players) {
             RegisterCard card = player.getProgrammedCard(index);
@@ -49,7 +51,7 @@ public class Turn {
     }
 
     private void sortActiveCards() {
-        Collections.sort(activeCards, new RegisterCardCompare());
+        Collections.sort(activeCards,new RegisterCardCompare());
     }
 
     private void executeActiveCards() {

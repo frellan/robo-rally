@@ -30,6 +30,7 @@ public class Round {
         dealCards();
         chooseCardsToPlay();
         for (int i = 0; i <= Constants.NUMBER_OF_TURNS-1; i++) {
+            view.printHeader("Starting turn " + Integer.toString(i + 1));
             new Turn(model,i);
         }
     }
@@ -47,18 +48,18 @@ public class Round {
         for (Player p : players) {
             view.printDealtCards(p);
             view.print("");
-            view.print(p.getName() + " choose 5 cards.");
+            view.print("Choose 5 cards");
             view.print("Type the index of the card in the order you want to place them, separated by commas");
             String[] s = controller.userInputString().split(",");
             int index = 0;
             for (String value : s) {
                 int nr = Integer.parseInt(value);
-                p.setProgrammedCard(index,p.getDealtCard(nr));
-                System.out.println("added card" + index);
+                p.setProgrammedCard(index, p.getDealtCard(nr));
                 index++;
             }
             view.print(p.getName() + " have choosen the following cards:");
             view.printActiveCards(p);
+            view.print("");
         }
     }
 }

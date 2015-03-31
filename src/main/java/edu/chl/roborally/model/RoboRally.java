@@ -42,7 +42,7 @@ public class RoboRally {
         resetDeck();
         initMap("Blank");
         initStartPositions();
-        view.print("");
+        view.printHeader("Starting round");
 
         // Start round
         new Round(this);
