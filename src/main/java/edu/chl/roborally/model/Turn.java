@@ -14,19 +14,17 @@ public class Turn {
     private View view;
     private GameBoard gameBoard;
     public ArrayList<Player> players = new ArrayList<>();
-    private CardDeck deck;
 
-    public Turn(Controller c, View v, GameBoard g, ArrayList<Player> p, CardDeck d) {
+    public Turn(Controller c, View v, GameBoard g, ArrayList<Player> p) {
         this.controller = c;
         this.view = v;
         this.gameBoard = g;
         this.players = p;
-        this.deck = d;
 
         initTurn();
     }
 
     private initTurn() {
-        // TODO Loop the players and their cards 
+        // TODO Loop the players and their cards
     }
 }
