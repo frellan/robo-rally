@@ -1,5 +1,7 @@
 package edu.chl.roborally.model;
 
+import edu.chl.roborally.model.cards.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -57,49 +59,49 @@ public class CardDeck {
         // MOVE_ONE Cards
         int point = 490;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.MOVE_ONE,point));
+            deck.add(new MoveOneCard(point));
             point = point + 10;
         }
 
         // MOVE_TWO Cards
         point = 670;
         for (int i = 1; i <= 12; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.MOVE_TWO,point));
+            deck.add(new MoveTwoCard(point));
             point = point + 10;
         }
 
         // MOVE_THREE Cards
         point = 790;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.MOVE_THREE,point));
+            deck.add(new MoveThreeCard(point));
             point = point + 10;
         }
 
         // BACKUP Cards
         point = 430;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.BACKUP,point));
+            deck.add(new BackupCard(point));
             point = point + 10;
         }
 
         // ROTATE_LEFT Cards
         point = 70;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.ROTATE_LEFT,point));
+            deck.add(new RotateLeftCard(point));
             point = point + 20;
         }
 
         // ROTATE_RIGHT Cards
         point = 80;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.ROTATE_RIGHT,point));
+            deck.add(new RotateRightCard(point));
             point = point + 20;
         }
 
         // U_TURN Cards
         point = 10;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new RegisterCard(Constants.MoveTypes.U_TURN,point));
+            deck.add(new UTurnCard(point));
             point = point + 10;
         }
     }

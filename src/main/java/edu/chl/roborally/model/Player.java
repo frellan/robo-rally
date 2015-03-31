@@ -1,6 +1,8 @@
 package edu.chl.roborally.model;
 
 
+import edu.chl.roborally.model.cards.RegisterCard;
+
 import java.util.ArrayList;
 
 /**
