@@ -3,12 +3,11 @@ package edu.chl.roborally.controller;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.view.View;
 
-import java.nio.ReadOnlyBufferException;
 import java.util.Scanner;
 
 public class Controller {
 
-	private RoboRally roboRally;
+	private RoboRally model;
     private final View view;
     private boolean run;
 
@@ -21,23 +20,21 @@ public class Controller {
     public String userInputString() {
         Scanner in = new Scanner(System.in);
         System.out.print(">");
-        String s = in.nextLine();
-        return s;
+        return in.nextLine();
     }
 
     public int userInputInt() {
         Scanner in = new Scanner(System.in);
         System.out.print(">");
-        int i = in.nextInt();
-        return i;
+        return in.nextInt();
     }
 
     private void actionFromInput(String s) {
         s = s.toLowerCase();
         switch (s) {
             case "new game":
-                if (roboRally == null) {
-                    roboRally = new RoboRally(this, this.view);
+                if (model == null) {
+                    model = new RoboRally(this, this.view);
                 } else {
                     System.out.println("Game already running");
                 }

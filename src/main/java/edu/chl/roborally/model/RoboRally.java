@@ -17,6 +17,7 @@ public class RoboRally {
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
     private CardDeck deck;
+    private static final int NUMBER_OF_TURNS = 5;
 
     // Constructor
 
@@ -35,7 +36,7 @@ public class RoboRally {
 
         numbersOfPlayers = controller.userInputInt();
 
-        setPlayersNames();
+        setPlayerNames();
 
         view.print("Starting new game with " + numbersOfPlayers + " players");
 
@@ -72,7 +73,8 @@ public class RoboRally {
         ArrayList<Position> start = gameBoard.getStartPosition(numbersOfPlayers);
         for (int i = 0; i<players.size(); i++) {
             players.get(i).setCheckpoint(start.get(i));
-            System.out.println(players.get(i).getPlayerPos());
+            players.get(i).toCheckpoint();
+            System.out.println(players.get(i).getPosition());
         }
     }
 
@@ -82,7 +84,7 @@ public class RoboRally {
         // Set players Hand
         for (Player p : players) {
             // TODO check p damagetokens and return right nbr of cards
-            p.setHand(deck.getCards(9));
+            p.setDealtCards(deck.getCards(9));
         }
 
         for (Player p : players) {
@@ -91,16 +93,18 @@ public class RoboRally {
 
         chooseCardsToPlay();
 
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= NUMBER_OF_TURNS; i++) {
             initTurn();
         }
     }
+
     // TODO maybe better to have this in the player class?
     private void printCardOnHand(Player p) {
-        for(RegisterCard c : p.getHand()) {
-            System.out.println(p.getHand().indexOf(c) + " " + c.toString() + " | ");
+        for(RegisterCard c : p.getDealtCards()) {
+            System.out.println(p.getDealtCards().indexOf(c) + " " + c.toString() + " | ");
         }
     }
+
     private void chooseCardsToPlay() {
         System.out.println("Time to choose cards to play");
         for (Player p : players) {
@@ -109,7 +113,7 @@ public class RoboRally {
                 int j = i+1;
                 System.out.print("Card number " + j  + " ");
                 // TODO check so index that player choice are not out of bounds and not already picked
-                p.setChoosenCards(p.getCardFromHand(controller.userInputInt()));
+                p.setChoosenCards(p.getDealtCard(controller.userInputInt()));
             }
             System.out.println(p.getName() + " have choosen the following cards: " + p.getChoosenCards());
         }
@@ -126,7 +130,7 @@ public class RoboRally {
 
     // Setters
 
-    private void setPlayersNames() {
+    private void setPlayerNames() {
         for (int i = 1; i < numbersOfPlayers+1; i++) {
             System.out.println("Name on Player " + i + "?");
             players.add(new Player(i, controller.userInputString()));

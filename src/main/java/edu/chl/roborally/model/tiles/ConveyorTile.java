@@ -18,22 +18,19 @@ public class ConveyorTile implements GameTile {
         this.isExpress = isExpress;
     }
 
-    public Position getNewPosition(Position p, Boolean isExpress){
-        if(d == Constants.Directions.EAST) {
-            return new Position(p.getX() + 1, p.getY());
-        }
-        else if(d ==(Constants.Directions.WEST)){
-            return new Position(p.getX()-1, p.getY());
-        }
-        else if(d == Constants.Directions.NORTH){
-            return new Position(p.getX(), p.getY()+1);
-        }
-        else if(d == Constants.Directions.SOUTH){
-            return new Position(p.getX(), p.getY()-1);
+    public Position getNewPosition(Position p){
+        switch (d) {
+            case EAST:
+                return new Position(p.getX() + 1, p.getY());
+            case WEST:
+                return new Position(p.getX()-1, p.getY());
+            case NORTH:
+                return new Position(p.getX(), p.getY()+1);
+            case SOUTH:
+                return new Position(p.getX(), p.getY()-1);
         }
         System.out.println("Unknown Direction -getNewPosition");
         return p;
     }
-
 
 }
