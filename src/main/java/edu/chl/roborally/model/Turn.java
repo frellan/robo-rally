@@ -30,11 +30,16 @@ public class Turn {
 
     private void startTurn() {
         revealProgrammedCards();
+        movePlayers();
     }
 
     private void revealProgrammedCards() {
         for (Player p : players) {
             p.getProgrammedCard(index).setHidden(false);
         }
+    }
+
+    private void movePlayers() {
+        // TODO
     }
 }
