@@ -1,5 +1,7 @@
 package edu.chl.roborally.model.cards;
 
+import edu.chl.roborally.model.Player;
+
 /**
  * Created by fredrikkindstrom on 26/03/15.
  */
@@ -13,7 +15,7 @@ public abstract class RegisterCard {
         this.isHidden = isHidden;
     }
 
-    public abstract void doAction();
+    public abstract void doAction(Player p);
 
     public void setHidden(boolean b) {
         isHidden = b;
