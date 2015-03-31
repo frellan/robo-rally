@@ -30,13 +30,9 @@ public class RoboRally {
 
     private void newGame() {
         view.print("How many players?");
-
         numbersOfPlayers = controller.userInputInt();
-
         setPlayerNames();
-
         view.print("Starting new game with " + numbersOfPlayers + " players");
-
         for (Player p : players) {
             view.print("Player " + players.indexOf(p) + " : " + p.getName());
         }
@@ -45,8 +41,9 @@ public class RoboRally {
         resetDeck();
         initMap("Blank");
         initStartPositions();
+
         // Start round
-        initRound();
+        new Round(controller, view, deck, players);
     }
 
     private void resetDeck() {
@@ -72,48 +69,6 @@ public class RoboRally {
             players.get(i).toCheckpoint();
             System.out.println(players.get(i).getPosition());
         }
-    }
-
-    // Start a round
-    private void initRound() {
-        deck.shuffle();
-        // Set players Hand
-        for (Player p : players) {
-            // TODO check p damagetokens and return right nbr of cards
-            p.setDealtCards(deck.getCards(9));
-        }
-
-        for (Player p : players) {
-            printCardOnHand(p);
-        }
-
-        chooseCardsToPlay();
-
-        for (int i = 1; i <= Constants.NUMBER_OF_TURNS; i++) {
-            initTurn();
-        }
-    }
-
-    // TODO maybe better to have this in the player class?
-    private void printCardOnHand(Player p) {
-        for(RegisterCard c : p.getDealtCards()) {
-            System.out.println(p.getDealtCards().indexOf(c) + " " + c.toString() + " | ");
-        }
-    }
-
-    private void chooseCardsToPlay() {
-        System.out.println("Time to choose cards to play");
-        for (Player p : players) {
-            System.out.println(p.getName() + " time to choose five cards, type index of card in your hand to place it.");
-            for (int i = 0; i<5; i++) {
-                int j = i+1;
-                System.out.print("Card number " + j  + " ");
-                // TODO check so index that player choice are not out of bounds and not already picked
-                p.setChoosenCards(p.getDealtCard(controller.userInputInt()));
-            }
-            System.out.println(p.getName() + " have choosen the following cards: " + p.getChoosenCards());
-        }
-
     }
 
     private void initTurn() {

@@ -19,13 +19,11 @@ public class Controller {
 
     public String userInputString() {
         Scanner in = new Scanner(System.in);
-        System.out.print(">");
         return in.nextLine();
     }
 
     public int userInputInt() {
         Scanner in = new Scanner(System.in);
-        System.out.print(">");
         return in.nextInt();
     }
 
