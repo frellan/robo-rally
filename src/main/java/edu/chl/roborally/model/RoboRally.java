@@ -30,13 +30,9 @@ public class RoboRally {
 
     private void newGame() {
         view.print("How many players?");
-
         numbersOfPlayers = controller.userInputInt();
-
         setPlayerNames();
-
         view.print("Starting new game with " + numbersOfPlayers + " players");
-
         for (Player p : players) {
             view.print("Player " + players.indexOf(p) + " : " + p.getName());
         }
@@ -45,6 +41,7 @@ public class RoboRally {
         resetDeck();
         initMap("Blank");
         initStartPositions();
+
         // Start round
         new Round(controller, view, deck, players);
     }

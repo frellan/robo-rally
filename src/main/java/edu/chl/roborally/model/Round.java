@@ -48,8 +48,11 @@ public class Round {
             view.print(p.getName() + " choose 5 cards.");
             view.print("Type the index of the card in the order you want to place them, separated by commas");
             String[] s = controller.userInputString().split(",");
+            int index = 0;
             for (String value : s) {
-                p.setChoosenCard(p.getDealtCard(Integer.parseInt(value)));
+                int nr = Integer.parseInt(value);
+                p.setChoosenCard(index,p.getDealtCard(nr));
+                index++;
             }
             view.print(p.getName() + " have choosen the following cards:");
             view.print(p.getChoosenCards().toString());
