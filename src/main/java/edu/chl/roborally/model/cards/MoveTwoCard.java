@@ -5,7 +5,13 @@ package edu.chl.roborally.model.cards;
  */
 public class MoveTwoCard extends RegisterCard{
 
+    //Constructor
+
     public MoveTwoCard(int points) {
         super(points);
+    }
+
+    public void doAction() {
+
     }
 }

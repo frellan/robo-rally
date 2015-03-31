@@ -9,6 +9,8 @@ public abstract class RegisterCard {
 
     private int points;
 
+    //Constructor
+
     public RegisterCard(int points) {
         this.points = points;
     }

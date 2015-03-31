@@ -7,7 +7,13 @@ import edu.chl.roborally.model.Constants;
  */
 public class MoveOneCard extends RegisterCard{
 
+    //Constructor
+
     public MoveOneCard(int points) {
         super(points);
+    }
+
+    public void doAction() {
+
     }
 }

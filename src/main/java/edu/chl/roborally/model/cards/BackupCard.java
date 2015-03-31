@@ -5,7 +5,15 @@ package edu.chl.roborally.model.cards;
  */
 public class BackupCard extends RegisterCard{
 
+    //Constructor
+
     public BackupCard(int points) {
         super(points);
     }
+
+    public void doAction() {
+        
+    }
+
+
 }

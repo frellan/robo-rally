@@ -5,7 +5,13 @@ package edu.chl.roborally.model.cards;
  */
 public class RotateRightCard extends RegisterCard{
 
+    //Constructor
+
     public RotateRightCard(int points) {
         super(points);
+    }
+
+    public void doAction() {
+
     }
 }
