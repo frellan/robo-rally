@@ -21,6 +21,7 @@ public class Player {
     private Constants.Directions direction;
     private ArrayList<RegisterCard> dealtCards;
     private RegisterCard[] programmedCards;
+    private Constants.Status status;
 
     //Constructor
 
@@ -31,6 +32,7 @@ public class Player {
         this.damageTokens = 0;
         this.direction = Constants.Directions.NORTH;
         this.programmedCards = new RegisterCard[4];
+        this.status = Constants.Status.ALIVE;
     }
 
     //Queries
@@ -75,6 +77,10 @@ public class Player {
         return programmedCards;
     }
 
+    public Constants.Status getStatus() {
+        return this.status;
+    }
+
     //Commands
 
     public void loseLifeToken() {
@@ -85,10 +91,14 @@ public class Player {
         this.damageTokens = damageTokens - amount;
     }
 
-    public void toCheckpoint() {
+    public void backToCheckpoint() {
         if (checkpoint != null) {
             this.position = checkpoint;
         }
+    }
+
+    public void resetDamgetokens() {
+        this.damageTokens = 0;
     }
 
     public void setPosition(Position p) {
@@ -109,6 +119,10 @@ public class Player {
 
     public void setProgrammedCard(int index, RegisterCard c) {
         this.programmedCards[index] = c;
+    }
+
+    public void setStatus(Constants.Status s) {
+        this.status = s;
     }
 
 }

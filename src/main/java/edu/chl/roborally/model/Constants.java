@@ -34,4 +34,11 @@ public class Constants {
         SOUTH_WEST,
         SOUTH_EAST
     }
+
+    // The status of a player
+    public enum Status {
+        ALIVE,
+        DEAD,
+        POWERDOWN,
+    }
 }
