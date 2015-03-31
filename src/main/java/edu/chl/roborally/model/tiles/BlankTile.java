@@ -5,6 +5,8 @@ package edu.chl.roborally.model.tiles;
  */
 public class BlankTile implements GameTile {
 
+    public void doAction(){
 
+    }
 
 }

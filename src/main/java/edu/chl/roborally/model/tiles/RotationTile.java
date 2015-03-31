@@ -46,4 +46,10 @@ public class RotationTile implements GameTile {
             }
         }
     }
+
+    public void doAction(){
+
+    }
+
+
 }
