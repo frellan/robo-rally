@@ -55,7 +55,7 @@ public class Turn {
     private void executeActiveCards() {
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
-            // c.doAction(p);
+            card.doAction(player);
         }
     }
 }

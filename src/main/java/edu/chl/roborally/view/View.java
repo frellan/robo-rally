@@ -12,9 +12,17 @@ public class View {
         System.out.println(s);
     }
 
-    public void printCardOnHand(Player p) {
+    public void printDealtCards(Player p) {
         for(RegisterCard c : p.getDealtCards()) {
-            System.out.println(p.getDealtCards().indexOf(c) + " " + c.toString() + " | ");
+            System.out.println(p.getDealtCards().indexOf(c) + " " + c.toString());
+        }
+    }
+
+    public void printActiveCards(Player p) {
+        int index = 1;
+        for(RegisterCard c : p.getProgrammedCards()) {
+            System.out.println(index + " " + c.toString());
+            index++;
         }
     }
 

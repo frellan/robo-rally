@@ -41,7 +41,7 @@ public class Round {
             // TODO check p damagetokens and return right nbr of cards
             p.setDealtCards(deck.getCards(9));
         }
-        printCardsOnHand();
+        printDealtCards();
     }
 
     private void chooseCardsToPlay() {
@@ -57,15 +57,15 @@ public class Round {
                 index++;
             }
             view.print(p.getName() + " have choosen the following cards:");
-            view.print(p.getProgrammedCards().toString());
+            view.printActiveCards(p);
         }
     }
 
     //View
 
-    private void printCardsOnHand() {
+    private void printDealtCards() {
         for (Player p : players) {
-            view.printCardOnHand(p);
+            view.printDealtCards(p);
         }
     }
 }
