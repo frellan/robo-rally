@@ -20,9 +20,10 @@ public class KillPlayer implements GameAction{
         // Set status to Dead
         p.setStatus(Constants.Status.DEAD);
         // Reset all damgetokens
-        p.resetDamgetokens();
+        p.resetDamageTokens();
         // Move player back to last checkpoint
         p.backToCheckpoint();
-        // TODO Remove one lifetoken
+        // Remove one lifetoken
+        p.loseLifeToken();
     }
 }

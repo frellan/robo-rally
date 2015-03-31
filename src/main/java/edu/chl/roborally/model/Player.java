@@ -97,7 +97,7 @@ public class Player {
         }
     }
 
-    public void resetDamgetokens() {
+    public void resetDamageTokens() {
         this.damageTokens = 0;
     }
 
