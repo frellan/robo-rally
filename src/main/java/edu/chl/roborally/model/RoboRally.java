@@ -33,14 +33,16 @@ public class RoboRally {
         numbersOfPlayers = controller.userInputInt();
         setPlayerNames();
         view.print("Starting new game with " + numbersOfPlayers + " players");
+        view.print("");
         for (Player p : players) {
-            view.print("Player " + players.indexOf(p) + " : " + p.getName());
+            view.print("Player " + p.getiD() + " : " + p.getName());
         }
 
         // Init all dependencies
         resetDeck();
         initMap("Blank");
         initStartPositions();
+        view.print("");
 
         // Start round
         new Round(this);
@@ -64,10 +66,12 @@ public class RoboRally {
     // Set startpostions and put players on the board
     private void initStartPositions() {
         ArrayList<Position> start = gameBoard.getStartPositions(numbersOfPlayers);
-        for (int i = 0; i<players.size(); i++) {
-            players.get(i).setCheckpoint(start.get(i));
-            players.get(i).backToCheckpoint();
-            System.out.println(players.get(i).getPosition());
+        int index = 0;
+        for (Player player : players) {
+            player.setCheckpoint(start.get(index));
+            player.backToCheckpoint();
+            index++;
+            System.out.println(player.getName() + " is at " + player.getPosition());
         }
     }
 
@@ -92,9 +96,9 @@ public class RoboRally {
     // Setters
 
     private void setPlayerNames() {
-        for (int i = 1; i < numbersOfPlayers+1; i++) {
+        for (int i = 1; i <= numbersOfPlayers; i++) {
             System.out.println("Name on Player " + i + "?");
-            players.add(new Player(i, controller.userInputString()));
+            players.add(new Player(i,controller.userInputString()));
         }
     }
 }

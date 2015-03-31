@@ -41,11 +41,12 @@ public class Round {
             // TODO check p damagetokens and return right nbr of cards
             p.setDealtCards(deck.getCards(9));
         }
-        printDealtCards();
     }
 
     private void chooseCardsToPlay() {
         for (Player p : players) {
+            view.printDealtCards(p);
+            view.print("");
             view.print(p.getName() + " choose 5 cards.");
             view.print("Type the index of the card in the order you want to place them, separated by commas");
             String[] s = controller.userInputString().split(",");
@@ -58,14 +59,6 @@ public class Round {
             }
             view.print(p.getName() + " have choosen the following cards:");
             view.printActiveCards(p);
-        }
-    }
-
-    //View
-
-    private void printDealtCards() {
-        for (Player p : players) {
-            view.printDealtCards(p);
         }
     }
 }
