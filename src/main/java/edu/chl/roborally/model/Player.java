@@ -101,7 +101,7 @@ public class Player {
         this.dealtCards = cards;
     }
 
-    public void setChoosenCards(RegisterCard c) {
+    public void setChoosenCard(RegisterCard c) {
         this.choosenCards.add(c);
     }
 
