@@ -19,7 +19,6 @@ public class Turn {
     private RoboRally model;
     private Controller controller;
     private View view;
-    private CardDeck deck;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards;
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
@@ -30,7 +29,6 @@ public class Turn {
         model = r;
         controller = model.getController();
         view = model.getView();
-        deck = model.getDeck();
         players = model.getPlayers();
         this.index = index;
         startTurn();
