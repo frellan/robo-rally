@@ -66,15 +66,9 @@ public class RoboRally {
         ArrayList<Position> start = gameBoard.getStartPositions(numbersOfPlayers);
         for (int i = 0; i<players.size(); i++) {
             players.get(i).setCheckpoint(start.get(i));
-            players.get(i).toCheckpoint();
+            players.get(i).backToCheckpoint();
             System.out.println(players.get(i).getPosition());
         }
-    }
-
-    private void initTurn() {
-        // TODO move players in order
-        // TODO execute actions on game board
-        // TODO update player status (life tokens, damage etc)
     }
 
     // Getters
