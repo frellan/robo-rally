@@ -37,6 +37,7 @@ public class Turn {
         revealProgrammedCards();
         sortActiveCards();
         executeActiveCards();
+        executeBoardElements_One();
     }
 
     // Executing methods
@@ -59,5 +60,10 @@ public class Turn {
             Player player = activeCardPlayer.get(card);
             card.doAction(player);
         }
+    }
+
+    //Express converyor belts move 1 space
+    private void executeBoardElements_One() {
+        // TODO
     }
 }
