@@ -10,8 +10,6 @@ public class BackupCard extends RegisterCard{
     }
 
     public void doAction() {
-        
+        // TODO
     }
-
-
 }

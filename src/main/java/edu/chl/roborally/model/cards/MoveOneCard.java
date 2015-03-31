@@ -12,6 +12,6 @@ public class MoveOneCard extends RegisterCard{
     }
 
     public void doAction() {
-
+        // TODO
     }
 }

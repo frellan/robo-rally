@@ -10,6 +10,6 @@ public class MoveTwoCard extends RegisterCard{
     }
 
     public void doAction() {
-
+        // TODO
     }
 }

@@ -10,6 +10,6 @@ public class MoveThreeCard extends RegisterCard{
     }
 
     public void doAction() {
-
+        // TODO
     }
 }

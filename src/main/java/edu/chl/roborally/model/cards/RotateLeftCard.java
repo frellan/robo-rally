@@ -10,6 +10,6 @@ public class RotateLeftCard extends RegisterCard{
     }
 
     public void doAction() {
-
+        // TODO
     }
 }
