@@ -15,7 +15,7 @@ public class WallTile implements GameTile{
     }
 
     public void doAction(Player p){
-        new StopPlayer(p, d);
+        // new StopPlayer(p, d);
     }
 
 

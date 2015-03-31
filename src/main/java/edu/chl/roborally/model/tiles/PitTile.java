@@ -13,6 +13,6 @@ public class PitTile implements GameTile{
     }
 
     public void doAction(Player p){
-        new RespawnPlayer(p);
+        // new RespawnPlayer(p);
     }
 }
