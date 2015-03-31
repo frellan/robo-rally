@@ -3,7 +3,6 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.view.View;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class Turn {
     private Controller controller;
     private View view;
     private ArrayList<Player> players;
-    private ArrayList<RegisterCard> activeCards;
+    private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
 
     private int index;
