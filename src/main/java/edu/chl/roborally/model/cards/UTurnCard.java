@@ -5,10 +5,8 @@ package edu.chl.roborally.model.cards;
  */
 public class UTurnCard extends RegisterCard{
 
-    //Constructor
-
-    public UTurnCard(int points) {
-        super(points);
+    public UTurnCard(int points, boolean isHidden) {
+        super(points,isHidden);
     }
 
     public void doAction() {

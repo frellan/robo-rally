@@ -10,22 +10,25 @@ import java.util.ArrayList;
  */
 public class Turn {
 
+    private RoboRally model;
     private Controller controller;
     private View view;
-    private GameBoard gameBoard;
-    public ArrayList<Player> players = new ArrayList<>();
+    private CardDeck deck;
+    private ArrayList<Player> players;
 
-    public Turn(Controller c, View v, GameBoard g, ArrayList<Player> p) {
-        this.controller = c;
-        this.view = v;
-        this.gameBoard = g;
-        this.players = p;
+    private int index;
 
-        initTurn();
+    public Turn(RoboRally r, int index) {
+        model = r;
+        controller = model.getController();
+        view = model.getView();
+        deck = model.getDeck();
+        players = model.getPlayers();
+        this.index = index;
+        startTurn();
     }
 
-    private void initTurn() {
+    private void startTurn() {
         // TODO Loop the players and their cards
-        //
     }
 }

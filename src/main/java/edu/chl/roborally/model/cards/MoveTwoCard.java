@@ -5,10 +5,8 @@ package edu.chl.roborally.model.cards;
  */
 public class MoveTwoCard extends RegisterCard{
 
-    //Constructor
-
-    public MoveTwoCard(int points) {
-        super(points);
+    public MoveTwoCard(int points, boolean isHidden) {
+        super(points,isHidden);
     }
 
     public void doAction() {

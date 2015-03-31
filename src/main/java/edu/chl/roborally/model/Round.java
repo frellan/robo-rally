@@ -30,7 +30,7 @@ public class Round {
         dealCards();
         chooseCardsToPlay();
         for (int i = 1; i <= Constants.NUMBER_OF_TURNS; i++) {
-            // new Turn(model);
+            new Turn(model,i);
         }
     }
 
@@ -52,11 +52,11 @@ public class Round {
             int index = 0;
             for (String value : s) {
                 int nr = Integer.parseInt(value);
-                p.setChoosenCard(index,p.getDealtCard(nr));
+                p.setProgrammedCard(index, p.getDealtCard(nr));
                 index++;
             }
             view.print(p.getName() + " have choosen the following cards:");
-            view.print(p.getChoosenCards().toString());
+            view.print(p.getProgrammedCards().toString());
         }
     }
 

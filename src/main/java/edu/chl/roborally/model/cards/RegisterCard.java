@@ -1,18 +1,16 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.Constants;
-
 /**
  * Created by fredrikkindstrom on 26/03/15.
  */
 public abstract class RegisterCard {
 
     private int points;
+    private boolean isHidden;
 
-    //Constructor
-
-    public RegisterCard(int points) {
+    public RegisterCard(int points, boolean isHidden) {
         this.points = points;
+        this.isHidden = isHidden;
     }
 
     public abstract void doAction();

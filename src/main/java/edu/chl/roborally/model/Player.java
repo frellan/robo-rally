@@ -20,7 +20,7 @@ public class Player {
     private Position checkpoint;
     private Constants.Directions direction;
     private ArrayList<RegisterCard> dealtCards;
-    private RegisterCard[] choosenCards;
+    private RegisterCard[] programmedCards;
 
     //Constructor
 
@@ -30,7 +30,7 @@ public class Player {
         this.lifeTokens = 3;
         this.damageTokens = 0;
         this.direction = Constants.Directions.NORTH;
-        this.choosenCards = new RegisterCard[4];
+        this.programmedCards = new RegisterCard[4];
     }
 
     //Queries
@@ -67,8 +67,12 @@ public class Player {
         return dealtCards;
     }
 
-    public RegisterCard[] getChoosenCards() {
-        return choosenCards;
+    public RegisterCard getProgrammedCard(int index) {
+        return programmedCards[index];
+    }
+
+    public RegisterCard[] getProgrammedCards() {
+        return programmedCards;
     }
 
     //Commands
@@ -103,8 +107,8 @@ public class Player {
         this.dealtCards = cards;
     }
 
-    public void setChoosenCard(int index, RegisterCard c) {
-        this.choosenCards[index] = c;
+    public void setProgrammedCard(int index, RegisterCard c) {
+        this.programmedCards[index] = c;
     }
 
 }

@@ -59,49 +59,49 @@ public class CardDeck {
         // MOVE_ONE Cards
         int point = 490;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new MoveOneCard(point));
+            deck.add(new MoveOneCard(point,true));
             point = point + 10;
         }
 
         // MOVE_TWO Cards
         point = 670;
         for (int i = 1; i <= 12; i++) {
-            deck.add(new MoveTwoCard(point));
+            deck.add(new MoveTwoCard(point,true));
             point = point + 10;
         }
 
         // MOVE_THREE Cards
         point = 790;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new MoveThreeCard(point));
+            deck.add(new MoveThreeCard(point,true));
             point = point + 10;
         }
 
         // BACKUP Cards
         point = 430;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new BackupCard(point));
+            deck.add(new BackupCard(point,true));
             point = point + 10;
         }
 
         // ROTATE_LEFT Cards
         point = 70;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RotateLeftCard(point));
+            deck.add(new RotateLeftCard(point,true));
             point = point + 20;
         }
 
         // ROTATE_RIGHT Cards
         point = 80;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RotateRightCard(point));
+            deck.add(new RotateRightCard(point,true));
             point = point + 20;
         }
 
         // U_TURN Cards
         point = 10;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new UTurnCard(point));
+            deck.add(new UTurnCard(point,true));
             point = point + 10;
         }
     }
