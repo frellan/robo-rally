@@ -50,6 +50,6 @@ public class Turn {
     }
 
     private void sortActiveCards() {
-        Collections.sort(activeCards, new RegisterCardCompare);
+        Collections.sort(activeCards, new RegisterCardCompare());
     }
 }
