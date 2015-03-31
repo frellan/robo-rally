@@ -8,7 +8,6 @@ import edu.chl.roborally.model.Player;
  */
 public class RotationTile implements GameTile {
 
-
     private Constants.Directions d;
 
     public RotationTile(Constants.Directions d){

@@ -7,16 +7,12 @@ import edu.chl.roborally.model.Player;
  */
 public class PitTile implements GameTile{
 
-    private Player player;
 
+    public PitTile(){
 
-    public PitTile(Player player){
-        this.player=player;
     }
 
     public void doAction(Player p){
-
+        new RespawnPlayer(p);
     }
-
-
 }
