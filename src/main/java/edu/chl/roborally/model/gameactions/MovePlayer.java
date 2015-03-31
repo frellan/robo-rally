@@ -12,7 +12,6 @@ public class MovePlayer {
 
     private Player p;
     private Constants.Directions d;
-    private Position;
 
     public MovePlayer(Player p, Constants.Directions d) {
         this.p = p;
@@ -26,8 +25,16 @@ public class MovePlayer {
 
     private void action() {
         switch (d) {
-            case Constants.Directions.NORTH:
+            case NORTH:
+                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()+1));
+                break;
+            case SOUTH:
+                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()-1));
+            case EAST:
                 p.setPosition(new Position(p.getPosition().getX()+1, p.getPosition().getY()));
+                break;
+            case WEST:
+                p.setPosition(new Position(p.getPosition().getX()-1, p.getPosition().getY()));
         }
     }
 }
