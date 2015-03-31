@@ -17,12 +17,16 @@ public abstract class RegisterCard {
 
     public abstract void doAction(Player p);
 
-    public void setHidden(boolean b) {
-        isHidden = b;
-    }
-
     public int getPoints() {
         return points;
+    }
+
+    public boolean getHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean b) {
+        isHidden = b;
     }
 
     public String toString() {
