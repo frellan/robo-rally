@@ -13,7 +13,7 @@ public class UTurnCard extends RegisterCard{
     private Constants.Directions d;
 
 
-    public UTurnCard(int points, boolean isHidden, Constants.Directions d) {
+    public UTurnCard(int points, boolean isHidden) {
         super(points,isHidden);
         this.d = Constants.Directions.WEST;
     }
