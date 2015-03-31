@@ -14,7 +14,7 @@ public class PitTile implements GameTile{
         this.player=player;
     }
 
-    public void doAction(){
+    public void doAction(Player p){
 
     }
 

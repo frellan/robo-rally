@@ -3,6 +3,7 @@ package edu.chl.roborally.model.tiles;
 import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.Position;
+import edu.chl.roborally.model.gameactions.MovePlayer;
 
 /**
  * Created by axel on 2015-03-30.
@@ -17,17 +18,6 @@ public class ConveyorTile implements GameTile {
 
 
     public void doAction(Player p){
-        switch (d) {
-            case EAST:
-
-            case WEST:
-
-            case NORTH:
-
-            case SOUTH:
-
-            default:
-
-        }
+        new MovePlayer(p, d);
     }
 }

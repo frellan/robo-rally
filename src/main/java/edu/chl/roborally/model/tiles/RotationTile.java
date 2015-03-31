@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.tiles;
 
 import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.model.Player;
 
 /**
  * Created by axel on 2015-03-30.
@@ -8,48 +9,13 @@ import edu.chl.roborally.model.Constants;
 public class RotationTile implements GameTile {
 
 
-    private boolean rotationRight;
+    private Constants.Directions d;
 
-
-    public RotationTile(Boolean rotationRight){
-        this.rotationRight = rotationRight;
+    public RotationTile(Constants.Directions d){
+        this.d = d;
     }
 
-    public Constants.Directions getNewDirection(Constants.Directions d){
-        if (rotationRight) {
-            switch (d) {
-                case EAST:
-                    return Constants.Directions.SOUTH;
-                case SOUTH:
-                    return Constants.Directions.WEST;
-                case WEST:
-                    return Constants.Directions.NORTH;
-                case NORTH:
-                    return Constants.Directions.EAST;
-                default:
-                    System.out.println("Unknown Direction -getNewDirection");
-                    return d;
-            }
-        } else {
-            switch (d) {
-                case EAST:
-                    return Constants.Directions.NORTH;
-                case SOUTH:
-                    return Constants.Directions.EAST;
-                case WEST:
-                    return Constants.Directions.SOUTH;
-                case NORTH:
-                    return Constants.Directions.WEST;
-                default:
-                    System.out.println("Unknown Direction -getNewDirection");
-                    return d;
-            }
-        }
+    public void doAction(Player p){
+        new RotatePlayer(p,d);
     }
-
-    public void doAction(){
-
-    }
-
-
 }

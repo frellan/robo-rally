@@ -8,17 +8,16 @@ import edu.chl.roborally.model.Player;
  */
 public class WallTile implements GameTile{
 
-    private Player player;
+
     private Constants.Directions d;
 
 
-    public WallTile(Player player, Constants.Directions d){
-        this.player = player;
+    public WallTile(Constants.Directions d){
         this.d=d;
     }
 
-    public void doAction(){
-
+    public void doAction(Player p){
+        new StopPlayer(p, d);
     }
 
 
