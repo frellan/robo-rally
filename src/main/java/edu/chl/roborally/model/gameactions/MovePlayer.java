@@ -8,7 +8,7 @@ import edu.chl.roborally.model.Position;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class MovePlayer {
+public class MovePlayer implements GameAction {
 
     private Player p;
     private Constants.Directions d;
@@ -16,14 +16,15 @@ public class MovePlayer {
     public MovePlayer(Player p, Constants.Directions d) {
         this.p = p;
         this.d = d;
+        action();
     }
 
     public MovePlayer(Player p) {
-        this.p = p;
-        this.d = p.getDirection();
+        this(p, p.getDirection());
     }
 
-    private void action() {
+    @Override
+    public void action() {
         switch (d) {
             case NORTH:
                 p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()+1));
