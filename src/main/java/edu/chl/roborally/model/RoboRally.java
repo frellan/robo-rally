@@ -57,14 +57,13 @@ public class RoboRally {
     private void initMap() {
         view.print("Choose Board");
         view.print("Type 1: Blank Map");
-        // TODO choose map, Valut map not working right now
-        //view.print("Type 2: Vault Map");
+        view.print("Type 2: Vault Map");
         int input = controller.userInputInt();
         if (input == 1) {
             gameBoard = new BlankMap();
-        } //else if (input == 2) {
-            //gameBoard = new VaultMap();
-        //}
+        } else if (input == 2) {
+            gameBoard = new VaultMap();
+        }
         // Print Board
         gameBoard.printBoard();
     }
