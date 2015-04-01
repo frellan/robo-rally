@@ -8,7 +8,7 @@ import edu.chl.roborally.model.GameBoard;
 public class BlankMap extends GameBoard {
 
     public BlankMap(){
-        super();
+        super("Blank Map");
     }
 
     public void fillGameBoard(){

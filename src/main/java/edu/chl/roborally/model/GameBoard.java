@@ -11,11 +11,13 @@ public abstract class GameBoard {
 
     private GameTile[][] board;
     private List<Position> startPositions = new ArrayList<>();
+    private String name;
 
 
-    public GameBoard(){
+    public GameBoard(String n){
 
         this.board = new GameTile[Constants.NUM_ROWS][Constants.NUM_COLS];
+        this.name = n;
 
         //Fills the board with BlankTiles
         for (int row = 0; row < Constants.NUM_ROWS; row ++){
@@ -51,6 +53,8 @@ public abstract class GameBoard {
 
     // Print board
     public void printBoard() {
+        System.out.println("-------------------------");
+        System.out.println("Board = " + name);
         System.out.println("-------------------------");
         for (int i = 0; i<this.board.length; i++) {
             System.out.print("|");

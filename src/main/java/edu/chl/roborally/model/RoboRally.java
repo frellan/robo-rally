@@ -33,14 +33,11 @@ public class RoboRally {
         numbersOfPlayers = controller.userInputInt();
         setPlayerNames();
         view.print("Starting new game with " + numbersOfPlayers + " players");
-        view.print("");
-        for (Player p : players) {
-            view.print("Player " + p.getiD() + " : " + p.getName());
-        }
+        view.print("------------------------------");
 
         // Init all dependencies
         resetDeck();
-        initMap("Blank");
+        initMap();
         initStartPositions();
         view.printHeader("Starting round");
 
@@ -57,10 +54,17 @@ public class RoboRally {
     }
 
     // Create a new map, input should be a name on the map
-    private void initMap(String map) {
-        if (map.equals("Blank")) {
+    private void initMap() {
+        view.print("Choose Board");
+        view.print("Type 1: Blank Map");
+        // TODO choose map, Valut map not working right now
+        //view.print("Type 2: Vault Map");
+        int input = controller.userInputInt();
+        if (input == 1) {
             gameBoard = new BlankMap();
-        }
+        } //else if (input == 2) {
+            //gameBoard = new VaultMap();
+        //}
         // Print Board
         gameBoard.printBoard();
     }

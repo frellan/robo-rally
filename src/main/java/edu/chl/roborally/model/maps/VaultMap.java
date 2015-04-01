@@ -15,7 +15,7 @@ public class VaultMap extends GameBoard {
 
 
     public VaultMap(){
-        super();
+        super("Vault Map");
         fillGameBoard();
     }
 
