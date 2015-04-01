@@ -7,6 +7,7 @@ import edu.chl.roborally.model.Player;
  */
 public class PitTile implements GameTile{
 
+    private String name = "P";
 
     public PitTile(){
 
@@ -14,5 +15,9 @@ public class PitTile implements GameTile{
 
     public void doAction(Player p){
         // new RespawnPlayer(p);
+    }
+
+    public String toString() {
+        return name;
     }
 }

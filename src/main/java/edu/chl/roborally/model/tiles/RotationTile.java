@@ -10,6 +10,7 @@ import edu.chl.roborally.model.gameactions.RotatePlayer;
 public class RotationTile implements GameTile {
 
     private Constants.Directions d;
+    private String name = "R";
 
     public RotationTile(Constants.Directions d){
         this.d = d;
@@ -17,5 +18,9 @@ public class RotationTile implements GameTile {
 
     public void doAction(Player p){
         new RotatePlayer(p,d);
+    }
+
+    public String toString() {
+        return name;
     }
 }

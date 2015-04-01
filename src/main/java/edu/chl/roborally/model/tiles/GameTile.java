@@ -7,8 +7,7 @@ import edu.chl.roborally.model.Player;
  */
 public interface GameTile {
 
-
-
     public void doAction(Player p);
+    public String toString();
 
 }

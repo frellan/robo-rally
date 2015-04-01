@@ -61,6 +61,8 @@ public class RoboRally {
         if (map.equals("Blank")) {
             gameBoard = new BlankMap();
         }
+        // Print Board
+        gameBoard.printBoard();
     }
 
     // Set startpostions and put players on the board

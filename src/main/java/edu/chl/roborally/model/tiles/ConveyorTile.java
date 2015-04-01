@@ -11,6 +11,7 @@ import edu.chl.roborally.model.gameactions.MovePlayer;
 public class ConveyorTile implements GameTile {
 
     private Constants.Directions d;
+    private String name = "C";
 
     public ConveyorTile(Constants.Directions d){
         this.d = d;
@@ -19,5 +20,9 @@ public class ConveyorTile implements GameTile {
 
     public void doAction(Player p){
         new MovePlayer(p, d);
+    }
+
+    public String toString() {
+        return name;
     }
 }

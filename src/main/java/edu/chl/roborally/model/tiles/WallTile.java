@@ -9,6 +9,7 @@ import edu.chl.roborally.model.Player;
 public class WallTile implements GameTile{
 
     private Constants.Directions d;
+    private String name;
 
     public WallTile(Constants.Directions d){
         this.d=d;
@@ -16,6 +17,10 @@ public class WallTile implements GameTile{
 
     public void doAction(Player p){
         // new StopPlayer(p, d);
+    }
+
+    public String toString() {
+        return name;
     }
 
 

@@ -7,7 +7,13 @@ import edu.chl.roborally.model.Player;
  */
 public class BlankTile implements GameTile {
 
+    private String name = "B";
+
     public void doAction(Player p){
+    }
+
+    public String toString() {
+        return name;
     }
 
 }
