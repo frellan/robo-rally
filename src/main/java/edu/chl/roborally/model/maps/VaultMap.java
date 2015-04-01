@@ -1,7 +1,6 @@
 package edu.chl.roborally.model.maps;
 
 import edu.chl.roborally.model.Constants;
-import edu.chl.roborally.model.GameBoard;
 import edu.chl.roborally.model.tiles.ConveyorTile;
 import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.model.tiles.RotationTile;
