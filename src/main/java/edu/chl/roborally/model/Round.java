@@ -17,11 +17,11 @@ public class Round {
     private ArrayList<Player> players;
 
     public Round(RoboRally r) {
-        model = r;
-        controller = model.getController();
-        view = model.getView();
-        deck = model.getDeck();
-        players = model.getPlayers();
+        this.model = r;
+        this.controller = model.getController();
+        this.view = model.getView();
+        this.deck = model.getDeck();
+        this.players = model.getPlayers();
         startRound();
     }
 
