@@ -1,8 +1,10 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.*;
+import edu.chl.roborally.model.maps.BlankMap;
+import edu.chl.roborally.model.maps.GameBoard;
+import edu.chl.roborally.model.maps.VaultMap;
 import edu.chl.roborally.view.*;
-import edu.chl.roborally.model.maps.*;
 
 import java.util.*;
 
