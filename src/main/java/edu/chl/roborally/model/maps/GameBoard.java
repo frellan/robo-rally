@@ -28,11 +28,11 @@ public abstract class GameBoard {
             }
         }
 
-        startPositions.add(new Position(2,6));
-        startPositions.add(new Position(2,7));
-        startPositions.add(new Position(2,4));
-        startPositions.add(new Position(2,9));
-        startPositions.add(new Position(2,2));
+        startPositions.add(new Position(5,14));
+        startPositions.add(new Position(6,14));
+        startPositions.add(new Position(3,14));
+        startPositions.add(new Position(8,14));
+        startPositions.add(new Position(1,14));
     }
 
     //Used to create a specific gameboard
