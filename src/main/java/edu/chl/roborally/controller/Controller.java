@@ -21,12 +21,10 @@ public class Controller {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
-
     public int userInputInt() {
         Scanner in = new Scanner(System.in);
         return in.nextInt();
     }
-
     private void actionFromInput(String s) {
         switch (s.toLowerCase()) {
             case "new game":
@@ -47,11 +45,9 @@ public class Controller {
                 break;
         }
     }
-
     private void stopGame() {
         this.run = false;
     }
-
     private void play(){
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
