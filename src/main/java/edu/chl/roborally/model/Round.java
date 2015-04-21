@@ -58,8 +58,12 @@ public class Round {
 
     private void dealCards() {
         for (Player p : players) {
-            int damageTokenAmount = p.getDamageTokens();
-            p.setDealtCards(deck.getCards(STANDARD_CARD_AMOUNT - damageTokenAmount));
+            if (p.isPowerDown() == true) {
+                p.setDealtCards(deck.getCards(0));
+            } else {
+                int damageTokenAmount = p.getDamageTokens();
+                p.setDealtCards(deck.getCards(STANDARD_CARD_AMOUNT - damageTokenAmount));
+            }
         }
     }
 
