@@ -107,7 +107,7 @@ public class Player {
     }
 
     public boolean isAlive() {
-        if(this.status == Constants.Status.DEAD) {
+        if(this.status != Constants.Status.DEAD) {
             return true;
         }
         return false;
@@ -118,6 +118,10 @@ public class Player {
             return true;
         }
         return false;
+    }
+    public void kill() {
+        setStatus(Constants.Status.DEAD);
+        loseLifeToken();
     }
 
     // Setters

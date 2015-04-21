@@ -64,9 +64,9 @@ public class Turn {
         view.print("Card Actions");
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
-
+            if (player.isAlive()) {
                 card.doAction(player);
-
+            }
         }
     }
 
@@ -78,10 +78,10 @@ public class Turn {
                 try {
                     model.getGameBoard().getTile(p.getPosition()).doAction(p);
                 } catch (ArrayIndexOutOfBoundsException e) {
+                    // If player is out of bounds we kill him
                     view.print("Player fell of board and died");
-                    p.setStatus(Constants.Status.DEAD);
+                    p.kill();
                 }
-
             }
         }
     }

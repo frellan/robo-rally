@@ -31,6 +31,7 @@ public class Round {
         deck.shuffle();
         dealCards();
         chooseCardsToPlay();
+        putBackPlayers();
         for (int i = 0; i <= Constants.NUMBER_OF_TURNS-1; i++) {
             view.printHeader("Starting turn " + Integer.toString(i + 1));
             new Turn(model, i);
@@ -41,6 +42,19 @@ public class Round {
     }
 
     //Help methods
+
+    /*
+    * If player is dead, we put them back on the last checkpoint
+    * when we start a new round
+     */
+    private void putBackPlayers() {
+        for (Player p : players) {
+            if(!p.isAlive()) {
+                p.backToCheckpoint();
+                p.setStatus(Constants.Status.ALIVE);
+            }
+        }
+    }
 
     private void dealCards() {
         for (Player p : players) {
