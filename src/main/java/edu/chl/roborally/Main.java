@@ -13,16 +13,6 @@ public final class Main {
 	}
 
 	public static void main(String[] args) {
-
-		mainFrame = new JFrame();
-		initFrame();
-		new Controller(new View());
-	}
-
-	private static void initFrame() {
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(1000, 600);
-		mainFrame.setTitle("RoboRally");
-		mainFrame.setVisible(true);
+		new Controller();
 	}
 }
