@@ -88,22 +88,10 @@ public class Player {
 
     //Commands
 
-    public void loseLifeToken() {
-        this.lifeTokens = lifeTokens--;
-    }
+
 
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens - amount;
-    }
-
-    public void backToCheckpoint() {
-        if (checkpoint != null) {
-            this.position = checkpoint;
-        }
-    }
-
-    public void resetDamageTokens() {
-        this.damageTokens = 0;
     }
 
     public boolean isAlive() {
@@ -119,10 +107,33 @@ public class Player {
         }
         return false;
     }
+
+    /**
+     * Kill player
+     */
     public void kill() {
         setStatus(Constants.Status.DEAD);
         loseLifeToken();
+        backToCheckpoint();
+        resetDamageTokens();
     }
+    /**
+     * Helpers to kill player
+     */
+    public void loseLifeToken() {
+        this.lifeTokens = lifeTokens--;
+    }
+
+    public void backToCheckpoint() {
+        if (checkpoint != null) {
+            this.position = checkpoint;
+        }
+    }
+
+    public void resetDamageTokens() {
+        this.damageTokens = 0;
+    }
+    /** End of kill */
 
     // Setters
 
