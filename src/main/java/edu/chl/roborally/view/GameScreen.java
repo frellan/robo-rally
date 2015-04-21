@@ -22,7 +22,7 @@ public class GameScreen extends JPanel {
         setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
     }
 
-    private void paintBoard() {
+    protected void paintBoard() {
         for (int i = 0; i < board.getWidth(); i++) {
             for (int j = 0; j < board.getHeight(); j++) {
                 System.out.println(board.getTile(i,j).toString());

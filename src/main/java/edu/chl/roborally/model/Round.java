@@ -1,7 +1,7 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.Controller;
-import edu.chl.roborally.view.View;
+import edu.chl.roborally.view.MainWindow;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class Round {
 
     private RoboRally model;
     private Controller controller;
-    private View view;
+    private MainWindow view;
     private CardDeck deck;
     private ArrayList<Player> players;
 
@@ -21,7 +21,7 @@ public class Round {
     public Round(RoboRally r) {
         this.model = r;
         this.controller = model.getController();
-        this.view = model.getView();
+        this.view = model.getMainWindow();
         this.deck = model.getDeck();
         this.players = model.getPlayers();
         startRound();
@@ -45,7 +45,7 @@ public class Round {
 
     /*
     * If player is dead, we put them back on the last checkpoint
-    * when we start a new round
+    * when we newGame a new round
      */
     private void putBackPlayers() {
         for (Player p : players) {

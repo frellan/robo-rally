@@ -3,9 +3,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.model.maps.GameBoard;
-import edu.chl.roborally.view.View;
-import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.view.MainWindow;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +17,7 @@ public class Turn {
 
     private RoboRally model;
     private Controller controller;
-    private View view;
+    private MainWindow mainWindow;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
@@ -32,7 +30,7 @@ public class Turn {
     public Turn(RoboRally r, int index) {
         model = r;
         controller = model.getController();
-        view = model.getView();
+        mainWindow = model.getMainWindow();
         players = model.getPlayers();
         this.index = index;
         startTurn();
@@ -61,7 +59,7 @@ public class Turn {
     }
 
     private void executeActiveCards() {
-        view.print("Card Actions");
+        mainWindow.print("Card Actions");
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
@@ -72,14 +70,14 @@ public class Turn {
 
     // Express converyor belts move 1 space
     private void executeBoardElements() {
-        view.print("Tile Actions");
+        mainWindow.print("Tile Actions");
         for (Player p : players) {
             if (p.isAlive()) {
                 try {
                     model.getGameBoard().getTile(p.getPosition()).doAction(p);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // If player is out of bounds we kill him
-                    view.print("Player fell of board and died");
+                    mainWindow.print("Player fell of board and died");
                     p.kill();
                 }
             }

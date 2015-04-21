@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.cards.RegisterCard;
@@ -10,22 +11,22 @@ import java.awt.*;
 /**
  * Created by henriknilson on 26/03/15.
  */
-public class View extends JFrame{
+public class MainWindow extends JFrame{
 
-    private final RoboRally model;
+    private final Controller controller;
 
-    public View(RoboRally model) {
-        this.model = model;
+    public MainWindow(Controller c) {
+        controller = c;
+
         setTitle("RoboRally");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 600);
         setLayout(new BorderLayout());
         setVisible(true);
-        addGameScreen();
     }
 
-    private void addGameScreen() {
-        add(new GameScreen(model), BorderLayout.CENTER);
+    public void initGameScreen(RoboRally model) {
+        add(new GameScreen(model),BorderLayout.CENTER);
     }
 
     // Console methods
