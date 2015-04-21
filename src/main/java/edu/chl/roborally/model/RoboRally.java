@@ -100,6 +100,10 @@ public class RoboRally {
         return players;
     }
 
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
     // Setters
 
     private void setPlayerNames() {
