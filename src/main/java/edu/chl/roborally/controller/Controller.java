@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class Controller {
 
 	private RoboRally model;
-    private final View view;
+    private View view;
     private boolean run;
 
-	public Controller(View view) {
-        this.view = view;
+	public Controller() {
         this.run = true;
+        view = new View();
         play();
 	}
 
@@ -31,7 +31,7 @@ public class Controller {
         switch (s.toLowerCase()) {
             case "new game":
                 if (model == null) {
-                    model = new RoboRally(this, this.view);
+                    model = new RoboRally(this,view);
                 } else {
                     System.out.println("Game already running");
                 }
