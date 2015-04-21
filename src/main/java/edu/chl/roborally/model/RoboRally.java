@@ -14,7 +14,7 @@ public class RoboRally {
 
     private Controller controller;
     private View view;
-    protected GameBoard gameBoard;
+    private GameBoard gameBoard;
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
     private CardDeck deck;
