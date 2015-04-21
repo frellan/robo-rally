@@ -41,7 +41,9 @@ public class Turn {
     private void startTurn() {
         revealProgrammedCards();
         sortActiveCards();
+        view.print("Card Actions");
         executeActiveCards();
+        view.print("Tile Actions");
         executeBoardElements();
     }
 

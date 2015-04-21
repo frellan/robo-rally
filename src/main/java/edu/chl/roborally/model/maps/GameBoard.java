@@ -53,9 +53,13 @@ public abstract class GameBoard {
         return board;
     }
 
-    // Return tile on given x and y coordinate
+    // Return tile on given Position
     public GameTile getTile(Position pos) {
         return this.board[pos.getY()][pos.getX()];
+    }
+    // Return tile on given x and y coordinate
+    public GameTile getTile(int x, int y) {
+        return this.board[y][x];
     }
 
     // Print board
