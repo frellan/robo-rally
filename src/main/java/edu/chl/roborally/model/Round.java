@@ -16,6 +16,8 @@ public class Round {
     private CardDeck deck;
     private ArrayList<Player> players;
 
+    final int STANDARD_CARD_AMOUNT = 9;
+
     public Round(RoboRally r) {
         this.model = r;
         this.controller = model.getController();
@@ -42,8 +44,8 @@ public class Round {
 
     private void dealCards() {
         for (Player p : players) {
-            // TODO check p damagetokens and return right nbr of cards
-            p.setDealtCards(deck.getCards(9));
+            int damageTokenAmount = p.getDamageTokens();
+            p.setDealtCards(deck.getCards(STANDARD_CARD_AMOUNT - damageTokenAmount));
         }
     }
 
