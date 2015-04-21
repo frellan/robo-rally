@@ -31,7 +31,10 @@ public class Round {
         chooseCardsToPlay();
         for (int i = 0; i <= Constants.NUMBER_OF_TURNS-1; i++) {
             view.printHeader("Starting turn " + Integer.toString(i + 1));
-            new Turn(model,i);
+            new Turn(model, i);
+            view.printHeader("End turn " + Integer.toString(i + 1));
+            view.print("Press enter to init next turn");
+            controller.userInputString();
         }
     }
 

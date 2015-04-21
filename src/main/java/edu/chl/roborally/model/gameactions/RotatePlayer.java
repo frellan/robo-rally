@@ -14,6 +14,10 @@ public class RotatePlayer implements GameAction {
     public RotatePlayer(Player p, Constants.Directions d){
         this.p = p;
         this.d = d;
+        action();
+        System.out.println("Rotated " + p.getName());
+        System.out.println("New direction " + p.getDirection().toString());
+        System.out.println("");
     }
 
     @Override

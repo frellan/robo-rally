@@ -22,7 +22,10 @@ public class Turn {
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
 
-    private int index;
+    /**
+    * The index of the turn, given by round
+    */
+    private final int index;
 
     public Turn(RoboRally r, int index) {
         model = r;

@@ -1,7 +1,7 @@
 package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.gameactions.MovePlayer;
+import edu.chl.roborally.model.gameactions.*;
 
 /**
  * Created by fredrikkindstrom on 31/03/15.
@@ -14,6 +14,6 @@ public class BackupCard extends RegisterCard{
 
     public void doAction(Player p) {
         //TODO
-       new MovePlayer(p);
+       new BackUpPlayer(p);
     }
 }
