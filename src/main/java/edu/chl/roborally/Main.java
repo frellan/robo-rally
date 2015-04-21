@@ -1,7 +1,6 @@
 package edu.chl.roborally;
 
 import edu.chl.roborally.controller.Controller;
-import edu.chl.roborally.view.View;
 import javax.swing.*;
 
 public final class Main {

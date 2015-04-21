@@ -48,9 +48,17 @@ public abstract class GameBoard {
         return tempList;
     }
 
-    //Returns the board
+    //Returns the board array
     public GameTile[][] getBoard(){
         return board;
+    }
+
+    public int getWidth() {
+        return board.length;
+    }
+
+    public int getHeight() {
+        return board[0].length;
     }
 
     // Return tile on given Position

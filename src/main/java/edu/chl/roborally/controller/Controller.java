@@ -13,7 +13,7 @@ public class Controller {
 
 	public Controller() {
         this.run = true;
-        view = new View();
+        view = new View(model);
         play();
 	}
 
