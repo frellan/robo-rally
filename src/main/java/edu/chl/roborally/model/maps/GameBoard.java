@@ -54,11 +54,11 @@ public abstract class GameBoard {
     }
 
     // Return tile on given Position
-    public GameTile getTile(Position pos) {
+    public GameTile getTile(Position pos) throws ArrayIndexOutOfBoundsException {
         return this.board[pos.getY()][pos.getX()];
     }
     // Return tile on given x and y coordinate
-    public GameTile getTile(int x, int y) {
+    public GameTile getTile(int x, int y) throws ArrayIndexOutOfBoundsException {
         return this.board[y][x];
     }
 

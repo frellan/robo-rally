@@ -35,7 +35,7 @@ public class Player {
         this.status = Constants.Status.ALIVE;
     }
 
-    //Queries
+    // Getters
 
     public String getName() {
         return name;
@@ -105,6 +105,22 @@ public class Player {
     public void resetDamageTokens() {
         this.damageTokens = 0;
     }
+
+    public boolean isAlive() {
+        if(this.status == Constants.Status.DEAD) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPowerDown() {
+        if(this.status == Constants.Status.POWERDOWN) {
+            return true;
+        }
+        return false;
+    }
+
+    // Setters
 
     public void setPosition(Position p) {
         this.position = p;

@@ -41,9 +41,7 @@ public class Turn {
     private void startTurn() {
         revealProgrammedCards();
         sortActiveCards();
-        view.print("Card Actions");
         executeActiveCards();
-        view.print("Tile Actions");
         executeBoardElements();
     }
 
@@ -59,20 +57,32 @@ public class Turn {
     }
 
     private void sortActiveCards() {
-        Collections.sort(activeCards,new RegisterCardCompare());
+        Collections.sort(activeCards, new RegisterCardCompare());
     }
 
     private void executeActiveCards() {
+        view.print("Card Actions");
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
-            card.doAction(player);
+
+                card.doAction(player);
+
         }
     }
 
     // Express converyor belts move 1 space
     private void executeBoardElements() {
+        view.print("Tile Actions");
         for (Player p : players) {
-            model.gameBoard.getTile(p.getPosition()).doAction(p);
+            if (p.isAlive()) {
+                try {
+                    model.getGameBoard().getTile(p.getPosition()).doAction(p);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    view.print("Player fell of board and died");
+                    p.setStatus(Constants.Status.DEAD);
+                }
+
+            }
         }
     }
 }
