@@ -53,6 +53,11 @@ public abstract class GameBoard {
         return board;
     }
 
+    // Return tile on given x and y coordinate
+    public GameTile getTile(Position pos) {
+        return this.board[pos.getY()][pos.getX()];
+    }
+
     // Print board
     public void printBoard() {
         System.out.println("-------------------------");

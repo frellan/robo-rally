@@ -3,7 +3,9 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
+import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.view.View;
+import edu.chl.roborally.model.RoboRally;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,7 +42,7 @@ public class Turn {
         revealProgrammedCards();
         sortActiveCards();
         executeActiveCards();
-        executeBoardElements_One();
+        executeBoardElements();
     }
 
     // Executing methods
@@ -66,7 +68,9 @@ public class Turn {
     }
 
     // Express converyor belts move 1 space
-    private void executeBoardElements_One() {
-        // TODO
+    private void executeBoardElements() {
+        for (Player p : players) {
+            model.gameBoard.getTile(p.getPosition()).doAction(p);
+        }
     }
 }
