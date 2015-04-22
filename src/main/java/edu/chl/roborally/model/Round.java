@@ -1,7 +1,7 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.controller.Controller;
-import edu.chl.roborally.view.MainWindow;
+import edu.chl.roborally.view.TerminalOutput;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class Round {
 
     private RoboRally model;
     private Controller controller;
-    private MainWindow view;
+    private TerminalOutput terminal;
     private CardDeck deck;
     private ArrayList<Player> players;
 
@@ -21,7 +21,7 @@ public class Round {
     public Round(RoboRally r) {
         this.model = r;
         this.controller = model.getController();
-        this.view = model.getMainWindow();
+        this.terminal = model.getTerminal();
         this.deck = model.getDeck();
         this.players = model.getPlayers();
         startRound();
@@ -33,10 +33,10 @@ public class Round {
         chooseCardsToPlay();
         putBackPlayers();
         for (int i = 0; i <= Constants.NUMBER_OF_TURNS-1; i++) {
-            view.printHeader("Starting turn " + Integer.toString(i + 1));
+            terminal.printHeader("Starting turn " + Integer.toString(i + 1));
             new Turn(model, i);
-            view.printHeader("End turn " + Integer.toString(i + 1));
-            view.print("Press enter to init next turn");
+            terminal.printHeader("End turn " + Integer.toString(i + 1));
+            terminal.print("Press enter to init next turn");
             controller.userInputString();
         }
     }
@@ -70,10 +70,10 @@ public class Round {
 
     private void chooseCardsToPlay() {
         for (Player p : players) {
-            view.printDealtCards(p);
-            view.print("");
-            view.print("Choose 5 cards");
-            view.print("Type the index of the card in the order you want to place them, separated by commas");
+            terminal.printDealtCards(p);
+            terminal.print("");
+            terminal.print("Choose 5 cards");
+            terminal.print("Type the index of the card in the order you want to place them, separated by commas");
             String[] s = controller.userInputString().split(",");
             int index = 0;
             for (String value : s) {
@@ -81,9 +81,9 @@ public class Round {
                 p.setProgrammedCard(index, p.getDealtCard(nr));
                 index++;
             }
-            view.print(p.getName() + " have choosen the following cards:");
-            view.printActiveCards(p);
-            view.print("");
+            terminal.print(p.getName() + " have choosen the following cards:");
+            terminal.printActiveCards(p);
+            terminal.print("");
         }
     }
 }

@@ -2,6 +2,7 @@ package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.view.MainWindow;
+import edu.chl.roborally.view.TerminalOutput;
 
 import java.util.Scanner;
 
@@ -9,17 +10,20 @@ public class Controller {
 
 	private RoboRally model;
     private MainWindow mainWindow;
+    private TerminalOutput terminal;
     private boolean run;
 
 	public Controller() {
         mainWindow = new MainWindow(this);
+        terminal = new TerminalOutput(this);
         this.run = true;
         welcomeMessage();
 	}
 
     public void newGame() {
         if (model == null) {
-            model = new RoboRally(this, mainWindow);
+            model = new RoboRally(this, terminal);
+            mainWindow.initGameScreen(model);
         } else {
             System.out.println("Game already running");
         }

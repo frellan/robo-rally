@@ -3,7 +3,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.controller.Controller;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.view.MainWindow;
+import edu.chl.roborally.view.TerminalOutput;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class Turn {
 
     private RoboRally model;
     private Controller controller;
-    private MainWindow mainWindow;
+    private TerminalOutput terminal;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
@@ -30,7 +30,7 @@ public class Turn {
     public Turn(RoboRally r, int index) {
         model = r;
         controller = model.getController();
-        mainWindow = model.getMainWindow();
+        terminal = model.getTerminal();
         players = model.getPlayers();
         this.index = index;
         startTurn();
@@ -60,7 +60,7 @@ public class Turn {
     }
 
     private void executeActiveCards() {
-        mainWindow.print("Card Actions");
+        terminal.print("Card Actions");
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
@@ -71,14 +71,14 @@ public class Turn {
 
     // Express converyor belts move 1 space
     private void executeBoardElements() {
-        mainWindow.print("Tile Actions");
+        terminal.print("Tile Actions");
         for (Player p : players) {
             if (p.isAlive()) {
                 try {
                     model.getGameBoard().getTile(p.getPosition()).doAction(p);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // If player is out of bounds we kill him
-                    mainWindow.print("Player fell of board and died");
+                    terminal.print("Player fell of board and died");
                     p.kill();
                 }
             }
