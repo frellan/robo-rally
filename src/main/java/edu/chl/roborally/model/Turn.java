@@ -92,7 +92,7 @@ public class Turn {
             int playerLaserPower = p.getLaserPower();
             switch (p.getDirection()) {
                 case NORTH:
-                    //Om x är samma och y är större
+                    //If x is equal and y is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
@@ -101,7 +101,7 @@ public class Turn {
                     }
                     break;
                 case SOUTH:
-                    //Om x är samma och y är mindre
+                    //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
@@ -110,7 +110,7 @@ public class Turn {
                     }
                     break;
                 case EAST:
-                    //Om y är samma och x är större
+                    //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
@@ -119,7 +119,7 @@ public class Turn {
                     }
                     break;
                 case WEST:
-                    //Om y är samma och x är mindre
+                    //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
