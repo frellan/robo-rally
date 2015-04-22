@@ -13,7 +13,7 @@ public class RoboRally {
     // Variables
 
     private Controller controller;
-    private MainWindow mainWindow;
+    private TerminalOutput terminal;
     private GameBoard gameBoard;
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
@@ -21,9 +21,9 @@ public class RoboRally {
 
     // Constructor
 
-    public RoboRally(Controller c, MainWindow v) {
+    public RoboRally(Controller c, TerminalOutput console) {
         this.controller = c;
-        this.mainWindow = v;
+        this.terminal = console;
 
         newGame();
     }
@@ -31,18 +31,17 @@ public class RoboRally {
     // Game logic
 
     private void newGame() {
-        mainWindow.print("How many players?");
+        terminal.print("How many players?");
         numbersOfPlayers = controller.userInputInt();
         setPlayerNames();
-        mainWindow.print("Starting new game with " + numbersOfPlayers + " players");
-        mainWindow.print("------------------------------");
+        terminal.print("Starting new game with " + numbersOfPlayers + " players");
+        terminal.print("------------------------------");
 
         // Init all dependencies
-        mainWindow.initGameScreen(this);
         resetDeck();
         initMap();
         initStartPositions();
-        mainWindow.printHeader("Starting round");
+        terminal.printHeader("Starting round");
 
         // Start round
         
@@ -59,9 +58,9 @@ public class RoboRally {
 
     // Create a new map, input should be a name on the map
     private void initMap() {
-        mainWindow.print("Choose Board");
-        mainWindow.print("Type 1: Blank Map");
-        mainWindow.print("Type 2: Vault Map");
+        terminal.print("Choose Board");
+        terminal.print("Type 1: Blank Map");
+        terminal.print("Type 2: Vault Map");
         int input = controller.userInputInt();
         if (input == 1) {
             gameBoard = new BlankMap();
@@ -90,8 +89,8 @@ public class RoboRally {
         return controller;
     }
 
-    public MainWindow getMainWindow() {
-        return mainWindow;
+    public TerminalOutput getTerminal() {
+        return terminal;
     }
 
     public CardDeck getDeck() {
