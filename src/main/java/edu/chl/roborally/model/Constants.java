@@ -40,5 +40,6 @@ public class Constants {
         ALIVE,
         DEAD,
         POWERDOWN,
+        KAPUT,
     }
 }

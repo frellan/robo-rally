@@ -122,6 +122,10 @@ public class Player {
      */
     public void loseLifeToken() {
         this.lifeTokens = lifeTokens--;
+        if (this.lifeTokens == -1) {
+            setStatus(Constants.Status.KAPUT);
+            
+        }
     }
 
     public void backToCheckpoint() {

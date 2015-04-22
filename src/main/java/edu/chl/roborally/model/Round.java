@@ -43,10 +43,10 @@ public class Round {
 
     //Help methods
 
-    /*
+    /**
     * If player is dead, we put them back on the last checkpoint
     * when we newGame a new round
-     */
+    */
     private void putBackPlayers() {
         for (Player p : players) {
             if(!p.isAlive()) {
@@ -61,8 +61,9 @@ public class Round {
             if (p.isPowerDown() == true) {
                 p.setDealtCards(deck.getCards(0));
             } else {
-                int damageTokenAmount = p.getDamageTokens();
-                p.setDealtCards(deck.getCards(STANDARD_CARD_AMOUNT - damageTokenAmount));
+                // Number of cards given to player are reduced by the number of damagetokens
+                int nbrOfCardsGivenToPlayer = STANDARD_CARD_AMOUNT - p.getDamageTokens();
+                p.setDealtCards(deck.getCards(nbrOfCardsGivenToPlayer));
             }
         }
     }
