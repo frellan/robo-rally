@@ -14,7 +14,7 @@ public class Controller {
 	public Controller() {
         mainWindow = new MainWindow(this);
         this.run = true;
-        startPrint();
+        welcomeMessage();
 	}
 
     public void newGame() {
@@ -30,7 +30,7 @@ public class Controller {
     }
 
     // Console methods
-    private void startPrint(){
+    private void welcomeMessage(){
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
 
@@ -57,7 +57,7 @@ public class Controller {
                 endGame();
                 break;
             case "help":
-                System.out.println("Commands: 'new Game', 'end'");
+                System.out.println("Commands: 'new game', 'end'");
                 break;
             default:
                 System.out.println(s + " not a command");
