@@ -91,7 +91,7 @@ public class Player {
 
 
     public void takeDamage(int amount) {
-        this.damageTokens = damageTokens - amount;
+        this.damageTokens = damageTokens + amount;
     }
 
     public boolean isAlive() {
