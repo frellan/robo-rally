@@ -21,9 +21,9 @@ public class RoboRally {
 
     // Constructor
 
-    public RoboRally(Controller c, TerminalOutput console) {
+    public RoboRally(Controller c, TerminalOutput terminal) {
         this.controller = c;
-        this.terminal = console;
+        this.terminal = terminal;
 
         newGame();
     }

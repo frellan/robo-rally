@@ -21,11 +21,11 @@ public class MainWindow extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 600);
         setLayout(new BorderLayout());
-        add(new StartScreen(controller),BorderLayout.CENTER);
+        add(new StartScreen(controller), BorderLayout.CENTER);
         setVisible(true);
     }
 
-    public void initGameScreen(RoboRally model) {
+    public void switchToGameScreen(RoboRally model) {
         removeAll();
         add(new GameScreen(model),BorderLayout.CENTER);
         revalidate();

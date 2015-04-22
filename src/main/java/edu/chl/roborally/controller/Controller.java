@@ -22,8 +22,8 @@ public class Controller {
 
     public void newGame() {
         if (model == null) {
-            model = new RoboRally(this, terminal);
-            mainWindow.initGameScreen(model);
+            model = new RoboRally(this,terminal);
+            mainWindow.switchToGameScreen(model);
         } else {
             System.out.println("Game already running");
         }
