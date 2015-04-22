@@ -1,7 +1,8 @@
 package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Constants;
-import edu.chl.roborally.model.tiles.GameTile;
+import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +12,21 @@ import java.awt.*;
  */
 public class GameScreen extends JPanel {
 
-    private GameTile[][] board;
+    private final RoboRally model;
 
-    public GameScreen() {
-        board = new GameTile[Constants.NUM_ROWS][Constants.NUM_COLS];
+    private GameBoard board;
+
+    public GameScreen(RoboRally model) {
+        this.model = model;
+        board = model.getGameBoard();
         setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
+    }
 
+    protected void paintBoard() {
+        for (int i = 0; i < board.getWidth(); i++) {
+            for (int j = 0; j < board.getHeight(); j++) {
+                System.out.println(board.getTile(i,j).toString());
+            }
+        }
     }
 }

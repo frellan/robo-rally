@@ -13,7 +13,7 @@ public class RoboRally {
     // Variables
 
     private Controller controller;
-    private View view;
+    private MainWindow mainWindow;
     private GameBoard gameBoard;
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
@@ -21,9 +21,9 @@ public class RoboRally {
 
     // Constructor
 
-    public RoboRally(Controller c, View v) {
+    public RoboRally(Controller c, MainWindow v) {
         this.controller = c;
-        this.view = v;
+        this.mainWindow = v;
 
         newGame();
     }
@@ -31,17 +31,18 @@ public class RoboRally {
     // Game logic
 
     private void newGame() {
-        view.print("How many players?");
+        mainWindow.print("How many players?");
         numbersOfPlayers = controller.userInputInt();
         setPlayerNames();
-        view.print("Starting new game with " + numbersOfPlayers + " players");
-        view.print("------------------------------");
+        mainWindow.print("Starting new game with " + numbersOfPlayers + " players");
+        mainWindow.print("------------------------------");
 
         // Init all dependencies
+        mainWindow.initGameScreen(this);
         resetDeck();
         initMap();
         initStartPositions();
-        view.printHeader("Starting round");
+        mainWindow.printHeader("Starting round");
 
         // Start round
         new Round(this);
@@ -57,9 +58,9 @@ public class RoboRally {
 
     // Create a new map, input should be a name on the map
     private void initMap() {
-        view.print("Choose Board");
-        view.print("Type 1: Blank Map");
-        view.print("Type 2: Vault Map");
+        mainWindow.print("Choose Board");
+        mainWindow.print("Type 1: Blank Map");
+        mainWindow.print("Type 2: Vault Map");
         int input = controller.userInputInt();
         if (input == 1) {
             gameBoard = new BlankMap();
@@ -88,8 +89,8 @@ public class RoboRally {
         return controller;
     }
 
-    public View getView() {
-        return view;
+    public MainWindow getMainWindow() {
+        return mainWindow;
     }
 
     public CardDeck getDeck() {

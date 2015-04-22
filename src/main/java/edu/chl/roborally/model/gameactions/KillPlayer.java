@@ -9,21 +9,14 @@ import edu.chl.roborally.model.Player;
 public class KillPlayer implements GameAction{
 
     private Player p;
-
-    private KillPlayer(Player p) {
+    public KillPlayer(Player p) {
         this.p = p;
+        action();
     }
 
 
     @Override
     public void action() {
-        // Set status to Dead
-        p.setStatus(Constants.Status.DEAD);
-        // Reset all damgetokens
-        p.resetDamageTokens();
-        // Move player back to last checkpoint
-        p.backToCheckpoint();
-        // Remove one lifetoken
-        p.loseLifeToken();
+        p.kill();
     }
 }
