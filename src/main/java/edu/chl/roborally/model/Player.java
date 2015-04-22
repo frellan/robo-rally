@@ -35,7 +35,7 @@ public class Player {
         this.direction = Constants.Directions.NORTH;
         this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
-        this.laserPower = 1
+        this.laserPower = 1;
     }
 
     // Getters
