@@ -38,8 +38,9 @@ public class StartScreen extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == "New Game"){
+        if(e.getSource().equals(newGameButton)){
             controller.newGame();
+            System.out.println("new game clicked");
         }
     }
 }
