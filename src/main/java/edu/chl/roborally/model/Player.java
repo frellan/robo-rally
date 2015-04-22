@@ -2,6 +2,7 @@ package edu.chl.roborally.model;
 
 
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.view.TerminalOutput;
 
 import java.util.ArrayList;
 
@@ -92,6 +93,9 @@ public class Player {
 
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens + amount;
+        if(this.damageTokens == 10) {
+            this.kill();
+        }
     }
 
     public boolean isAlive() {
@@ -124,7 +128,7 @@ public class Player {
         this.lifeTokens = lifeTokens--;
         if (this.lifeTokens == -1) {
             setStatus(Constants.Status.KAPUT);
-            
+            System.out.println(this.getName() + " is now Kaput and lost");
         }
     }
 
