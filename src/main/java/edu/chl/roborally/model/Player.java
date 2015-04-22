@@ -23,6 +23,7 @@ public class Player {
     private ArrayList<RegisterCard> dealtCards;
     private RegisterCard[] programmedCards;
     private Constants.Status status;
+    private int laserPower;
 
     //Constructor
 
@@ -34,6 +35,7 @@ public class Player {
         this.direction = Constants.Directions.NORTH;
         this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
+        this.laserPower = 1
     }
 
     // Getters
@@ -85,6 +87,10 @@ public class Player {
 
     public Constants.Status getStatus() {
         return this.status;
+    }
+
+    public int getLaserPower() {
+        return laserPower;
     }
 
     //Commands
@@ -172,6 +178,10 @@ public class Player {
 
     public void setStatus(Constants.Status s) {
         this.status = s;
+    }
+
+    public void setLaserPower(int upgrade) {
+        this.laserPower = upgrade;
     }
 
 }
