@@ -17,11 +17,11 @@ public class MainWindow extends JFrame{
 
     public MainWindow(Controller c) {
         controller = c;
-
         setTitle("RoboRally");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 600);
         setLayout(new BorderLayout());
+        add(new StartScreen(),BorderLayout.CENTER);
         setVisible(true);
     }
 
