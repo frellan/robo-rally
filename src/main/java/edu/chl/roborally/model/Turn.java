@@ -88,12 +88,14 @@ public class Turn {
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
         for (Player p : players) {
+            //Get current laser power for the player
+            int playerLaserPower = p.getLaserPower();
             switch (p.getDirection()) {
                 case NORTH:
                     //Om x är samma och y är större
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
@@ -102,7 +104,7 @@ public class Turn {
                     //Om x är samma och y är mindre
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
@@ -111,7 +113,7 @@ public class Turn {
                     //Om y är samma och x är större
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
@@ -120,7 +122,7 @@ public class Turn {
                     //Om y är samma och x är mindre
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
