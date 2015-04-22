@@ -1,6 +1,7 @@
 package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.view.MainWindow;
 import edu.chl.roborally.view.TerminalOutput;
 
@@ -11,26 +12,28 @@ public class Controller {
 	private RoboRally model;
     private MainWindow mainWindow;
     private TerminalOutput terminal;
-    private boolean run;
+    private GameController gameController;
+    private boolean runApplication;
 
 	public Controller() {
         mainWindow = new MainWindow(this);
         terminal = new TerminalOutput(this);
-        this.run = true;
+        this.runApplication = true;
         welcomeMessage();
 	}
 
     public void newGame() {
-        if (model == null) {
-            model = new RoboRally(this, terminal);
+        if (gameController == null) {
+            gameController = new GameController(terminal);
             mainWindow.initGameScreen(model);
         } else {
             System.out.println("Game already running");
         }
     }
 
-    public void endGame() {
-        this.run = false;
+    public void endApplication() {
+        this.runApplication = false;
+        System.exit(0);
     }
 
     // Console methods
@@ -38,7 +41,7 @@ public class Controller {
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
 
-        while(run) {
+        while(runApplication) {
             actionFromInput(userInputString());
         }
 
@@ -58,7 +61,7 @@ public class Controller {
                 newGame();
                 break;
             case "end":
-                endGame();
+                endApplication();
                 break;
             case "help":
                 System.out.println("Commands: 'new game', 'end'");

@@ -12,7 +12,7 @@ public class RoboRally {
 
     // Variables
 
-    private Controller controller;
+    private GameController controller;
     private TerminalOutput terminal;
     private GameBoard gameBoard;
     public ArrayList<Player> players = new ArrayList<>();
@@ -21,7 +21,7 @@ public class RoboRally {
 
     // Constructor
 
-    public RoboRally(Controller c, TerminalOutput console) {
+    public RoboRally(GameController c, TerminalOutput console) {
         this.controller = c;
         this.terminal = console;
 
@@ -32,7 +32,7 @@ public class RoboRally {
 
     private void newGame() {
         terminal.print("How many players?");
-        numbersOfPlayers = controller.userInputInt();
+        numbersOfPlayers = 2;
         setPlayerNames();
         terminal.print("Starting new game with " + numbersOfPlayers + " players");
         terminal.print("------------------------------");
@@ -61,7 +61,7 @@ public class RoboRally {
         terminal.print("Choose Board");
         terminal.print("Type 1: Blank Map");
         terminal.print("Type 2: Vault Map");
-        int input = controller.userInputInt();
+        int input = 2;
         if (input == 1) {
             gameBoard = new BlankMap();
         } else if (input == 2) {
@@ -85,7 +85,7 @@ public class RoboRally {
 
     // Getters
 
-    public Controller getController() {
+    public GameController getController() {
         return controller;
     }
 
@@ -110,7 +110,7 @@ public class RoboRally {
     private void setPlayerNames() {
         for (int i = 1; i <= numbersOfPlayers; i++) {
             System.out.println("Name on Player " + i + "?");
-            players.add(new Player(i,controller.userInputString()));
+            players.add(new Player(i,"Player" + i));
         }
     }
 }
