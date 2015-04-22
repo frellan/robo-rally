@@ -41,6 +41,7 @@ public class Turn {
         sortActiveCards();
         executeActiveCards();
         executeBoardElements();
+        fireLasers();
     }
 
     // Executing methods
@@ -80,6 +81,53 @@ public class Turn {
                     mainWindow.print("Player fell of board and died");
                     p.kill();
                 }
+            }
+        }
+    }
+
+    private void fireLasers() {
+        for (Player p : players) {
+            switch (p.getDirection()) {
+                case NORTH:
+                    //Om x är samma och y är större
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
+                            enemy.takeDamage(1);
+                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
+                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                        }
+                    }
+                    break;
+                case SOUTH:
+                    //Om x är samma och y är mindre
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
+                            enemy.takeDamage(1);
+                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
+                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                        }
+                    }
+                    break;
+                case EAST:
+                    //Om y är samma och x är större
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
+                            enemy.takeDamage(1);
+                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
+                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                        }
+                    }
+                    break;
+                case WEST:
+                    //Om y är samma och x är mindre
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
+                            enemy.takeDamage(1);
+                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
+                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                        }
+                    }
+                    break;
             }
         }
     }
