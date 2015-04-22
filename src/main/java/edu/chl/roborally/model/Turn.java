@@ -86,6 +86,7 @@ public class Turn {
     }
 
     private void fireLasers() {
+        // Loop all players, all players fire lasers in their direction
         for (Player p : players) {
             switch (p.getDirection()) {
                 case NORTH:
@@ -93,8 +94,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(1);
-                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
-                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                            printFireMsg(p,enemy);
                         }
                     }
                     break;
@@ -103,8 +103,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
                             enemy.takeDamage(1);
-                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
-                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                            printFireMsg(p,enemy);
                         }
                     }
                     break;
@@ -113,8 +112,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
                             enemy.takeDamage(1);
-                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
-                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                            printFireMsg(p,enemy);
                         }
                     }
                     break;
@@ -123,12 +121,16 @@ public class Turn {
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
                             enemy.takeDamage(1);
-                            System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
-                            System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+                            printFireMsg(p,enemy);
                         }
                     }
                     break;
             }
         }
+    }
+
+    private void printFireMsg(Player p, Player enemy) {
+        System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
+        System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
     }
 }
