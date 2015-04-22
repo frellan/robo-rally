@@ -45,6 +45,9 @@ public class RoboRally {
         mainWindow.printHeader("Starting round");
 
         // Start round
+        while(true){
+
+        }
         new Round(this);
     }
 
