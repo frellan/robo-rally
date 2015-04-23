@@ -8,7 +8,7 @@ import edu.chl.roborally.view.UI;
 import java.util.Scanner;
 
 public class AppController {
-    
+
     private final UI ui;
 	private RoboRally model;
     private MainWindow mainWindow;
