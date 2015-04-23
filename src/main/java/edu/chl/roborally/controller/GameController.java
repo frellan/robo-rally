@@ -1,7 +1,6 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
 
@@ -23,13 +22,29 @@ public class GameController {
     }
 
     private void initGame(){
-        //TODO How many? Names? tempPlayers
+        //Create players
         ArrayList<Player> tempPlayers = new ArrayList<>();
         for(int i = 0; i < ui.getPlayerNames().size(); i++){
             tempPlayers.add(new Player(i, ui.getPlayerNames().get(i)));
         }
-        //TODO Map?
+        //Choose map
         int mapId = ui.chooseMap(mapFactory.getMaps());
-        this.model = new RoboRally(tempPlayers, mapFactory.createMap(mapId));
+        //Create game
+        this.model = new RoboRally(tempPlayers, mapFactory.createMap(mapId), ui);
     }
+
+    private void runGame() {
+        //TODO Ask model if i should run the game
+        while(model.shouldIContinue()) {
+
+            new Round(model, ui);
+
+            for (int i = 1; i< Constants.NUMBER_OF_TURNS; i++) {
+                // TODO check end conditions befre new turn
+                new Turn(model, i);
+            }
+        }
+    }
+
+
 }

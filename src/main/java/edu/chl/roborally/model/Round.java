@@ -1,7 +1,6 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.AppController;
-import edu.chl.roborally.view.Terminal;
+import edu.chl.roborally.view.UI;
 
 import java.util.ArrayList;
 
@@ -11,17 +10,15 @@ import java.util.ArrayList;
 public class Round {
 
     private RoboRally model;
-    private AppController appController;
-    private Terminal terminal;
+    private UI ui;
     private CardDeck deck;
     private ArrayList<Player> players;
 
     final int STANDARD_CARD_AMOUNT = 9;
 
-    public Round(RoboRally r) {
+    public Round(RoboRally r, UI ui) {
         this.model = r;
-        this.appController = model.getAppController();
-        this.terminal = model.getTerminal();
+        this.ui = ui;
         this.deck = model.getDeck();
         this.players = model.getPlayers();
         startRound();
@@ -32,13 +29,6 @@ public class Round {
         dealCards();
         chooseCardsToPlay();
         putBackPlayers();
-        for (int i = 0; i <= Constants.NUMBER_OF_TURNS-1; i++) {
-            terminal.printHeader("Starting turn " + Integer.toString(i + 1));
-            new Turn(model, i);
-            terminal.printHeader("End turn " + Integer.toString(i + 1));
-            terminal.print("Press enter to init next turn");
-            appController.userInputString();
-        }
     }
 
     //Help methods
@@ -70,20 +60,7 @@ public class Round {
 
     private void chooseCardsToPlay() {
         for (Player p : players) {
-            terminal.printDealtCards(p);
-            terminal.print("");
-            terminal.print("Choose 5 cards");
-            terminal.print("Type the index of the card in the order you want to place them, separated by commas");
-            String[] s = appController.userInputString().split(",");
-            int index = 0;
-            for (String value : s) {
-                int nr = Integer.parseInt(value);
-                p.setProgrammedCard(index, p.getDealtCard(nr));
-                index++;
-            }
-            terminal.print(p.getName() + " have choosen the following cards:");
-            terminal.printActiveCards(p);
-            terminal.print("");
+            ui.chooseCards(p);
         }
     }
 }

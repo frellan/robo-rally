@@ -98,4 +98,22 @@ public class Terminal extends UI{
         }
         return userInputInt();
     }
+
+    @Override
+    public void chooseCards(Player p) {
+        printDealtCards(p);
+        print("");
+        print("Choose 5 cards");
+        print("Type the index of the card in the order you want to place them, separated by commas");
+        String[] s = userInputString().split(",");
+        int index = 0;
+        for (String value : s) {
+            int nr = Integer.parseInt(value);
+            p.setProgrammedCard(index, p.getDealtCard(nr));
+            index++;
+        }
+        print(p.getName() + " have choosen the following cards:");
+        printActiveCards(p);
+        print("");
+    }
 }

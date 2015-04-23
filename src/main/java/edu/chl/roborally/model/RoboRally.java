@@ -12,6 +12,7 @@ public class RoboRally {
     public ArrayList<Player> players;
     private CardDeck deck;
     private UI ui;
+    private boolean isGameRunning;
 
     // Constructor
 
@@ -24,6 +25,8 @@ public class RoboRally {
         resetDeck();
         //set start positions
         setStartPositions();
+        //Init game
+        this.isGameRunning = true;
     }
 
     // Game logic
@@ -34,6 +37,11 @@ public class RoboRally {
         } else {
             deck.reset();
         }
+    }
+
+    public boolean shouldIContinue() {
+        //TODO Check end conditions
+        return isGameRunning;
     }
 
     // Set startpostions and put players on the board
