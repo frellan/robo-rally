@@ -5,8 +5,6 @@ import javax.swing.*;
 
 public final class Main {
 
-	private static JFrame mainFrame;
-
 	private Main() {
 		/* No instances allowed! */
 	}

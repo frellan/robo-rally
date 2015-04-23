@@ -1,24 +1,23 @@
 package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.RoboRally;
-import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.view.MainWindow;
 import edu.chl.roborally.view.Terminal;
+import edu.chl.roborally.view.UI;
 
 import java.util.Scanner;
 
 public class AppController {
 
+    private final UI ui = new Terminal();
 	private RoboRally model;
     private MainWindow mainWindow;
     private Terminal terminal;
-    private boolean run;
+    private boolean appIsRunning;
 
 	public AppController() {
-        mainWindow = new MainWindow(this);
-        terminal = new Terminal(this);
-        this.run = true;
-        welcomeMessage();
+        this.appIsRunning = true;
+
 	}
 
     public void newGame() {
@@ -30,14 +29,14 @@ public class AppController {
         }
     }
     public void endGame() {
-        this.run = false;
+        this.appIsRunning = false;
     }
     // Console methods
     private void welcomeMessage(){
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
 
-        while(run) {
+        while(appIsRunning) {
             actionFromInput(userInputString());
         }
 
