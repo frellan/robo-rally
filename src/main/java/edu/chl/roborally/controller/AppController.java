@@ -1,11 +1,7 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.model.RoboRally;
-import edu.chl.roborally.view.MainWindow;
 import edu.chl.roborally.view.Terminal;
 import edu.chl.roborally.view.UI;
-
-import java.util.Scanner;
 
 public class AppController {
 
