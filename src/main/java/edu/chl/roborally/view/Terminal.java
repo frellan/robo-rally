@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.maps.GameBoard;
@@ -12,7 +13,8 @@ import java.util.Scanner;
  */
 public class Terminal extends UI{
 
-    public Terminal() {
+    public Terminal(AppController appController) {
+        super(appController);
         startMsg();
     }
 
@@ -30,10 +32,10 @@ public class Terminal extends UI{
     private void actionFromInput(String s) {
         switch (s.toLowerCase()) {
             case "new game":
-                super.getAppController().initGameController();
+                super.appController.initGameController();
                 break;
             case "end":
-                super.getAppController().endGame();
+                super.appController.endGame();
                 break;
             case "help":
                 System.out.println("Commands: 'new game', 'end'");
@@ -87,7 +89,15 @@ public class Terminal extends UI{
 
     @Override
     public ArrayList<String> getPlayerNames() {
-        return null;
+        System.out.println("How many players?");
+        ArrayList<String> names = new ArrayList<>();
+        int howManyPlayers = userInputInt();
+        for (int i = 1; i < howManyPlayers+1; i++ ) {
+            System.out.println("Name on Player " + i);
+            names.add(userInputString());
+        }
+        System.out.println("Done with names");
+        return names;
     }
 
     @Override

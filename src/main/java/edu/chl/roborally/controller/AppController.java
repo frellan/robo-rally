@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AppController {
 
-    private final UI ui = new Terminal();
+    private final UI ui;
 	private RoboRally model;
     private MainWindow mainWindow;
     private Terminal terminal;
@@ -17,7 +17,10 @@ public class AppController {
     private boolean appRunning;
 
 	public AppController() {
+
         this.appRunning = true;
+
+        ui = new Terminal(this);
         ui.menu();
 	}
 

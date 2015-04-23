@@ -15,6 +15,10 @@ public abstract class UI {
     protected AppController appController;
     // private GameController gameController;
 
+    public UI(AppController appController) {
+        this.appController = appController;
+    }
+
     public abstract void startMsg();
 
     public abstract void menu();
