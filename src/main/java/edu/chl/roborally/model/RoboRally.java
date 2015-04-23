@@ -1,9 +1,6 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.*;
-import edu.chl.roborally.model.maps.BlankMap;
 import edu.chl.roborally.model.maps.GameBoard;
-import edu.chl.roborally.model.maps.VaultMap;
 import edu.chl.roborally.view.*;
 
 import java.util.*;
@@ -11,41 +8,25 @@ import java.util.*;
 public class RoboRally {
 
     // Variables
-    private AppController appController;
-    private Terminal terminal;
     private GameBoard gameBoard;
-    public ArrayList<Player> players = new ArrayList<>();
-    private int numbersOfPlayers;
+    public ArrayList<Player> players;
     private CardDeck deck;
+    private UI ui;
 
     // Constructor
 
-    public RoboRally(AppController c, Terminal terminal) {
-        this.appController = c;
-        this.terminal = terminal;
-
-        newGame();
-    }
-
-    // Game logic
-
-    private void newGame() {
-        terminal.print("How many players?");
-        numbersOfPlayers = appController.userInputInt();
-        setPlayerNames();
-        terminal.print("Starting new game with " + numbersOfPlayers + " players");
-        terminal.print("------------------------------");
+    public RoboRally(ArrayList<Player> players, GameBoard board, UI ui) {
+        this.players = players;
+        this.gameBoard = board;
+        this.ui = ui;
 
         // Init all dependencies
         resetDeck();
-        initMap();
-        initStartPositions();
-        terminal.printHeader("Starting round");
-
-        // Start round
-        
-        new Round(this);
+        //set start positions
+        setStartPositions();
     }
+
+    // Game logic
 
     private void resetDeck() {
         if (deck == null) {
@@ -55,24 +36,9 @@ public class RoboRally {
         }
     }
 
-    // Create a new map, input should be a name on the map
-    private void initMap() {
-        terminal.print("Choose Board");
-        terminal.print("Type 1: Blank Map");
-        terminal.print("Type 2: Vault Map");
-        int input = appController.userInputInt();
-        if (input == 1) {
-            gameBoard = new BlankMap();
-        } else if (input == 2) {
-            gameBoard = new VaultMap();
-        }
-        // Print Board
-        gameBoard.printBoard();
-    }
-
     // Set startpostions and put players on the board
-    private void initStartPositions() {
-        ArrayList<Position> start = gameBoard.getStartPositions(numbersOfPlayers);
+    private void setStartPositions() {
+        ArrayList<Position> start = gameBoard.getStartPositions(players.size());
         int index = 0;
         for (Player player : players) {
             player.setCheckpoint(start.get(index));
@@ -83,13 +49,6 @@ public class RoboRally {
     }
 
     // Getters
-    public AppController getAppController() {
-        return appController;
-    }
-
-    public Terminal getTerminal() {
-        return terminal;
-    }
 
     public CardDeck getDeck() {
         return deck;
@@ -101,14 +60,5 @@ public class RoboRally {
 
     public GameBoard getGameBoard() {
         return gameBoard;
-    }
-
-    // Setters
-
-    private void setPlayerNames() {
-        for (int i = 1; i <= numbersOfPlayers; i++) {
-            System.out.println("Name on Player " + i + "?");
-            players.add(new Player(i, appController.userInputString()));
-        }
     }
 }
