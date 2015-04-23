@@ -13,6 +13,7 @@ public class AppController {
      * @var ui
      *  The ui variable holds the choosen user interface
      */
+
     private final UI ui;
     private GameController gameController;
     private boolean appRunning;
