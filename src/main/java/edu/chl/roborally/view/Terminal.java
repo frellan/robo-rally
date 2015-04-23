@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.maps.GameBoard;
@@ -12,7 +13,8 @@ import java.util.Scanner;
  */
 public class Terminal extends UI{
 
-    public Terminal() {
+    public Terminal(AppController appController) {
+        super(appController);
         startMsg();
     }
 

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AppController {
 
-    private final UI ui = new Terminal();
+    private final UI ui = new Terminal(this);
 	private RoboRally model;
     private MainWindow mainWindow;
     private Terminal terminal;
