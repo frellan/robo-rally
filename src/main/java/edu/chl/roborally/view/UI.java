@@ -1,9 +1,18 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.controller.*;
+
 /**
  * Created by fredrikkindstrom on 23/04/15.
  */
-public interface UI {
+public abstract class UI {
 
-    void menu();
+    private AppController appController;
+    // private GameController gameController;
+
+    public abstract void menu();
+
+    protected AppController getAppController() {
+        return appController;
+    }
 }

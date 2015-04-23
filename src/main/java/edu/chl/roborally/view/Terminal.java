@@ -4,17 +4,56 @@ import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 
+import java.util.Scanner;
+
 /**
  * Created by fredrikkindstrom on 22/04/15.
  */
-public class Terminal {
+public class Terminal extends UI{
 
-    private final AppController appController;
-
-    public Terminal(AppController c) {
-        appController = c;
+    public Terminal() {
     }
 
+    private void welcomeMessage(){
+        System.out.println("ROBORALLY MADNESS!!!");
+        System.out.println("type Help if you get stuck!");
+
+        while(super.getAppController().isAppRunning()) {
+            actionFromInput(userInputString());
+        }
+
+        System.out.println("Game Ended");
+    }
+
+    // Inputs
+    public String userInputString() {
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
+    }
+    public int userInputInt() {
+        Scanner in = new Scanner(System.in);
+        return in.nextInt();
+    }
+
+    // Commands
+    private void actionFromInput(String s) {
+        switch (s.toLowerCase()) {
+            case "new game":
+                super.getAppController().newGame();
+                break;
+            case "end":
+                super.getAppController().endGame();
+                break;
+            case "help":
+                System.out.println("Commands: 'new game', 'end'");
+                break;
+            default:
+                System.out.println(s + " not a command");
+                break;
+        }
+    }
+
+    // Prints
     public void print(String s) {
         System.out.println(s);
     }
@@ -37,5 +76,10 @@ public class Terminal {
             print(index + " " + c.toString());
             index++;
         }
+    }
+
+    @Override
+    public void menu() {
+
     }
 }

@@ -13,12 +13,16 @@ public class AppController {
 	private RoboRally model;
     private MainWindow mainWindow;
     private Terminal terminal;
-    private boolean appIsRunning;
+    private boolean appRunning;
 
 	public AppController() {
-        this.appIsRunning = true;
-
+        this.appRunning = true;
+        ui.menu();
 	}
+
+    public boolean isAppRunning() {
+        return appRunning;
+    }
 
     public void newGame() {
         if (model == null) {
@@ -29,42 +33,7 @@ public class AppController {
         }
     }
     public void endGame() {
-        this.appIsRunning = false;
-    }
-    // Console methods
-    private void welcomeMessage(){
-        System.out.println("ROBORALLY MADNESS!!!");
-        System.out.println("type Help if you get stuck!");
-
-        while(appIsRunning) {
-            actionFromInput(userInputString());
-        }
-
-        System.out.println("Game Ended");
-    }
-    public String userInputString() {
-        Scanner in = new Scanner(System.in);
-        return in.nextLine();
-    }
-    public int userInputInt() {
-        Scanner in = new Scanner(System.in);
-        return in.nextInt();
-    }
-    private void actionFromInput(String s) {
-        switch (s.toLowerCase()) {
-            case "new game":
-                newGame();
-                break;
-            case "end":
-                endGame();
-                break;
-            case "help":
-                System.out.println("Commands: 'new game', 'end'");
-                break;
-            default:
-                System.out.println(s + " not a command");
-                break;
-        }
+        this.appRunning = false;
     }
 
 }
