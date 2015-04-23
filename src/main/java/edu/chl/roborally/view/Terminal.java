@@ -2,7 +2,9 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.model.maps.GameBoard;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -81,5 +83,15 @@ public class Terminal extends UI{
         }
 
         print("Game Ended");
+    }
+
+    @Override
+    public ArrayList<String> getPlayerNames() {
+        return null;
+    }
+
+    @Override
+    public GameBoard chooseMap() {
+        return null;
     }
 }
