@@ -2,6 +2,7 @@ package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
 
 import java.util.ArrayList;
@@ -13,8 +14,10 @@ public class GameController {
 
     private UI ui;
     private RoboRally model;
+    private MapFactory mapFactory;
 
     public GameController(UI ui) {
+        mapFactory = new MapFactory();
         this.ui = ui;
         initGame();
     }
@@ -26,7 +29,7 @@ public class GameController {
             tempPlayers.add(new Player(i, ui.getPlayerNames().get(i)));
         }
         //TODO Map?
-        ui.chooseMap();
-        this.model = new RoboRally(tempPlayers, gameBoard);
+        int mapId = ui.chooseMap(mapFactory.getMaps());
+        this.model = new RoboRally(tempPlayers, mapFactory.createMap(mapId));
     }
 }

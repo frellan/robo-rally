@@ -91,7 +91,11 @@ public class Terminal extends UI{
     }
 
     @Override
-    public GameBoard chooseMap() {
-        return null;
+    public int chooseMap(ArrayList<String> maps) {
+        print("Choose map: ");
+        for(int i = 0; i < maps.size(); i++){
+            print(i + " " + maps.get(i));
+        }
+        return userInputInt();
     }
 }
