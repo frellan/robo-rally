@@ -26,7 +26,7 @@ public class AppController {
             model = new RoboRally(this,terminal);
             mainWindow.switchToGameScreen(model);
         } else {
-            System.out.println("Game already running");
+            System.out.println("Game already runnings");
         }
     }
     public void endGame() {
