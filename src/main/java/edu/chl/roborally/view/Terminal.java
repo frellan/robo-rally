@@ -78,7 +78,7 @@ public class Terminal extends UI{
     public void menu() {
         print("type Help if you get stuck!");
 
-        while(super.getAppController().isAppRunning()) {
+        while(super.appController.isAppRunning()) {
             actionFromInput(userInputString());
         }
 

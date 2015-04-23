@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public abstract class UI {
 
-    private AppController appController;
+    protected AppController appController;
     // private GameController gameController;
 
     public abstract void startMsg();

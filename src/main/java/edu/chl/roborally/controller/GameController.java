@@ -41,7 +41,7 @@ public class GameController {
 
             for (int i = 1; i< Constants.NUMBER_OF_TURNS; i++) {
                 // TODO check end conditions befre new turn
-                new Turn(model, i);
+                new Turn(model, i, ui);
             }
         }
     }

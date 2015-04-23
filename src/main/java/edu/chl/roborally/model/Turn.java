@@ -1,9 +1,8 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.view.Terminal;
+import edu.chl.roborally.view.UI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,22 +15,20 @@ import java.util.Map;
 public class Turn {
 
     private RoboRally model;
-    private AppController appController;
-    private Terminal terminal;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
+    private UI ui;
 
     /**
     * The index of the turn, given by round
     */
     private final int index;
 
-    public Turn(RoboRally r, int index) {
-        model = r;
-        appController = model.getAppController();
-        terminal = model.getTerminal();
-        players = model.getPlayers();
+    public Turn(RoboRally r, int index, UI ui) {
+        this.model = r;
+        this.players = model.getPlayers();
+        this.ui = ui;
         this.index = index;
         startTurn();
     }
@@ -60,7 +57,7 @@ public class Turn {
     }
 
     private void executeActiveCards() {
-        terminal.print("Card Actions");
+        System.out.println("Card Actions");
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
@@ -71,14 +68,14 @@ public class Turn {
 
     // Express converyor belts move 1 space
     private void executeBoardElements() {
-        terminal.print("Tile Actions");
+        System.out.println("Tile Actions");
         for (Player p : players) {
             if (p.isAlive()) {
                 try {
                     model.getGameBoard().getTile(p.getPosition()).doAction(p);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // If player is out of bounds we kill him
-                    terminal.print("Player fell of board and died");
+                    System.out.println("Player fell of board and died");
                     p.kill();
                 }
             }
@@ -96,7 +93,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
-                            printFireMsg(p,enemy);
+                            printFireMsg(p, enemy);
                         }
                     }
                     break;
