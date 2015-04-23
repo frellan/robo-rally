@@ -15,7 +15,7 @@ public abstract class UI {
     protected AppController appController;
     // private GameController gameController;
 
-    public UI (AppController appController) {
+    public UI(AppController appController) {
         this.appController = appController;
     }
 

@@ -16,16 +16,20 @@ public class GameController {
     private MapFactory mapFactory;
 
     public GameController(UI ui) {
-        mapFactory = new MapFactory();
+        this.mapFactory = new MapFactory();
         this.ui = ui;
         initGame();
+        runGame();
     }
 
     private void initGame(){
+        System.out.println("Im in initgame");
         //Create players
         ArrayList<Player> tempPlayers = new ArrayList<>();
-        for(int i = 0; i < ui.getPlayerNames().size(); i++){
-            tempPlayers.add(new Player(i, ui.getPlayerNames().get(i)));
+        ArrayList<String> tempNames = ui.getPlayerNames();
+        for(int i = 0; i < tempNames.size(); i++){
+            tempPlayers.add(new Player(i, tempNames.get(i)));
+            System.out.println("New palyer created");
         }
         //Choose map
         int mapId = ui.chooseMap(mapFactory.getMaps());
