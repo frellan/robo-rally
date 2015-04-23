@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 /**
  * Created by Pertta on 15-04-23.
+ *
+ * The GameController is the game master. The flow of the game
+ * is controlled here.
+ *
  */
 public class GameController {
 

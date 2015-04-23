@@ -9,17 +9,17 @@ import java.util.Scanner;
 
 public class AppController {
 
+    /**
+     * @var ui
+     *  The ui variable holds the choosen user interface
+     */
     private final UI ui;
-	private RoboRally model;
-    private MainWindow mainWindow;
-    private Terminal terminal;
     private GameController gameController;
     private boolean appRunning;
 
 	public AppController() {
 
         this.appRunning = true;
-
         ui = new Terminal(this);
         ui.menu();
 	}

@@ -5,6 +5,12 @@ import edu.chl.roborally.view.*;
 
 import java.util.*;
 
+/**
+ * Created by Henrik.
+ *
+ * Our model which holds the status of the game
+ *
+ */
 public class RoboRally {
 
     // Variables
