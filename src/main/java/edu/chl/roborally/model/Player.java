@@ -2,7 +2,6 @@ package edu.chl.roborally.model;
 
 
 import edu.chl.roborally.model.cards.RegisterCard;
-import edu.chl.roborally.view.TerminalOutput;
 
 import java.util.ArrayList;
 

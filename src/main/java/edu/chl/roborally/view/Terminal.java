@@ -1,18 +1,18 @@
 package edu.chl.roborally.view;
 
-import edu.chl.roborally.controller.Controller;
+import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 
 /**
  * Created by fredrikkindstrom on 22/04/15.
  */
-public class TerminalOutput {
+public class Terminal {
 
-    private final Controller controller;
+    private final AppController appController;
 
-    public TerminalOutput(Controller c) {
-        controller = c;
+    public Terminal(AppController c) {
+        appController = c;
     }
 
     public void print(String s) {

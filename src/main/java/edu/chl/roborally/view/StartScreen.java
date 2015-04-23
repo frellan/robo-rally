@@ -1,7 +1,6 @@
 package edu.chl.roborally.view;
 
-import edu.chl.roborally.controller.Controller;
-import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.controller.AppController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,15 +12,15 @@ import java.awt.event.ActionListener;
  */
 public class StartScreen extends JPanel implements ActionListener{
 
-    private Controller controller;
+    private AppController appController;
 
 
     // Buttons
 
     private JButton newGameButton;
 
-    public StartScreen(Controller controller) {
-        this.controller = controller;
+    public StartScreen(AppController appController) {
+        this.appController = appController;
 
         setLayout(new FlowLayout());
         newGameButton = new JButton("New Game");
@@ -42,7 +41,7 @@ public class StartScreen extends JPanel implements ActionListener{
             System.out.println("null");
         }
         if (e.getSource().equals(newGameButton)){
-            controller.newGame();
+            appController.newGame();
         }
     }
 }

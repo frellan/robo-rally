@@ -20,6 +20,7 @@ public class GameScreen extends JPanel {
         this.model = model;
         board = model.getGameBoard();
         setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
+        add(new JLabel("TJENARE MANNEN!"),BorderLayout.CENTER);
     }
 
     protected void paintBoard() {

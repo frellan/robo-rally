@@ -1,9 +1,9 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.Controller;
+import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.view.TerminalOutput;
+import edu.chl.roborally.view.Terminal;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,8 +16,8 @@ import java.util.Map;
 public class Turn {
 
     private RoboRally model;
-    private Controller controller;
-    private TerminalOutput terminal;
+    private AppController appController;
+    private Terminal terminal;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
@@ -29,7 +29,7 @@ public class Turn {
 
     public Turn(RoboRally r, int index) {
         model = r;
-        controller = model.getController();
+        appController = model.getAppController();
         terminal = model.getTerminal();
         players = model.getPlayers();
         this.index = index;
@@ -88,39 +88,41 @@ public class Turn {
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
         for (Player p : players) {
+            //Get current laser power for the player
+            int playerLaserPower = p.getLaserPower();
             switch (p.getDirection()) {
                 case NORTH:
-                    //Om x är samma och y är större
+                    //If x is equal and y is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
                     break;
                 case SOUTH:
-                    //Om x är samma och y är mindre
+                    //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
                     break;
                 case EAST:
-                    //Om y är samma och x är större
+                    //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }
                     break;
                 case WEST:
-                    //Om y är samma och x är mindre
+                    //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                            enemy.takeDamage(1);
+                            enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
                     }

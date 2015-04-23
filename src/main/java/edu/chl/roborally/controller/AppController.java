@@ -3,45 +3,41 @@ package edu.chl.roborally.controller;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.view.MainWindow;
-import edu.chl.roborally.view.TerminalOutput;
+import edu.chl.roborally.view.Terminal;
 
 import java.util.Scanner;
 
-public class Controller {
+public class AppController {
 
 	private RoboRally model;
     private MainWindow mainWindow;
-    private TerminalOutput terminal;
-    private GameController gameController;
-    private boolean runApplication;
+    private Terminal terminal;
+    private boolean run;
 
-	public Controller() {
+	public AppController() {
         mainWindow = new MainWindow(this);
-        terminal = new TerminalOutput(this);
-        this.runApplication = true;
+        terminal = new Terminal(this);
+        this.run = true;
         welcomeMessage();
 	}
 
     public void newGame() {
-        if (gameController == null) {
-            gameController = new GameController(terminal);
-            mainWindow.initGameScreen(model);
+        if (model == null) {
+            model = new RoboRally(this,terminal);
+            mainWindow.switchToGameScreen(model);
         } else {
             System.out.println("Game already running");
         }
     }
-
-    public void endApplication() {
-        this.runApplication = false;
-        System.exit(0);
+    public void endGame() {
+        this.run = false;
     }
-
     // Console methods
     private void welcomeMessage(){
         System.out.println("ROBORALLY MADNESS!!!");
         System.out.println("type Help if you get stuck!");
 
-        while(runApplication) {
+        while(run) {
             actionFromInput(userInputString());
         }
 
@@ -61,7 +57,7 @@ public class Controller {
                 newGame();
                 break;
             case "end":
-                endApplication();
+                endGame();
                 break;
             case "help":
                 System.out.println("Commands: 'new game', 'end'");

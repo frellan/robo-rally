@@ -8,12 +8,20 @@ import edu.chl.roborally.model.Player;
  */
 public class WallTile implements GameTile{
 
-    private Constants.Directions d;
-    private String name;
+    private Constants.Directions d1;
+    private Constants.Directions d2;
+    private String name = "W";
 
-    public WallTile(Constants.Directions d){
-        this.d=d;
+    public WallTile(Constants.Directions d1){
+        this.d1=d1;
     }
+
+    public WallTile(Constants.Directions d1, Constants.Directions d2){
+        this.d1 = d1;
+        this.d2 = d2;
+    }
+
+
 
     public void doAction(Player p){
         // new StopPlayer(p, d);
