@@ -1,9 +1,9 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.Controller;
+import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.view.TerminalOutput;
+import edu.chl.roborally.view.Terminal;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,8 +16,8 @@ import java.util.Map;
 public class Turn {
 
     private RoboRally model;
-    private Controller controller;
-    private TerminalOutput terminal;
+    private AppController appController;
+    private Terminal terminal;
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
@@ -29,7 +29,7 @@ public class Turn {
 
     public Turn(RoboRally r, int index) {
         model = r;
-        controller = model.getController();
+        appController = model.getAppController();
         terminal = model.getTerminal();
         players = model.getPlayers();
         this.index = index;

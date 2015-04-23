@@ -2,20 +2,20 @@ package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.view.MainWindow;
-import edu.chl.roborally.view.TerminalOutput;
+import edu.chl.roborally.view.Terminal;
 
 import java.util.Scanner;
 
-public class Controller {
+public class AppController {
 
 	private RoboRally model;
     private MainWindow mainWindow;
-    private TerminalOutput terminal;
+    private Terminal terminal;
     private boolean run;
 
-	public Controller() {
+	public AppController() {
         mainWindow = new MainWindow(this);
-        terminal = new TerminalOutput(this);
+        terminal = new Terminal(this);
         this.run = true;
         welcomeMessage();
 	}

@@ -1,7 +1,7 @@
 package edu.chl.roborally.model;
 
-import edu.chl.roborally.controller.Controller;
-import edu.chl.roborally.view.TerminalOutput;
+import edu.chl.roborally.controller.AppController;
+import edu.chl.roborally.view.Terminal;
 
 import java.util.ArrayList;
 
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class Round {
 
     private RoboRally model;
-    private Controller controller;
-    private TerminalOutput terminal;
+    private AppController appController;
+    private Terminal terminal;
     private CardDeck deck;
     private ArrayList<Player> players;
 
@@ -20,7 +20,7 @@ public class Round {
 
     public Round(RoboRally r) {
         this.model = r;
-        this.controller = model.getController();
+        this.appController = model.getAppController();
         this.terminal = model.getTerminal();
         this.deck = model.getDeck();
         this.players = model.getPlayers();
@@ -37,7 +37,7 @@ public class Round {
             new Turn(model, i);
             terminal.printHeader("End turn " + Integer.toString(i + 1));
             terminal.print("Press enter to init next turn");
-            controller.userInputString();
+            appController.userInputString();
         }
     }
 
@@ -74,7 +74,7 @@ public class Round {
             terminal.print("");
             terminal.print("Choose 5 cards");
             terminal.print("Type the index of the card in the order you want to place them, separated by commas");
-            String[] s = controller.userInputString().split(",");
+            String[] s = appController.userInputString().split(",");
             int index = 0;
             for (String value : s) {
                 int nr = Integer.parseInt(value);

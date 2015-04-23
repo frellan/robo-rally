@@ -12,8 +12,8 @@ public class RoboRally {
 
     // Variables
 
-    private Controller controller;
-    private TerminalOutput terminal;
+    private AppController appController;
+    private Terminal terminal;
     private GameBoard gameBoard;
     public ArrayList<Player> players = new ArrayList<>();
     private int numbersOfPlayers;
@@ -21,8 +21,8 @@ public class RoboRally {
 
     // Constructor
 
-    public RoboRally(Controller c, TerminalOutput terminal) {
-        this.controller = c;
+    public RoboRally(AppController c, Terminal terminal) {
+        this.appController = c;
         this.terminal = terminal;
 
         newGame();
@@ -32,7 +32,7 @@ public class RoboRally {
 
     private void newGame() {
         terminal.print("How many players?");
-        numbersOfPlayers = controller.userInputInt();
+        numbersOfPlayers = appController.userInputInt();
         setPlayerNames();
         terminal.print("Starting new game with " + numbersOfPlayers + " players");
         terminal.print("------------------------------");
@@ -61,7 +61,7 @@ public class RoboRally {
         terminal.print("Choose Board");
         terminal.print("Type 1: Blank Map");
         terminal.print("Type 2: Vault Map");
-        int input = controller.userInputInt();
+        int input = appController.userInputInt();
         if (input == 1) {
             gameBoard = new BlankMap();
         } else if (input == 2) {
@@ -85,11 +85,11 @@ public class RoboRally {
 
     // Getters
 
-    public Controller getController() {
-        return controller;
+    public AppController getAppController() {
+        return appController;
     }
 
-    public TerminalOutput getTerminal() {
+    public Terminal getTerminal() {
         return terminal;
     }
 
@@ -110,7 +110,7 @@ public class RoboRally {
     private void setPlayerNames() {
         for (int i = 1; i <= numbersOfPlayers; i++) {
             System.out.println("Name on Player " + i + "?");
-            players.add(new Player(i,controller.userInputString()));
+            players.add(new Player(i, appController.userInputString()));
         }
     }
 }
