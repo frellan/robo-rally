@@ -13,6 +13,7 @@ public class AppController {
 	private RoboRally model;
     private MainWindow mainWindow;
     private Terminal terminal;
+    private GameController gameController;
     private boolean appRunning;
 
 	public AppController() {
@@ -24,12 +25,11 @@ public class AppController {
         return appRunning;
     }
 
-    public void newGame() {
-        if (model == null) {
-            model = new RoboRally(this,terminal);
-            mainWindow.switchToGameScreen(model);
+    public void initGameController() {
+        if (gameController == null) {
+            gameController = new GameController(ui);
         } else {
-            System.out.println("Game already runnings");
+            System.out.println("Game already running");
         }
     }
     public void endGame() {

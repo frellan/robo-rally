@@ -45,7 +45,7 @@ public class Round {
 
     /**
     * If player is dead, we put them back on the last checkpoint
-    * when we newGame a new round
+    * when we initGameController a new round
     */
     private void putBackPlayers() {
         for (Player p : players) {

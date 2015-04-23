@@ -1,6 +1,5 @@
 package edu.chl.roborally.view;
 
-import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 
@@ -29,7 +28,7 @@ public class Terminal extends UI{
     private void actionFromInput(String s) {
         switch (s.toLowerCase()) {
             case "new game":
-                super.getAppController().newGame();
+                super.getAppController().initGameController();
                 break;
             case "end":
                 super.getAppController().endGame();

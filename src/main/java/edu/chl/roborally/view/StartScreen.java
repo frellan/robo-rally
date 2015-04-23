@@ -41,7 +41,7 @@ public class StartScreen extends JPanel implements ActionListener{
             System.out.println("null");
         }
         if (e.getSource().equals(newGameButton)){
-            appController.newGame();
+            appController.initGameController();
         }
     }
 }
