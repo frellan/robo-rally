@@ -12,17 +12,7 @@ import java.util.Scanner;
 public class Terminal extends UI{
 
     public Terminal() {
-    }
-
-    private void welcomeMessage(){
-        System.out.println("ROBORALLY MADNESS!!!");
-        System.out.println("type Help if you get stuck!");
-
-        while(super.getAppController().isAppRunning()) {
-            actionFromInput(userInputString());
-        }
-
-        System.out.println("Game Ended");
+        startMsg();
     }
 
     // Inputs
@@ -79,7 +69,18 @@ public class Terminal extends UI{
     }
 
     @Override
-    public void menu() {
+    public void startMsg() {
+        print("ROBORALLY MADNESS!!!");
+    }
 
+    @Override
+    public void menu() {
+        print("type Help if you get stuck!");
+
+        while(super.getAppController().isAppRunning()) {
+            actionFromInput(userInputString());
+        }
+
+        print("Game Ended");
     }
 }
