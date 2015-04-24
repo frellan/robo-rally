@@ -37,10 +37,10 @@ public class Terminal extends UI{
                 super.appController.endGame();
                 break;
             case "help":
-                System.out.println("Commands: 'new game', 'end'");
+                print("Commands: 'new game', 'end'");
                 break;
             default:
-                System.out.println(s + " not a command");
+                print(s + " not a command");
                 break;
         }
     }
