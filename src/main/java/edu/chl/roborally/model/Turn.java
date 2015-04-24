@@ -65,8 +65,7 @@ public class Turn {
             }
         }
     }
-
-    // Express converyor belts move 1 space
+    // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
         System.out.println("Tile Actions");
         for (Player p : players) {
