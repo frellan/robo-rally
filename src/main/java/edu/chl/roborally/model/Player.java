@@ -37,7 +37,9 @@ public class Player {
         this.laserPower = 1;
     }
 
-    // Getters
+    /**
+     * Getters
+     */
 
     public String getName() {
         return name;
@@ -92,9 +94,9 @@ public class Player {
         return laserPower;
     }
 
-    //Commands
-
-
+    /**
+     * Commands
+     */
 
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens + amount;
@@ -148,7 +150,9 @@ public class Player {
     }
     /** End of kill */
 
-    // Setters
+    /**
+     * Setters
+     */
 
     public void setPosition(Position p) {
         this.position = p;

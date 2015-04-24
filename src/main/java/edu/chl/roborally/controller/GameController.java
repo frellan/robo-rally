@@ -26,14 +26,16 @@ public class GameController {
         runGame();
     }
 
+    /**
+     * The initGame method setups up all the
+     * dependencies for the game
+     */
     private void initGame(){
-        System.out.println("Im in initgame");
         //Create players
         ArrayList<Player> tempPlayers = new ArrayList<>();
         ArrayList<String> tempNames = ui.getPlayerNames();
         for(int i = 0; i < tempNames.size(); i++){
             tempPlayers.add(new Player(i, tempNames.get(i)));
-            System.out.println("New palyer created");
         }
         //Choose map
         int mapId = ui.chooseMap(mapFactory.getMaps());
@@ -41,6 +43,11 @@ public class GameController {
         this.model = new RoboRally(tempPlayers, mapFactory.createMap(mapId), ui);
     }
 
+    /**
+     * runGame keeps track of rounds and turns
+     * asks the model if the game
+     * should continue
+     */
     private void runGame() {
         //TODO Ask model if i should run the game
         while(model.shouldIContinue()) {
