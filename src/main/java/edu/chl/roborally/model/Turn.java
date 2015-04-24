@@ -83,6 +83,7 @@ public class Turn {
 
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
+        //TODO Stop laser if wall_tile in that direction
         for (Player p : players) {
             //Get current laser power for the player
             int playerLaserPower = p.getLaserPower();
