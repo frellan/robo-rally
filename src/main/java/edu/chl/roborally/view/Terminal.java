@@ -88,14 +88,14 @@ public class Terminal extends UI{
 
     @Override
     public ArrayList<String> getPlayerNames() {
-        System.out.println("How many players?");
+        print("How many players?");
         ArrayList<String> names = new ArrayList<>();
         int howManyPlayers = userInputInt();
         for (int i = 1; i < howManyPlayers+1; i++ ) {
-            System.out.println("Name on Player " + i);
+            print("Name on Player " + i);
             names.add(userInputString());
         }
-        System.out.println("Done with names");
+        print("Done with names");
         return names;
     }
 
