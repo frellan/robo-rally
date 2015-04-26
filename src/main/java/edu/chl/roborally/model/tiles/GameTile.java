@@ -9,5 +9,5 @@ public interface GameTile {
 
     public void doAction(Player p);
     public String toString();
-
+    public void draw();
 }

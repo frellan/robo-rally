@@ -23,4 +23,9 @@ public class RotationTile implements GameTile {
     public String toString() {
         return name;
     }
+
+    @Override
+    public void draw() {
+
+    }
 }

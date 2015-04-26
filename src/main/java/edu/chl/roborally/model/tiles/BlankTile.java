@@ -16,4 +16,9 @@ public class BlankTile implements GameTile {
         return name;
     }
 
+    @Override
+    public void draw() {
+
+    }
+
 }

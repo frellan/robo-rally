@@ -25,4 +25,9 @@ public class ConveyorTile implements GameTile {
     public String toString() {
         return name;
     }
+
+    @Override
+    public void draw() {
+
+    }
 }

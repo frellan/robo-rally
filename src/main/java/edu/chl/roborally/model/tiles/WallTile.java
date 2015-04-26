@@ -31,6 +31,10 @@ public class WallTile implements GameTile{
         return name;
     }
 
+    @Override
+    public void draw() {
+
+    }
 
 
 }

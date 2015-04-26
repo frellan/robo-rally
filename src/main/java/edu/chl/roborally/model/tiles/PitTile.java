@@ -17,4 +17,9 @@ public class PitTile implements GameTile{
     public String toString() {
         return name;
     }
+
+    @Override
+    public void draw() {
+
+    }
 }

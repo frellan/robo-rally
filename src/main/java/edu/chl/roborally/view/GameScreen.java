@@ -3,6 +3,8 @@ package edu.chl.roborally.view;
 import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
+import edu.chl.roborally.model.tiles.BlankTile;
+import edu.chl.roborally.model.tiles.GameTile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +12,7 @@ import java.awt.*;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class GameScreen extends JPanel {
+public class GameScreen extends JComponent {
 
     private final RoboRally model;
 
@@ -23,10 +25,21 @@ public class GameScreen extends JPanel {
         add(new JLabel("TJENARE MANNEN!"),BorderLayout.CENTER);
     }
 
-    protected void paintBoard() {
-        for (int i = 0; i < board.getWidth(); i++) {
-            for (int j = 0; j < board.getHeight(); j++) {
-                System.out.println(board.getTile(i,j).toString());
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.setColor(this.getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+
+        //Check if a game is running
+        if(this.model != null){
+
+            for (int i = 0; i < board.getWidth(); i++) {
+                for (int j = 0; j < board.getHeight(); j++) {
+                    GameTile tile = board.getTile(i, j);
+                    tile.draw();
+                }
             }
         }
     }
