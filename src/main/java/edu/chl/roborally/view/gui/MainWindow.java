@@ -1,4 +1,4 @@
-package edu.chl.roborally.view;
+package edu.chl.roborally.view.gui;
 
 import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.RoboRally;
