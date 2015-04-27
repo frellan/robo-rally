@@ -1,4 +1,4 @@
-package edu.chl.roborally.view;
+package edu.chl.roborally.view.gui;
 
 import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.RoboRally;
@@ -22,7 +22,7 @@ public class GameScreen extends JComponent {
         this.model = model;
         board = model.getGameBoard();
         setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
-        add(new JLabel("TJENARE MANNEN!"),BorderLayout.CENTER);
+        add(new JLabel("TJENARE MANNEN!"), BorderLayout.CENTER);
     }
 
     @Override
