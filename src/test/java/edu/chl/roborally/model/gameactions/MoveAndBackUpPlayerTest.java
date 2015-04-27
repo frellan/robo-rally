@@ -26,11 +26,13 @@ public class MoveAndBackUpPlayerTest {
     public void testMovePlayer() throws Exception {
         new MovePlayer(player);
         assertTrue(player.getPosition().getY() == 7);
+        assertTrue(player.getPosition().getX() == 4);
     }
 
     @Test
     public void testBackUpPlayer() throws Exception {
         new BackUpPlayer(player);
         assertTrue(player.getPosition().getY() == 5);
+        assertTrue(player.getPosition().getX() == 4);
     }
 }
