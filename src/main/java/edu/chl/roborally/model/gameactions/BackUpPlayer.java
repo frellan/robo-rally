@@ -7,12 +7,12 @@ import edu.chl.roborally.model.Position;
 /**
  * Created by henriknilson on 21/04/15.
  */
-public class BackUpPlayer implements GameAction {
-    private Player p;
+public class BackUpPlayer extends GameAction {
+
     private Constants.Directions d;
 
     public BackUpPlayer(Player p, Constants.Directions d) {
-        this.p = p;
+        super(p);
         this.d = d;
         action();
         System.out.println("Backed up " + p.getName());
@@ -28,15 +28,15 @@ public class BackUpPlayer implements GameAction {
     public void action() {
         switch (d) {
             case NORTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()-1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
                 break;
             case SOUTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()+1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
             case EAST:
-                p.setPosition(new Position(p.getPosition().getX()-1, p.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
                 break;
             case WEST:
-                p.setPosition(new Position(p.getPosition().getX()+1, p.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX()+1, super.player.getPosition().getY()));
         }
     }
 }

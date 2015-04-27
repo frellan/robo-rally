@@ -1,10 +1,18 @@
 package edu.chl.roborally.model.gameactions;
 
+import edu.chl.roborally.model.Player;
+
 /**
  * Created by henriknilson on 31/03/15.
  */
-public interface GameAction {
+public abstract class GameAction {
 
-    public void action();
+    protected Player player;
+
+    public GameAction(Player p) {
+        this.player = p;
+    }
+
+    abstract void action();
 
 }

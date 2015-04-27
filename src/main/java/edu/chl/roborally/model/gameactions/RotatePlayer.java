@@ -6,13 +6,12 @@ import edu.chl.roborally.model.Player;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class RotatePlayer implements GameAction {
+public class RotatePlayer extends GameAction {
 
-    private Player p;
     private Constants.Directions d;
 
     public RotatePlayer(Player p, Constants.Directions d){
-        this.p = p;
+        super(p);
         this.d = d;
         action();
         System.out.println("Rotated " + p.getName());
@@ -26,35 +25,35 @@ public class RotatePlayer implements GameAction {
 
             // Turn Right
             case EAST:
-                switch (p.getDirection()) {
+                switch (super.player.getDirection()) {
                     case NORTH:
-                        p.setDirection(Constants.Directions.EAST);
+                        super.player.setDirection(Constants.Directions.EAST);
                         break;
                     case EAST:
-                        p.setDirection(Constants.Directions.SOUTH);
+                        super.player.setDirection(Constants.Directions.SOUTH);
                         break;
                     case SOUTH:
-                        p.setDirection(Constants.Directions.WEST);
+                        super.player.setDirection(Constants.Directions.WEST);
                         break;
                     case WEST:
-                        p.setDirection(Constants.Directions.NORTH);
+                        super.player.setDirection(Constants.Directions.NORTH);
                 }
                 break;
 
             // Turn Left
             case WEST:
-                switch (p.getDirection()) {
+                switch (super.player.getDirection()) {
                     case NORTH:
-                        p.setDirection(Constants.Directions.WEST);
+                        super.player.setDirection(Constants.Directions.WEST);
                         break;
                     case WEST:
-                        p.setDirection(Constants.Directions.SOUTH);
+                        super.player.setDirection(Constants.Directions.SOUTH);
                         break;
                     case SOUTH:
-                        p.setDirection(Constants.Directions.EAST);
+                        super.player.setDirection(Constants.Directions.EAST);
                         break;
                     case EAST:
-                        p.setDirection(Constants.Directions.NORTH);
+                        super.player.setDirection(Constants.Directions.NORTH);
                         break;
                 }
                 break;
