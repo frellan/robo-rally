@@ -14,7 +14,7 @@ public class RotatePlayerTest {
         GameAction rp = new RotatePlayer(p, Constants.Directions.WEST);
         p.setDirection(Constants.Directions.EAST);
         rp.action();
-        
+
         assertTrue(p.getDirection() == Constants.Directions.NORTH);
     }
 }
