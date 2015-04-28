@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class GUIController extends UI {
 
     private JFrame main;
+    private JPanel startPanel;
 
     public GUIController(AppController appController) {
         super(appController);
@@ -25,7 +26,8 @@ public class GUIController extends UI {
     @Override
     public void startMsg() {
         // Maybe should be in menu
-        main.add(new StartScreen(super.appController), BorderLayout.CENTER);
+        startPanel = new StartScreen(super.appController);
+        main.add(startPanel, BorderLayout.CENTER);
         main.revalidate();
     }
 
@@ -36,11 +38,14 @@ public class GUIController extends UI {
 
     @Override
     public ArrayList<String> getPlayerNames() {
-        main.removeAll();
+        main.remove(startPanel);
+
         main.add(new SetupPanel());
         main.revalidate();
+
         ArrayList list = new ArrayList<String>();
         list.add("acke");
+
         return list;
     }
 

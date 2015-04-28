@@ -20,13 +20,14 @@ public class SetupPanel extends JPanel implements ActionListener {
         spinner = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
 
         spinnerButton = new JButton("Choose Players");
+        spinnerButton.addActionListener(this);
         add(spinnerButton);
         add(spinner);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals("Choose Players")){
+        if (e.getSource().equals(spinnerButton)){
             currentValue = (Integer)spinner.getValue();
             System.out.println(currentValue);
         }
