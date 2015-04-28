@@ -11,9 +11,10 @@ public class RotatePlayerTest {
     @Test
     public void testAction() throws Exception {
         Player p = new Player(0, "Name");
-        GameAction rp = new RotatePlayer(p, Constants.Directions.WEST);
+
         p.setDirection(Constants.Directions.EAST);
-        rp.action();
+
+        new RotatePlayer(p, Constants.Directions.WEST);
 
         assertTrue(p.getDirection() == Constants.Directions.NORTH);
     }
