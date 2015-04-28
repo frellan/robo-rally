@@ -132,7 +132,7 @@ public class Player {
      * Helpers to kill player
      */
     public void loseLifeToken() {
-        this.lifeTokens = lifeTokens--;
+        this.lifeTokens = lifeTokens -1;
         if (this.lifeTokens == -1) {
             setStatus(Constants.Status.KAPUT);
             System.out.println(this.getName() + " is now Kaput and lost");
