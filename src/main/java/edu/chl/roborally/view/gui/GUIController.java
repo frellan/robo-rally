@@ -36,7 +36,12 @@ public class GUIController extends UI {
 
     @Override
     public ArrayList<String> getPlayerNames() {
-        return null;
+        main.removeAll();
+        main.add(new SetupPanel());
+        main.revalidate();
+        ArrayList list = new ArrayList<String>();
+        list.add("acke");
+        return list;
     }
 
     @Override
