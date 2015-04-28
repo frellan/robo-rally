@@ -12,16 +12,13 @@ import java.awt.event.ActionListener;
  */
 public class StartScreen extends JPanel implements ActionListener{
 
-    private AppController appController;
-
-
     // Buttons
 
     private JButton newGameButton;
+    private AppController appController;
 
     public StartScreen(AppController appController) {
         this.appController = appController;
-
         setLayout(new FlowLayout());
         newGameButton = new JButton("New Game");
         add(newGameButton);
@@ -41,7 +38,7 @@ public class StartScreen extends JPanel implements ActionListener{
             System.out.println("null");
         }
         if (e.getSource().equals(newGameButton)){
-            appController.initGameController();
+           appController.initGameController();
         }
     }
 }

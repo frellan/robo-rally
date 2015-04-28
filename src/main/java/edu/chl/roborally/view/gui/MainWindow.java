@@ -11,22 +11,11 @@ import java.awt.*;
  */
 public class MainWindow extends JFrame{
 
-    private final AppController appController;
-
-    public MainWindow(AppController c) {
-        appController = c;
+    public MainWindow() {
         setTitle("RoboRally");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 600);
         setLayout(new BorderLayout());
-        add(new StartScreen(appController), BorderLayout.CENTER);
         setVisible(true);
     }
-
-    public void switchToGameScreen(RoboRally model) {
-        removeAll();
-        add(new GameScreen(model),BorderLayout.CENTER);
-        revalidate();
-    }
-
 }

@@ -2,6 +2,7 @@ package edu.chl.roborally.controller;
 
 import edu.chl.roborally.view.Terminal;
 import edu.chl.roborally.view.UI;
+import edu.chl.roborally.view.gui.GUIController;
 
 public class AppController {
 
@@ -16,7 +17,7 @@ public class AppController {
 	public AppController() {
 
         this.appRunning = true;
-        ui = new Terminal(this);
+        ui = new GUIController(this);
         ui.menu();
 	}
 
