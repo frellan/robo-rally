@@ -66,6 +66,8 @@ public class GameController implements EventTram.IEventHandler{
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(evt == )
+        if(evt == EventTram.Event.START_SETUP) {
+            this.initGame();
+        }
     }
 }

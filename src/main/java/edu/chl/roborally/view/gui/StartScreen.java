@@ -1,5 +1,6 @@
 package edu.chl.roborally.view.gui;
 
+import edu.chl.roborally.EventTram;
 import edu.chl.roborally.controller.AppController;
 
 import javax.swing.*;
@@ -38,7 +39,8 @@ public class StartScreen extends JPanel implements ActionListener{
             System.out.println("null");
         }
         if (e.getSource().equals(newGameButton)){
-           appController.initGameController();
+            appController.initGameController();
+            EventTram.getInstance().publish(EventTram.Event.START_SETUP, null);
         }
     }
 }
