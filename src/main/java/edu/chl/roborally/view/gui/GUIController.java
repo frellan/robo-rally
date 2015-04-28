@@ -14,6 +14,7 @@ public class GUIController extends UI {
 
     private JFrame main;
     private JPanel startPanel;
+    private SetupPanel setup;
 
     public GUIController(AppController appController) {
         super(appController);
@@ -40,13 +41,12 @@ public class GUIController extends UI {
     public ArrayList<String> getPlayerNames() {
         main.remove(startPanel);
 
-        main.add(new SetupPanel());
+        setup = new SetupPanel();
+
+        main.add(setup);
         main.revalidate();
 
-        ArrayList list = new ArrayList<String>();
-        list.add("acke");
-
-        return list;
+        return setup.getNames();
     }
 
     @Override

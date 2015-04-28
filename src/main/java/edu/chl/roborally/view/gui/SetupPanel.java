@@ -22,13 +22,21 @@ public class SetupPanel extends JPanel implements ActionListener {
     public SetupPanel(){
 
         setLayout(new FlowLayout());
-        spinner = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
 
+
+    }
+
+    public ArrayList<String> getNames() {
+
+        spinner = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
         spinnerButton = new JButton("Choose Players");
+
         spinnerButton.addActionListener(this);
+
         add(spinnerButton);
         add(spinner);
 
+        return names;
     }
 
     @Override
@@ -47,7 +55,7 @@ public class SetupPanel extends JPanel implements ActionListener {
         }
     }
 
-    private void setNames(Integer i){
+    public void setNames(Integer i){
 
         textFieldArrayList = new ArrayList<>();
 
