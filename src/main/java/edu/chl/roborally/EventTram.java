@@ -24,6 +24,7 @@ public class EventTram {
 
     public enum Event {
 
+        START_SETUP,
         SET_NAMES,
         SET_MAP
     };
