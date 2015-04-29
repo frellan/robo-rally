@@ -25,13 +25,13 @@ public class EventTram {
 
         //Events for GUI
         INIT_SETUP
-    };
+    }
 
     //for debugging
     private boolean trace = true;
 
     //List of listeners
-    private final List<IEventHandler> handlers = new ArrayList<>();
+    private final ArrayList<IEventHandler> handlers = new ArrayList<>();
 
     //Register a listener
     public void register(IEventHandler handler){

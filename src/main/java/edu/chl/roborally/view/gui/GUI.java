@@ -20,7 +20,7 @@ public class GUI extends UI implements IEventHandler{
 
     public GUI(AppController appController){
         super(appController);
-        main = new MainWindow();
+        main = new MainFrame();
 
         startMsg();
 
@@ -29,15 +29,15 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void startMsg() {
-        setup = new SetupPanel();
-        main.add(new StartPanel());
+        start = new StartPanel();
+        main.add(start);
     }
 
     @Override
     public void menu() {
         System.out.println("i has entered menu");
+        setup = new SetupPanel();
 
-        start = new StartPanel();
         appController.initGameController();
         main.remove(start);
         main.revalidate();

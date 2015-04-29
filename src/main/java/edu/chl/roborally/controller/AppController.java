@@ -17,7 +17,7 @@ public class AppController {
 
         this.appRunning = true;
         ui = new GUI(this);
-        ui.menu();
+
 	}
 
     public boolean isAppRunning() {

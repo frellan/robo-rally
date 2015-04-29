@@ -9,9 +9,9 @@ import java.awt.*;
 /**
  * Created by henriknilson on 26/03/15.
  */
-public class MainWindow extends JFrame{
+public class MainFrame extends JFrame{
 
-    public MainWindow() {
+    public MainFrame() {
         setTitle("RoboRally");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1000, 600);
