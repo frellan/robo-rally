@@ -12,13 +12,13 @@ import java.awt.*;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class GameScreen extends JComponent {
+public class GameView extends JComponent {
 
     private final RoboRally model;
 
     private GameBoard board;
 
-    public GameScreen(RoboRally model) {
+    public GameView(RoboRally model) {
         this.model = model;
         board = model.getGameBoard();
         setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));

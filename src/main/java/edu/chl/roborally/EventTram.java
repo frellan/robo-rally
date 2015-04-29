@@ -21,7 +21,10 @@ public class EventTram {
 
         START_SETUP,
         SET_NAMES,
-        SET_MAP
+        SET_MAP,
+
+        //Events for GUI
+        INIT_SETUP
     };
 
     //for debugging
