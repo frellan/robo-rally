@@ -34,8 +34,6 @@ public class GameController implements IEventHandler {
      */
     private void initGame(){
         this.model = new RoboRally();
-        // int mapId = ui.chooseMap(mapFactory.getMaps());
-
     }
 
     /**
