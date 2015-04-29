@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.EventTram;
 import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
@@ -32,6 +33,7 @@ public class Terminal extends UI{
         switch (s.toLowerCase()) {
             case "new game":
                 super.appController.initGameController();
+                EventTram.getInstance().publish(EventTram.Event.START_SETUP, null);
                 break;
             case "end":
                 super.appController.endGame();
@@ -87,7 +89,7 @@ public class Terminal extends UI{
     }
 
     @Override
-    public ArrayList<String> getPlayerNames() {
+    public void choosePlayerNames() {
         print("How many players?");
         ArrayList<String> names = new ArrayList<>();
         int howManyPlayers = userInputInt();
@@ -96,16 +98,16 @@ public class Terminal extends UI{
             names.add(userInputString());
         }
         print("Done with names");
-        return names;
+        EventTram.getInstance().publish(EventTram.Event.SET_NAMES, names);
     }
 
     @Override
-    public int chooseMap(ArrayList<String> maps) {
+    public void chooseMap(ArrayList<String> maps) {
         print("Choose map: ");
         for(int i = 0; i < maps.size(); i++){
             print(i + " " + maps.get(i));
         }
-        return userInputInt();
+        EventTram.getInstance().publish(EventTram.Event.SET_MAP, userInputInt());
     }
 
     @Override

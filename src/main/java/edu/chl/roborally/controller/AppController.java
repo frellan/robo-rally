@@ -1,8 +1,6 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.view.Terminal;
 import edu.chl.roborally.view.UI;
-import edu.chl.roborally.view.gui.GUIController;
 
 public class AppController {
 
