@@ -17,11 +17,6 @@ public class EventTram {
         return tram;
     }
 
-    public interface IEventHandler {
-
-        public void onEvent(Event evt, Object o);
-    }
-
     public enum Event {
 
         START_SETUP,

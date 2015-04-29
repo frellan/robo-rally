@@ -1,6 +1,7 @@
 package edu.chl.roborally.controller;
 
 import edu.chl.roborally.EventTram;
+import edu.chl.roborally.IEventHandler;
 import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * is controlled here.
  *
  */
-public class GameController implements EventTram.IEventHandler{
+public class GameController implements IEventHandler {
 
     private UI ui;
     private RoboRally model;
@@ -60,7 +61,6 @@ public class GameController implements EventTram.IEventHandler{
             model.setPlayer(new Player(i,names.get(i)));
         }
     }
-
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
