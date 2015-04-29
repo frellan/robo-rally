@@ -22,11 +22,11 @@ public class RoboRally {
 
     // Constructor
 
-    public RoboRally(ArrayList<Player> players, GameBoard board, UI ui) {
-        this.players = players;
-        this.gameBoard = board;
-        this.ui = ui;
-
+    public RoboRally() {
+        players = new ArrayList<>();
+    }
+    // Setup game
+    private void setupGame() {
         // Init all dependencies
         resetDeck();
         //set start positions
@@ -74,5 +74,15 @@ public class RoboRally {
 
     public GameBoard getGameBoard() {
         return gameBoard;
+    }
+
+    // Setters
+
+    public void setMap(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
+    public void setPlayer(Player player) {
+        this.players.add(player);
     }
 }

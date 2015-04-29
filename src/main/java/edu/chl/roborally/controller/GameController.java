@@ -4,7 +4,6 @@ import edu.chl.roborally.EventTram;
 import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
-
 import java.util.ArrayList;
 
 /**
@@ -33,16 +32,9 @@ public class GameController implements EventTram.IEventHandler{
      * dependencies for the game
      */
     private void initGame(){
-        //Create players
-        ArrayList<Player> tempPlayers = new ArrayList<>();
-        ArrayList<String> tempNames = ui.getPlayerNames();
-        for(int i = 0; i < tempNames.size(); i++){
-            tempPlayers.add(new Player(i, tempNames.get(i)));
-        }
-        //Choose map
-        int mapId = ui.chooseMap(mapFactory.getMaps());
-        //Create game
-        this.model = new RoboRally(tempPlayers, mapFactory.createMap(mapId), ui);
+        this.model = new RoboRally();
+        // int mapId = ui.chooseMap(mapFactory.getMaps());
+
     }
 
     /**
@@ -63,11 +55,21 @@ public class GameController implements EventTram.IEventHandler{
         }
     }
 
+    private void createPlayers(ArrayList<String> names) {
+        for (int i = 0; i<names.size(); i++) {
+            model.setPlayer(new Player(i,names.get(i)));
+        }
+    }
+
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         if(evt == EventTram.Event.START_SETUP) {
             this.initGame();
+        } else if (evt == EventTram.Event.SET_MAP) {
+            this.model.setMap(mapFactory.createMap((Integer) o));
+        } else if (evt == EventTram.Event.SET_NAMES) {
+            createPlayers((ArrayList<String>) o);
         }
     }
 }
