@@ -21,10 +21,17 @@ public class StartScreen extends JPanel implements ActionListener{
     public StartScreen(AppController appController) {
         this.appController = appController;
         setLayout(new FlowLayout());
+
         newGameButton = new JButton("New Game");
+        newGameButton.addActionListener(this);
+        newGameButton.setSize(150, 30);
+
+
+        JLabel welcomeLabel = new JLabel("Hej och välkommen till Robo-Rally MADNESS!");
+
+        add(welcomeLabel);
         add(newGameButton);
 
-        newGameButton.addActionListener(this);
 
         setVisible(true);
     }

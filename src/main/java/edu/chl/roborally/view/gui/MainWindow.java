@@ -17,5 +17,6 @@ public class MainWindow extends JFrame{
         setSize(1000, 600);
         setLayout(new BorderLayout());
         setVisible(true);
+
     }
 }
