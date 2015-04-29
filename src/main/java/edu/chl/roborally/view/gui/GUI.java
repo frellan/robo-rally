@@ -42,6 +42,7 @@ public class GUI extends UI implements IEventHandler{
         main.remove(start);
         main.revalidate();
         main.add(setup);
+        main.repaint();
 
     }
 

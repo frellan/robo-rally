@@ -47,9 +47,8 @@ public class EventTram {
         if(trace){
             System.out.println(evt);
         }
-
-        for(IEventHandler evh : handlers){
-            evh.onEvent(evt, data);
+        for (int i = 0; i<handlers.size(); i++) {
+            handlers.get(i).onEvent(evt, data);
         }
     }
 
