@@ -3,8 +3,10 @@ package edu.chl.roborally.view.gui;
 import edu.chl.roborally.EventTram;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 /**
  * Created by axel on 2015-04-29.
@@ -15,9 +17,9 @@ public class StartPanel extends JPanel implements ActionListener{
 
     public StartPanel(){
 
+        URL url = this.getClass().getClassLoader().getResource("roborally_start.jpg");
 
-        JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon("C:\\Users\\Axel Aringskog\\Documents\\GitHub\\robo-rally\\src\\main\\resources\\roborally_start.jpg"));
+        JLabel imageLabel = new JLabel(new ImageIcon(url));
         newGameButton = new JButton("Start Game!");
 
         newGameButton.addActionListener(this);
