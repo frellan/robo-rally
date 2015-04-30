@@ -15,12 +15,14 @@ public class StartPanel extends JPanel implements ActionListener{
 
     public StartPanel(){
 
-        JLabel welcomeLabel = new JLabel("Welcome to Robo-Rally");
+
+        JLabel imageLabel = new JLabel();
+        imageLabel.setIcon(new ImageIcon("C:\\Users\\Axel Aringskog\\Documents\\GitHub\\robo-rally\\src\\main\\resources\\roborally_start.jpg"));
         newGameButton = new JButton("Start Game!");
 
         newGameButton.addActionListener(this);
 
-        add(welcomeLabel);
+        add(imageLabel);
         add(newGameButton);
     }
 
