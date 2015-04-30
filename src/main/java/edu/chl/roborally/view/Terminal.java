@@ -33,7 +33,7 @@ public class Terminal extends UI{
         switch (s.toLowerCase()) {
             case "new game":
                 super.appController.initGameController();
-                EventTram.getInstance().publish(EventTram.Event.START_SETUP, null);
+                EventTram.getInstance().publish(EventTram.Event.INIT_GAME, null);
                 break;
             case "end":
                 super.appController.endGame();

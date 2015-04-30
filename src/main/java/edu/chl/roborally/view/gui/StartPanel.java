@@ -29,7 +29,7 @@ public class StartPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(newGameButton)){
-            EventTram.getInstance().publish(EventTram.Event.INIT_SETUP, null);
+            EventTram.getInstance().publish(EventTram.Event.INIT_GAME, null);
         }
     }
 }

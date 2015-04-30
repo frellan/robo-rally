@@ -33,6 +33,8 @@ public class GameController implements IEventHandler {
      * dependencies for the game
      */
     private void initGame(){
+
+        System.out.println("New roborally");
         this.model = new RoboRally();
     }
 
@@ -62,7 +64,7 @@ public class GameController implements IEventHandler {
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(evt == EventTram.Event.START_SETUP) {
+        if(evt == EventTram.Event.INIT_GAME) {
             this.initGame();
         } else if (evt == EventTram.Event.SET_MAP) {
             this.model.setMap(mapFactory.createMap((Integer) o));

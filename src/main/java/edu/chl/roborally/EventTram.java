@@ -19,10 +19,9 @@ public class EventTram {
 
     public enum Event {
 
-        START_SETUP,
+        INIT_GAME,
         SET_NAMES,
-        SET_MAP,
-        INIT_SETUP
+        SET_MAP
     }
 
     //for debugging

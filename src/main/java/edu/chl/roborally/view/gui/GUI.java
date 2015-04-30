@@ -63,7 +63,7 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(EventTram.Event.INIT_SETUP == evt){
+        if(EventTram.Event.INIT_GAME == evt){
             menu();
         }
     }
