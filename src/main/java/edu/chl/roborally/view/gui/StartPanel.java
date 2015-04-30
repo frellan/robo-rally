@@ -51,9 +51,11 @@ public class StartPanel extends JPanel implements ActionListener{
         JPanel buttonPanel = new JPanel(new GridLayout(0,1,0,5));
         buttonPanel.setOpaque(false);
 
-        newGameButton = new JButton("Start Game!");
-
-        URL startBtnImgUrl = this.getClass().getClassLoader().getResource("start_btn.jpg");
+        newGameButton = new JButton("");
+        newGameButton.setBorderPainted(false);
+        newGameButton.setFocusPainted(false);
+        newGameButton.setContentAreaFilled(false);
+        URL startBtnImgUrl = this.getClass().getClassLoader().getResource("start_btn.png");
         try {
             startBtnImg = ImageIO.read(startBtnImgUrl);
             newGameButton.setIcon(new ImageIcon(startBtnImg));
