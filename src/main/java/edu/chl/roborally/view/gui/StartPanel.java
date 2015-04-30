@@ -1,5 +1,6 @@
 package edu.chl.roborally.view.gui;
 
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac;
 import edu.chl.roborally.EventTram;
 
 import javax.imageio.ImageIO;
@@ -18,12 +19,14 @@ import java.net.URL;
 public class StartPanel extends JPanel implements ActionListener{
 
     private JButton newGameButton;
+    private JButton optionsButton;
+    private JButton exitbutton;
     private BufferedImage bi;
 
     public StartPanel(){
 
         URL imageUrl = this.getClass().getClassLoader().getResource("roborally_start.jpg");
-
+        URL fontUrl = this.getClass().getClassLoader().getResource("ArcadeClassic.ttf");
 
         try {
             bi = ImageIO.read(imageUrl);
@@ -31,11 +34,40 @@ public class StartPanel extends JPanel implements ActionListener{
             System.out.println("Image could not be read");
         }
 
-        newGameButton = new JButton("Start Game!");
+        Font font = null;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream());
+        } catch (FontFormatException | IOException | NullPointerException e) {
+            e.printStackTrace();
+        }
 
+        if (font != null) {
+            font = font.deriveFont(Font.PLAIN,20);
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+        }
+
+        JPanel buttonPanel = new JPanel(new GridLayout(0,1,0,5));
+        buttonPanel.setOpaque(false);
+
+        newGameButton = new JButton("Start Game!");
+        newGameButton.setFont(font);
         newGameButton.addActionListener(this);
 
-        add(newGameButton);
+        optionsButton = new JButton("Options");
+        optionsButton.setFont(font);
+        optionsButton.addActionListener(this);
+
+        exitbutton = new JButton("Exit");
+        exitbutton.setFont(font);
+        exitbutton.addActionListener(this);
+
+        buttonPanel.add(newGameButton);
+        buttonPanel.add(optionsButton);
+        buttonPanel.add(exitbutton);
+
+        add(buttonPanel);
     }
 
     @Override
@@ -48,6 +80,9 @@ public class StartPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(newGameButton)){
             EventTram.getInstance().publish(EventTram.Event.INIT_GAME, null);
+        }
+        if(e.getSource().equals(exitbutton)){
+            System.exit(1);
         }
     }
 }
