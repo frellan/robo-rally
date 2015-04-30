@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -20,10 +22,11 @@ public class StartPanel extends JPanel implements ActionListener{
 
     public StartPanel(){
 
-        URL url = this.getClass().getClassLoader().getResource("roborally_start.jpg");
+        URL imageUrl = this.getClass().getClassLoader().getResource("roborally_start.jpg");
+
 
         try {
-            bi = ImageIO.read(url);
+            bi = ImageIO.read(imageUrl);
         }catch(java.io.IOException e){
             System.out.println("Image could not be read");
         }
@@ -31,7 +34,6 @@ public class StartPanel extends JPanel implements ActionListener{
         newGameButton = new JButton("Start Game!");
 
         newGameButton.addActionListener(this);
-
 
         add(newGameButton);
     }
