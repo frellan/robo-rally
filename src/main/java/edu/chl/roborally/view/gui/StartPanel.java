@@ -22,6 +22,7 @@ public class StartPanel extends JPanel implements ActionListener{
     private JButton optionsButton;
     private JButton exitbutton;
     private BufferedImage bi;
+    private BufferedImage startBtnImg;
 
     public StartPanel(){
 
@@ -43,8 +44,7 @@ public class StartPanel extends JPanel implements ActionListener{
 
         if (font != null) {
             font = font.deriveFont(Font.PLAIN,20);
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
         }
 
@@ -52,7 +52,16 @@ public class StartPanel extends JPanel implements ActionListener{
         buttonPanel.setOpaque(false);
 
         newGameButton = new JButton("Start Game!");
-        newGameButton.setFont(font);
+
+        URL startBtnImgUrl = this.getClass().getClassLoader().getResource("start_btn.jpg");
+        try {
+            startBtnImg = ImageIO.read(startBtnImgUrl);
+            newGameButton.setIcon(new ImageIcon(startBtnImg));
+        } catch(java.io.IOException e){
+            System.out.println("Image could not be read");
+        }
+
+
         newGameButton.addActionListener(this);
 
         optionsButton = new JButton("Options");
