@@ -31,18 +31,18 @@ public class GUI extends UI implements IEventHandler{
     public void startMsg() {
         start = new StartPanel();
         main.add(start);
+        main.revalidate();
     }
 
     @Override
     public void menu() {
-        System.out.println("i has entered menu");
         setup = new SetupPanel();
-
         appController.initGameController();
         main.remove(start);
         main.revalidate();
         main.add(setup);
         main.repaint();
+        main.revalidate();
 
     }
 
