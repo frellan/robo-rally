@@ -19,12 +19,18 @@ public class StartPanel extends JPanel implements ActionListener{
 
         URL url = this.getClass().getClassLoader().getResource("roborally_start.jpg");
 
-        JLabel imageLabel = new JLabel(new ImageIcon(url));
+        try {
+            JLabel imageLabel = new JLabel(new ImageIcon(url));
+            add(imageLabel);
+        }catch(NullPointerException e){
+            System.out.println("Image Not Found");
+        }
+
         newGameButton = new JButton("Start Game!");
 
         newGameButton.addActionListener(this);
 
-        add(imageLabel);
+
         add(newGameButton);
     }
 
