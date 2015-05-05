@@ -35,12 +35,10 @@ public class StartPanel extends JPanel implements ActionListener{
         buttonPanel.setOpaque(false);
 
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
-
         newGameButton.addActionListener(this);
-
-        optionsButton = new JButton("Options");
+        optionsButton = new Button("options_btn.png","options_btn_hover.png");
         optionsButton.addActionListener(this);
-        exitButton = new JButton("Exit");
+        exitButton = new Button("exit_btn.png", "exit_btn_hover.png");
         exitButton.addActionListener(this);
 
         buttonPanel.add(newGameButton);
