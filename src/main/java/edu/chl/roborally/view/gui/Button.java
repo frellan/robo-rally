@@ -19,9 +19,9 @@ public class Button extends JButton {
     }
 
 
-    public Button (String normal, String hoover){
+    public Button (String normal, String hover){
         this(normal);
-        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource(hoover)));
+        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource(hover)));
     }
 
     private ImageIcon createIcon(URL url){
