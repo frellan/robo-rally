@@ -4,6 +4,7 @@ package edu.chl.roborally.view.gui;
 import edu.chl.roborally.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,8 +25,6 @@ public class StartPanel extends JPanel implements ActionListener{
 
         this.setLayout(new GridBagLayout());
 
-        URL imageUrl = this.getClass().getClassLoader().getResource("roborally_start.jpg");
-
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         }catch(java.io.IOException e){
@@ -33,7 +32,10 @@ public class StartPanel extends JPanel implements ActionListener{
         }
 
         JPanel buttonPanel = new JPanel(new GridLayout(0,1,0,5));
-        buttonPanel.setOpaque(false);
+        buttonPanel.setOpaque(true);
+        buttonPanel.setBackground(new Color(0,0,0,130));
+        buttonPanel.setBorder(BorderFactory.createMatteBorder(
+                1, 1, 1, 1, Color.BLACK));
 
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
         newGameButton.addActionListener(this);
