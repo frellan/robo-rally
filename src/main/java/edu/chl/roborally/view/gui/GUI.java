@@ -30,7 +30,7 @@ public class GUI extends UI implements IEventHandler{
     @Override
     public void startMsg() {
         start = new StartPanel();
-        main.add(start);
+        main.setContentPane(start);
         main.revalidate();
     }
 

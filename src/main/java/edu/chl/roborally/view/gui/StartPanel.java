@@ -21,6 +21,11 @@ public class StartPanel extends JPanel implements ActionListener{
     private BufferedImage bi;
 
     public StartPanel(){
+
+        this.setLayout(new GridBagLayout());
+
+        URL imageUrl = this.getClass().getClassLoader().getResource("roborally_start.jpg");
+
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         }catch(java.io.IOException e){
