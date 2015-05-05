@@ -16,7 +16,7 @@ public class GameView extends JPanel {
 
     private RoboRally model;
     private GameBoard board;
-    private int tileSize = 80;
+    private int tileSize = 40;
     private int width = tileSize*Constants.NUM_COLS;
     private int height = tileSize*Constants.NUM_ROWS;
 
@@ -30,33 +30,6 @@ public class GameView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGrid(g);
-
-        /*
-
-        int cellWidth = width / Constants.NUM_COLS;
-        int cellHeight = height / Constants.NUM_ROWS;
-
-        int xOffset = (width - (Constants.NUM_COLS * cellWidth)) / 2;
-        int yOffset = (height - (Constants.NUM_ROWS * cellHeight)) / 2;
-
-        for (int x = 0; x < board.getHeight(); x++) {
-            for (int y = 0; y < board.getWidth(); y++) {
-                if (board.getTile(x,y) == null) {
-                    Rectangle cell = new Rectangle(
-                        xOffset + (Constants.NUM_COLS * cellWidth),
-                        yOffset + (Constants.NUM_ROWS * cellHeight),
-                        cellWidth,
-                        cellHeight);
-                    g2d.setColor(Color.BLUE);
-                    g2d.fill(cell);
-                    g2d.setColor(Color.GRAY);
-                    g2d.draw(cell);
-                    g2d.dispose();
-                }
-            }
-        }
-
-        */
     }
 
     private void drawGrid(Graphics g) {
