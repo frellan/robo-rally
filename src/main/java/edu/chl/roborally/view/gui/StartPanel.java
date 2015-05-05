@@ -44,7 +44,7 @@ public class StartPanel extends JPanel implements ActionListener{
         add(buttonPanel);
     }
 
-    // Draw back ground
+    // Draw background
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
