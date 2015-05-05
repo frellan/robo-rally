@@ -19,7 +19,6 @@ public class StartPanel extends JPanel implements ActionListener{
     private JButton optionsButton;
     private JButton exitButton;
     private BufferedImage bi;
-    private BufferedImage startBtnImg;
 
     public StartPanel(){
 
