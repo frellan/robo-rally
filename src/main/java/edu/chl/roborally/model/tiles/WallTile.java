@@ -6,7 +6,7 @@ import edu.chl.roborally.model.Player;
 /**
  * Created by axel on 2015-03-31.
  */
-public class WallTile implements GameTile{
+public class WallTile extends GameTile{
 
     private Constants.Directions d1;
     private Constants.Directions d2;
@@ -32,9 +32,8 @@ public class WallTile implements GameTile{
     }
 
     @Override
-    public void draw() {
+    public void special() {
 
     }
-
 
 }

@@ -5,7 +5,7 @@ import edu.chl.roborally.model.Player;
 /**
  * Created by axel on 2015-03-26.
  */
-public class BlankTile implements GameTile {
+public class BlankTile extends GameTile {
 
     private String name = "B";
 
@@ -17,7 +17,7 @@ public class BlankTile implements GameTile {
     }
 
     @Override
-    public void draw() {
+    public void special() {
 
     }
 

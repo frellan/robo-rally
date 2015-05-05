@@ -7,7 +7,7 @@ import edu.chl.roborally.model.gameactions.RotatePlayer;
 /**
  * Created by axel on 2015-03-30.
  */
-public class RotationTile implements GameTile {
+public class RotationTile extends GameTile {
 
     private Constants.Directions d;
     private String name = "R";
@@ -25,7 +25,8 @@ public class RotationTile implements GameTile {
     }
 
     @Override
-    public void draw() {
+    public void special() {
 
     }
+
 }

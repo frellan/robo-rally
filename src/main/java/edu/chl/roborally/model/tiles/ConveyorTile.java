@@ -8,7 +8,7 @@ import edu.chl.roborally.model.gameactions.MovePlayer;
 /**
  * Created by axel on 2015-03-30.
  */
-public class ConveyorTile implements GameTile {
+public class ConveyorTile extends GameTile {
 
     private Constants.Directions d;
     private String name = "C";
@@ -27,7 +27,8 @@ public class ConveyorTile implements GameTile {
     }
 
     @Override
-    public void draw() {
+    public void special() {
 
     }
+
 }
