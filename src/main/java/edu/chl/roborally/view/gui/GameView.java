@@ -22,7 +22,6 @@ public class GameView extends JComponent {
         this.model = model;
         board = model.getGameBoard();
         setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
-        add(new JLabel("TJENARE MANNEN!"), BorderLayout.CENTER);
     }
 
     @Override
@@ -32,14 +31,9 @@ public class GameView extends JComponent {
         g.setColor(this.getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        //Check if a game is running
-        if(this.model != null){
-
-            for (int i = 0; i < board.getWidth(); i++) {
-                for (int j = 0; j < board.getHeight(); j++) {
-                    GameTile tile = board.getTile(i, j);
-                    tile.draw();
-                }
+        for (int i = 0; i < board.getHeight(); i++) {
+            for (int j = 0; j < board.getWidth(); j++) {
+                board.getTile(i, j).draw();
             }
         }
     }
