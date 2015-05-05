@@ -12,25 +12,26 @@ import java.awt.*;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class GameView extends JComponent {
+public class GameView extends JPanel {
 
-    private final RoboRally model;
-
+    private RoboRally model;
     private GameBoard board;
+    private int tileSize = 80;
+    private int width = tileSize*Constants.NUM_COLS;
+    private int height = tileSize*Constants.NUM_ROWS;
 
     public GameView(RoboRally model) {
         this.model = model;
         board = model.getGameBoard();
-        setBackground(Color.BLACK);
+        setSize(width,height);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
+        drawGrid(g);
 
-        int width = getWidth();
-        int height = getHeight();
+        /*
 
         int cellWidth = width / Constants.NUM_COLS;
         int cellHeight = height / Constants.NUM_ROWS;
@@ -53,6 +54,27 @@ public class GameView extends JComponent {
                     g2d.dispose();
                 }
             }
+        }
+
+        */
+    }
+
+    private void drawGrid(Graphics g) {
+        // Vertical Lines
+        g.drawLine(0,0,0,height);
+        g.drawLine(width,0,width,height);
+        int x = tileSize;
+        for (int i = 1; i <= Constants.NUM_COLS; i++) {
+            g.drawLine(x,0,x,height);
+            x = x + tileSize;
+        }
+        // Horizontal Lines
+        g.drawLine(0,0,width,0);
+        g.drawLine(0,height,width,height);
+        int y = tileSize;
+        for (int i = 1; i <= Constants.NUM_ROWS; i++) {
+            g.drawLine(0,y,width,y);
+            y = y + tileSize;
         }
     }
 }
