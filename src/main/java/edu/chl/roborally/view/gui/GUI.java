@@ -38,9 +38,7 @@ public class GUI extends UI implements IEventHandler{
     public void menu() {
         setup = new SetupPanel();
         appController.initGameController();
-        main.remove(start);
-        main.revalidate();
-        main.add(setup);
+        main.setContentPane(setup);
         main.repaint();
         main.revalidate();
 
