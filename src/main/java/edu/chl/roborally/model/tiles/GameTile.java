@@ -25,6 +25,7 @@ public abstract class GameTile {
 
     public void draw() {
         Graphics2D g = (Graphics2D)icon.getGraphics();
+        appearance();
         color = Color.ORANGE;
         g.setColor(color);
         g.fillRect(0,0,WITDH,HEIGHT);

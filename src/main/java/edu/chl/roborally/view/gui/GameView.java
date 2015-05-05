@@ -21,19 +21,37 @@ public class GameView extends JComponent {
     public GameView(RoboRally model) {
         this.model = model;
         board = model.getGameBoard();
-        setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
+        setBackground(Color.BLACK);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-
         super.paintComponent(g);
-        g.setColor(this.getBackground());
-        g.fillRect(0, 0, getWidth(), getHeight());
+        Graphics2D g2d = (Graphics2D) g.create();
 
-        for (int i = 0; i < board.getHeight(); i++) {
-            for (int j = 0; j < board.getWidth(); j++) {
-                board.getTile(i, j).draw();
+        int width = getWidth();
+        int height = getHeight();
+
+        int cellWidth = width / Constants.NUM_COLS;
+        int cellHeight = height / Constants.NUM_ROWS;
+
+        int xOffset = (width - (Constants.NUM_COLS * cellWidth)) / 2;
+        int yOffset = (height - (Constants.NUM_ROWS * cellHeight)) / 2;
+
+        for (int x = 0; x < board.getHeight(); x++) {
+            for (int y = 0; y < board.getWidth(); y++) {
+                if (board.getTile(x,y) == null) {
+                    Rectangle cell = new Rectangle(
+                        xOffset + (Constants.NUM_COLS * cellWidth),
+                        yOffset + (Constants.NUM_ROWS * cellHeight),
+                        cellWidth,
+                        cellHeight);
+                    g2d.setColor(Color.BLUE);
+                    g2d.fill(cell);
+                    g2d.setColor(Color.GRAY);
+                    g2d.draw(cell);
+                    g2d.dispose();
+                }
             }
         }
     }
