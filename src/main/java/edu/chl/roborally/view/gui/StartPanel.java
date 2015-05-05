@@ -34,7 +34,7 @@ public class StartPanel extends JPanel implements ActionListener{
         JPanel buttonPanel = new JPanel(new GridLayout(0,1,0,5));
         buttonPanel.setOpaque(false);
 
-        newGameButton = new Button("start_btn.png");
+        newGameButton = new Button("start_btn.png", "start_btn_hover.png");
 
         newGameButton.addActionListener(this);
 
