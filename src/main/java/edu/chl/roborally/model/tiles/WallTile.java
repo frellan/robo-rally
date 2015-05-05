@@ -32,7 +32,7 @@ public class WallTile extends GameTile{
     }
 
     @Override
-    public void apperance() {
+    public void appearance() {
 
     }
 

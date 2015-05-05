@@ -25,7 +25,7 @@ public class RotationTile extends GameTile {
     }
 
     @Override
-    public void apperance() {
+    public void appearance() {
 
     }
 
