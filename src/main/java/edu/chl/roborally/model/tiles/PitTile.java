@@ -19,7 +19,7 @@ public class PitTile extends GameTile{
     }
 
     @Override
-    public void special() {
+    public void apperance() {
 
     }
 

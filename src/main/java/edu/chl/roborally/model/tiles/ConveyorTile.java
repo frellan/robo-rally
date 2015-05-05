@@ -27,7 +27,7 @@ public class ConveyorTile extends GameTile {
     }
 
     @Override
-    public void special() {
+    public void apperance() {
 
     }
 

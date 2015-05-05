@@ -17,7 +17,7 @@ public class BlankTile extends GameTile {
     }
 
     @Override
-    public void special() {
+    public void apperance() {
 
     }
 

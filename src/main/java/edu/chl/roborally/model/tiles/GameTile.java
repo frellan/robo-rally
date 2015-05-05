@@ -20,7 +20,7 @@ public abstract class GameTile {
 
     public abstract void doAction(Player p);
     public abstract String toString();
-    public abstract void special();
+    public abstract void apperance();
 
     public void draw() {
         Graphics2D g = (Graphics2D)icon.getGraphics();
