@@ -21,11 +21,8 @@ public class StartPanel extends JPanel implements ActionListener{
     private BufferedImage bi;
 
     public StartPanel(){
-
-        URL imageUrl = this.getClass().getClassLoader().getResource("roborally_start.jpg");
-
         try {
-            bi = ImageIO.read(imageUrl);
+            bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         }catch(java.io.IOException e){
             System.out.println("Image could not be read");
         }
@@ -47,6 +44,7 @@ public class StartPanel extends JPanel implements ActionListener{
         add(buttonPanel);
     }
 
+    // Draw back ground
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
