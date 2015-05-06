@@ -12,35 +12,54 @@ import java.awt.*;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class GameView extends JComponent {
+public class GameView extends JPanel {
 
-    private final RoboRally model;
-
+    private RoboRally model;
     private GameBoard board;
+    private int width = Constants.TILE_SIZE*Constants.NUM_COLS;
+    private int height = Constants.TILE_SIZE*Constants.NUM_ROWS;
 
     public GameView(RoboRally model) {
         this.model = model;
         board = model.getGameBoard();
-        setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
-        add(new JLabel("TJENARE MANNEN!"), BorderLayout.CENTER);
+        setSize(width,height);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-
         super.paintComponent(g);
-        g.setColor(this.getBackground());
-        g.fillRect(0, 0, getWidth(), getHeight());
+        drawGrid(g);
+        drawTiles(g);
+    }
 
-        //Check if a game is running
-        if(this.model != null){
+    private void drawGrid(Graphics g) {
+        // Vertical Lines
+        g.drawLine(0,0,0,height);
+        g.drawLine(width,0,width,height);
+        int x = Constants.TILE_SIZE;
+        for (int i = 1; i <= Constants.NUM_COLS; i++) {
+            g.drawLine(x,0,x,height);
+            x += Constants.TILE_SIZE;
+        }
+        // Horizontal Lines
+        g.drawLine(0,0,width,0);
+        g.drawLine(0, height, width, height);
+        int y = Constants.TILE_SIZE;
+        for (int i = 1; i <= Constants.NUM_ROWS; i++) {
+            g.drawLine(0,y,width,y);
+            y += Constants.TILE_SIZE;
+        }
+    }
 
-            for (int i = 0; i < board.getWidth(); i++) {
-                for (int j = 0; j < board.getHeight(); j++) {
-                    GameTile tile = board.getTile(i, j);
-                    tile.draw();
-                }
+    private void drawTiles(Graphics g) {
+        int x = 0;
+        for (int i = 0; i < Constants.NUM_COLS; i++) {
+            int y = 0;
+            for(int j = 0; j < Constants.NUM_ROWS; j++) {
+                board.getTile(i,j).paintComponent(g);
+                y += Constants.TILE_SIZE;
             }
+            x += Constants.TILE_SIZE;
         }
     }
 }

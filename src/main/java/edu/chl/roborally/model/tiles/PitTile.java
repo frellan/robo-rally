@@ -6,7 +6,7 @@ import edu.chl.roborally.model.gameactions.KillPlayer;
 /**
  * Created by axel on 2015-03-31.
  */
-public class PitTile implements GameTile{
+public class PitTile extends GameTile{
 
     private String name = "P";
 
@@ -19,7 +19,8 @@ public class PitTile implements GameTile{
     }
 
     @Override
-    public void draw() {
+    public void appearance() {
 
     }
+
 }
