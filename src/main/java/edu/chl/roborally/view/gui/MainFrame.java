@@ -19,6 +19,5 @@ public class MainFrame extends JFrame{
         setLayout(new BorderLayout());
         setResizable(false);
         setVisible(true);
-
     }
 }

@@ -41,7 +41,7 @@ public class GameView extends JPanel {
             x += tileSize;
         }
         // Horizontal Lines
-        g.drawLine(0,0,width,0);
+        g.drawLine(0, 0, width, 0);
         g.drawLine(0, height, width, height);
         int y = tileSize;
         for (int i = 1; i <= rows; i++) {
@@ -56,5 +56,9 @@ public class GameView extends JPanel {
                 board.getTile(i,j).draw(g, (i * tileSize) + i + 1, (j * tileSize) + j + 1);
             }
         }
+    }
+
+    private void placePlayers(Graphics g) {
+
     }
 }
