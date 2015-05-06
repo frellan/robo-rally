@@ -1,6 +1,6 @@
 package edu.chl.roborally.model.gameactions;
 
-import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 
 /**

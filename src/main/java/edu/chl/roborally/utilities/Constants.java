@@ -1,4 +1,4 @@
-package edu.chl.roborally.model;
+package edu.chl.roborally.utilities;
 
 /**
  * Created by fredrikkindstrom on 27/03/15.

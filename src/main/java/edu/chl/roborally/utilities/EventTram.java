@@ -1,7 +1,6 @@
-package edu.chl.roborally;
+package edu.chl.roborally.utilities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by axel on 2015-04-28.

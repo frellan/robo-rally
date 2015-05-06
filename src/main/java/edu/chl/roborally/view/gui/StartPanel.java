@@ -1,7 +1,7 @@
 package edu.chl.roborally.view.gui;
 
 
-import edu.chl.roborally.EventTram;
+import edu.chl.roborally.utilities.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

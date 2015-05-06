@@ -1,11 +1,9 @@
 package edu.chl.roborally.model.tiles;
 
-import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-26.

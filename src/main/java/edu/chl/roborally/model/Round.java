@@ -1,5 +1,6 @@
 package edu.chl.roborally.model;
 
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.view.UI;
 
 import java.util.ArrayList;

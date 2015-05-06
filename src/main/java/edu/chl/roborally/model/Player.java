@@ -2,6 +2,8 @@ package edu.chl.roborally.model;
 
 
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.Position;
 
 import java.awt.*;
 import java.util.ArrayList;

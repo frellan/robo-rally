@@ -1,8 +1,7 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
 
 /**

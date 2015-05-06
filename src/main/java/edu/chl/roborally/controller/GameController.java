@@ -1,9 +1,10 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.EventTram;
-import edu.chl.roborally.IEventHandler;
+import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.view.UI;
 import java.util.ArrayList;
 

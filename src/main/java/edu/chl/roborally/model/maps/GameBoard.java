@@ -1,7 +1,7 @@
 package edu.chl.roborally.model.maps;
 
-import edu.chl.roborally.model.Constants;
-import edu.chl.roborally.model.Position;
+import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.Position;
 import edu.chl.roborally.model.tiles.*;
 import java.util.ArrayList;
 import java.util.List;
