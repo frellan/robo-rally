@@ -117,10 +117,10 @@ public class VaultMap extends GameBoard {
         board[2][3] = new WallTile(Constants.Directions.EAST);
 
         //Two Directions Wall
-        board[4][4] = new WallTile(Constants.Directions.WEST, Constants.Directions.NORTH);
-        board[7][4] = new WallTile(Constants.Directions.WEST, Constants.Directions.SOUTH);
-        board[4][7] = new WallTile(Constants.Directions.EAST, Constants.Directions.NORTH);
-        board[7][7] = new WallTile(Constants.Directions.EAST, Constants.Directions.SOUTH);
+        board[4][4] = new WallTile(Constants.Directions.NORTH_WEST);
+        board[7][4] = new WallTile(Constants.Directions.SOUTH_WEST);
+        board[4][7] = new WallTile(Constants.Directions.NORTH_EAST);
+        board[7][7] = new WallTile(Constants.Directions.SOUTH_EAST);
 
     }
 }

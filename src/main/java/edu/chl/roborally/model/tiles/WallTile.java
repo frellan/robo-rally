@@ -10,17 +10,11 @@ import java.awt.*;
  */
 public class WallTile extends GameTile{
 
-    private Constants.Directions d1;
-    private Constants.Directions d2;
+    private Constants.Directions d;
     private String name = "W";
 
-    public WallTile(Constants.Directions d1){
-        this.d1=d1;
-    }
-
-    public WallTile(Constants.Directions d1, Constants.Directions d2){
-        this.d1 = d1;
-        this.d2 = d2;
+    public WallTile(Constants.Directions d){
+        this.d = d;
     }
 
     public void doAction(Player p){
@@ -35,54 +29,41 @@ public class WallTile extends GameTile{
     public void draw(Graphics g, int x, int y) {
 
         char[] message;
-        switch (d1) {
+        g.setColor(new Color(204,204,204));
+        g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(Color.RED);
+        switch (d) {
             case EAST:
-                g.setColor(new Color(204,204,204));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
-                if (d1 == Constants.Directions.EAST && d2 == Constants.Directions.NORTH) {
-                    message = "WEN".toCharArray();
-                } else if (d1 == Constants.Directions.EAST && d2 == Constants.Directions.SOUTH) {
-                    message = "WES".toCharArray();
-                } else {
-                    message = "WE".toCharArray();
-                }
+                message = "WE".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case WEST:
-                g.setColor(new Color(204,204,204));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
-                if (d1 == Constants.Directions.WEST && d2 == Constants.Directions.NORTH) {
-                    message = "WWN".toCharArray();
-                } else if (d1 == Constants.Directions.WEST && d2 == Constants.Directions.SOUTH) {
-                    message = "WWS".toCharArray();
-                } else {
-                    message = "WW".toCharArray();
-                }
+                message = "WW".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case NORTH:
-                g.setColor(new Color(204,204,204));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
                 message = "WN".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH:
-                g.setColor(new Color(204,204,204));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
                 message = "WS".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case NORTH_WEST:
+                message = "WNW".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case NORTH_EAST:
+                message = "WNE".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH_WEST:
+                message = "WSW".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH_EAST:
+                message = "WSE".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
                 break;
         }
 
