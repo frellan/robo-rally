@@ -15,7 +15,6 @@ public class ConveyorTile extends GameTile {
     private Constants.Directions d;
     private String name = "C";
 
-
     public ConveyorTile(Constants.Directions d){
         this.d = d;
     }
@@ -30,6 +29,7 @@ public class ConveyorTile extends GameTile {
 
     @Override
     public void draw(Graphics g, int x, int y) {
+
         char[] message;
         if(d == Constants.Directions.EAST){
             g.setColor(Color.YELLOW);

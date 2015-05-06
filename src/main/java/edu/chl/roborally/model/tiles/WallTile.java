@@ -35,11 +35,45 @@ public class WallTile extends GameTile{
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        g.setColor(Color.BLUE);
-        g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
-        g.setColor(Color.RED);
-        char[] message = "W".toCharArray();
-        g.drawChars(message, 0, message.length, x, y+10);
-    }
 
+        char[] message;
+        if(d1 == Constants.Directions.EAST){
+            g.setColor(Color.BLUE);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+            g.setColor(Color.RED);
+            if(d1 == Constants.Directions.EAST && d2 == Constants.Directions.NORTH) {
+                message = "WEN".toCharArray();
+            }else if(d1 == Constants.Directions.EAST && d2 == Constants.Directions.SOUTH) {
+                message = "WES".toCharArray();
+            }else{
+                message = "WE".toCharArray();
+            }
+            g.drawChars(message, 0, message.length, x, y+10);
+        }else if(d1 == Constants.Directions.WEST){
+            g.setColor(Color.BLUE);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+            g.setColor(Color.RED);
+            if(d1 == Constants.Directions.WEST && d2 == Constants.Directions.NORTH) {
+                message = "WWN".toCharArray();
+            }else if(d1 == Constants.Directions.WEST && d2 == Constants.Directions.SOUTH){
+                message = "WWS".toCharArray();
+            }else{
+                message = "WW".toCharArray();
+            }
+            g.drawChars(message, 0, message.length, x, y+10);
+        }else if(d1 == Constants.Directions.NORTH){
+            g.setColor(Color.BLUE);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+            g.setColor(Color.RED);
+            message = "WN".toCharArray();
+            g.drawChars(message, 0, message.length, x, y+10);
+        }else if(d1 == Constants.Directions.SOUTH){
+            g.setColor(Color.BLUE);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+            g.setColor(Color.RED);
+            message = "WS".toCharArray();
+            g.drawChars(message, 0, message.length, x, y+10);
+        }
+
+    }
 }
