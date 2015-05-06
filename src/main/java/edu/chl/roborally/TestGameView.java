@@ -26,7 +26,7 @@ public class TestGameView {
         GameView test = new GameView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(1000, 600);
+        frame.setSize(640, 500);
         frame.setLayout(new BorderLayout());
         frame.add(test);
         frame.setVisible(true);

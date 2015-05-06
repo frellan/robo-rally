@@ -16,9 +16,8 @@ public class GameView extends JPanel {
 
     private RoboRally model;
     private GameBoard board;
-    private int tileSize = 40;
-    private int width = tileSize*Constants.NUM_COLS;
-    private int height = tileSize*Constants.NUM_ROWS;
+    private int width = Constants.TILE_SIZE*Constants.NUM_COLS;
+    private int height = Constants.TILE_SIZE*Constants.NUM_ROWS;
 
     public GameView(RoboRally model) {
         this.model = model;
@@ -30,24 +29,37 @@ public class GameView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGrid(g);
+        drawTiles(g);
     }
 
     private void drawGrid(Graphics g) {
         // Vertical Lines
         g.drawLine(0,0,0,height);
         g.drawLine(width,0,width,height);
-        int x = tileSize;
+        int x = Constants.TILE_SIZE;
         for (int i = 1; i <= Constants.NUM_COLS; i++) {
             g.drawLine(x,0,x,height);
-            x = x + tileSize;
+            x += Constants.TILE_SIZE;
         }
         // Horizontal Lines
         g.drawLine(0,0,width,0);
-        g.drawLine(0,height,width,height);
-        int y = tileSize;
+        g.drawLine(0, height, width, height);
+        int y = Constants.TILE_SIZE;
         for (int i = 1; i <= Constants.NUM_ROWS; i++) {
             g.drawLine(0,y,width,y);
-            y = y + tileSize;
+            y += Constants.TILE_SIZE;
+        }
+    }
+
+    private void drawTiles(Graphics g) {
+        int x = 0;
+        for (int i = 0; i < Constants.NUM_COLS; i++) {
+            int y = 0;
+            for(int j = 0; j < Constants.NUM_ROWS; j++) {
+                board.getTile(i,j).paintComponent(g);
+                y += Constants.TILE_SIZE;
+            }
+            x += Constants.TILE_SIZE;
         }
     }
 }
