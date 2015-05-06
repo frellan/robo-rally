@@ -29,18 +29,15 @@ public class RotationTile extends GameTile {
     @Override
     public void draw(Graphics g, int x, int y) {
         char[] message;
+        g.setColor(new Color(156,207,49));
+        g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(Color.BLACK);
         switch (d) {
             case LEFT:
-                g.setColor(new Color(156,207,49));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.BLACK);
                 message = "RL".toCharArray();
                 g.drawChars(message, 0, message.length, x, y+10);
                 break;
             case RIGHT:
-                g.setColor(new Color(156,207,49));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.BLACK);
                 message = "RR".toCharArray();
                 g.drawChars(message, 0, message.length, x, y+10);
                 break;

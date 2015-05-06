@@ -25,11 +25,5 @@ public class BlankTile extends GameTile {
     public void draw(Graphics g, int x, int y) {
         g.setColor(new Color(204,204,204));
         g.fillRect(x,y,size.width,size.height);
-        /*
-        g.setColor(Color.RED);
-        char[] message = "B".toCharArray();
-        g.drawChars(message, 0,message.length, x, y+10);
-        */
     }
-
 }

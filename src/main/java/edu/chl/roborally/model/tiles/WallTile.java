@@ -27,7 +27,6 @@ public class WallTile extends GameTile{
 
     @Override
     public void draw(Graphics g, int x, int y) {
-
         char[] message;
         g.setColor(new Color(204,204,204));
         g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
@@ -66,6 +65,5 @@ public class WallTile extends GameTile{
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
         }
-
     }
 }
