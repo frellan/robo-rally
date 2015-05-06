@@ -60,6 +60,7 @@ public class GameController implements IEventHandler {
         for (int i = 0; i<names.size(); i++) {
             model.setPlayer(new Player(i,names.get(i)));
         }
+        System.out.println("Players created");
     }
 
     @Override
@@ -70,6 +71,7 @@ public class GameController implements IEventHandler {
             this.model.setMap(mapFactory.createMap((Integer) o));
         } else if (evt == EventTram.Event.SET_NAMES) {
             createPlayers((ArrayList<String>) o);
+
         }
     }
 }

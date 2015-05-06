@@ -61,7 +61,6 @@ public class SetupPanel extends JPanel implements ActionListener {
 
     private void chooseMap() {
         this.removeAll();
-
         this.add(new JLabel("Choose Map"));
         this.add(new JLabel("Type 0 Blank"));
         this.add(new JLabel("Type 1 for valut"));
@@ -70,6 +69,8 @@ public class SetupPanel extends JPanel implements ActionListener {
         chooseMapButton = new JButton("Set Map");
         chooseMapButton.addActionListener(this);
         this.add(chooseMapButton);
+        this.repaint();
+        this.revalidate();
     }
 
     private void sendNamesToController() {
