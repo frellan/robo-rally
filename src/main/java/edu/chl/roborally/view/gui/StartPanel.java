@@ -136,7 +136,7 @@ public class StartPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(newGameButton)){
-            EventTram.getInstance().publish(EventTram.Event.INIT_GAME, null);
+            EventTram.getInstance().publish(EventTram.Event.INIT_SETUP, null);
         } else if(e.getSource().equals(optionsButton)){
 
         } else if(e.getSource().equals(exitButton)){

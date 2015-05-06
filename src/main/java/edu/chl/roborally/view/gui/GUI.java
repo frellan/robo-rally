@@ -54,7 +54,7 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(EventTram.Event.INIT_GAME == evt){
+        if(EventTram.Event.INIT_SETUP == evt){
             menu();
         } else if (EventTram.Event.SET_NAMES == evt) {
             chooseMap(new MapFactory().getMaps());
