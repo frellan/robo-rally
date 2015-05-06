@@ -25,6 +25,7 @@ public class StartPanel extends JPanel implements ActionListener{
     private JButton saveNames;
     private ArrayList<JTextField> tempNames;
     private JButton chooseMapButton;
+    private ArrayList<JRadioButton> radioBtnList;
 
     public StartPanel(){
 
@@ -91,7 +92,7 @@ public class StartPanel extends JPanel implements ActionListener{
         this.removeAll();
         JPanel mapChooser = new StyledJPanel(new GridLayout(4,0));
         mapChooser.add(new JLabel("Choose Map"));
-        ArrayList<JRadioButton> radioBtnList= new ArrayList<>();
+       radioBtnList = new ArrayList<>();
         ButtonGroup btnGroup = new ButtonGroup();
         for (String s : maps) {
             JRadioButton btn = new JRadioButton(s);
@@ -115,6 +116,19 @@ public class StartPanel extends JPanel implements ActionListener{
         EventTram.getInstance().publish(EventTram.Event.SET_NAMES, names);
     }
 
+    private void sendMapChocieToController() {
+        String mapName = null;
+        for (JRadioButton btn : radioBtnList) {
+            if (btn.isSelected()) {
+                mapName = btn.getText();
+            }
+        }
+        if (mapName != null) {
+            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName);
+        }
+
+    }
+
     // Draw background
     @Override
     public void paintComponent(Graphics g) {
@@ -135,7 +149,7 @@ public class StartPanel extends JPanel implements ActionListener{
         } else if (e.getSource() == saveNames) {
             sendNamesToController();
         } else if (e.getSource() == chooseMapButton) {
-            EventTram.getInstance().publish(EventTram.Event.SET_MAP, null);
+            sendMapChocieToController();
         }
     }
 
