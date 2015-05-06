@@ -17,8 +17,12 @@ import java.util.ArrayList;
 public class GameController implements IEventHandler {
 
     private UI ui;
-    private RoboRally model;
+    private RoboRally model = null;
     private MapFactory mapFactory;
+
+    // Collect information to init model
+    private ArrayList<String> tempNames = null;
+    private String tempMap = null;
 
     public GameController(UI ui) {
         this.mapFactory = new MapFactory();
@@ -32,10 +36,14 @@ public class GameController implements IEventHandler {
      * The initGame method setups up all the
      * dependencies for the game
      */
-    private void initGame(){
+    private void initGame() {
+        if (tempNames != null && tempMap != null && model == null) {
+            this.model = new RoboRally(createPlayers(tempNames), mapFactory.createMap(tempMap));
+            System.out.println("New roborally created");
+            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model);
+        }
 
-        System.out.println("New roborally");
-        this.model = new RoboRally();
+        System.out.println("Could not start a new model");
     }
 
     /**
@@ -56,11 +64,13 @@ public class GameController implements IEventHandler {
         }
     }
 
-    private void createPlayers(ArrayList<String> names) {
+    private ArrayList<Player> createPlayers(ArrayList<String> names) {
+        ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i<names.size(); i++) {
-            model.setPlayer(new Player(i,names.get(i)));
+            players.add(new Player(i, names.get(i)));
+            System.out.println("Created new Player named: " + names.get(i));
         }
-        System.out.println("Players created");
+        return players;
     }
 
     @Override
@@ -68,10 +78,9 @@ public class GameController implements IEventHandler {
         if(evt == EventTram.Event.INIT_GAME) {
             this.initGame();
         } else if (evt == EventTram.Event.SET_MAP) {
-            this.model.setMap(mapFactory.createMap((Integer) o));
+            this.tempMap = (String) o;
         } else if (evt == EventTram.Event.SET_NAMES) {
-            createPlayers((ArrayList<String>) o);
-
+            this.tempNames = (ArrayList<String>) o;
         }
     }
 }

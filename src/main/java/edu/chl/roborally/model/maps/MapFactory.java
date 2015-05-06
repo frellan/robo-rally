@@ -19,14 +19,16 @@ public class MapFactory {
         maps.add(map);
     }
 
-    public GameBoard createMap(int i){
-        switch(i){
-            case 1:
-                return new BlankMap();
-            case 2:
-                return new VaultMap();
-            default:
-                return new BlankMap();
+    public GameBoard createMap(String name){
+        if (name.equals(maps.get(0))) {
+            System.out.print("New map created: " + maps.get(0));
+            return new BlankMap();
+        } else if (name.equals(maps.get(1))) {
+            System.out.print("New map created: " + maps.get(1));
+            return new VaultMap();
+        } else {
+            System.out.print("Created default: " + maps.get(0));
+            return new BlankMap();
         }
     }
 

@@ -17,16 +17,14 @@ public class RoboRally {
     private GameBoard gameBoard;
     public ArrayList<Player> players;
     private CardDeck deck;
-    private UI ui;
     private boolean isGameRunning;
 
     // Constructor
 
-    public RoboRally() {
-        players = new ArrayList<>();
-    }
-    // Setup game
-    private void setupGame() {
+    public RoboRally(ArrayList<Player> players, GameBoard map) {
+        this.players = players;
+        this.gameBoard = map;
+
         // Init all dependencies
         resetDeck();
         //set start positions
@@ -74,15 +72,5 @@ public class RoboRally {
 
     public GameBoard getGameBoard() {
         return gameBoard;
-    }
-
-    // Setters
-
-    public void setMap(GameBoard gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
-    public void setPlayer(Player player) {
-        this.players.add(player);
     }
 }

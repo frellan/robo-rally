@@ -20,9 +20,7 @@ public class GUI extends UI implements IEventHandler{
     public GUI(AppController appController){
         super(appController);
         main = new MainFrame();
-
         startMsg();
-
         EventTram.getInstance().register(this);
     }
 

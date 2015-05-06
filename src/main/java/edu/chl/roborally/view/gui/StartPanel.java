@@ -117,16 +117,13 @@ public class StartPanel extends JPanel implements ActionListener{
     }
 
     private void sendMapChocieToController() {
-        String mapName = null;
+        String mapName = "Default";
         for (JRadioButton btn : radioBtnList) {
             if (btn.isSelected()) {
                 mapName = btn.getText();
             }
         }
-        if (mapName != null) {
-            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName);
-        }
-
+        EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName);
     }
 
     // Draw background
