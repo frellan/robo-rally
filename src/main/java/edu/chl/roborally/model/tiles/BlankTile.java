@@ -23,8 +23,11 @@ public class BlankTile extends GameTile {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        g.fillRect(x,y,size.width,size.height);
         g.setColor(Color.GRAY);
+        g.fillRect(x,y,size.width,size.height);
+        g.setColor(Color.RED);
+        char[] message = "B".toCharArray();
+        g.drawChars(message, 0,message.length, x, y+10);
     }
 
 }
