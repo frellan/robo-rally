@@ -72,4 +72,12 @@ public class RoboRally {
     public GameBoard getGameBoard() {
         return gameBoard;
     }
+
+    public ArrayList<String> getPlayerNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Player p : players) {
+            names.add(p.getName());
+        }
+        return names;
+    }
 }

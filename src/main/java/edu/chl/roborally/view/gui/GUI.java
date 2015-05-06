@@ -4,6 +4,7 @@ import edu.chl.roborally.EventTram;
 import edu.chl.roborally.IEventHandler;
 import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class GUI extends UI implements IEventHandler{
 
     private JFrame main;
     private StartPanel start;
+    private RoboRally model;
 
     public GUI(AppController appController){
         super(appController);
@@ -52,6 +54,10 @@ public class GUI extends UI implements IEventHandler{
 
     }
 
+    private void showSummary() {
+        start.summary(model.getPlayerNames(), model.getGameBoard().getName());
+    }
+
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         if(EventTram.Event.INIT_SETUP == evt){
@@ -60,6 +66,9 @@ public class GUI extends UI implements IEventHandler{
             chooseMap(new MapFactory().getMaps());
         } else if (EventTram.Event.SET_MAP == evt) {
 
+        } else if (EventTram.Event.NEW_MODEL == evt) {
+            this.model = (RoboRally) o;
+            showSummary();
         }
     }
 }

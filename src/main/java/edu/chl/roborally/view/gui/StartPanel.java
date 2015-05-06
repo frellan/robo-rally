@@ -126,6 +126,21 @@ public class StartPanel extends JPanel implements ActionListener{
         EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName);
     }
 
+    public void summary(ArrayList<String> names, String mapName) {
+        this.removeAll();
+        JPanel sumPanel = new StyledJPanel(new GridLayout(5,0));
+        sumPanel.add(new JLabel("We are now ready for this game!!!"));
+        for (String s : names) {
+            sumPanel.add(new JLabel(s));
+        }
+        sumPanel.add(new JLabel(mapName));
+        Button startGameBtn = new Button("start_btn.png", "start_btn_hover.png");
+        sumPanel.add(startGameBtn);
+        this.add(sumPanel);
+        this.repaint();
+        this.revalidate();
+    }
+
     // Draw background
     @Override
     public void paintComponent(Graphics g) {

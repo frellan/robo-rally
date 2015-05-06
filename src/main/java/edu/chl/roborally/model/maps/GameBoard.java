@@ -61,6 +61,10 @@ public abstract class GameBoard {
         return this.board[x][y];
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     // Print board
     public void printBoard() {
         System.out.println("-------------------------");

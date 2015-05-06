@@ -24,6 +24,9 @@ public class GameController implements IEventHandler {
     private ArrayList<String> tempNames = null;
     private String tempMap = null;
 
+    private boolean mapReady = false;
+    private boolean nameReady = false;
+
     public GameController(UI ui) {
         this.mapFactory = new MapFactory();
         this.ui = ui;
@@ -73,14 +76,26 @@ public class GameController implements IEventHandler {
         return players;
     }
 
+    private boolean readyForGame() {
+        if (mapReady && nameReady) {
+            EventTram.getInstance().publish(EventTram.Event.INIT_GAME, null);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         if(evt == EventTram.Event.INIT_GAME) {
             this.initGame();
         } else if (evt == EventTram.Event.SET_MAP) {
             this.tempMap = (String) o;
+            mapReady = true;
+            readyForGame();
         } else if (evt == EventTram.Event.SET_NAMES) {
             this.tempNames = (ArrayList<String>) o;
+            nameReady = true;
+            readyForGame();
         }
     }
 }
