@@ -1,5 +1,8 @@
 package edu.chl.roborally.view.gui;
 
+import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.RoboRally;
+
 import javax.swing.*;
 
 /**
@@ -7,7 +10,12 @@ import javax.swing.*;
  */
 public class CardView extends JPanel {
 
-    public CardView(){
+    private RoboRally model;
+
+
+    public CardView(RoboRally model){
+        this.model = model;
+
         setSize(1000, 228);
 
     }
