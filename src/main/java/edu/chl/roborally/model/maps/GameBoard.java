@@ -18,13 +18,13 @@ public abstract class GameBoard {
 
     public GameBoard(String n){
 
-        this.board = new GameTile[Constants.NUM_ROWS][Constants.NUM_COLS];
+        this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
         this.name = n;
 
         //Fills the board with BlankTiles
-        for (int row = 0; row < Constants.NUM_ROWS; row ++){
-            for(int col = 0; col < Constants.NUM_COLS; col++){
-                board[row][col] = new BlankTile();
+        for (int col = 0; col < Constants.NUM_COLS; col ++){
+            for(int row = 0; row < Constants.NUM_ROWS; row++){
+                board[col][row] = new BlankTile();
             }
         }
 
@@ -63,7 +63,7 @@ public abstract class GameBoard {
 
     // Return tile on given Position
     public GameTile getTile(Position pos) throws ArrayIndexOutOfBoundsException {
-        return this.board[pos.getY()][pos.getX()];
+        return this.board[pos.getX()][pos.getY()];
     }
     // Return tile on given x and y coordinate
     public GameTile getTile(int x, int y) throws ArrayIndexOutOfBoundsException {
