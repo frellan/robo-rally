@@ -21,6 +21,7 @@ public class TestGameView {
         model.setPlayer(player1);
         model.setPlayer(player2);
         model.setMap(map);
+        model.setupGame();
         JFrame frame = new JFrame();
         GameView test = new GameView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

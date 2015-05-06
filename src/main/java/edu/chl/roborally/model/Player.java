@@ -191,7 +191,8 @@ public class Player {
      * Graphics method
      */
 
-    public void draw(Graphics g) {
-
+    public void draw(Graphics g, int x, int y) {
+        g.setColor(Color.YELLOW);
+        g.fillOval(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
     }
 }

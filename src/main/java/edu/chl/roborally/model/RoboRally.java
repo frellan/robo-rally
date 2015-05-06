@@ -26,7 +26,7 @@ public class RoboRally {
         players = new ArrayList<>();
     }
     // Setup game
-    private void setupGame() {
+    public void setupGame() {
         // Init all dependencies
         resetDeck();
         //set start positions
