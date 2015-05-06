@@ -54,8 +54,7 @@ public class GameView extends JPanel {
     private void drawTiles(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for(int j = 0; j < rows; j++) {
-                board.getTile(i,j).draw(g,(i*tileSize)+i+1,(j*tileSize)+j+1);
-                System.out.print("Printing ");
+                board.getTile(i,j).draw(g, (i * tileSize) + i + 1, (j * tileSize) + j + 1);
             }
         }
     }
