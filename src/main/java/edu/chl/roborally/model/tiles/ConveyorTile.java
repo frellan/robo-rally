@@ -31,30 +31,35 @@ public class ConveyorTile extends GameTile {
     public void draw(Graphics g, int x, int y) {
 
         char[] message;
-        if(d == Constants.Directions.EAST){
-            g.setColor(Color.YELLOW);
-            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
-            g.setColor(Color.RED);
-            message = "CE".toCharArray();
-            g.drawChars(message, 0, message.length, x, y+10);
-        }else if(d == Constants.Directions.WEST){
-            g.setColor(Color.YELLOW);
-            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
-            g.setColor(Color.RED);
-            message = "CW".toCharArray();
-            g.drawChars(message, 0, message.length, x, y+10);
-        }else if(d == Constants.Directions.NORTH){
-            g.setColor(Color.YELLOW);
-            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
-            g.setColor(Color.RED);
-            message = "CN".toCharArray();
-            g.drawChars(message, 0, message.length, x, y+10);
-        }else if(d == Constants.Directions.SOUTH){
-            g.setColor(Color.YELLOW);
-            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
-            g.setColor(Color.RED);
-            message = "CS".toCharArray();
-            g.drawChars(message, 0, message.length, x, y+10);
+        switch (d) {
+            case EAST:
+                g.setColor(Color.YELLOW);
+                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.setColor(Color.RED);
+                message = "CE".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case WEST:
+                g.setColor(Color.YELLOW);
+                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.setColor(Color.RED);
+                message = "CW".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case NORTH:
+                g.setColor(Color.YELLOW);
+                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.setColor(Color.RED);
+                message = "CN".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case SOUTH:
+                g.setColor(Color.YELLOW);
+                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.setColor(Color.RED);
+                message = "CS".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
         }
     }
 }
