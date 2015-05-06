@@ -25,7 +25,7 @@ public class PitTile extends GameTile{
     public void draw(Graphics g, int x, int y) {
         g.setColor(Color.BLACK);
         g.fillRect(x,y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(Color.RED);
+        g.setColor(Color.WHITE);
         char[] message = "P".toCharArray();
         g.drawChars(message,0,message.length,x,y+10);
     }

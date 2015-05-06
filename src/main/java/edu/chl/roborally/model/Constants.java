@@ -33,7 +33,9 @@ public class Constants {
         NORTH_WEST,
         NORTH_EAST,
         SOUTH_WEST,
-        SOUTH_EAST
+        SOUTH_EAST,
+        LEFT,
+        RIGHT
     }
 
     // The status of a player

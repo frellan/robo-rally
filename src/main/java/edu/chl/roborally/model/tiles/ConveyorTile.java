@@ -13,7 +13,6 @@ import java.awt.*;
 public class ConveyorTile extends GameTile {
 
     private Constants.Directions d;
-    private String name = "C";
 
     public ConveyorTile(Constants.Directions d){
         this.d = d;
@@ -24,7 +23,7 @@ public class ConveyorTile extends GameTile {
     }
 
     public String toString() {
-        return name;
+        return "Conveyor";
     }
 
     @Override
@@ -33,30 +32,30 @@ public class ConveyorTile extends GameTile {
         char[] message;
         switch (d) {
             case EAST:
-                g.setColor(Color.YELLOW);
+                g.setColor(new Color(247,215,8));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
+                g.setColor(Color.BLACK);
                 message = "CE".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case WEST:
-                g.setColor(Color.YELLOW);
+                g.setColor(new Color(247,215,8));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
+                g.setColor(Color.BLACK);
                 message = "CW".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case NORTH:
-                g.setColor(Color.YELLOW);
+                g.setColor(new Color(247,215,8));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
+                g.setColor(Color.BLACK);
                 message = "CN".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH:
-                g.setColor(Color.YELLOW);
+                g.setColor(new Color(247,215,8));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.RED);
+                g.setColor(Color.BLACK);
                 message = "CS".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;

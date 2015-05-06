@@ -193,6 +193,8 @@ public class Player {
 
     public void draw(Graphics g, int x, int y) {
         g.setColor(Color.YELLOW);
-        g.fillOval(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+        g.fillOval(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(Color.BLACK);
+        g.drawString("P"+iD, x+15, y+25);
     }
 }

@@ -56,8 +56,8 @@ public class VaultMap extends GameBoard {
         board[2][10] = new ConveyorTile(Constants.Directions.SOUTH);
 
         //Rotators Right
-        board[1][3] = new RotationTile(Constants.Directions.EAST);
-        board[0][10] = new RotationTile(Constants.Directions.EAST);
+        board[1][3] = new RotationTile(Constants.Directions.LEFT);
+        board[0][10] = new RotationTile(Constants.Directions.LEFT);
 
         //Pit
         board[8][2] = new PitTile();
