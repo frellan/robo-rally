@@ -4,6 +4,8 @@ import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
 
+import java.awt.*;
+
 /**
  * Created by axel on 2015-03-30.
  */
@@ -25,7 +27,7 @@ public class RotationTile extends GameTile {
     }
 
     @Override
-    public void appearance() {
+    public void draw(Graphics g, int x, int y) {
 
     }
 

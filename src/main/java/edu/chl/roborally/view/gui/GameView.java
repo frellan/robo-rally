@@ -14,45 +14,48 @@ public class GameView extends JPanel {
 
     private RoboRally model;
     private GameBoard board;
-    private int width = Constants.TILE_SIZE*Constants.NUM_COLS;
-    private int height = Constants.TILE_SIZE*Constants.NUM_ROWS;
+    private int tileSize = Constants.TILE_SIZE;
+    private int columns = Constants.NUM_COLS;
+    private int rows = Constants.NUM_ROWS;
+    private int width = (tileSize * columns) + columns + 2;
+    private int height = (tileSize * rows) + rows + 2;
 
     public GameView(RoboRally model) {
         this.model = model;
         board = model.getGameBoard();
-        setLayout(new GridLayout(Constants.NUM_ROWS,Constants.NUM_COLS));
         setSize(width,height);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        placeTiles();
+        drawGrid(g);
+        drawTiles(g);
     }
 
     private void drawGrid(Graphics g) {
         // Vertical Lines
         g.drawLine(0,0,0,height);
         g.drawLine(width,0,width,height);
-        int x = Constants.TILE_SIZE;
-        for (int i = 1; i <= Constants.NUM_COLS; i++) {
-            g.drawLine(x,0,x,height);
-            x += Constants.TILE_SIZE;
+        int x = tileSize;
+        for (int i = 1; i <= columns; i++) {
+            g.drawLine(x+i,0,x+i,height);
+            x += tileSize;
         }
         // Horizontal Lines
         g.drawLine(0,0,width,0);
         g.drawLine(0, height, width, height);
-        int y = Constants.TILE_SIZE;
-        for (int i = 1; i <= Constants.NUM_ROWS; i++) {
-            g.drawLine(0,y,width,y);
-            y += Constants.TILE_SIZE;
+        int y = tileSize;
+        for (int i = 1; i <= rows; i++) {
+            g.drawLine(0,y+i,width,y+i);
+            y += tileSize;
         }
     }
 
-    private void placeTiles() {
-        for (int i = 0; i < Constants.NUM_COLS; i++) {
-            for(int j = 0; j < Constants.NUM_ROWS; j++) {
-                add(board.getTile(i,j));
+    private void drawTiles(Graphics g) {
+        for (int i = 0; i < columns; i++) {
+            for(int j = 0; j < rows; j++) {
+                board.getTile(i,j).draw(g,(i*tileSize)+i,(j*tileSize)+j);
             }
         }
     }

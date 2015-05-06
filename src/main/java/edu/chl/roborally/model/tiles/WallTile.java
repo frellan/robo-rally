@@ -3,6 +3,8 @@ package edu.chl.roborally.model.tiles;
 import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.Player;
 
+import java.awt.*;
+
 /**
  * Created by axel on 2015-03-31.
  */
@@ -32,7 +34,7 @@ public class WallTile extends GameTile{
     }
 
     @Override
-    public void appearance() {
+    public void draw(Graphics g, int x, int y) {
 
     }
 
