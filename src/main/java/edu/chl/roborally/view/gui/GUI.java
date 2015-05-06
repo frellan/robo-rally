@@ -5,7 +5,6 @@ import edu.chl.roborally.IEventHandler;
 import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.view.UI;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -15,8 +14,7 @@ import java.util.ArrayList;
 public class GUI extends UI implements IEventHandler{
 
     private JFrame main;
-    private JPanel start;
-    private JPanel setup;
+    private StartPanel start;
 
     public GUI(AppController appController){
         super(appController);
@@ -36,9 +34,8 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void menu() {
-        setup = new SetupPanel();
         appController.initGameController();
-        main.setContentPane(setup);
+        start.changeToSetup();
         main.repaint();
         main.revalidate();
 

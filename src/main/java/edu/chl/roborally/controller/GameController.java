@@ -50,7 +50,7 @@ public class GameController implements IEventHandler {
             new Round(model, ui);
 
             for (int i = 1; i< Constants.NUMBER_OF_TURNS; i++) {
-                // TODO check end conditions befre new turn
+                // TODO check end conditions before new turn
                 new Turn(model, i, ui);
             }
         }

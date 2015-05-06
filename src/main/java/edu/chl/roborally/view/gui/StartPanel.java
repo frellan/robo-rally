@@ -20,6 +20,8 @@ public class StartPanel extends JPanel implements ActionListener{
     private JButton optionsButton;
     private JButton exitButton;
     private BufferedImage bi;
+    private JPanel buttonPanel;
+    private JPanel setupPanel;
 
 
 
@@ -33,7 +35,7 @@ public class StartPanel extends JPanel implements ActionListener{
             System.out.println("Image could not be read");
         }
 
-        JPanel buttonPanel = new JPanel(new GridLayout(0,1,0,5));
+        buttonPanel = new JPanel(new GridLayout(0,1,0,5));
         buttonPanel.setOpaque(true);
         buttonPanel.setBackground(Color.DARK_GRAY);
         buttonPanel.setBorder(BorderFactory.createMatteBorder(
@@ -51,6 +53,12 @@ public class StartPanel extends JPanel implements ActionListener{
         buttonPanel.add(exitButton);
 
         add(buttonPanel);
+    }
+
+    public void changeToSetup() {
+        this.remove(buttonPanel);
+        setupPanel = new SetupPanel();
+        this.add(setupPanel);
     }
 
     // Draw background
