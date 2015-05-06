@@ -23,8 +23,6 @@ public class WallTile extends GameTile{
         this.d2 = d2;
     }
 
-
-
     public void doAction(Player p){
         // new StopPlayer(p, d);
     }
@@ -39,7 +37,7 @@ public class WallTile extends GameTile{
         char[] message;
         switch (d1) {
             case EAST:
-                g.setColor(Color.BLUE);
+                g.setColor(new Color(204,204,204));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.setColor(Color.RED);
                 if (d1 == Constants.Directions.EAST && d2 == Constants.Directions.NORTH) {
@@ -52,7 +50,7 @@ public class WallTile extends GameTile{
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case WEST:
-                g.setColor(Color.BLUE);
+                g.setColor(new Color(204,204,204));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.setColor(Color.RED);
                 if (d1 == Constants.Directions.WEST && d2 == Constants.Directions.NORTH) {
@@ -65,18 +63,26 @@ public class WallTile extends GameTile{
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case NORTH:
-                g.setColor(Color.BLUE);
+                g.setColor(new Color(204,204,204));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.setColor(Color.RED);
                 message = "WN".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH:
-                g.setColor(Color.BLUE);
+                g.setColor(new Color(204,204,204));
                 g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.setColor(Color.RED);
                 message = "WS".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case NORTH_WEST:
+                break;
+            case NORTH_EAST:
+                break;
+            case SOUTH_WEST:
+                break;
+            case SOUTH_EAST:
                 break;
         }
 
