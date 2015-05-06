@@ -38,7 +38,6 @@ public abstract class GameBoard {
     //Used to create a specific gameboard
     public abstract void fillGameBoard();
 
-
     //Returns startpositions depending on number of players
     public ArrayList<Position> getStartPositions(int nbrOfPlayers){
         ArrayList<Position> tempList = new ArrayList<>();
@@ -51,14 +50,6 @@ public abstract class GameBoard {
     //Returns the board array
     public GameTile[][] getBoard(){
         return board;
-    }
-
-    public int getWidth() {
-        return board.length;
-    }
-
-    public int getHeight() {
-        return board[0].length;
     }
 
     // Return tile on given Position

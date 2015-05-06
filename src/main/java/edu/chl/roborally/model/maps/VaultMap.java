@@ -10,7 +10,6 @@ public class VaultMap extends GameBoard {
 
     private GameTile[][] board = getBoard();
 
-
     public VaultMap(){
         super("Vault Map");
         fillGameBoard();
