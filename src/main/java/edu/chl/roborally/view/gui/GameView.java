@@ -17,8 +17,8 @@ public class GameView extends JPanel {
     private int tileSize = Constants.TILE_SIZE;
     private int columns = Constants.NUM_COLS;
     private int rows = Constants.NUM_ROWS;
-    private int width = (tileSize * columns) + columns + 2;
-    private int height = (tileSize * rows) + rows + 2;
+    private int width = (tileSize * columns) + columns;
+    private int height = (tileSize * rows) + rows;
 
     public GameView(RoboRally model) {
         this.model = model;
@@ -55,7 +55,7 @@ public class GameView extends JPanel {
     private void drawTiles(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for(int j = 0; j < rows; j++) {
-                board.getTile(i,j).draw(g,(i*tileSize)+i,(j*tileSize)+j);
+                board.getTile(i,j).draw(g,(i*tileSize)+i+1,(j*tileSize)+j+1);
             }
         }
     }

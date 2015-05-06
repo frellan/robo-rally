@@ -15,6 +15,7 @@ public class ConveyorTile extends GameTile {
     private Constants.Directions d;
     private String name = "C";
 
+
     public ConveyorTile(Constants.Directions d){
         this.d = d;
     }
@@ -30,7 +31,20 @@ public class ConveyorTile extends GameTile {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-
+        if(d == Constants.Directions.EAST){
+            g.setColor(Color.BLUE);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+        }else if(d == Constants.Directions.WEST){
+            g.setColor(Color.RED);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+        }else if(d == Constants.Directions.NORTH){
+            g.setColor(Color.YELLOW);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+        }else if(d == Constants.Directions.SOUTH){
+            g.setColor(Color.DARK_GRAY);
+            g.fillRect(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+        }
     }
-
 }
+
+

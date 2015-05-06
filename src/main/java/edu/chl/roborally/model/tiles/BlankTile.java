@@ -24,7 +24,7 @@ public class BlankTile extends GameTile {
     @Override
     public void draw(Graphics g, int x, int y) {
         g.fillRect(x,y,size.width,size.height);
-        g.setColor(Color.WHITE);
+        g.setColor(Color.GRAY);
     }
 
 }
