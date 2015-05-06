@@ -46,7 +46,7 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void chooseMap(ArrayList<String> maps) {
-        start.chooseMap();
+        start.chooseMap(maps);
     }
 
     @Override

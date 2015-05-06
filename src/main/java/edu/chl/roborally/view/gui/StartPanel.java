@@ -25,7 +25,6 @@ public class StartPanel extends JPanel implements ActionListener{
     private JButton saveNames;
     private ArrayList<JTextField> tempNames;
     private JButton chooseMapButton;
-    private JSpinner mapInt;
 
     public StartPanel(){
 
@@ -37,10 +36,7 @@ public class StartPanel extends JPanel implements ActionListener{
             System.out.println("Image could not be read");
         }
 
-        buttonPanel = new JPanel(new GridLayout(0,1,0,5));
-        buttonPanel.setOpaque(true);
-        buttonPanel.setBackground(Color.DARK_GRAY);
-        buttonPanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
+        buttonPanel = new StyledJPanel(new GridLayout(0,1,0,5));
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
         newGameButton.addActionListener(this);
         optionsButton = new Button("options_btn.png","options_btn_hover.png");
@@ -56,10 +52,7 @@ public class StartPanel extends JPanel implements ActionListener{
     }
     public void nbrOfPlayers() {
         this.removeAll();
-        JPanel nbrPanel= new JPanel(new GridLayout(3,0));
-        nbrPanel.setOpaque(true);
-        nbrPanel.setBackground(Color.DARK_GRAY);
-        nbrPanel.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
+        JPanel nbrPanel= new StyledJPanel(new GridLayout(3,0));
         nbrPanel.add(new JLabel("Choose Number of Players"));
         chooser = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
         nbrPanel.add(chooser);
@@ -73,10 +66,7 @@ public class StartPanel extends JPanel implements ActionListener{
 
     public void showNameForms(int i) {
         this.removeAll();
-        JPanel nameForms = new JPanel(new GridLayout(5,0));
-        nameForms.setOpaque(true);
-        nameForms.setBackground(Color.DARK_GRAY);
-        nameForms.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
+        JPanel nameForms = new StyledJPanel(new GridLayout(5,0));
         tempNames = new ArrayList<>();
         nameForms.add(new JLabel("Set Names on players"));
 
@@ -97,16 +87,22 @@ public class StartPanel extends JPanel implements ActionListener{
         this.revalidate();
     }
 
-    public void chooseMap() {
+    public void chooseMap(ArrayList<String> maps) {
         this.removeAll();
-        this.add(new JLabel("Choose Map"));
-        this.add(new JLabel("Type 0 Blank"));
-        this.add(new JLabel("Type 1 for valut"));
-        mapInt = new JSpinner();
-        this.add(mapInt);
+        JPanel mapChooser = new StyledJPanel(new GridLayout(4,0));
+        mapChooser.add(new JLabel("Choose Map"));
+        ArrayList<JRadioButton> radioBtnList= new ArrayList<>();
+        ButtonGroup btnGroup = new ButtonGroup();
+        for (String s : maps) {
+            JRadioButton btn = new JRadioButton(s);
+            radioBtnList.add(btn);
+            btnGroup.add(btn);
+            mapChooser.add(btn);
+        }
         chooseMapButton = new JButton("Set Map");
         chooseMapButton.addActionListener(this);
-        this.add(chooseMapButton);
+        mapChooser.add(chooseMapButton);
+        this.add(mapChooser);
         this.repaint();
         this.revalidate();
     }
@@ -139,7 +135,16 @@ public class StartPanel extends JPanel implements ActionListener{
         } else if (e.getSource() == saveNames) {
             sendNamesToController();
         } else if (e.getSource() == chooseMapButton) {
-            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapInt.getValue());
+            EventTram.getInstance().publish(EventTram.Event.SET_MAP, null);
+        }
+    }
+
+    public class StyledJPanel extends JPanel {
+        public StyledJPanel(LayoutManager layoutManager) {
+            this.setLayout(layoutManager);
+            this.setOpaque(true);
+            this.setBackground(Color.DARK_GRAY);
+            this.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
         }
     }
 }
