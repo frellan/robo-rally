@@ -3,6 +3,7 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -94,29 +95,27 @@ public class Player {
         return laserPower;
     }
 
+    public boolean isAlive() {
+        return this.status != Constants.Status.DEAD;
+    }
+
+    public boolean isPowerDown() {
+        return this.status == Constants.Status.POWERDOWN;
+    }
+
     /**
      * Commands
      */
 
+    /**
+     * Give a player a damage token.
+     * @param amount
+     */
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens + amount;
         if(this.damageTokens == 10) {
             this.kill();
         }
-    }
-
-    public boolean isAlive() {
-        if(this.status != Constants.Status.DEAD) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isPowerDown() {
-        if(this.status == Constants.Status.POWERDOWN) {
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -128,9 +127,11 @@ public class Player {
         backToCheckpoint();
         resetDamageTokens();
     }
+
     /**
      * Helpers to kill player
      */
+
     public void loseLifeToken() {
         this.lifeTokens = lifeTokens -1;
         if (this.lifeTokens == -1) {
@@ -148,7 +149,6 @@ public class Player {
     public void resetDamageTokens() {
         this.damageTokens = 0;
     }
-    /** End of kill */
 
     /**
      * Setters
@@ -187,4 +187,12 @@ public class Player {
         this.laserPower = upgrade;
     }
 
+    /**
+     * Graphics method
+     */
+
+    public void draw(Graphics g, int x, int y) {
+        g.setColor(Color.YELLOW);
+        g.fillOval(x,y,Constants.TILE_SIZE,Constants.TILE_SIZE);
+    }
 }

@@ -20,11 +20,10 @@ public class RoboRally {
     private boolean isGameRunning;
 
     // Constructor
-
+    
     public RoboRally(ArrayList<Player> players, GameBoard map) {
         this.players = players;
         this.gameBoard = map;
-
         // Init all dependencies
         resetDeck();
         //set start positions

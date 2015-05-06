@@ -1,19 +1,22 @@
 package edu.chl.roborally.view.gui;
 
 import edu.chl.roborally.model.Constants;
+import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.Position;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
 public class GameView extends JPanel {
-
-    private RoboRally model;
+    
     private GameBoard board;
+    private ArrayList<Player> players;
     private int tileSize = Constants.TILE_SIZE;
     private int columns = Constants.NUM_COLS;
     private int rows = Constants.NUM_ROWS;
@@ -21,8 +24,8 @@ public class GameView extends JPanel {
     private int height = (tileSize * rows) + rows;
 
     public GameView(RoboRally model) {
-        this.model = model;
         board = model.getGameBoard();
+        players = model.getPlayers();
         setSize(width,height);
     }
 
@@ -31,6 +34,7 @@ public class GameView extends JPanel {
         super.paintComponent(g);
         drawGrid(g);
         drawTiles(g);
+        placePlayers(g);
     }
 
     private void drawGrid(Graphics g) {
@@ -43,7 +47,7 @@ public class GameView extends JPanel {
             x += tileSize;
         }
         // Horizontal Lines
-        g.drawLine(0,0,width,0);
+        g.drawLine(0, 0, width, 0);
         g.drawLine(0, height, width, height);
         int y = tileSize;
         for (int i = 1; i <= rows; i++) {
@@ -55,9 +59,15 @@ public class GameView extends JPanel {
     private void drawTiles(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for(int j = 0; j < rows; j++) {
-                board.getTile(i,j).draw(g,(i*tileSize)+i+1,(j*tileSize)+j+1);
-                System.out.print("Printing ");
+                board.getTile(i,j).draw(g, (i * tileSize) + i + 1, (j * tileSize) + j + 1);
             }
+        }
+    }
+
+    private void placePlayers(Graphics g) {
+        for (Player player : players) {
+            Position pos = player.getPosition();
+            player.draw(g,(pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
         }
     }
 }
