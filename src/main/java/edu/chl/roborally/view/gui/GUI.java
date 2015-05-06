@@ -4,6 +4,7 @@ import edu.chl.roborally.EventTram;
 import edu.chl.roborally.IEventHandler;
 import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -35,20 +36,17 @@ public class GUI extends UI implements IEventHandler{
     @Override
     public void menu() {
         appController.initGameController();
-        start.changeToSetup();
-        main.repaint();
-        main.revalidate();
-
+        choosePlayerNames();
     }
 
     @Override
     public void choosePlayerNames() {
-
+        start.nbrOfPlayers();
     }
 
     @Override
     public void chooseMap(ArrayList<String> maps) {
-
+        start.chooseMap();
     }
 
     @Override
@@ -60,6 +58,10 @@ public class GUI extends UI implements IEventHandler{
     public void onEvent(EventTram.Event evt, Object o) {
         if(EventTram.Event.INIT_GAME == evt){
             menu();
+        } else if (EventTram.Event.SET_NAMES == evt) {
+            chooseMap(new MapFactory().getMaps());
+        } else if (EventTram.Event.SET_MAP == evt) {
+
         }
     }
 }
