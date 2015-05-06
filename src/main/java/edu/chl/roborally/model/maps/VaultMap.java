@@ -62,8 +62,8 @@ public class VaultMap extends GameBoard {
         //Pit
         board[8][2] = new PitTile();
         board[3][2] = new PitTile();
-        board[3][11] = new PitTile();
-        board[8][11] = new PitTile();
+        board[3][9] = new PitTile();
+        board[8][9] = new PitTile();
 
         //Walls
         board[2][0] = new WallTile(Constants.Directions.WEST);
@@ -106,8 +106,8 @@ public class VaultMap extends GameBoard {
 
         board[5][3] = new WallTile(Constants.Directions.EAST);
         board[6][3] = new WallTile(Constants.Directions.EAST);
-        board[5][9] = new WallTile(Constants.Directions.WEST);
-        board[6][9] = new WallTile(Constants.Directions.WEST);
+        board[5][8] = new WallTile(Constants.Directions.WEST);
+        board[6][8] = new WallTile(Constants.Directions.WEST);
 
         board[2][5] = new WallTile(Constants.Directions.SOUTH);
         board[2][6] = new WallTile(Constants.Directions.SOUTH);
