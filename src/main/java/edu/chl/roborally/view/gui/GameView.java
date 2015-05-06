@@ -11,7 +11,7 @@ import java.awt.*;
  * Created by fredrikkindstrom on 21/04/15.
  */
 public class GameView extends JPanel {
-
+    
     private GameBoard board;
     private int tileSize = Constants.TILE_SIZE;
     private int columns = Constants.NUM_COLS;
