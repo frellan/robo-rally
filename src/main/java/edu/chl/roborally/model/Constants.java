@@ -10,8 +10,8 @@ public class Constants {
 
     // GameBoard
     public static final int TILE_SIZE = 40;
-    public static final int NUM_ROWS = 16;
-    public static final int NUM_COLS = 12;
+    public static final int NUM_ROWS = 12;
+    public static final int NUM_COLS = 16;
 
     // Card move types
     public enum MoveTypes {

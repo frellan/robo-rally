@@ -18,7 +18,7 @@ public class TestGameView {
     public TestGameView() {
         Player player1 = new Player(1,"Dave");
         Player player2 = new Player(2,"Bob");
-        GameBoard map = new VaultMap();
+        GameBoard map = new BlankMap();
         RoboRally model = new RoboRally();
         model.setPlayer(player1);
         model.setPlayer(player2);
