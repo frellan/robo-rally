@@ -30,33 +30,40 @@ public class ConveyorTile extends GameTile {
     public void draw(Graphics g, int x, int y) {
 
         char[] message;
+        g.setColor(new Color(247,215,8));
+        g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(Color.BLACK);
         switch (d) {
             case EAST:
-                g.setColor(new Color(247,215,8));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.BLACK);
                 message = "CE".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case WEST:
-                g.setColor(new Color(247,215,8));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.BLACK);
                 message = "CW".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case NORTH:
-                g.setColor(new Color(247,215,8));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.BLACK);
                 message = "CN".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH:
-                g.setColor(new Color(247,215,8));
-                g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.setColor(Color.BLACK);
                 message = "CS".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case NORTH_WEST:
+                message = "CNW".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case NORTH_EAST:
+                message = "CNE".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case SOUTH_WEST:
+                message = "CSW".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case SOUTH_EAST:
+                message = "CSE".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
         }
