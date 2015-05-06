@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles;
 
+import edu.chl.roborally.model.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.KillPlayer;
 
@@ -22,7 +23,7 @@ public class PitTile extends GameTile{
 
     @Override
     public void draw(Graphics g, int x, int y) {
-
+        g.setColor(Color.BLACK);
+        g.fillRect(x,y, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
-
 }
