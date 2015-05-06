@@ -12,7 +12,6 @@ import java.awt.*;
  */
 public class GameView extends JPanel {
 
-    private RoboRally model;
     private GameBoard board;
     private int tileSize = Constants.TILE_SIZE;
     private int columns = Constants.NUM_COLS;
@@ -21,7 +20,6 @@ public class GameView extends JPanel {
     private int height = (tileSize * rows) + rows;
 
     public GameView(RoboRally model) {
-        this.model = model;
         board = model.getGameBoard();
         setSize(width,height);
     }
