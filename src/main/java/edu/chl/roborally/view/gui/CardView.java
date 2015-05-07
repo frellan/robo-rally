@@ -1,6 +1,8 @@
 package edu.chl.roborally.view.gui;
 
-import javax.smartcardio.Card;
+import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.utilities.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,10 +12,10 @@ import java.util.ArrayList;
  */
 public class CardView extends JPanel {
 
-    private ArrayList<Card> cards;
+    private ArrayList<RegisterCard> cards;
 
 
-    public CardView(ArrayList<Card> cards){
+    public CardView(ArrayList<RegisterCard> cards){
         this.cards = cards;
         setLayout(new BorderLayout());
         setSize(700, 228);
@@ -26,10 +28,9 @@ public class CardView extends JPanel {
     }
 
     private void drawCards(Graphics g){
-        for(Card card : cards){
-            g.drawRect();
+        for(int i = 0; i < cards.size(); i ++){
+            g.drawRect(i * Constants.CARD_WIDTH, 0, Constants.CARD_WIDTH, Constants.CARD_HEIGHT);
+            cards.get(i).
         }
-
     }
-
 }

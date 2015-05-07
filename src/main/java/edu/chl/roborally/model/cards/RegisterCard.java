@@ -2,6 +2,8 @@ package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
 
+import java.awt.*;
+
 /**
  * Created by fredrikkindstrom on 26/03/15.
  */
@@ -34,4 +36,6 @@ public abstract class RegisterCard {
     public String toString() {
         return name + " " + "Points: " + points;
     }
+
+    public abstract void draw(Graphics g, int x, int y);
 }
