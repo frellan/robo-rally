@@ -18,6 +18,7 @@ public class GUI extends UI implements IEventHandler{
     private JFrame main;
     private StartPanel start;
     private RoboRally model;
+    private GamePanel gamePanel;
 
     public GUI(AppController appController){
         super(appController);
@@ -58,6 +59,14 @@ public class GUI extends UI implements IEventHandler{
         start.summary(model.getPlayerNames(), model.getGameBoard().getName());
     }
 
+    private void showGamePanel() {
+        gamePanel = new GamePanel();
+        main.remove(start);
+        main.add(gamePanel);
+        main.revalidate();
+        main.repaint();
+    }
+
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         if(EventTram.Event.INIT_SETUP == evt){
@@ -69,6 +78,8 @@ public class GUI extends UI implements IEventHandler{
         } else if (EventTram.Event.NEW_MODEL == evt) {
             this.model = (RoboRally) o;
             showSummary();
+        } else if (EventTram.Event.RUN_GAME == evt) {
+            showGamePanel();
         }
     }
 }

@@ -23,6 +23,7 @@ public class StartPanel extends JPanel implements ActionListener{
     private JSpinner chooser;
     private JButton chooseNbrOfPlayers;
     private JButton saveNames;
+    private JButton startGameBtn;
     private ArrayList<JTextField> tempNames;
     private JButton chooseMapButton;
     private ArrayList<JRadioButton> radioBtnList;
@@ -134,7 +135,8 @@ public class StartPanel extends JPanel implements ActionListener{
             sumPanel.add(new JLabel(s));
         }
         sumPanel.add(new JLabel(mapName));
-        Button startGameBtn = new Button("start_btn.png", "start_btn_hover.png");
+        startGameBtn = new Button("start_btn.png", "start_btn_hover.png");
+        startGameBtn.addActionListener(this);
         sumPanel.add(startGameBtn);
         this.add(sumPanel);
         this.repaint();
@@ -162,6 +164,8 @@ public class StartPanel extends JPanel implements ActionListener{
             sendNamesToController();
         } else if (e.getSource() == chooseMapButton) {
             sendMapChocieToController();
+        } else if (e.getSource() == startGameBtn) {
+            EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null);
         }
     }
 

@@ -97,6 +97,8 @@ public class GameController implements IEventHandler {
             this.tempNames = (ArrayList<String>) o;
             nameReady = true;
             readyForGame();
+        } else if (evt == EventTram.Event.RUN_GAME) {
+            this.runGame();
         }
     }
 }

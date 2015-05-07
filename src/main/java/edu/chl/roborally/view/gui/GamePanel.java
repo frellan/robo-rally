@@ -1,11 +1,14 @@
 package edu.chl.roborally.view.gui;
 
+
 import edu.chl.roborally.model.RoboRally;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
 
 /**
  * Created by axel on 2015-05-06.
@@ -37,5 +40,6 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
         g.drawImage(bgText, 0, 0, getWidth(), getHeight(), this);
+
     }
 }

@@ -49,7 +49,7 @@ public class Round {
 
     private void dealCards() {
         for (Player p : players) {
-            if (p.isPowerDown() == true) {
+            if (p.isPowerDown()) {
                 p.setDealtCards(deck.getCards(0));
             } else {
                 // Number of cards given to player are reduced by the number of damagetokens
