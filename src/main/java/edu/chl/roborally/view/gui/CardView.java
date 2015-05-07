@@ -27,7 +27,7 @@ public class CardView extends JPanel {
 
     private void drawCards(Graphics g){
         for(Card card : cards){
-            g.drawRect();
+            //g.drawRect();
         }
 
     }

@@ -61,6 +61,10 @@ public class GUI extends UI implements IEventHandler{
 
     private void showGamePanel() {
         gamePanel = new GamePanel();
+        main.remove(start);
+        main.add(gamePanel);
+        main.revalidate();
+        main.repaint();
     }
 
     @Override
