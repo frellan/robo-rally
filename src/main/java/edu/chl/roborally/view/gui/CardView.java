@@ -28,9 +28,9 @@ public class CardView extends JPanel {
     }
 
     private void drawCards(Graphics g){
-        for(int i = 0; i < cards.size(); i ++){
+
+        for(int i = 0; i < cards.size(); i ++) {
             g.drawRect(i * Constants.CARD_WIDTH, 0, Constants.CARD_WIDTH, Constants.CARD_HEIGHT);
-            cards.get(i).
         }
     }
 }

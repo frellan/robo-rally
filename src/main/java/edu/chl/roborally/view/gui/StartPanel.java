@@ -136,6 +136,7 @@ public class StartPanel extends JPanel implements ActionListener{
         }
         sumPanel.add(new JLabel(mapName));
         startGameBtn = new Button("start_btn.png", "start_btn_hover.png");
+        startGameBtn.addActionListener(this);
         sumPanel.add(startGameBtn);
         this.add(sumPanel);
         this.repaint();
