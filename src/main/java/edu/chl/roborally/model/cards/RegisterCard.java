@@ -37,5 +37,7 @@ public abstract class RegisterCard {
         return name + " " + "Points: " + points;
     }
 
-    public abstract void draw(Graphics g, int x, int y);
+    public void draw(Graphics g, int x, int y){
+        g.drawChars(name.toCharArray(),0, name.length(), x + 30, y + 30);
+    }
 }

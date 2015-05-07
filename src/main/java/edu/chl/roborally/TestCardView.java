@@ -2,7 +2,7 @@ package edu.chl.roborally;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.*;
-import edu.chl.roborally.view.gui.CardView;
+import edu.chl.roborally.view.gui.ChosenCardsView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class TestCardView {
         cards.add(card5);
         player1.setDealtCards(cards);
 
-        CardView testCardView = new CardView(cards);
+        ChosenCardsView testCardView = new ChosenCardsView(cards);
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
