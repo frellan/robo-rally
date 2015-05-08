@@ -12,7 +12,7 @@ public class MapFactory {
     public MapFactory(){
         maps = new ArrayList<>();
         addMap("Blank Map");
-        addMap("Vault Map");
+        addMap("Island King");
     }
 
     private void addMap(String map){
@@ -25,7 +25,7 @@ public class MapFactory {
             return new BlankMap();
         } else if (name.equals(maps.get(1))) {
             System.out.print("New map created: " + maps.get(1));
-            return new VaultMap();
+            return new IslandKingMap();
         } else {
             System.out.print("Created default: " + maps.get(0));
             return new BlankMap();

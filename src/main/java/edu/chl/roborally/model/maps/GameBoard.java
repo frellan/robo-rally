@@ -32,62 +32,49 @@ public abstract class GameBoard {
         //Fills the board with BlankTiles
         for (int col = 0; col < Constants.NUM_COLS; col++) {
             for (int row = 0; row < Constants.NUM_ROWS; row++) {
-                fillGameBoard(map[col][row]);
+                board[col][row] = generateTile(map[row][col]);
             }
         }
     }
 
-    private void fillGameBoard(int tileNbr) {
+    private GameTile generateTile(int tileNbr) {
         switch (tileNbr) {
             case 0:
-                new BlankTile();
-                break;
+                return new BlankTile();
             case 11:
-                new ConveyorTile(Constants.Directions.NORTH);
-                break;
+                return new ConveyorTile(Constants.Directions.NORTH);
             case 12:
-                new ConveyorTile(Constants.Directions.WEST);
-                break;
+                return new ConveyorTile(Constants.Directions.WEST);
             case 13:
-                new ConveyorTile(Constants.Directions.SOUTH);
-                break;
+                return new ConveyorTile(Constants.Directions.SOUTH);
             case 14:
-                new ConveyorTile(Constants.Directions.EAST);
-                break;
+                return new ConveyorTile(Constants.Directions.EAST);
             case 15:
-                new ConveyorTile(Constants.Directions.NORTH_WEST);
-                break;
+                return new ConveyorTile(Constants.Directions.NORTH_WEST);
             case 16:
-                new ConveyorTile(Constants.Directions.NORTH_EAST);
-                break;
+                return new ConveyorTile(Constants.Directions.NORTH_EAST);
             case 17:
-                new ConveyorTile(Constants.Directions.SOUTH_WEST);
-                break;
+                return new ConveyorTile(Constants.Directions.SOUTH_WEST);
             case 18:
-                new ConveyorTile(Constants.Directions.SOUTH_EAST);
-                break;
+                return new ConveyorTile(Constants.Directions.SOUTH_EAST);
             case 21:
-                new RotationTile(Constants.Directions.WEST);
-                break;
+                return new RotationTile(Constants.Directions.WEST);
             case 22:
-                new RotationTile(Constants.Directions.EAST);
-                break;
+                return new RotationTile(Constants.Directions.EAST);
             case 31:
-                new WallTile(Constants.Directions.NORTH);
-                break;
+                return new WallTile(Constants.Directions.NORTH);
             case 32:
-                new WallTile(Constants.Directions.WEST);
-                break;
+                return new WallTile(Constants.Directions.WEST);
             case 33:
-                new WallTile(Constants.Directions.SOUTH);
-                break;
+                return new WallTile(Constants.Directions.SOUTH);
             case 34:
-                new WallTile(Constants.Directions.EAST);
-                break;
+                return new WallTile(Constants.Directions.EAST);
             case 4:
-                new PitTile();
-                break;
+                return new PitTile();
+            case 5:
+                return new StartTile();
         }
+        return new BlankTile();
     }
 
     //Returns startpositions depending on number of players
