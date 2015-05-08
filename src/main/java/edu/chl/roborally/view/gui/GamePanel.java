@@ -2,12 +2,14 @@ package edu.chl.roborally.view.gui;
 
 
 import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.cards.*;
 
 import javax.imageio.ImageIO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 /**
@@ -24,11 +26,13 @@ public class GamePanel extends JPanel {
         initImages();
         setBackground(Color.WHITE);
         setLayout(null);
-        setSize(1000, 720);
+        setSize(1000, 750);
         gameView = new GameView(model);
-        cardView = new ChosenCardsView(model.getPlayers().get(0).getDealtCards());
+        cardView = new ChosenCardsView(testCards());
         add(gameView);
         gameView.setLocation(6,23);
+        add(cardView);
+        cardView.setLocation(6,500);
     }
 
     // Draw background
@@ -47,5 +51,20 @@ public class GamePanel extends JPanel {
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Images could not be read");
         }
+    }
+
+    private ArrayList<RegisterCard> testCards() {
+        RegisterCard card1 = new BackupCard(430, false);
+        RegisterCard card2 = new MoveOneCard(270, false);
+        RegisterCard card3 = new MoveTwoCard(670, false);
+        RegisterCard card4 = new RotateLeftCard(200, false);
+        RegisterCard card5 = new RotateRightCard(230, false);
+        ArrayList<RegisterCard> cards = new ArrayList<>();
+        cards.add(card1);
+        cards.add(card2);
+        cards.add(card3);
+        cards.add(card4);
+        cards.add(card5);
+        return cards;
     }
 }
