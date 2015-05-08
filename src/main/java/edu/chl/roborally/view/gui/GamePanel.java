@@ -1,6 +1,5 @@
 package edu.chl.roborally.view.gui;
 
-
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.cards.*;
 
@@ -10,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 
 /**
  * Created by axel on 2015-05-06.
@@ -24,15 +22,15 @@ public class GamePanel extends JPanel {
 
     public GamePanel(RoboRally model){
         initImages();
-        setBackground(Color.WHITE);
+        setOpaque(false);
         setLayout(null);
         setSize(1000, 750);
         gameView = new GameView(model);
         cardView = new ChosenCardsView(testCards());
         add(gameView);
-        gameView.setLocation(6,23);
+        gameView.setLocation(6, 24);
         add(cardView);
-        cardView.setLocation(6,500);
+        cardView.setLocation(6, 552);
     }
 
     // Draw background
@@ -40,8 +38,13 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-        g.drawImage(bgText, 0, 0, getWidth(), getHeight(), this);
+    }
 
+    // Draw background
+    @Override
+    public void paintChildren(Graphics g) {
+        super.paintChildren(g);
+        g.drawImage(bgText, 0, 0, getWidth(), getHeight(), this);
     }
 
     private void initImages() {
