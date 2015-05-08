@@ -15,40 +15,92 @@ public abstract class GameBoard {
     private List<Position> startPositions = new ArrayList<>();
     private String name;
 
-
-    public GameBoard(String n){
+    public GameBoard(String n) {
 
         this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
         this.name = n;
 
-        //Fills the board with BlankTiles
-        for (int col = 0; col < Constants.NUM_COLS; col ++){
-            for(int row = 0; row < Constants.NUM_ROWS; row++){
-                board[col][row] = new BlankTile();
-            }
-        }
-
-        startPositions.add(new Position(14,5));
-        startPositions.add(new Position(14,6));
-        startPositions.add(new Position(14,3));
-        startPositions.add(new Position(14,8));
-        startPositions.add(new Position(14,1));
+        startPositions.add(new Position(14, 5));
+        startPositions.add(new Position(14, 6));
+        startPositions.add(new Position(14, 3));
+        startPositions.add(new Position(14, 8));
+        startPositions.add(new Position(14, 1));
     }
 
     //Used to create a specific gameboard
-    public abstract void fillGameBoard();
+    public void generateMap(int[][] map) {
+        //Fills the board with BlankTiles
+        for (int col = 0; col < Constants.NUM_COLS; col++) {
+            for (int row = 0; row < Constants.NUM_ROWS; row++) {
+                fillGameBoard(map[col][row]);
+            }
+        }
+    }
+
+    private void fillGameBoard(int tileNbr) {
+        switch (tileNbr) {
+            case 0:
+                new BlankTile();
+                break;
+            case 11:
+                new ConveyorTile(Constants.Directions.NORTH);
+                break;
+            case 12:
+                new ConveyorTile(Constants.Directions.WEST);
+                break;
+            case 13:
+                new ConveyorTile(Constants.Directions.SOUTH);
+                break;
+            case 14:
+                new ConveyorTile(Constants.Directions.EAST);
+                break;
+            case 15:
+                new ConveyorTile(Constants.Directions.NORTH_WEST);
+                break;
+            case 16:
+                new ConveyorTile(Constants.Directions.NORTH_EAST);
+                break;
+            case 17:
+                new ConveyorTile(Constants.Directions.SOUTH_WEST);
+                break;
+            case 18:
+                new ConveyorTile(Constants.Directions.SOUTH_EAST);
+                break;
+            case 21:
+                new RotationTile(Constants.Directions.WEST);
+                break;
+            case 22:
+                new RotationTile(Constants.Directions.EAST);
+                break;
+            case 31:
+                new WallTile(Constants.Directions.NORTH);
+                break;
+            case 32:
+                new WallTile(Constants.Directions.WEST);
+                break;
+            case 33:
+                new WallTile(Constants.Directions.SOUTH);
+                break;
+            case 34:
+                new WallTile(Constants.Directions.EAST);
+                break;
+            case 4:
+                new PitTile();
+                break;
+        }
+    }
 
     //Returns startpositions depending on number of players
-    public ArrayList<Position> getStartPositions(int nbrOfPlayers){
+    public ArrayList<Position> getStartPositions(int nbrOfPlayers) {
         ArrayList<Position> tempList = new ArrayList<>();
-        for (int i = 0; i <= nbrOfPlayers; i ++){
+        for (int i = 0; i <= nbrOfPlayers; i++) {
             tempList.add(startPositions.get(i));
         }
         return tempList;
     }
 
     //Returns the board array
-    public GameTile[][] getBoard(){
+    public GameTile[][] getBoard() {
         return board;
     }
 
@@ -56,6 +108,7 @@ public abstract class GameBoard {
     public GameTile getTile(Position pos) throws ArrayIndexOutOfBoundsException {
         return this.board[pos.getX()][pos.getY()];
     }
+
     // Return tile on given x and y coordinate
     public GameTile getTile(int x, int y) throws ArrayIndexOutOfBoundsException {
         return this.board[x][y];
@@ -64,20 +117,5 @@ public abstract class GameBoard {
     public String getName() {
         return this.name;
     }
-
-    // Print board
-    public void printBoard() {
-        System.out.println("-------------------------");
-        System.out.println("Board = " + name);
-        System.out.println("-------------------------");
-        for (int i = 0; i<this.board.length; i++) {
-            System.out.print("|");
-            for (int j = 0; j<this.board[i].length; j++) {
-                System.out.print(this.board[i][j].toString() + "|");
-            }
-            System.out.println();
-        }
-        System.out.println("-------------------------");
-    }
-
 }
+
