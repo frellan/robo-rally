@@ -15,8 +15,9 @@ import java.util.ArrayList;
  */
 public class GamePanel extends JPanel {
 
-    private BufferedImage bg;
-    private BufferedImage bgText;
+    private BufferedImage imageBG;
+    private BufferedImage componentsBG;
+    private BufferedImage textBG;
     private JPanel gameView;
     private JPanel cardView;
 
@@ -37,20 +38,22 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(componentsBG, 0, 0, getWidth(), getHeight(), this);
     }
 
     // Draw background
     @Override
     public void paintChildren(Graphics g) {
         super.paintChildren(g);
-        g.drawImage(bgText, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(textBG, 0, 0, getWidth(), getHeight(), this);
     }
 
     private void initImages() {
         try {
-            bg = ImageIO.read(this.getClass().getClassLoader().getResource("game_background.png"));
-            bgText = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
+            imageBG = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
+            componentsBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background.png"));
+            textBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Images could not be read");
         }

@@ -17,7 +17,7 @@ public class ChosenCardsView extends JPanel {
     public ChosenCardsView(ArrayList<RegisterCard> cards){
         this.cards = cards;
         setLayout(new BorderLayout());
-        setSize(700, 228);
+        setSize(700, 150);
     }
 
     @Override

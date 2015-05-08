@@ -3,6 +3,7 @@ package edu.chl.roborally;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.*;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.view.gui.GamePanel;
 import edu.chl.roborally.view.gui.GameView;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class TestGameView {
 
     public TestGameView() {
+
         Player player1 = new Player(1,"Dave");
         Player player2 = new Player(2,"Bob");
         GameBoard map = new VaultMap();
