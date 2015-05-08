@@ -9,7 +9,7 @@ public class Constants {
     public static final int NUMBER_OF_TURNS = 5;
 
     // GameBoard
-    public static final int TILE_SIZE = 42;
+    public static final int TILE_SIZE = 40;
     public static final int NUM_COLS = 16;
     public static final int NUM_ROWS = 12;
 

@@ -21,17 +21,14 @@ public class GamePanel extends JPanel {
     private JPanel cardView;
 
     public GamePanel(RoboRally model){
-
-        try {
-            bg = ImageIO.read(this.getClass().getClassLoader().getResource("game_background.png"));
-            bgText = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
-        } catch (java.io.IOException | NullPointerException e){
-            System.out.println("Images could not be read");
-        }
-
+        initImages();
         setBackground(Color.WHITE);
-        setLayout(new FlowLayout());
-        setSize(1000,700);
+        setLayout(null);
+        setSize(1000, 720);
+        gameView = new GameView(model);
+        cardView = new ChosenCardsView(model.getPlayers().get(0).getDealtCards());
+        add(gameView);
+        gameView.setLocation(6,23);
     }
 
     // Draw background
@@ -41,5 +38,14 @@ public class GamePanel extends JPanel {
         g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
         g.drawImage(bgText, 0, 0, getWidth(), getHeight(), this);
 
+    }
+
+    private void initImages() {
+        try {
+            bg = ImageIO.read(this.getClass().getClassLoader().getResource("game_background.png"));
+            bgText = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("Images could not be read");
+        }
     }
 }
