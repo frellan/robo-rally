@@ -10,7 +10,7 @@ public class RotatePlayerTest {
 
     @Test
     public void testAction() throws Exception {
-        Player p = new Player(0, "Name");
+        Player p = new Player(0, "RotatePlayer");
 
         p.setDirection(Constants.Directions.EAST);
 

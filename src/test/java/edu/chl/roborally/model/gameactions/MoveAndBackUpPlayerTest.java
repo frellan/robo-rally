@@ -17,8 +17,9 @@ public class MoveAndBackUpPlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, "name");
+        player = new Player(0, "MoveAndBackUpPlayer");
         player.setPosition(new Position(4,6));
+        System.out.println(player.getName() + " starts at position " + player.getPosition());
         player.setDirection(Constants.Directions.NORTH);
     }
 
