@@ -14,7 +14,7 @@ public class KillPlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, "name");
+        player = new Player(0, "KillPlayer");
         player.setPosition(new Position(3,5));
         player.takeDamage(5);
     }
