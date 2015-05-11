@@ -9,7 +9,7 @@ public class IslandKingMap extends GameBoard {
      * Blank = 0
      * ConVey N,W,S,E : NW,NE,SW,SE = 11,12,13,14 : 15,16,17,18
      * RotTile W,E = 21,22
-     * WallTile N,W,S,E = 31,32,33,34
+     * WallAttribute N,W,S,E = 31,32,33,34
      * PitAttribute = 4
      * StarTile = 5
      */

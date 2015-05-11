@@ -10,7 +10,7 @@
     <node x="977.5625" y="278.0">edu.chl.roborally.model.gameactions.MovePlayer</node>
     <node x="502.0625" y="447.0">edu.chl.roborally.model.tiles.ConveyorTile</node>
     <node x="691.0" y="1016.0">edu.chl.roborally.model.Constants</node>
-    <node x="273.0625" y="447.0">edu.chl.roborally.model.tiles.WallTile</node>
+    <node x="273.0625" y="447.0">edu.chl.roborally.model.tiles.attributes.WallAttribute</node>
     <node x="2002.2155085760194" y="447.0">edu.chl.roborally.view.View</node>
     <node x="173.01443993506518" y="278.0">edu.chl.roborally.model.tiles.GameTile</node>
     <node x="1483.1079545454545" y="447.0">edu.chl.roborally.model.cards.MoveThreeCard</node>
@@ -382,7 +382,7 @@
       <point x="134.46909804210918" y="635.0" />
       <point x="34.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.WallTile" target="edu.chl.roborally.model.Constants.Directions">
+    <edge source="edu.chl.roborally.model.tiles.attributes.WallAttribute" target="edu.chl.roborally.model.Constants.Directions">
       <point x="20.25" y="-14.5" />
       <point x="333.8125" y="69.0" />
       <point x="661.257942329135" y="69.0" />
@@ -400,7 +400,7 @@
       <point x="-5.75" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.WallTile" target="edu.chl.roborally.model.tiles.GameTile">
+    <edge source="edu.chl.roborally.model.tiles.attributes.WallAttribute" target="edu.chl.roborally.model.tiles.GameTile">
       <point x="-20.25" y="-14.5" />
       <point x="293.3125" y="417.0" />
       <point x="234.88943993506518" y="417.0" />
