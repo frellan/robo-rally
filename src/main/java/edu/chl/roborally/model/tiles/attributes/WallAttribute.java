@@ -49,22 +49,6 @@ public class WallAttribute implements Attribute {
                 message = "WS".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
-            case NORTH_WEST:
-                message = "WNW".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
-                break;
-            case NORTH_EAST:
-                message = "WNE".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
-                break;
-            case SOUTH_WEST:
-                message = "WSW".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
-                break;
-            case SOUTH_EAST:
-                message = "WSE".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
-                break;
         }
     }
 }
