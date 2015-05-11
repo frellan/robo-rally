@@ -28,6 +28,7 @@ public class TileFactory {
      * WallAttribute N,W,S,E = 31,32,33,34
      * PitAttribute = 4
      * StarTile = 5
+     * StartTile with wall S = 53
      */
 
     public GameTile createTile(int tileNbr) {
@@ -63,7 +64,7 @@ public class TileFactory {
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
                 break;
 
-            //Straight Conveyer NORTH with WALL
+            //Straight ConveyerNORTH with WALL
             case 112:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
                 tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
@@ -77,7 +78,7 @@ public class TileFactory {
                 tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
-            //Straight Conveyer WEST with WALL
+            //Straight ConveyerWEST with WALL
             case 121:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
                 tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
@@ -89,6 +90,12 @@ public class TileFactory {
             case 124:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
                 tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                break;
+
+            //Straight ConveyerEAST with WALL
+            case 143:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST));
+                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
 
             //Rotation
@@ -121,6 +128,11 @@ public class TileFactory {
             //Startposition
             case 5:
                 tile.addAttribute(new StartAttribute());
+                break;
+            //Startposition with WALL
+            case 53:
+                tile.addAttribute(new StartAttribute());
+                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
         }
         return tile;
