@@ -27,8 +27,8 @@ public class TestGameView {
         GamePanel main = new GamePanel(model);
         //GameView test = new GameView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
         frame.setSize(1000, 760);
+        frame.setResizable(false);
         frame.setLayout(new BorderLayout());
         frame.add(main);
         //frame.add(test);
