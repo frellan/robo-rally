@@ -19,8 +19,8 @@ public class TileFactory {
 
     /**
      * ConVey N,W,S,E : NW,NE,SW,SE = 11,12,13,14 : 15,16,17,18
-     * ConVey NORTH with wall N,W,S,E = 111,112,113,114
-     * ConVey WEST with wall N,W,S,E = 121,122,123,124
+     * ConVey NORTH with wall W,S,E = 112,113,114
+     * ConVey WEST with wall N,S,E = 121,123,124
      * ETC..
      *
      *
@@ -36,6 +36,7 @@ public class TileFactory {
             case 0:
                 tile.addAttribute(new BlankAttribute());
                 break;
+
             //Straight Conveyers NO walls
             case 11:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
@@ -61,21 +62,44 @@ public class TileFactory {
             case 18:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
                 break;
-            //Straight Conveyer NORTH with walls
-            case 111:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
-                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
-                break;
+
+            //Straight Conveyer NORTH with WALL
             case 112:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
                 tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
+            case 113:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                break;
+            case 114:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                break;
+
+            //Straight Conveyer WEST with WALL
+            case 121:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                break;
+            case 123:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                break;
+            case 124:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                break;
+
+            //Rotation
             case 21:
                 tile.addAttribute(new RotationAttribute(Constants.Directions.WEST));
                 break;
             case 22:
                 tile.addAttribute((new RotationAttribute(Constants.Directions.EAST)));
                 break;
+
+            //Walls
             case 31:
                 tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
                 break;
@@ -88,9 +112,13 @@ public class TileFactory {
             case 34:
                 tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
+
+            //Pit
             case 4:
                 tile.addAttribute(new PitAttribute());
                 break;
+
+            //Startposition
             case 5:
                 tile.addAttribute(new StartAttribute());
                 break;
