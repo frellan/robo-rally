@@ -25,12 +25,12 @@ public class GamePanel extends JPanel {
         initImages();
         setOpaque(false);
         setLayout(null);
-        gameView = new GameView(model);
-        cardView = new ChosenCardsView(testCards());
+        gameView = new BoardView(model);
+        cardView = new ControlView(testCards());
         add(gameView);
         gameView.setLocation(8, 23);
         add(cardView);
-        cardView.setLocation(8, 552);
+        cardView.setLocation(8, 543);
     }
 
     // Draw background

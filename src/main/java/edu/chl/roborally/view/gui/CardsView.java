@@ -10,14 +10,15 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-06.
  */
-public class ChosenCardsView extends JPanel {
+public class CardsView extends JPanel {
 
     private ArrayList<RegisterCard> cards;
 
-    public ChosenCardsView(ArrayList<RegisterCard> cards){
+    public CardsView(ArrayList<RegisterCard> cards){
         this.cards = cards;
         setLayout(new BorderLayout());
-        setSize(700, 150);
+        setSize(984, 170);
+        setBackground(Color.BLUE);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class TestGameView {
         RoboRally model = new RoboRally(players,map);
         JFrame frame = new JFrame();
         GamePanel main = new GamePanel(model);
-        //GameView test = new GameView(model);
+        //BoardView test = new BoardView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         if (Main.isWindows()) {
             frame.setSize(1005, 750);

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class GameView extends JPanel {
+public class BoardView extends JPanel {
     
     private GameBoard board;
     private ArrayList<Player> players;
@@ -23,10 +23,10 @@ public class GameView extends JPanel {
     private int width = (tileSize * columns) + columns;
     private int height = (tileSize * rows) + rows;
 
-    public GameView(RoboRally model) {
+    public BoardView(RoboRally model) {
         board = model.getGameBoard();
         players = model.getPlayers();
-        setSize(width,height);
+        setSize(width, height);
     }
 
     @Override
