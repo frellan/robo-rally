@@ -38,14 +38,14 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
-        g.drawImage(componentsBG, 0, 0, 1000, 740, this);
+        g.drawImage(componentsBG, 0, 1, 1000, 730, this);
     }
 
     // Draw background
     @Override
     public void paintChildren(Graphics g) {
         super.paintChildren(g);
-        g.drawImage(textBG, 0, 0, 1000, 740, this);
+        g.drawImage(textBG, 0, 1, 1000, 730, this);
     }
 
     private void initImages() {
