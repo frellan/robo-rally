@@ -1,5 +1,7 @@
 package edu.chl.roborally.utilities;
 
+import java.awt.*;
+
 /**
  * Created by fredrikkindstrom on 27/03/15.
  */
@@ -14,8 +16,8 @@ public class Constants {
     public static final int NUM_ROWS = 12;
 
     //CardView
-    public static final int CARD_WIDTH = 140;
-    public static final int CARD_HEIGHT = 140;
+    public static final int CARD_WIDTH = 105;
+    public static final int CARD_HEIGHT = 155;
 
     // Card move types
     public enum MoveTypes {

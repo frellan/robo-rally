@@ -13,14 +13,15 @@ import java.util.ArrayList;
 public class ControlView extends JPanel {
 
     private Player player;
-    private CardsView cardsView;
+    private CardView cardView;
 
     public ControlView(Player player){
         this.player = player;
         setLayout(null);
         setSize(984, 170);
-        cardsView = new CardsView(testCards());
-        add(cardsView);
+        cardView = new CardView(testCards());
+        add(cardView);
+        cardView.setLocation(6,7);
     }
 
     @Override
