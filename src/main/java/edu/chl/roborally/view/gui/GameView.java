@@ -27,6 +27,7 @@ public class GameView extends JPanel {
         board = model.getGameBoard();
         players = model.getPlayers();
         setSize(width,height);
+        System.out.print(width + " x " + height);
     }
 
     @Override
