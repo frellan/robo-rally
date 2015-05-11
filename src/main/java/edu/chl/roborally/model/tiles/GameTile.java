@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles;
 
+import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.utilities.Constants;
 import java.awt.*;
@@ -22,6 +23,12 @@ public class GameTile {
 
     public void addAttribute(Attribute attribute) {
         attributes.add(attribute);
+    }
+
+    public void getAction(Player player) {
+        for (Attribute attribute : this.attributes) {
+            attribute.doAction(player);
+        }
     }
 
 }

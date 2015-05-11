@@ -51,6 +51,7 @@ public class TileFactory {
         else if (tileNbr == 18) {
             tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
         }
+        else if (tileNbr == 21) {}
         return tile;
     }
 
