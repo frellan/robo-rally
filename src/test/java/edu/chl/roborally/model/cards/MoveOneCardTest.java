@@ -9,17 +9,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by henriknilson on 30/04/15.
+ * Created by Pertta on 15-04-30.
  */
-public class BackupCardTest {
+public class MoveOneCardTest {
 
     private Player player;
-    private BackupCard card;
-
+    private MoveOneCard card;
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, "cardBackUpPlayer");
+        player = new Player(0, "cardMoveOnePlayer");
         player.setPosition(new Position(4,6));
         player.setDirection(Constants.Directions.NORTH);
         System.out.println(player.getName() + " starts at position " + player.getPosition());
@@ -27,8 +26,8 @@ public class BackupCardTest {
 
     @Test
     public void testDoAction() throws Exception {
-        card = new BackupCard(10,false);
+        card = new MoveOneCard(10,false);
         card.doAction(player);
-        assertTrue(player.getPosition().getY() == 5 && player.getPosition().getX() == 4);
+        assertTrue(player.getPosition().getY() == 7 && player.getPosition().getX() == 4);
     }
 }

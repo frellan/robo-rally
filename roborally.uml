@@ -21,7 +21,7 @@
     <node x="72.0625" y="447.0">edu.chl.roborally.model.tiles.PitTile</node>
     <node x="1357.1079545454545" y="447.0">edu.chl.roborally.model.cards.BackupCard</node>
     <node x="644.6875" y="278.0">edu.chl.roborally.model.gameactions.RotatePlayer</node>
-    <node x="318.47912206480396" y="655.0">edu.chl.roborally.model.maps.VaultMap</node>
+    <node x="318.47912206480396" y="655.0">edu.chl.roborally.model.maps.IslandKingMap</node>
     <node x="1492.180871212121" y="863.0">edu.chl.roborally.controller.Controller</node>
     <node x="1633.4219426406926" y="942.0">edu.chl.roborally.Main</node>
     <node x="149.66072010691278" y="0.0">edu.chl.roborally.model.Position</node>
@@ -104,7 +104,7 @@
       <point x="747.4801645513571" y="49.0" />
       <point x="43.111111111111086" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.maps.VaultMap" target="edu.chl.roborally.model.tiles.RotationTile">
+    <edge source="edu.chl.roborally.model.maps.IslandKingMap" target="edu.chl.roborally.model.tiles.RotationTile">
       <point x="11.25" y="-14.5" />
       <point x="374.72912206480396" y="625.0" />
       <point x="428.0625" y="625.0" />
@@ -240,7 +240,7 @@
       <point x="967.0625" y="536.0" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.maps.VaultMap" target="edu.chl.roborally.model.tiles.GameTile">
+    <edge source="edu.chl.roborally.model.maps.IslandKingMap" target="edu.chl.roborally.model.tiles.GameTile">
       <point x="-11.25" y="-14.5" />
       <point x="352.22912206480396" y="625.0" />
       <point x="262.5625" y="625.0" />
@@ -304,7 +304,7 @@
       <point x="100.46909804210918" y="635.0" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.RoboRally" target="edu.chl.roborally.model.maps.VaultMap">
+    <edge source="edu.chl.roborally.model.RoboRally" target="edu.chl.roborally.model.maps.IslandKingMap">
       <point x="-25.63636363636374" y="-14.5" />
       <point x="1298.4488636363635" y="734.0" />
       <point x="363.47912206480396" y="734.0" />
@@ -376,7 +376,7 @@
       <point x="740.0625" y="337.0" />
       <point x="40.875" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.maps.VaultMap" target="edu.chl.roborally.model.maps.GameBoard">
+    <edge source="edu.chl.roborally.model.maps.IslandKingMap" target="edu.chl.roborally.model.maps.GameBoard">
       <point x="-33.75" y="-14.5" />
       <point x="329.72912206480396" y="635.0" />
       <point x="134.46909804210918" y="635.0" />
@@ -528,7 +528,7 @@
       <point x="1547.5975378787878" y="823.0" />
       <point x="7.9166666666667425" y="-14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.maps.VaultMap" target="edu.chl.roborally.model.tiles.ConveyorTile">
+    <edge source="edu.chl.roborally.model.maps.IslandKingMap" target="edu.chl.roborally.model.tiles.ConveyorTile">
       <point x="33.75" y="-14.5" />
       <point x="397.22912206480396" y="635.0" />
       <point x="559.0625" y="635.0" />
