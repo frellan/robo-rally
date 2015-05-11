@@ -1,6 +1,6 @@
 package edu.chl.roborally.model.tiles;
 
-import edu.chl.roborally.model.tiles.attributes.ConveyorAttribute;
+import edu.chl.roborally.model.tiles.attributes.*;
 import edu.chl.roborally.utilities.Constants;
 
 /**
@@ -30,6 +30,9 @@ public class TileFactory {
         if(tileNbr == 11) {
             tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
         }
+        else if (tileNbr == 0) {
+            tile.addAttribute(new BlankAttribute());
+        }
         else if (tileNbr == 12) {
             tile.addAttribute(new ConveyorAttribute((Constants.Directions.WEST)));
         }
@@ -51,7 +54,30 @@ public class TileFactory {
         else if (tileNbr == 18) {
             tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
         }
-        else if (tileNbr == 21) {}
+        else if (tileNbr == 21) {
+            tile.addAttribute(new RotationAttribute(Constants.Directions.WEST));
+        }
+        else if (tileNbr == 22) {
+            tile.addAttribute((new RotationAttribute(Constants.Directions.EAST)));
+        }
+        else if (tileNbr == 31) {
+            tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+        }
+        else if (tileNbr == 32) {
+            tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+        }
+        else if (tileNbr == 33) {
+            tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+        }
+        else if (tileNbr == 34) {
+            tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+        }
+        else if (tileNbr == 4) {
+            tile.addAttribute(new PitAttribute());
+        }
+        else if (tileNbr == 5) {
+            tile.addAttribute(new StartAttribute());
+        }
         return tile;
     }
 

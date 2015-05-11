@@ -28,9 +28,9 @@ public class WallAttribute implements Attribute {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        char[] message;
         g.setColor(new Color(204,204,204));
         g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        char[] message;
         g.setColor(Color.RED);
         switch (d) {
             case EAST:

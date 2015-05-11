@@ -31,4 +31,10 @@ public class GameTile {
         }
     }
 
+    public void draw(Graphics g, int x, int y) {
+        for (Attribute attribute : this.attributes) {
+            attribute.draw(g,x,y);
+        }
+    }
+
 }
