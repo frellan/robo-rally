@@ -100,10 +100,10 @@ public class TileFactory {
 
             //Rotation
             case 21:
-                tile.addAttribute(new RotationAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new RotationAttribute(Constants.Directions.LEFT));
                 break;
             case 22:
-                tile.addAttribute((new RotationAttribute(Constants.Directions.EAST)));
+                tile.addAttribute((new RotationAttribute(Constants.Directions.RIGHT)));
                 break;
 
             //Walls
