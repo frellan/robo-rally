@@ -17,9 +17,10 @@ public class GameTile {
 
     public GameTile() {
         attributes = new ArrayList<>();
+
     }
 
-    private void addAttribute(Attribute attribute) {
+    public void addAttribute(Attribute attribute) {
         attributes.add(attribute);
     }
 

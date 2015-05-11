@@ -1,5 +1,6 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
@@ -9,12 +10,12 @@ import java.awt.*;
 /**
  * Created by axel on 2015-03-30.
  */
-public class RotationTile extends GameTile {
+public class RotationAttribute implements Attribute {
 
     private Constants.Directions d;
     private String name = "R";
 
-    public RotationTile(Constants.Directions d){
+    public RotationAttribute(Constants.Directions d){
         this.d = d;
     }
 

@@ -1,5 +1,6 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.KillPlayer;
@@ -9,7 +10,7 @@ import java.awt.*;
 /**
  * Created by axel on 2015-03-31.
  */
-public class PitTile extends GameTile{
+public class PitAttribute implements Attribute {
 
     private String name = "P";
 

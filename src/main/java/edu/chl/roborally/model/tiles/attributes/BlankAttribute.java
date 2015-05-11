@@ -1,17 +1,18 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.tiles.GameTile;
 
 import java.awt.*;
 
 /**
  * Created by axel on 2015-03-26.
  */
-public class BlankTile extends GameTile {
+public class BlankAttribute implements Attribute {
 
     private String name = "B";
 
-    public BlankTile() {
+    public BlankAttribute() {
     }
 
     public void doAction(Player p){
