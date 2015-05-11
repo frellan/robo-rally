@@ -28,7 +28,7 @@ public class TestGameView {
         //BoardView test = new BoardView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         if (Main.isWindows()) {
-            frame.setSize(1005, 750);
+            frame.setSize(1006, 750);
         } else {
             frame.setSize(1000, 740);
         }
