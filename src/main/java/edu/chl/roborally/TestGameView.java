@@ -28,7 +28,7 @@ public class TestGameView {
         //GameView test = new GameView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(1000, 760);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLayout(new BorderLayout());
         frame.add(main);
         //frame.add(test);

@@ -30,8 +30,7 @@ public class GamePanel extends JPanel {
         add(gameView);
         gameView.setLocation(8, 24);
         add(cardView);
-        cardView.setLocation(6, 552);
-        System.out.println(this.getWidth() + " x " + this.getHeight());
+        cardView.setLocation(8, 552);
     }
 
     // Draw background
