@@ -3,6 +3,7 @@ package edu.chl.roborally.model.cards;
 import edu.chl.roborally.model.Player;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by fredrikkindstrom on 26/03/15.
@@ -12,6 +13,7 @@ public abstract class RegisterCard {
     private int points;
     private boolean isHidden;
     private String name;
+    protected BufferedImage image;
 
     public RegisterCard(int points, boolean isHidden, String name ) {
         this.points = points;
@@ -38,6 +40,7 @@ public abstract class RegisterCard {
     }
 
     public void draw(Graphics g, int x, int y){
-        g.drawChars(name.toCharArray(),0, name.length(), x + 30, y + 30);
+        g.drawImage(image,x,y,null);
+        g.drawChars(name.toCharArray(),0, name.length(), x + 20, y + 30);
     }
 }
