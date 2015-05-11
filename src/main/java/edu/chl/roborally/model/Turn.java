@@ -18,7 +18,6 @@ public class Turn {
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
-    private UI ui;
 
     /**
     * The index of the turn, given by round
@@ -28,7 +27,6 @@ public class Turn {
     public Turn(RoboRally r, int index, UI ui) {
         this.model = r;
         this.players = model.getPlayers();
-        this.ui = ui;
         this.index = index;
         startTurn();
     }

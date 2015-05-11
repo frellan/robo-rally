@@ -23,7 +23,9 @@ public class EventTram {
         SET_NAMES,
         SET_MAP,
         NEW_MODEL,
-        RUN_GAME
+        RUN_GAME,
+        CHOOSE_CARDS,
+        PLAYER_CHOOSE_CARDS
     }
 
     //for debugging

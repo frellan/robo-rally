@@ -1,6 +1,8 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.view.UI;
 
 import java.util.ArrayList;
@@ -8,10 +10,10 @@ import java.util.ArrayList;
 /**
  * Created by fredrikkindstrom on 31/03/15.
  */
-public class Round {
+
+public class Round implements IEventHandler {
 
     private RoboRally model;
-    private UI ui;
     private CardDeck deck;
     private ArrayList<Player> players;
 
@@ -19,17 +21,19 @@ public class Round {
 
     public Round(RoboRally r, UI ui) {
         this.model = r;
-        this.ui = ui;
         this.deck = model.getDeck();
         this.players = model.getPlayers();
+
+        EventTram.getInstance().register(this);
+
         startRound();
     }
 
     public void startRound() {
         deck.shuffle();
         dealCards();
-        chooseCardsToPlay();
         putBackPlayers();
+        chooseCardsToPlay();
     }
 
     //Help methods
@@ -60,8 +64,14 @@ public class Round {
     }
 
     private void chooseCardsToPlay() {
-        for (Player p : players) {
-            ui.chooseCards(p);
+        for (Player player : players) {
+            EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS, player);
+        }
+    }
+
+    @Override
+    public void onEvent(EventTram.Event evt, Object o) {
+        if (EventTram.Event.PLAYER_CHOOSE_CARDS == evt) {
         }
     }
 }

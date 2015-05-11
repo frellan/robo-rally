@@ -61,10 +61,15 @@ public class GUI extends UI implements IEventHandler{
 
     private void showGamePanel() {
         gamePanel = new GamePanel();
+        gamePanel.add(new GameView(model));
         main.remove(start);
         main.add(gamePanel);
         main.revalidate();
         main.repaint();
+    }
+
+    private void chooseCards() {
+
     }
 
     @Override
@@ -80,6 +85,8 @@ public class GUI extends UI implements IEventHandler{
             showSummary();
         } else if (EventTram.Event.RUN_GAME == evt) {
             showGamePanel();
+        } else if (EventTram.Event.CHOOSE_CARDS == evt) {
+            chooseCards();
         }
     }
 }
