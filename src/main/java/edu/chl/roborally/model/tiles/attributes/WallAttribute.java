@@ -1,5 +1,6 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 
@@ -8,12 +9,12 @@ import java.awt.*;
 /**
  * Created by axel on 2015-03-31.
  */
-public class WallTile extends GameTile{
+public class WallAttribute implements Attribute {
 
     private Constants.Directions d;
     private String name = "W";
 
-    public WallTile(Constants.Directions d){
+    public WallAttribute(Constants.Directions d){
         this.d = d;
     }
 
@@ -27,9 +28,9 @@ public class WallTile extends GameTile{
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        char[] message;
         g.setColor(new Color(204,204,204));
         g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        char[] message;
         g.setColor(Color.RED);
         switch (d) {
             case EAST:

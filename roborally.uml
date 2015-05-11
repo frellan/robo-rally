@@ -10,15 +10,15 @@
     <node x="977.5625" y="278.0">edu.chl.roborally.model.gameactions.MovePlayer</node>
     <node x="502.0625" y="447.0">edu.chl.roborally.model.tiles.ConveyorTile</node>
     <node x="691.0" y="1016.0">edu.chl.roborally.model.Constants</node>
-    <node x="273.0625" y="447.0">edu.chl.roborally.model.tiles.WallTile</node>
+    <node x="273.0625" y="447.0">edu.chl.roborally.model.tiles.attributes.WallAttribute</node>
     <node x="2002.2155085760194" y="447.0">edu.chl.roborally.view.View</node>
     <node x="173.01443993506518" y="278.0">edu.chl.roborally.model.tiles.GameTile</node>
     <node x="1483.1079545454545" y="447.0">edu.chl.roborally.model.cards.MoveThreeCard</node>
     <node x="9.21909804210918" y="655.0">edu.chl.roborally.model.maps.BlankMap</node>
     <node x="1099.5625" y="278.0">edu.chl.roborally.model.gameactions.KillPlayer</node>
-    <node x="163.0625" y="447.0">edu.chl.roborally.model.tiles.BlankTile</node>
+    <node x="163.0625" y="447.0">edu.chl.roborally.model.tiles.attributes.BlankAttribute</node>
     <node x="544.0" y="1016.0">edu.chl.roborally.model.Constants.MoveTypes</node>
-    <node x="72.0625" y="447.0">edu.chl.roborally.model.tiles.PitTile</node>
+    <node x="72.0625" y="447.0">edu.chl.roborally.model.tiles.attributes.PitAttribute</node>
     <node x="1357.1079545454545" y="447.0">edu.chl.roborally.model.cards.BackupCard</node>
     <node x="644.6875" y="278.0">edu.chl.roborally.model.gameactions.RotatePlayer</node>
     <node x="318.47912206480396" y="655.0">edu.chl.roborally.model.maps.IslandKingMap</node>
@@ -28,7 +28,7 @@
     <node x="1825.055926226551" y="0.0">edu.chl.roborally.model.cards.RegisterCard</node>
     <node x="1880.7022510002619" y="576.0">edu.chl.roborally.model.Turn</node>
     <node x="1206.7087801718476" y="0.0">edu.chl.roborally.model.Constants.Status</node>
-    <node x="374.0625" y="447.0">edu.chl.roborally.model.tiles.RotationTile</node>
+    <node x="374.0625" y="447.0">edu.chl.roborally.model.tiles.attributes.RotationTile</node>
     <node x="230.0" y="1016.0">edu.chl.roborally.model.RoboRallyTest</node>
     <node x="1213.4587801718476" y="129.0">edu.chl.roborally.model.Player</node>
     <node x="636.0625" y="447.0">edu.chl.roborally.model.cards.UTurnCard</node>
@@ -70,7 +70,7 @@
       <point x="1866.9650974025972" y="506.0" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.maps.GameBoard" target="edu.chl.roborally.model.tiles.BlankTile">
+    <edge source="edu.chl.roborally.model.maps.GameBoard" target="edu.chl.roborally.model.tiles.attributes.BlankAttribute">
       <point x="40.80000000000001" y="-14.5" />
       <point x="141.26909804210914" y="556.0" />
       <point x="207.5625" y="556.0" />
@@ -104,7 +104,7 @@
       <point x="747.4801645513571" y="49.0" />
       <point x="43.111111111111086" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.maps.IslandKingMap" target="edu.chl.roborally.model.tiles.RotationTile">
+    <edge source="edu.chl.roborally.model.maps.IslandKingMap" target="edu.chl.roborally.model.tiles.attributes.RotationTile">
       <point x="11.25" y="-14.5" />
       <point x="374.72912206480396" y="625.0" />
       <point x="428.0625" y="625.0" />
@@ -248,7 +248,7 @@
       <point x="223.63943993506518" y="427.0" />
       <point x="5.625" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.PitTile" target="edu.chl.roborally.model.tiles.GameTile">
+    <edge source="edu.chl.roborally.model.tiles.attributes.PitAttribute" target="edu.chl.roborally.model.tiles.GameTile">
       <point x="0.0" y="-14.5" />
       <point x="107.5625" y="427.0" />
       <point x="201.13943993506518" y="427.0" />
@@ -262,7 +262,7 @@
       <point x="2044.9155085760194" y="556.0" />
       <point x="12.200000000000045" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.RotationTile" target="edu.chl.roborally.model.gameactions.RotatePlayer">
+    <edge source="edu.chl.roborally.model.tiles.attributes.RotationTile" target="edu.chl.roborally.model.gameactions.RotatePlayer">
       <point x="36.0" y="-14.5" />
       <point x="464.0625" y="347.0" />
       <point x="658.3125" y="347.0" />
@@ -382,7 +382,7 @@
       <point x="134.46909804210918" y="635.0" />
       <point x="34.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.WallTile" target="edu.chl.roborally.model.Constants.Directions">
+    <edge source="edu.chl.roborally.model.tiles.attributes.WallAttribute" target="edu.chl.roborally.model.Constants.Directions">
       <point x="20.25" y="-14.5" />
       <point x="333.8125" y="69.0" />
       <point x="661.257942329135" y="69.0" />
@@ -400,7 +400,7 @@
       <point x="-5.75" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.WallTile" target="edu.chl.roborally.model.tiles.GameTile">
+    <edge source="edu.chl.roborally.model.tiles.attributes.WallAttribute" target="edu.chl.roborally.model.tiles.GameTile">
       <point x="-20.25" y="-14.5" />
       <point x="293.3125" y="417.0" />
       <point x="234.88943993506518" y="417.0" />
@@ -424,7 +424,7 @@
       <point x="1362.0245766102582" y="704.0" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.RotationTile" target="edu.chl.roborally.model.tiles.GameTile">
+    <edge source="edu.chl.roborally.model.tiles.attributes.RotationTile" target="edu.chl.roborally.model.tiles.GameTile">
       <point x="-36.0" y="-14.5" />
       <point x="392.0625" y="407.0" />
       <point x="246.13943993506518" y="407.0" />
@@ -438,7 +438,7 @@
       <point x="1923.055926226551" y="109.0" />
       <point x="42.0" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.BlankTile" target="edu.chl.roborally.model.tiles.GameTile">
+    <edge source="edu.chl.roborally.model.tiles.attributes.BlankAttribute" target="edu.chl.roborally.model.tiles.GameTile">
       <point x="0.0" y="-14.5" />
       <point x="207.5625" y="427.0" />
       <point x="212.38943993506518" y="427.0" />
@@ -456,7 +456,7 @@
       <point x="1238.101637314705" y="238.0" />
       <point x="-9.85714285714289" y="14.5" />
     </edge>
-    <edge source="edu.chl.roborally.model.tiles.RotationTile" target="edu.chl.roborally.model.Constants.Directions">
+    <edge source="edu.chl.roborally.model.tiles.attributes.RotationTile" target="edu.chl.roborally.model.Constants.Directions">
       <point x="0.0" y="-14.5" />
       <point x="428.0625" y="79.0" />
       <point x="672.0357201069127" y="79.0" />

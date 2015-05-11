@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.maps;
 
+import edu.chl.roborally.model.tiles.attributes.ConveyorAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.Position;
 import edu.chl.roborally.model.tiles.*;
@@ -38,43 +39,7 @@ public abstract class GameBoard {
     }
 
     private GameTile generateTile(int tileNbr) {
-        switch (tileNbr) {
-            case 0:
-                return new BlankTile();
-            case 11:
-                return new ConveyorTile(Constants.Directions.NORTH);
-            case 12:
-                return new ConveyorTile(Constants.Directions.WEST);
-            case 13:
-                return new ConveyorTile(Constants.Directions.SOUTH);
-            case 14:
-                return new ConveyorTile(Constants.Directions.EAST);
-            case 15:
-                return new ConveyorTile(Constants.Directions.NORTH_WEST);
-            case 16:
-                return new ConveyorTile(Constants.Directions.NORTH_EAST);
-            case 17:
-                return new ConveyorTile(Constants.Directions.SOUTH_WEST);
-            case 18:
-                return new ConveyorTile(Constants.Directions.SOUTH_EAST);
-            case 21:
-                return new RotationTile(Constants.Directions.WEST);
-            case 22:
-                return new RotationTile(Constants.Directions.EAST);
-            case 31:
-                return new WallTile(Constants.Directions.NORTH);
-            case 32:
-                return new WallTile(Constants.Directions.WEST);
-            case 33:
-                return new WallTile(Constants.Directions.SOUTH);
-            case 34:
-                return new WallTile(Constants.Directions.EAST);
-            case 4:
-                return new PitTile();
-            case 5:
-                return new StartTile();
-        }
-        return new BlankTile();
+         return TileFactory.getInstance().createTile(tileNbr);
     }
 
     //Returns startpositions depending on number of players

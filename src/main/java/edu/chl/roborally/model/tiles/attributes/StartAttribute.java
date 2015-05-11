@@ -1,7 +1,8 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.KillPlayer;
+import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.*;
 /**
  * Created by axel on 2015-03-31.
  */
-public class StartTile extends GameTile{
+public class StartAttribute implements Attribute {
 
     private String name = "S";
 

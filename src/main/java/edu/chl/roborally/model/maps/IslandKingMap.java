@@ -9,8 +9,8 @@ public class IslandKingMap extends GameBoard {
      * Blank = 0
      * ConVey N,W,S,E : NW,NE,SW,SE = 11,12,13,14 : 15,16,17,18
      * RotTile W,E = 21,22
-     * WallTile N,W,S,E = 31,32,33,34
-     * PitTile = 4
+     * WallAttribute N,W,S,E = 31,32,33,34
+     * PitAttribute = 4
      * StarTile = 5
      */
     private final int[][] map = {   { 0,  5, 0,  0, 0, 0, 31,  0, 31,  0,  0, 31,  0, 31, 0,  0},

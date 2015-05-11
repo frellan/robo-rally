@@ -1,5 +1,6 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
@@ -9,14 +10,15 @@ import java.awt.*;
 /**
  * Created by axel on 2015-03-30.
  */
-public class ConveyorTile extends GameTile {
+public class ConveyorAttribute implements Attribute {
 
     private Constants.Directions d;
 
-    public ConveyorTile(Constants.Directions d){
+    public ConveyorAttribute(Constants.Directions d){
         this.d = d;
     }
 
+    @Override
     public void doAction(Player p){
         new MovePlayer(p, d);
         //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
