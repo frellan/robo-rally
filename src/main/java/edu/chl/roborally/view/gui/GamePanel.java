@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
         gameView = new GameView(model);
         cardView = new ChosenCardsView(testCards());
         add(gameView);
-        gameView.setLocation(8, 24);
+        gameView.setLocation(8, 23);
         add(cardView);
         cardView.setLocation(8, 552);
     }
