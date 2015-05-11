@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.maps;
 
+import edu.chl.roborally.model.tiles.attributes.ConveyorAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.Position;
 import edu.chl.roborally.model.tiles.*;
@@ -42,21 +43,21 @@ public abstract class GameBoard {
             case 0:
                 return new BlankTile();
             case 11:
-                return new ConveyorTile(Constants.Directions.NORTH);
+                return new ConveyorAttribute(Constants.Directions.NORTH);
             case 12:
-                return new ConveyorTile(Constants.Directions.WEST);
+                return new ConveyorAttribute(Constants.Directions.WEST);
             case 13:
-                return new ConveyorTile(Constants.Directions.SOUTH);
+                return new ConveyorAttribute(Constants.Directions.SOUTH);
             case 14:
-                return new ConveyorTile(Constants.Directions.EAST);
+                return new ConveyorAttribute(Constants.Directions.EAST);
             case 15:
-                return new ConveyorTile(Constants.Directions.NORTH_WEST);
+                return new ConveyorAttribute(Constants.Directions.NORTH_WEST);
             case 16:
-                return new ConveyorTile(Constants.Directions.NORTH_EAST);
+                return new ConveyorAttribute(Constants.Directions.NORTH_EAST);
             case 17:
-                return new ConveyorTile(Constants.Directions.SOUTH_WEST);
+                return new ConveyorAttribute(Constants.Directions.SOUTH_WEST);
             case 18:
-                return new ConveyorTile(Constants.Directions.SOUTH_EAST);
+                return new ConveyorAttribute(Constants.Directions.SOUTH_EAST);
             case 21:
                 return new RotationTile(Constants.Directions.WEST);
             case 22:

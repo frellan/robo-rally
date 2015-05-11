@@ -1,4 +1,6 @@
-package edu.chl.roborally.model.tiles;
+package edu.chl.roborally.model.tiles.attributes;
+
+import edu.chl.roborally.model.Player;
 
 import java.awt.*;
 
@@ -7,7 +9,7 @@ import java.awt.*;
  */
 public interface Attribute {
 
-    void doAction();
+    void doAction(Player player);
     String toString();
     void draw(Graphics g, int x, int y);
 

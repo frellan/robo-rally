@@ -1,8 +1,7 @@
 package edu.chl.roborally.model.tiles;
 
+import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.model.Player;
-
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
  * Created by axel on 2015-03-26.
  */
 
-public abstract class GameTile {
+public class GameTile {
 
     private ArrayList<Attribute> attributes;
 
@@ -18,7 +17,6 @@ public abstract class GameTile {
 
     public GameTile() {
         attributes = new ArrayList<>();
-
     }
 
     private void addAttribute(Attribute attribute) {
