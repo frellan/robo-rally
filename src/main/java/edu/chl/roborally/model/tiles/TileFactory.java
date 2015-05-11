@@ -19,6 +19,11 @@ public class TileFactory {
 
     /**
      * ConVey N,W,S,E : NW,NE,SW,SE = 11,12,13,14 : 15,16,17,18
+     * ConVey NORTH with wall N,W,S,E = 111,112,113,114
+     * ConVey WEST with wall N,W,S,E = 121,122,123,124
+     * ETC..
+     *
+     *
      * RotTile W,E = 21,22
      * WallAttribute N,W,S,E = 31,32,33,34
      * PitAttribute = 4
@@ -27,56 +32,68 @@ public class TileFactory {
 
     public GameTile createTile(int tileNbr) {
         GameTile tile = new GameTile();
-        if(tileNbr == 11) {
-            tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
-        }
-        else if (tileNbr == 0) {
-            tile.addAttribute(new BlankAttribute());
-        }
-        else if (tileNbr == 12) {
-            tile.addAttribute(new ConveyorAttribute((Constants.Directions.WEST)));
-        }
-        else if (tileNbr == 13) {
-            tile.addAttribute((new ConveyorAttribute(Constants.Directions.SOUTH)));
-        }
-        else if (tileNbr == 14) {
-            tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST));
-        }
-        else if (tileNbr == 15) {
-            tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_WEST));
-        }
-        else if (tileNbr == 16) {
-            tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_EAST));
-        }
-        else if (tileNbr == 17) {
-            tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_WEST));
-        }
-        else if (tileNbr == 18) {
-            tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
-        }
-        else if (tileNbr == 21) {
-            tile.addAttribute(new RotationAttribute(Constants.Directions.WEST));
-        }
-        else if (tileNbr == 22) {
-            tile.addAttribute((new RotationAttribute(Constants.Directions.EAST)));
-        }
-        else if (tileNbr == 31) {
-            tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
-        }
-        else if (tileNbr == 32) {
-            tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
-        }
-        else if (tileNbr == 33) {
-            tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
-        }
-        else if (tileNbr == 34) {
-            tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
-        }
-        else if (tileNbr == 4) {
-            tile.addAttribute(new PitAttribute());
-        }
-        else if (tileNbr == 5) {
-            tile.addAttribute(new StartAttribute());
+        switch (tileNbr) {
+            case 0:
+                tile.addAttribute(new BlankAttribute());
+                break;
+            //Straight Conveyers NO walls
+            case 11:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                break;
+            case 12:
+                tile.addAttribute(new ConveyorAttribute((Constants.Directions.WEST)));
+                break;
+            case 13:
+                tile.addAttribute((new ConveyorAttribute(Constants.Directions.SOUTH)));
+                break;
+            case 14:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST));
+                break;
+            case 15:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_WEST));
+                break;
+            case 16:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_EAST));
+                break;
+            case 17:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_WEST));
+                break;
+            case 18:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
+                break;
+            //Straight Conveyer NORTH with walls
+            case 111:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                break;
+            case 112:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                break;
+            case 21:
+                tile.addAttribute(new RotationAttribute(Constants.Directions.WEST));
+                break;
+            case 22:
+                tile.addAttribute((new RotationAttribute(Constants.Directions.EAST)));
+                break;
+            case 31:
+                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                break;
+            case 32:
+                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                break;
+            case 33:
+                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                break;
+            case 34:
+                tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                break;
+            case 4:
+                tile.addAttribute(new PitAttribute());
+                break;
+            case 5:
+                tile.addAttribute(new StartAttribute());
+                break;
         }
         return tile;
     }
