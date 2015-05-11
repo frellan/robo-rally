@@ -19,6 +19,7 @@ public class ConveyorTile extends GameTile {
 
     public void doAction(Player p){
         new MovePlayer(p, d);
+        //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
     }
 
     public String toString() {
