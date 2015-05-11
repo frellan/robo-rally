@@ -14,7 +14,6 @@ public class MainFrame extends JFrame{
     public MainFrame() {
         setTitle("RoboRally");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        pack();
         setSize(1000, 760);
         setLayout(new BorderLayout());
         setResizable(false);
