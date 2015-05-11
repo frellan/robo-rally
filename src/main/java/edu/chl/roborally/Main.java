@@ -4,6 +4,8 @@ import edu.chl.roborally.controller.AppController;
 
 public final class Main {
 
+	private static String OS = null;
+
 	private Main() {
 		/* No instances allowed! */
 	}
@@ -13,4 +15,16 @@ public final class Main {
 		new TestGameView();
         //new TestCardView();
     }
+
+	private static String getOsName() {
+		if(OS == null) {
+			OS = System.getProperty("os.name");
+		}
+		return OS;
+	}
+
+	public static boolean isWindows()
+	{
+		return getOsName().startsWith("Windows");
+	}
 }

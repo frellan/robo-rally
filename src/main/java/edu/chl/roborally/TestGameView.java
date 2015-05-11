@@ -27,11 +27,16 @@ public class TestGameView {
         GamePanel main = new GamePanel(model);
         //GameView test = new GameView(model);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1000, 740);
+        if (Main.isWindows()) {
+            frame.setSize(1005, 768);
+        } else {
+            frame.setSize(1000, 740);
+        }
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
         frame.add(main);
         //frame.add(test);
         frame.setVisible(true);
+        System.out.print(Main.isWindows());
     }
 }
