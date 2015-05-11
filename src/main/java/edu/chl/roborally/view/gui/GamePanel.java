@@ -28,10 +28,9 @@ public class GamePanel extends JPanel {
         gameView = new GameView(model);
         cardView = new ChosenCardsView(testCards());
         add(gameView);
-        gameView.setLocation(5, 23);
+        gameView.setLocation(8, 24);
         add(cardView);
-        cardView.setLocation(6, 552);
-        System.out.println(this.getWidth() + " x " + this.getHeight());
+        cardView.setLocation(8, 552);
     }
 
     // Draw background
@@ -39,14 +38,14 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
-        g.drawImage(componentsBG, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(componentsBG, 0, 0, textBG.getWidth()*2, textBG.getHeight()*2, this);
     }
 
     // Draw background
     @Override
     public void paintChildren(Graphics g) {
         super.paintChildren(g);
-        g.drawImage(textBG, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(textBG, 0, 0, textBG.getWidth()*2, textBG.getHeight()*2, this);
     }
 
     private void initImages() {
