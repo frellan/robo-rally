@@ -14,11 +14,6 @@ public class StartAttribute implements Attribute {
 
     private String name = "S";
 
-    @Override
-    public void beforeAction(Player player) {
-
-    }
-
     public void doAction(Player p){}
 
     public String toString() {

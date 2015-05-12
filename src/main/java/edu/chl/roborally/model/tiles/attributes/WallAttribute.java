@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.gameactions.StopPlayer;
 import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
@@ -20,11 +21,11 @@ public class WallAttribute implements Attribute {
 
     @Override
     public void beforeAction(Player player) {
-        
+
     }
 
     public void doAction(Player p){
-        // new StopPlayer(p, d);
+        new StopPlayer(p);
     }
 
     public String toString() {

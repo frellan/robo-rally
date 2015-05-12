@@ -14,11 +14,6 @@ public class PitAttribute implements Attribute {
 
     private String name = "P";
 
-    @Override
-    public void beforeAction(Player player) {
-
-    }
-
     public void doAction(Player p){
          new KillPlayer(p);
     }

@@ -9,7 +9,6 @@ import java.awt.*;
  */
 public interface Attribute {
 
-    void beforeAction(Player player);
     void doAction(Player player);
     String toString();
     void draw(Graphics g, int x, int y);

@@ -18,10 +18,6 @@ public class ConveyorAttribute implements Attribute {
         this.d = d;
     }
 
-    @Override
-    public void beforeAction(Player player) {
-
-    }
 
     @Override
     public void doAction(Player p){

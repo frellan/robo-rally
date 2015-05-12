@@ -1,6 +1,8 @@
 package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.gameactions.StopPlayer;
+import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 
 import java.awt.*;
@@ -10,11 +12,6 @@ import java.awt.*;
  */
 public class BlankAttribute implements Attribute {
 
-
-    @Override
-    public void beforeAction(Player player) {
-
-    }
 
     @Override
     public void doAction(Player player) {
