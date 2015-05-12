@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
     private BufferedImage componentsBG;
     private BufferedImage textBG;
     private BoardView boardView;
+    private ConsoleView consoleView;
     private ControlView controlView;
 
     public GamePanel(RoboRally model){
@@ -25,11 +26,15 @@ public class GamePanel extends JPanel {
         setOpaque(false);
         setLayout(null);
         boardView = new BoardView(model);
+        consoleView = new ConsoleView();
         controlView = new ControlView(model.getPlayers().get(0));
         add(boardView);
         boardView.setLocation(8, 23);
+        add(consoleView);
+        consoleView.setLocation(678, 23);
         add(controlView);
         controlView.setLocation(8, 543);
+        System.out.print("PRUTT");
     }
 
     public void pickCards(Player player) {

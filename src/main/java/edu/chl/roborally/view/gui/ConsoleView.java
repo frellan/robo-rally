@@ -31,11 +31,12 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
         textArea.setBackground(Color.DARK_GRAY);
         textArea.setForeground(Color.GREEN);
 
-        JButton button = new JButton("clear");
-        button.addActionListener(this);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
 
-        this.add(new JScrollPane(textArea), BorderLayout.CENTER);
-        this.add(button, BorderLayout.SOUTH);
+        this.add(scrollPane, BorderLayout.CENTER);
+
+        this.setSize(315, 492);
 
         /* Redirection of system.out */
         try {

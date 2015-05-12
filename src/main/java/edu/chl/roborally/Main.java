@@ -15,13 +15,7 @@ public final class Main {
 
 	public static void main(String[] args) {
         //new AppController();
-
-		//new TestGameView();
-
-        new TestConsole();
-        for(int i = 0; i < 50; i ++){
-            System.out.println(i);
-        }
+		new TestGameView();
     }
 
 	private static String getOsName() {
