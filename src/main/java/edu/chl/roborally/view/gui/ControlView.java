@@ -12,21 +12,21 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel {
 
-    private Player player;
     private ChooseCardsView chooseCardsView;
     private CardView cardView;
 
-    public ControlView(Player player){
-        this.player = player;
+    public ControlView(){
         setLayout(null);
         setSize(984, 170);
     }
 
     public void pickCards(Player player) {
         chooseCardsView = new ChooseCardsView(player.getDealtCards());
-        remove(cardView);
+        removeAll();
         add(chooseCardsView);
         chooseCardsView.setLocation(4, 5);
+        revalidate();
+        repaint();
     }
 
     public void showCards() {

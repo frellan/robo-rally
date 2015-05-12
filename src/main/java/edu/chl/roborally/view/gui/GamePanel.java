@@ -26,8 +26,8 @@ public class GamePanel extends JPanel {
         setOpaque(false);
         setLayout(null);
         boardView = new BoardView(model);
+        controlView = new ControlView();
         consoleView = new ConsoleView();
-        controlView = new ControlView(model.getPlayers().get(0));
         add(boardView);
         boardView.setLocation(8, 23);
         add(consoleView);
@@ -41,7 +41,10 @@ public class GamePanel extends JPanel {
     }
 
     public void pickCards(Player player) {
+
         controlView.pickCards(player);
+        revalidate();
+        repaint();
     }
 
     public void showCards() {

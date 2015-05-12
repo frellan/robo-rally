@@ -7,7 +7,10 @@ import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.view.UI;
+import javafx.scene.layout.Border;
+
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +33,7 @@ public class GUI extends UI implements IEventHandler{
     @Override
     public void startMsg() {
         start = new StartPanel();
-        main.setContentPane(start);
+        main.add(start, BorderLayout.CENTER);
         main.revalidate();
     }
 
@@ -55,9 +58,9 @@ public class GUI extends UI implements IEventHandler{
     }
 
     private void showGamePanel() {
-        gamePanel = new GamePanel(model);
         main.remove(start);
-        main.add(gamePanel);
+        gamePanel = new GamePanel(model);
+        main.add(gamePanel, BorderLayout.CENTER);
         main.revalidate();
         main.repaint();
     }
@@ -65,29 +68,23 @@ public class GUI extends UI implements IEventHandler{
     @Override
     public void chooseCards(Player player) {
         gamePanel.pickCards(player);
+        main.revalidate();
+        main.repaint();
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        switch (evt) {
-            case INIT_SETUP:
-                menu();
-                break;
-            case SET_NAMES:
-                chooseMap(new MapFactory().getMaps());
-                break;
-            case SET_MAP:
-                break;
-            case NEW_MODEL:
-                this.model = (RoboRally) o;
-                showSummary();
-                break;
-            case RUN_GAME:
-                showGamePanel();
-                break;
-            case CHOOSE_CARDS:
-                chooseCards((Player) o);
-                break;
+        if(EventTram.Event.INIT_SETUP == evt){
+            menu();
+        } else if (EventTram.Event.SET_NAMES == evt) {
+            chooseMap(new MapFactory().getMaps());
+        } else if (EventTram.Event.NEW_MODEL == evt) {
+            this.model = (RoboRally) o;
+            showSummary();
+        } else if (EventTram.Event.SHOW_GAMEPANEL == evt) {
+            showGamePanel();
+        } else if (EventTram.Event.CHOOSE_CARDS == evt) {
+            chooseCards((Player) o);
         }
     }
 }
