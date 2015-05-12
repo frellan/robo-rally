@@ -50,11 +50,6 @@ public class GUI extends UI implements IEventHandler{
         start.chooseMap(maps);
     }
 
-    @Override
-    public void chooseCards(Player p) {
-
-    }
-
     private void showSummary() {
         start.summary(model.getPlayerNames(), model.getGameBoard().getName());
     }
@@ -67,8 +62,10 @@ public class GUI extends UI implements IEventHandler{
         main.repaint();
     }
 
-    private void chooseCards() {
-
+    @Override
+    public void chooseCards(Player player) {
+        // TODO show view with cards so player kan choose five
+        // TODO when player is done publish PLAYER_CHOOSEN_CARDS
     }
 
     @Override
@@ -85,7 +82,7 @@ public class GUI extends UI implements IEventHandler{
         } else if (EventTram.Event.RUN_GAME == evt) {
             showGamePanel();
         } else if (EventTram.Event.CHOOSE_CARDS == evt) {
-            chooseCards();
+            chooseCards((Player) o);
         }
     }
 }

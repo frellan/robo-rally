@@ -25,7 +25,7 @@ public class EventTram {
         NEW_MODEL,
         RUN_GAME,
         CHOOSE_CARDS,
-        PLAYER_CHOOSE_CARDS,
+        PLAYER_CHOOSEN_CARDS,
         NEW_TURN
     }
 

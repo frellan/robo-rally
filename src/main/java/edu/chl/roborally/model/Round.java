@@ -15,7 +15,7 @@ public class Round implements IEventHandler {
     private RoboRally model;
     private CardDeck deck;
     private ArrayList<Player> players;
-
+    private boolean nextPlayer = false;
     final int STANDARD_CARD_AMOUNT = 9;
 
     public Round(RoboRally r) {
@@ -64,13 +64,17 @@ public class Round implements IEventHandler {
 
     private void chooseCardsToPlay() {
         for (Player player : players) {
-            EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS, player);
+            while(nextPlayer) {
+                nextPlayer = false;
+                EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS, player);
+            }
         }
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if (EventTram.Event.PLAYER_CHOOSE_CARDS == evt) {
+        if (EventTram.Event.PLAYER_CHOOSEN_CARDS == evt) {
+            nextPlayer = true;
         }
     }
 }
