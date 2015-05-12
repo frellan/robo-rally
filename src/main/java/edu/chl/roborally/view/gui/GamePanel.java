@@ -1,5 +1,6 @@
 package edu.chl.roborally.view.gui;
 
+import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 
 import javax.imageio.ImageIO;
@@ -31,8 +32,8 @@ public class GamePanel extends JPanel {
         controlView.setLocation(8, 543);
     }
 
-    public void pickCards() {
-        controlView.pickCards();
+    public void pickCards(Player player) {
+        controlView.pickCards(player);
     }
 
     // Draw background

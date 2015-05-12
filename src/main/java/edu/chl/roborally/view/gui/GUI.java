@@ -64,8 +64,7 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void chooseCards(Player player) {
-        // TODO show view with cards so player kan choose five
-        // TODO when player is done publish PLAYER_CHOOSEN_CARDS
+        gamePanel.pickCards(player);
     }
 
     @Override
