@@ -12,6 +12,11 @@ public class BlankAttribute implements Attribute {
 
 
     @Override
+    public void beforeAction(Player player) {
+
+    }
+
+    @Override
     public void doAction(Player player) {
 
     }
