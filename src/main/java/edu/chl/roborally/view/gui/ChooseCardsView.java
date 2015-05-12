@@ -1,7 +1,6 @@
 package edu.chl.roborally.view.gui;
 
 import edu.chl.roborally.model.cards.RegisterCard;
-import edu.chl.roborally.utilities.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,28 +11,15 @@ import java.util.ArrayList;
  */
 public class ChooseCardsView extends JPanel {
 
-    private ArrayList<RegisterCard> cards;
+    private ArrayList<RegisterCard> inputCards;
+    private ArrayList<RegisterCard> outputCards;
 
     public ChooseCardsView(ArrayList<RegisterCard> cards){
-        this.cards = cards;
+        this.inputCards = cards;
         setLayout(new FlowLayout());
         setSize(588, 162);
-    }
-
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-        drawCards(g);
-    }
-
-    private void drawCards(Graphics g){
-        int gap = 5;
-        for (RegisterCard card : cards) {
-            g.drawRoundRect(gap, 5,
-                    Constants.CARD_SLOT_WIDTH, Constants.CARD_SLOT_HEIGHT,
-                    Constants.CARD_SLOT_ARC, Constants.CARD_SLOT_ARC);
-            card.draw(g, gap + 1, 6);
-            gap += Constants.CARD_WIDTH + Constants.CARD_GAP;
+        for (RegisterCard card : inputCards) {
+            add(new JRadioButton(card.toString()));
         }
     }
 }

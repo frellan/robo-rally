@@ -24,11 +24,6 @@ public class ControlView extends JPanel {
         cardView.setLocation(4,5);
     }
 
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-    }
-
     private ArrayList<RegisterCard> testCards() {
         RegisterCard card1 = new BackupCard(430, false);
         RegisterCard card2 = new MoveOneCard(270, false);
