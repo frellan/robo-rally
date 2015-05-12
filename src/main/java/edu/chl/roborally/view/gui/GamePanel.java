@@ -1,5 +1,6 @@
 package edu.chl.roborally.view.gui;
 
+import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 
 import javax.imageio.ImageIO;
@@ -16,8 +17,8 @@ public class GamePanel extends JPanel {
     private BufferedImage imageBG;
     private BufferedImage componentsBG;
     private BufferedImage textBG;
-    private JPanel boardView;
-    private JPanel controlView;
+    private BoardView boardView;
+    private ControlView controlView;
 
     public GamePanel(RoboRally model){
         initImages();
@@ -29,6 +30,10 @@ public class GamePanel extends JPanel {
         boardView.setLocation(8, 23);
         add(controlView);
         controlView.setLocation(8, 543);
+    }
+
+    public void pickCards(Player player) {
+        controlView.pickCards(player);
     }
 
     // Draw background

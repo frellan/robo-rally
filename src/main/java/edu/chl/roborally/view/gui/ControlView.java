@@ -13,20 +13,19 @@ import java.util.ArrayList;
 public class ControlView extends JPanel {
 
     private Player player;
+    private ChooseCardsView chooseCardsView;
     private CardView cardView;
 
     public ControlView(Player player){
         this.player = player;
         setLayout(null);
         setSize(984, 170);
-        cardView = new CardView(testCards());
-        add(cardView);
-        cardView.setLocation(4,5);
     }
 
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
+    public void pickCards(Player player) {
+        chooseCardsView = new ChooseCardsView(player.getDealtCards());
+        add(chooseCardsView);
+        chooseCardsView.setLocation(4,5);
     }
 
     private ArrayList<RegisterCard> testCards() {
