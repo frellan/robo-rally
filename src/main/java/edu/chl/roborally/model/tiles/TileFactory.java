@@ -25,10 +25,12 @@ public class TileFactory {
      *
      *
      * RotTile W,E = 21,22
-     * WallAttribute N,W,S,E = 31,32,33,34
-     * PitAttribute = 4
+     * WallTile N,W,S,E = 31,32,33,34
+     * PitTile = 4
      * StarTile = 5
      * StartTile with wall S = 53
+     * RepairTile = 6
+     * Repair with wall N = 61
      */
 
     public GameTile createTile(int tileNbr) {
@@ -100,10 +102,10 @@ public class TileFactory {
 
             //Rotation
             case 21:
-                tile.addAttribute(new RotationAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new RotationAttribute(Constants.Directions.LEFT));
                 break;
             case 22:
-                tile.addAttribute((new RotationAttribute(Constants.Directions.EAST)));
+                tile.addAttribute((new RotationAttribute(Constants.Directions.RIGHT)));
                 break;
 
             //Walls
@@ -133,6 +135,16 @@ public class TileFactory {
             case 53:
                 tile.addAttribute(new StartAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                break;
+
+            //Repair
+            case 6:
+                tile.addAttribute(new RepairAttribute());
+                break;
+            //Repair with WALL
+            case 61:
+                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new RepairAttribute());
                 break;
         }
         return tile;

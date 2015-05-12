@@ -121,6 +121,17 @@ public class Player {
     }
 
     /**
+     * Repairs and decreases the amount of damage on player
+     */
+    public void repair() {
+        if (this.damageTokens > 0) {
+            this.damageTokens = damageTokens--;
+        } else {
+            this.damageTokens = 0;
+        }
+    }
+
+    /**
      * Kill player
      */
     public void kill() {
