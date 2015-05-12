@@ -10,6 +10,7 @@ package edu.chl.roborally.view.gui;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 import javax.swing.*;
 
 public class ConsoleView extends JPanel implements ActionListener, Runnable {
@@ -17,6 +18,7 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
     private JTextArea textArea;
     private Thread inputReader;
     private Thread inputReader2;
+    private Font font;
 
     private final PipedInputStream pipedInputStream=new PipedInputStream();
     private final PipedInputStream pipedInputStream2=new PipedInputStream();
@@ -26,16 +28,32 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
         /* create the swing components and add them to the panel */
         this.setLayout(new BorderLayout());
 
-        textArea = new JTextArea();
+
+
+        URL fontUrl = this.getClass().getClassLoader().getResource("ArcadeClassic.ttf");
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, fontUrl.openStream()).deriveFont(Font.PLAIN,16);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+
+
+        textArea = new JTextArea(20,5);
         textArea.setEditable(false);
         textArea.setBackground(Color.DARK_GRAY);
         textArea.setForeground(Color.GREEN);
+        textArea.setFont(font);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
+        scrollPane.getHorizontalScrollBar().setBackground(Color.DARK_GRAY);
 
         this.add(scrollPane, BorderLayout.CENTER);
 
