@@ -17,7 +17,7 @@ public class CardView extends JPanel {
     public CardView(ArrayList<RegisterCard> cards){
         this.cards = cards;
         setLayout(new BorderLayout());
-        setSize(984, 170);
+        setSize(588, 162);
     }
 
     @Override
@@ -27,9 +27,13 @@ public class CardView extends JPanel {
     }
 
     private void drawCards(Graphics g){
-        for(int i = 0; i < cards.size(); i ++) {
-            g.drawRect(i * Constants.CARD_WIDTH, 0, Constants.CARD_WIDTH, Constants.CARD_HEIGHT);
-            cards.get(i).draw(g, i*Constants.CARD_WIDTH, i);
+        int gap = 5;
+        for (RegisterCard card : cards) {
+            g.drawRoundRect(gap, 5,
+                    Constants.CARD_SLOT_WIDTH, Constants.CARD_SLOT_HEIGHT,
+                    Constants.CARD_SLOT_ARC, Constants.CARD_SLOT_ARC);
+            card.draw(g, gap + 1, 6);
+            gap += Constants.CARD_WIDTH + Constants.CARD_GAP;
         }
     }
 }

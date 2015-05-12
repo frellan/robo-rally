@@ -16,8 +16,12 @@ public class Constants {
     public static final int NUM_ROWS = 12;
 
     //CardView
-    public static final int CARD_WIDTH = 105;
-    public static final int CARD_HEIGHT = 155;
+    public static final int CARD_SLOT_WIDTH = 105;
+    public static final int CARD_SLOT_HEIGHT = 152;
+    public static final int CARD_SLOT_ARC = 5;
+    public static final int CARD_WIDTH = 100;
+    public static final int CARD_HEIGHT = 150;
+    public static final int CARD_GAP = 18;
 
     // Card move types
     public enum MoveTypes {

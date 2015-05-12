@@ -21,7 +21,7 @@ public class ControlView extends JPanel {
         setSize(984, 170);
         cardView = new CardView(testCards());
         add(cardView);
-        cardView.setLocation(6,7);
+        cardView.setLocation(4,5);
     }
 
     @Override
