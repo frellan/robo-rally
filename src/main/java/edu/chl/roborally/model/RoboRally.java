@@ -2,7 +2,6 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.Position;
-
 import java.util.*;
 
 /**

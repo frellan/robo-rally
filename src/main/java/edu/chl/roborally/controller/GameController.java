@@ -5,7 +5,6 @@ import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.view.UI;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +16,6 @@ import java.util.ArrayList;
  */
 public class GameController implements IEventHandler {
 
-    private UI ui;
     private RoboRally model = null;
     private MapFactory mapFactory;
 
@@ -28,9 +26,8 @@ public class GameController implements IEventHandler {
     private boolean mapReady = false;
     private boolean nameReady = false;
 
-    public GameController(UI ui) {
+    public GameController() {
         this.mapFactory = new MapFactory();
-        this.ui = ui;
 
         EventTram.getInstance().register(this);
 
@@ -59,11 +56,11 @@ public class GameController implements IEventHandler {
         //TODO Ask model if i should run the game
         while(model.shouldIContinue()) {
 
-            new Round(model, ui);
+            new Round(model);
 
             for (int i = 1; i< Constants.NUMBER_OF_TURNS; i++) {
                 // TODO check end conditions before new turn
-                new Turn(model, i, ui);
+                new Turn(model, i);
             }
         }
     }

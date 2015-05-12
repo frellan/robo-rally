@@ -2,8 +2,6 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.view.UI;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,12 +20,12 @@ public class Turn {
     /**
     * The index of the turn, given by round
     */
-    private final int index;
+    private final int turnIndex;
 
-    public Turn(RoboRally r, int index, UI ui) {
+    public Turn(RoboRally r, int turnIndex) {
         this.model = r;
         this.players = model.getPlayers();
-        this.index = index;
+        this.turnIndex = turnIndex;
         startTurn();
     }
 
@@ -41,9 +39,13 @@ public class Turn {
 
     // Executing methods
 
+    /**
+     * Loop through all player and their cards and set card with the turnIndex
+     * to visible for all players
+     */
     private void revealProgrammedCards() {
         for (Player player : players) {
-            RegisterCard card = player.getProgrammedCard(index);
+            RegisterCard card = player.getProgrammedCard(turnIndex);
             card.setHidden(false);
             activeCards.add(card);
             activeCardPlayer.put(card,player);
@@ -55,17 +57,20 @@ public class Turn {
     }
 
     private void executeActiveCards() {
-        System.out.println("Card Actions");
+        System.out.println("----------------------------");
+        System.out.println("------- Card Actions -------");
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
                 card.doAction(player);
             }
         }
+        System.out.println("------ End card Actions -----");
     }
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        System.out.println("Tile Actions");
+        System.out.println("----------------------------");
+        System.out.println("------- Tile Actions -------");
         for (Player p : players) {
             if (p.isAlive()) {
                 try {
@@ -77,6 +82,7 @@ public class Turn {
                 }
             }
         }
+        System.out.println("----- End tile actions -----");
     }
 
     private void fireLasers() {

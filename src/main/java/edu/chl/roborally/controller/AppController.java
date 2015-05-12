@@ -26,7 +26,7 @@ public class AppController {
 
     public void initGameController() {
         if (gameController == null) {
-            gameController = new GameController(ui);
+            gameController = new GameController();
         } else {
             System.out.println("Game already running");
         }

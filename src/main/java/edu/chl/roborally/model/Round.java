@@ -3,7 +3,6 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
-import edu.chl.roborally.view.UI;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ public class Round implements IEventHandler {
 
     final int STANDARD_CARD_AMOUNT = 9;
 
-    public Round(RoboRally r, UI ui) {
+    public Round(RoboRally r) {
         this.model = r;
         this.deck = model.getDeck();
         this.players = model.getPlayers();
