@@ -24,8 +24,15 @@ public class ControlView extends JPanel {
 
     public void pickCards(Player player) {
         chooseCardsView = new ChooseCardsView(player.getDealtCards());
+        remove(cardView);
         add(chooseCardsView);
-        chooseCardsView.setLocation(4,5);
+        chooseCardsView.setLocation(4, 5);
+    }
+
+    public void showCards() {
+        cardView = new CardView(testCards());
+        add(cardView);
+        cardView.setLocation(4, 5);
     }
 
     private ArrayList<RegisterCard> testCards() {
