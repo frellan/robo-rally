@@ -20,6 +20,11 @@ public class ConveyorAttribute implements Attribute {
 
 
     @Override
+    public void beforeAction(Player player) {
+
+    }
+
+    @Override
     public void doAction(Player p){
         new MovePlayer(p, d);
         //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
