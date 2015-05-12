@@ -35,7 +35,7 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-
+        scrollPane.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
 
         this.add(scrollPane, BorderLayout.CENTER);
 
