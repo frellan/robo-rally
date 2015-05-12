@@ -22,7 +22,7 @@ public class ControlView extends JPanel {
         setSize(984, 170);
     }
 
-    protected void pickCards() {
+    public void pickCards() {
         chooseCardsView = new ChooseCardsView(player.getDealtCards());
         add(chooseCardsView);
         chooseCardsView.setLocation(4,5);
