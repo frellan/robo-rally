@@ -25,6 +25,7 @@ public class GameController implements IEventHandler {
 
     private boolean mapReady = false;
     private boolean nameReady = false;
+    private boolean newTurn = false;
 
     public GameController() {
         this.mapFactory = new MapFactory();
@@ -58,9 +59,13 @@ public class GameController implements IEventHandler {
 
             new Round(model);
 
-            for (int i = 1; i< Constants.NUMBER_OF_TURNS; i++) {
+            int turnIndex = 1;
+
+            while(newTurn && turnIndex < Constants.NUMBER_OF_TURNS) {
+                newTurn = false;
                 // TODO check end conditions before new turn
-                new Turn(model, i);
+                new Turn(model, turnIndex);
+                turnIndex++;
             }
         }
     }
@@ -96,6 +101,8 @@ public class GameController implements IEventHandler {
             readyForGame();
         } else if (evt == EventTram.Event.RUN_GAME) {
             this.runGame();
+        } else if (evt == EventTram.Event.NEW_TURN) {
+            newTurn = true;
         }
     }
 }
