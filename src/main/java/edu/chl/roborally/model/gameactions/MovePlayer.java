@@ -63,7 +63,6 @@ public class MovePlayer extends GameAction {
             case SOUTH_WEST:
                 super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
                 break;
-
         }
     }
 }

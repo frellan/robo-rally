@@ -26,7 +26,7 @@ public class TurnConveyorAttribute implements Attribute {
     @Override
     public void draw(Graphics g, int x, int y) {
         char[] message;
-        g.setColor(new Color(247,215,8));
+        g.setColor(Color.BLUE);
         g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(Color.BLACK);
         switch (d) {
