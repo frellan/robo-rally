@@ -22,7 +22,7 @@ public class TileFactory {
      * ConVey NORTH with wall W,S,E = 112,113,114
      * ConVey WEST with wall N,S,E = 121,123,124
      * ETC..
-     *
+     * TurnConVey NW = 011
      *
      * RotTile W,E = 21,22
      * WallTile N,W,S,E = 31,32,33,34
@@ -31,6 +31,7 @@ public class TileFactory {
      * StartTile with wall S = 53
      * RepairTile = 6
      * Repair with wall N = 61
+     *
      */
 
     public GameTile createTile(int tileNbr) {
@@ -98,6 +99,10 @@ public class TileFactory {
             case 143:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST));
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                break;
+            //Turning Conveyers
+            case 011:
+                tile.addAttribute(new TurnConveyorAttribute(Constants.Directions.NORTH_WEST));
                 break;
 
             //Rotation

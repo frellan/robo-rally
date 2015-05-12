@@ -14,7 +14,7 @@ public class RoboRally {
 
     // Variables
     private GameBoard gameBoard;
-    public ArrayList<Player> players;
+    private ArrayList<Player> players;
     private CardDeck deck;
     private boolean isGameRunning;
 

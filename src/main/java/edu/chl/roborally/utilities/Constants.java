@@ -44,6 +44,10 @@ public class Constants {
         NORTH_EAST,
         SOUTH_WEST,
         SOUTH_EAST,
+        WEST_NORTH,
+        WEST_SOUTH,
+        EAST_NORTH,
+        EAST_SOUTH,
         LEFT,
         RIGHT
     }

@@ -2,6 +2,9 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
+import edu.chl.roborally.model.gameactions.RotatePlayer;
+import edu.chl.roborally.utilities.Constants;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -74,6 +77,7 @@ public class Turn {
         for (Player p : players) {
             if (p.isAlive()) {
                 try {
+
                     model.getGameBoard().getTile(p.getPosition()).getAction(p);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // If player is out of bounds we kill him

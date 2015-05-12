@@ -64,9 +64,9 @@ public class Round implements IEventHandler {
     }
 
     private void chooseCardsToPlay() {
-        System.out.println("Number of players " + model.players.size());
-        if (chooserIndex < model.players.size()) {
-            chooser = model.players.get(chooserIndex);
+        System.out.println("Number of players " + model.getPlayers().size());
+        if (chooserIndex < model.getPlayers().size()) {
+            chooser = model.getPlayers().get(chooserIndex);
             EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS,chooser);
         } else {
             System.out.println("All Players have choosen their cards, fire event");
