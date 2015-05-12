@@ -38,12 +38,28 @@ public class TurnConveyorAttribute implements Attribute {
                 message = "CNE".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
+            case WEST_NORTH:
+                message = "CWN".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case WEST_SOUTH:
+                message = "CWS".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
             case SOUTH_WEST:
                 message = "CSW".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
             case SOUTH_EAST:
                 message = "CSE".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case EAST_NORTH:
+                message = "CEN".toCharArray();
+                g.drawChars(message, 0, message.length, x, y + 10);
+                break;
+            case EAST_SOUTH:
+                message = "CES".toCharArray();
                 g.drawChars(message, 0, message.length, x, y + 10);
                 break;
         }
