@@ -69,19 +69,25 @@ public class GUI extends UI implements IEventHandler{
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(EventTram.Event.INIT_SETUP == evt){
-            menu();
-        } else if (EventTram.Event.SET_NAMES == evt) {
-            chooseMap(new MapFactory().getMaps());
-        } else if (EventTram.Event.SET_MAP == evt) {
-
-        } else if (EventTram.Event.NEW_MODEL == evt) {
-            this.model = (RoboRally) o;
-            showSummary();
-        } else if (EventTram.Event.RUN_GAME == evt) {
-            showGamePanel();
-        } else if (EventTram.Event.CHOOSE_CARDS == evt) {
-            chooseCards((Player) o);
+        switch (evt) {
+            case INIT_SETUP:
+                menu();
+                break;
+            case SET_NAMES:
+                chooseMap(new MapFactory().getMaps());
+                break;
+            case SET_MAP:
+                break;
+            case NEW_MODEL:
+                this.model = (RoboRally) o;
+                showSummary();
+                break;
+            case RUN_GAME:
+                showGamePanel();
+                break;
+            case CHOOSE_CARDS:
+                chooseCards((Player) o);
+                break;
         }
     }
 }
