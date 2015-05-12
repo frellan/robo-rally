@@ -35,5 +35,6 @@ public class TestGameView {
         frame.setLayout(new BorderLayout());
         frame.add(main);
         frame.setVisible(true);
+        main.showCards();
     }
 }

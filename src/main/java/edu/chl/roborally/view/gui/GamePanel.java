@@ -36,6 +36,10 @@ public class GamePanel extends JPanel {
         controlView.pickCards(player);
     }
 
+    public void showCards() {
+        controlView.showCards();
+    }
+
     // Draw background
     @Override
     public void paintComponent(Graphics g) {
