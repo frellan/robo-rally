@@ -38,8 +38,10 @@ public class CardDeck {
      * @return The amount of cards.
      */
     public ArrayList<RegisterCard> getCards(int amount) {
+        System.out.println(amount + "  " + deck.size());
         ArrayList<RegisterCard> tempDeck = new ArrayList<>();;
         for (int i = 0; i < amount; i++) {
+            System.out.println("In for loop check cards " + i);
             tempDeck.add(deck.get(i));
             deck.remove(i);
         }
@@ -104,6 +106,8 @@ public class CardDeck {
             deck.add(new UTurnCard(point,true));
             point = point + 10;
         }
+
+        System.out.println("New deck size " + deck.size());
     }
 
     /**

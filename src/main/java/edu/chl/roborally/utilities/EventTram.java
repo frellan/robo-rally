@@ -27,7 +27,6 @@ public class EventTram {
         CHOOSE_CARDS,
         PLAYER_CHOOSEN_CARDS,
         NEW_TURN,
-        SET_CARDS
     }
 
     //for debugging

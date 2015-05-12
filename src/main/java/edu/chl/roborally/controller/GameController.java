@@ -26,6 +26,7 @@ public class GameController implements IEventHandler {
     private boolean mapReady = false;
     private boolean nameReady = false;
     private boolean newTurn = false;
+    private boolean newRound = true;
 
     public GameController() {
         this.mapFactory = new MapFactory();
@@ -57,15 +58,21 @@ public class GameController implements IEventHandler {
         //TODO Ask model if i should run the game
         while(model.shouldIContinue()) {
 
-            new Round(model);
+            while(newRound) {
+                new Round(model);
+                newRound = false;
+            }
 
             int turnIndex = 1;
 
-            while(newTurn && turnIndex < Constants.NUMBER_OF_TURNS) {
+            while(newTurn) {
                 newTurn = false;
                 // TODO check end conditions before new turn
                 new Turn(model, turnIndex);
                 turnIndex++;
+                if (turnIndex == Constants.NUMBER_OF_TURNS) {
+                    newRound = true;
+                }
             }
         }
     }

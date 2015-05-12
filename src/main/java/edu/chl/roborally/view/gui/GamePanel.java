@@ -33,6 +33,7 @@ public class GamePanel extends JPanel {
     }
 
     public void pickCards(Player player) {
+
         controlView.pickCards(player);
     }
 

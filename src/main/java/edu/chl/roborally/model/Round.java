@@ -1,9 +1,9 @@
 package edu.chl.roborally.model;
 
+import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
-
 import java.util.ArrayList;
 
 /**
@@ -17,6 +17,8 @@ public class Round implements IEventHandler {
     private ArrayList<Player> players;
     private boolean nextPlayer = false;
     final int STANDARD_CARD_AMOUNT = 9;
+    private Player chooser;
+    private int chooserIndex = 0;
 
     public Round(RoboRally r) {
         this.model = r;
@@ -24,7 +26,6 @@ public class Round implements IEventHandler {
         this.players = model.getPlayers();
 
         EventTram.getInstance().register(this);
-
         startRound();
     }
 
@@ -58,23 +59,30 @@ public class Round implements IEventHandler {
                 // Number of cards given to player are reduced by the number of damagetokens
                 int nbrOfCardsGivenToPlayer = STANDARD_CARD_AMOUNT - p.getDamageTokens();
                 p.setDealtCards(deck.getCards(nbrOfCardsGivenToPlayer));
+                System.out.println("Delat cards to player " + p.getName());
             }
         }
     }
 
     private void chooseCardsToPlay() {
-        for (Player player : players) {
-            while(nextPlayer) {
-                nextPlayer = false;
-                EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS, player);
-            }
+        System.out.println("Number of players " + model.players.size());
+        if (chooserIndex < model.players.size()) {
+            chooser = model.players.get(chooserIndex);
+            EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS,chooser);
+        } else {
+            System.out.println("All Players have choosen their cards, fire event");
         }
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         if (EventTram.Event.PLAYER_CHOOSEN_CARDS == evt) {
-            nextPlayer = true;
+            ArrayList<RegisterCard> cards = (ArrayList<RegisterCard>) o;
+            for (int i = 0; i<cards.size(); i++) {
+                chooser.setProgrammedCard(i,cards.get(i));
+            }
+            chooserIndex++;
+            chooseCardsToPlay();
         }
     }
 }
