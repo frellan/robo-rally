@@ -36,7 +36,7 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
 
         this.add(scrollPane, BorderLayout.CENTER);
 
-        this.setSize(315, 492);
+        this.setSize(314, 492);
 
         /* Redirection of system.out */
         try {
