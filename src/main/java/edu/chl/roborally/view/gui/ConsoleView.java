@@ -32,11 +32,14 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
         textArea.setForeground(Color.GREEN);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
 
         this.add(scrollPane, BorderLayout.CENTER);
 
-        this.setSize(315, 492);
+        this.setSize(314, 492);
 
         /* Redirection of system.out */
         try {
