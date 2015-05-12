@@ -59,7 +59,6 @@ public class Round implements IEventHandler {
                 // Number of cards given to player are reduced by the number of damagetokens
                 int nbrOfCardsGivenToPlayer = STANDARD_CARD_AMOUNT - p.getDamageTokens();
                 p.setDealtCards(deck.getCards(nbrOfCardsGivenToPlayer));
-                System.out.println("Delat cards to player " + p.getName());
             }
         }
     }

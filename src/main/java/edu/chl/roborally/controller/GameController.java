@@ -6,6 +6,7 @@ import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.Constants;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Pertta on 15-04-23.
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * is controlled here.
  *
  */
-public class GameController implements IEventHandler {
+public class GameController extends Thread implements IEventHandler {
 
     private RoboRally model = null;
     private MapFactory mapFactory;
@@ -55,26 +56,16 @@ public class GameController implements IEventHandler {
      * should continue
      */
     private void runGame() {
-        //TODO Ask model if i should run the game
-        while(model.shouldIContinue()) {
-
-            while(newRound) {
-                new Round(model);
-                newRound = false;
-            }
-
-            int turnIndex = 1;
-
-            while(newTurn) {
-                newTurn = false;
-                // TODO check end conditions before new turn
-                new Turn(model, turnIndex);
-                turnIndex++;
-                if (turnIndex == Constants.NUMBER_OF_TURNS) {
-                    newRound = true;
-                }
-            }
-        }
+        new Round(model);
+       // newRound = false;
+        //int turnIndex = 1;
+        //newTurn = false;
+        // TODO check end conditions before new turn
+        //new Turn(model, turnIndex);
+        //turnIndex++;
+        //if (turnIndex == Constants.NUMBER_OF_TURNS) {
+         //   newRound = true;
+       // }
     }
 
     private ArrayList<Player> createPlayers(ArrayList<String> names) {
@@ -107,6 +98,7 @@ public class GameController implements IEventHandler {
             nameReady = true;
             readyForGame();
         } else if (evt == EventTram.Event.RUN_GAME) {
+            EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null);
             this.runGame();
         } else if (evt == EventTram.Event.NEW_TURN) {
             newTurn = true;

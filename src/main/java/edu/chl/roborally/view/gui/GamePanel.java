@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
         setOpaque(false);
         setLayout(null);
         boardView = new BoardView(model);
-        controlView = new ControlView(model.getPlayers().get(0));
+        controlView = new ControlView();
         add(boardView);
         boardView.setLocation(8, 23);
         add(controlView);
@@ -35,6 +35,8 @@ public class GamePanel extends JPanel {
     public void pickCards(Player player) {
 
         controlView.pickCards(player);
+        revalidate();
+        repaint();
     }
 
     // Draw background

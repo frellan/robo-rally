@@ -12,12 +12,10 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel {
 
-    private Player player;
     private ChooseCardsView chooseCardsView;
     private CardView cardView;
 
-    public ControlView(Player player){
-        this.player = player;
+    public ControlView(){
         setLayout(null);
         setSize(984, 170);
     }
@@ -25,21 +23,8 @@ public class ControlView extends JPanel {
     public void pickCards(Player player) {
         chooseCardsView = new ChooseCardsView(player.getDealtCards());
         add(chooseCardsView);
-        chooseCardsView.setLocation(4,5);
-    }
-
-    private ArrayList<RegisterCard> testCards() {
-        RegisterCard card1 = new BackupCard(430, false);
-        RegisterCard card2 = new MoveOneCard(270, false);
-        RegisterCard card3 = new MoveTwoCard(670, false);
-        RegisterCard card4 = new RotateLeftCard(200, false);
-        RegisterCard card5 = new RotateRightCard(230, false);
-        ArrayList<RegisterCard> cards = new ArrayList<>();
-        cards.add(card1);
-        cards.add(card2);
-        cards.add(card3);
-        cards.add(card4);
-        cards.add(card5);
-        return cards;
+        chooseCardsView.setLocation(4, 5);
+        revalidate();
+        repaint();
     }
 }
