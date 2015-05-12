@@ -46,7 +46,7 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
             textArea.append("Couldn't redirect System.out" + io.getMessage());
             textArea.append("Error message: \n" + io.getMessage());
         } catch (SecurityException se) {
-            textArea.append("Couldn't redirect System.err");
+            textArea.append("Couldn't redirect System.out");
             textArea.append("Error message: \n" + se.getMessage());
         }
 
@@ -55,9 +55,11 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
             PipedOutputStream pipedOutputStream2 = new PipedOutputStream(this.pipedInputStream2);
             System.setErr(new PrintStream(pipedOutputStream2, true));
         } catch (java.io.IOException io) {
-            textArea.append("Couldn't redirect STDERR to this console\n" + io.getMessage());
+            textArea.append("Couldn't redirect System.err");
+            textArea.append("Error message: \n" + io.getMessage());
         } catch (SecurityException se) {
-            textArea.append("Couldn't redirect STDERR to this console\n" + se.getMessage());
+            textArea.append("Couldn't redirect System.err");
+            textArea.append("Error message: \n" + se.getMessage());
         }
 
 
