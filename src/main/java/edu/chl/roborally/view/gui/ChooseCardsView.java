@@ -17,18 +17,15 @@ public class ChooseCardsView extends JPanel implements ActionListener{
     private ArrayList<RegisterCard> inputCards = new ArrayList<>();
     private ArrayList<RegisterCard> outputCards = new ArrayList<>();
     private ArrayList<JCheckBox> cardButtons = new ArrayList<>();
-    private ButtonGroup group;
     private JButton doneButton;
 
     public ChooseCardsView(ArrayList<RegisterCard> cards){
         this.inputCards = cards;
         setLayout(new FlowLayout());
         setSize(588, 162);
-        group = new ButtonGroup();
         for (RegisterCard card : inputCards) {
             JCheckBox temp = new JCheckBox(card.toString());
             cardButtons.add(temp);
-            group.add(temp);
             add(temp);
         }
         doneButton = new JButton("Done");
