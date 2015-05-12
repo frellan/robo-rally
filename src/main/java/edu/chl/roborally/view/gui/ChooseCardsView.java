@@ -16,7 +16,7 @@ public class ChooseCardsView extends JPanel implements ActionListener{
 
     private ArrayList<RegisterCard> inputCards = new ArrayList<>();
     private ArrayList<RegisterCard> outputCards = new ArrayList<>();
-    private ArrayList<JCheckBox> cardButtons;
+    private ArrayList<JCheckBox> cardButtons = new ArrayList<>();
     private ButtonGroup group;
     private JButton doneButton;
 
