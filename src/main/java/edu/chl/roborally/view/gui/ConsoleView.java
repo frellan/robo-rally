@@ -15,8 +15,8 @@ import javax.swing.*;
 public class ConsoleView extends JPanel implements ActionListener, Runnable {
 
     private JTextArea textArea;
-    private Thread reader;
-    private Thread reader2;
+    private Thread inputReader;
+    private Thread inputReader2;
 
     private final PipedInputStream pipedInputStream=new PipedInputStream();
     private final PipedInputStream pipedInputStream2=new PipedInputStream();
@@ -70,13 +70,13 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
       	Starting the two threads,
       	one for System.out and one for System.err
       	*/
-        reader = new Thread(this);
-        reader.setDaemon(true);
-        reader.start();
+        inputReader = new Thread(this);
+        inputReader.setDaemon(true);
+        inputReader.start();
 
-        reader2 = new Thread(this);
-        reader2.setDaemon(true);
-        reader2.start();
+        inputReader2 = new Thread(this);
+        inputReader2.setDaemon(true);
+        inputReader2.start();
     }
 
     public synchronized void actionPerformed(ActionEvent evt)
@@ -89,26 +89,26 @@ public class ConsoleView extends JPanel implements ActionListener, Runnable {
     public synchronized void run() {
         try
         {
-            while (Thread.currentThread() == reader)
+            while (Thread.currentThread() == inputReader)
             {
                 try { 
                     this.wait(100);
                 }catch(InterruptedException ie) {}
                 
-                if (pipedInputStream.available()!=0)
+                if (pipedInputStream.available() != 0)
                 {
                     String input = this.readLine(pipedInputStream);
                     textArea.append(input);
                 }
             }
 
-            while (Thread.currentThread()==reader2)
+            while (Thread.currentThread() == inputReader2)
             {
                 try { 
                     this.wait(100);
                 }catch(InterruptedException ie) {}
                 
-                if (pipedInputStream2.available()!=0)
+                if (pipedInputStream2.available() != 0)
                 {
                     String input = this.readLine(pipedInputStream2);
                     textArea.append(input);
