@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.Constants;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,6 +42,7 @@ public abstract class RegisterCard {
 
     public void draw(Graphics g, int x, int y){
         g.drawImage(image,x,y,null);
+        g.drawRect(x,y, Constants.CARD_WIDTH,Constants.CARD_HEIGHT);
         g.drawChars(name.toCharArray(),0, name.length(), x + 20, y + 30);
     }
 }

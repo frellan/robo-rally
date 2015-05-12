@@ -16,7 +16,7 @@ public class BackupCard extends RegisterCard{
     public BackupCard(int points, boolean isHidden) {
         super(points, isHidden, "Back Up");
         try {
-            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
+            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("tupp.jpg"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card image could not be read");
         }
