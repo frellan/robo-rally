@@ -18,7 +18,7 @@ public class WallAttribute implements Attribute {
     public WallAttribute(Constants.Directions d){
         this.d = d;
     }
-    
+
 
     public void doAction(Player p){
         new StopPlayer(p);
