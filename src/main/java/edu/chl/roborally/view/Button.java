@@ -1,4 +1,4 @@
-package edu.chl.roborally.view.gui;
+package edu.chl.roborally.view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

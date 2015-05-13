@@ -1,9 +1,6 @@
 package edu.chl.roborally;
 
 import edu.chl.roborally.controller.AppController;
-import edu.chl.roborally.view.gui.ConsoleView;
-
-import javax.swing.*;
 
 public final class Main {
 
@@ -14,8 +11,8 @@ public final class Main {
 	}
 
 	public static void main(String[] args) {
-        //new AppController();
-		new TestGameView();
+        new AppController();
+		//new TestGameView();
     }
 
 	private static String getOsName() {

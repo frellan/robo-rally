@@ -1,7 +1,6 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.view.UI;
-import edu.chl.roborally.view.gui.GUI;
+import edu.chl.roborally.view.GUI;
 
 public class AppController {
 
@@ -9,14 +8,14 @@ public class AppController {
      * @var ui
      *  The ui variable holds the chosen user interface
      */
-    private final UI ui;
+    private final GUI gui;
     private GameController gameController;
     private boolean appRunning;
 
 	public AppController() {
 
         this.appRunning = true;
-        ui = new GUI(this);
+        gui = new GUI(this);
 
 	}
 
