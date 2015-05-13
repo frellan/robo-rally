@@ -1,6 +1,6 @@
 package edu.chl.roborally;
 
-import edu.chl.roborally.view.gui.ConsoleView;
+import edu.chl.roborally.view.ConsoleView;
 
 import javax.swing.*;
 import java.awt.*;

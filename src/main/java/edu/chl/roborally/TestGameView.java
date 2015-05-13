@@ -3,7 +3,7 @@ package edu.chl.roborally;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.*;
-import edu.chl.roborally.view.gui.GamePanel;
+import edu.chl.roborally.view.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package edu.chl.roborally.view.gui;
+package edu.chl.roborally.view;
 
 /**
  * Created by Axel Aringskog on 2015-05-12.

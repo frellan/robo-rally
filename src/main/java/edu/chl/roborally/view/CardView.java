@@ -1,4 +1,4 @@
-package edu.chl.roborally.view.gui;
+package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.utilities.Constants;
