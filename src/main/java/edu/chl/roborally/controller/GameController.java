@@ -26,6 +26,7 @@ public class GameController extends Thread implements IEventHandler {
 
     private boolean mapReady = false;
     private boolean nameReady = false;
+    private int turnIndex = 0;
     private boolean newTurn = false;
     private boolean newRound = true;
 
@@ -56,16 +57,14 @@ public class GameController extends Thread implements IEventHandler {
      * should continue
      */
     private void runGame() {
-        new Round(model);
-       // newRound = false;
-        //int turnIndex = 1;
-        //newTurn = false;
-        // TODO check end conditions before new turn
-        //new Turn(model, turnIndex);
-        //turnIndex++;
-        //if (turnIndex == Constants.NUMBER_OF_TURNS) {
-         //   newRound = true;
-       // }
+        if (newRound) {
+            new Round(model);
+            newRound = false;
+        } else if (turnIndex < 5 && newTurn) {
+            new Turn(model,turnIndex);
+            turnIndex++;
+            newTurn = false;
+        }
     }
 
     private ArrayList<Player> createPlayers(ArrayList<String> names) {
@@ -99,9 +98,11 @@ public class GameController extends Thread implements IEventHandler {
             readyForGame();
         } else if (evt == EventTram.Event.RUN_GAME) {
             EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null);
+            newRound = true;
             this.runGame();
         } else if (evt == EventTram.Event.NEW_TURN) {
             newTurn = true;
+            runGame();
         }
     }
 }

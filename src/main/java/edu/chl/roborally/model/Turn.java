@@ -4,6 +4,7 @@ import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.EventTram;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,6 +39,8 @@ public class Turn {
         executeActiveCards();
         executeBoardElements();
         fireLasers();
+
+        EventTram.getInstance().publish();
     }
 
     // Executing methods

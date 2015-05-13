@@ -70,6 +70,7 @@ public class Round implements IEventHandler {
             EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS,chooser);
         } else {
             System.out.println("All Players have choosen their cards, fire event");
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
         }
     }
 
