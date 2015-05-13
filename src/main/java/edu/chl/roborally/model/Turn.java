@@ -39,6 +39,7 @@ public class Turn extends Thread{
         fireLasers();
 
         EventTram.getInstance().publish(EventTram.Event.UPDATE_GAMEBOARD, null);
+        System.out.println("Updated board bac in turn");
       //  try {
        //     this.sleep(5000);
         //} catch (InterruptedException e) {

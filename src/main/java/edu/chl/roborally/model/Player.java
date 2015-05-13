@@ -34,7 +34,7 @@ public class Player {
         this.name = name;
         this.lifeTokens = 3;
         this.damageTokens = 0;
-        this.direction = Constants.Directions.WEST;
+        this.direction = Constants.Directions.EAST;
         this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
         this.laserPower = 1;
