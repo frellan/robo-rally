@@ -2,6 +2,8 @@ package edu.chl.roborally.view.gui;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class BoardView extends JPanel {
+public class BoardView extends JPanel implements IEventHandler {
     
     private GameBoard board;
     private ArrayList<Player> players;
@@ -68,6 +70,18 @@ public class BoardView extends JPanel {
         for (Player player : players) {
             Position pos = player.getPosition();
             player.draw(g,(pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
+        }
+    }
+
+    private void updatePlayerPos() {
+
+        placePlayers(g);
+    }
+
+    @Override
+    public void onEvent(EventTram.Event evt, Object o) {
+        if(evt == EventTram.Event.UPDATE_GAMEBOARD){
+            updatePlayerPos();
         }
     }
 }
