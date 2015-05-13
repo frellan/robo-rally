@@ -29,6 +29,9 @@ public class BoardView extends JPanel implements IEventHandler {
         board = model.getGameBoard();
         players = model.getPlayers();
         setSize(width, height);
+
+        EventTram.getInstance().register(this);
+
     }
 
     @Override
@@ -75,8 +78,9 @@ public class BoardView extends JPanel implements IEventHandler {
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        //if(evt == EventTram.Event.UPDATE_GAMEBOARD){
-          //  repaint();
-        //}
+        if(evt == EventTram.Event.UPDATE_GAMEBOARD){
+            repaint();
+            System.out.println("Updated GameBoard");
+        }
     }
 }

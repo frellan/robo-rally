@@ -40,7 +40,8 @@ public class Turn {
         executeBoardElements();
         fireLasers();
 
-        EventTram.getInstance().publish();
+        EventTram.getInstance().publish(EventTram.Event.UPDATE_GAMEBOARD, null);
+        //EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
     }
 
     // Executing methods
