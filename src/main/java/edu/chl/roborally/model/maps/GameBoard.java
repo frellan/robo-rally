@@ -21,11 +21,11 @@ public abstract class GameBoard {
         this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
         this.name = n;
 
-        startPositions.add(new Position(14, 5));
-        startPositions.add(new Position(14, 6));
-        startPositions.add(new Position(14, 3));
-        startPositions.add(new Position(14, 8));
-        startPositions.add(new Position(14, 1));
+        startPositions.add(new Position(1, 5));
+        startPositions.add(new Position(1, 6));
+        startPositions.add(new Position(1, 3));
+        startPositions.add(new Position(1, 8));
+        startPositions.add(new Position(1, 1));
     }
 
     //Used to create a specific gameboard
