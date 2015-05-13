@@ -36,7 +36,7 @@ public class BoardView extends JPanel implements IEventHandler {
         super.paintComponent(g);
         drawGrid(g);
         drawTiles(g);
-        placePlayers(g);
+        drawPlayers(g);
     }
 
     private void drawGrid(Graphics g) {
@@ -66,22 +66,17 @@ public class BoardView extends JPanel implements IEventHandler {
         }
     }
 
-    private void placePlayers(Graphics g) {
+    private void drawPlayers(Graphics g) {
         for (Player player : players) {
             Position pos = player.getPosition();
             player.draw(g,(pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
         }
     }
 
-    private void updatePlayerPos() {
-
-        placePlayers(g);
-    }
-
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         if(evt == EventTram.Event.UPDATE_GAMEBOARD){
-            updatePlayerPos();
+            repaint();
         }
     }
 }
