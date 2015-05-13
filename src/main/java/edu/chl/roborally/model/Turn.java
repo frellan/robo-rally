@@ -36,6 +36,8 @@ public class Turn{
         executeActiveCards();
         executeBoardElements();
         fireLasers();
+
+        EventTram.getInstance().publish(EventTram.Event.UPDATE_GAMEBOARD, null);
     }
 
     // Executing methods
