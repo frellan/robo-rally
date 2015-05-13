@@ -2,27 +2,36 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.*;
+import edu.chl.roborally.utilities.EventTram;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-05-06.
  */
-public class ControlView extends JPanel {
+public class ControlView extends JPanel implements ActionListener {
 
     private ChooseCardsView chooseCardsView;
     private CardView cardView;
+    private JButton nextTurnButton;
 
     public ControlView(){
         setLayout(null);
         setSize(984, 170);
+        nextTurnButton = new JButton("NextTurn");
+        nextTurnButton.addActionListener(this);
+        add(nextTurnButton);
+        nextTurnButton.setLocation(940,5);
     }
 
     public void pickCards(Player player) {
         chooseCardsView = new ChooseCardsView(player.getDealtCards());
         removeAll();
         add(chooseCardsView);
+
         chooseCardsView.setLocation(4, 5);
         revalidate();
         repaint();
@@ -47,5 +56,12 @@ public class ControlView extends JPanel {
         cards.add(card4);
         cards.add(card5);
         return cards;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == nextTurnButton){
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
+        }
     }
 }

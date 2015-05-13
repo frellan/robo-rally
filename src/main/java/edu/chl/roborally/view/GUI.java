@@ -80,5 +80,6 @@ public class GUI implements IEventHandler{
         } else if (EventTram.Event.CHOOSE_CARDS == evt) {
             chooseCards((Player) o);
         }
+
     }
 }
