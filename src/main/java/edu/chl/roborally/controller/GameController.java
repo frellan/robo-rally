@@ -103,15 +103,6 @@ public class GameController extends Thread implements IEventHandler {
         } else if (evt == EventTram.Event.NEW_TURN) {
             newTurn = true;
             runGame();
-        } else if (evt == EventTram.Event.NEXT_TURN) {
-            System.out.println("Updated board back in gamecontroller");
-            try {
-                this.sleep(5000);
-                System.out.println("Sleeping before next turn");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
         }
     }
 }
