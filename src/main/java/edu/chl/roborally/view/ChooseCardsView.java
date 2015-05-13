@@ -18,11 +18,13 @@ public class ChooseCardsView extends JPanel implements ActionListener{
     private ArrayList<RegisterCard> outputCards = new ArrayList<>();
     private ArrayList<JCheckBox> cardButtons = new ArrayList<>();
     private JButton doneButton;
+    private JButton nextTurnButton;
 
     public ChooseCardsView(ArrayList<RegisterCard> cards){
         this.inputCards = cards;
         setLayout(new FlowLayout());
         setSize(588, 162);
+
         for (RegisterCard card : inputCards) {
             JCheckBox temp = new JCheckBox(card.toString());
             cardButtons.add(temp);
@@ -30,6 +32,9 @@ public class ChooseCardsView extends JPanel implements ActionListener{
         }
         doneButton = new JButton("Done");
         doneButton.addActionListener(this);
+        nextTurnButton = new JButton("NextTurn");
+        nextTurnButton.addActionListener(this);
+        add(nextTurnButton);
         add(doneButton);
     }
 
@@ -51,6 +56,9 @@ public class ChooseCardsView extends JPanel implements ActionListener{
                 outputCards.clear();
                 System.out.println("Please choose 5 cards");
             }
+        }
+        if(e.getSource() == nextTurnButton){
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
         }
     }
 }

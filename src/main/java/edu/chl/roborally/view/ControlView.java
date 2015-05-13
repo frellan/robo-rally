@@ -12,19 +12,16 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-06.
  */
-public class ControlView extends JPanel implements ActionListener {
+public class ControlView extends JPanel {
 
     private ChooseCardsView chooseCardsView;
     private CardView cardView;
-    private JButton nextTurnButton;
+
 
     public ControlView(){
         setLayout(null);
         setSize(984, 170);
-        nextTurnButton = new JButton("NextTurn");
-        nextTurnButton.addActionListener(this);
-        add(nextTurnButton);
-        nextTurnButton.setLocation(940,5);
+
     }
 
     public void pickCards(Player player) {
@@ -56,12 +53,5 @@ public class ControlView extends JPanel implements ActionListener {
         cards.add(card4);
         cards.add(card5);
         return cards;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == nextTurnButton){
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
-        }
     }
 }
