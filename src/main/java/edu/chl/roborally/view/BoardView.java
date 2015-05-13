@@ -75,8 +75,8 @@ public class BoardView extends JPanel implements IEventHandler {
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(evt == EventTram.Event.UPDATE_GAMEBOARD){
-            repaint();
-        }
+        //if(evt == EventTram.Event.UPDATE_GAMEBOARD){
+          //  repaint();
+        //}
     }
 }

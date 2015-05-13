@@ -208,6 +208,9 @@ public class Player {
         g.setColor(Color.YELLOW);
         g.fillOval(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(Color.BLACK);
-        g.drawString("P"+iD, x+15, y+25);
+        g.drawString("P"+iD, x+15, y+15);
+        char[] position = getPosition().toString().toCharArray();
+        g.drawChars(position, 0, position.length,
+                x-2, y+30);
     }
 }
