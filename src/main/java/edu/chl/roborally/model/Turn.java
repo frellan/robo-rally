@@ -2,8 +2,6 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.model.gameactions.RotatePlayer;
-import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ import java.util.Map;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class Turn {
+public class Turn extends Thread{
 
     private RoboRally model;
     private ArrayList<Player> players;
@@ -41,6 +39,11 @@ public class Turn {
         fireLasers();
 
         EventTram.getInstance().publish(EventTram.Event.UPDATE_GAMEBOARD, null);
+      //  try {
+       //     this.sleep(5000);
+        //} catch (InterruptedException e) {
+         //   e.printStackTrace();
+       // }
         //EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
     }
 
