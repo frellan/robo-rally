@@ -72,7 +72,9 @@ public class BoardView extends JPanel implements IEventHandler {
     private void drawPlayers(Graphics g) {
         for (Player player : players) {
             Position pos = player.getPosition();
-            player.draw(g,(pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
+            if(player.isAlive()) {
+                player.draw(g, (pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
+            }
         }
     }
 
