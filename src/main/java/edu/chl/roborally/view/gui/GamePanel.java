@@ -34,10 +34,6 @@ public class GamePanel extends JPanel {
         consoleView.setLocation(678, 23);
         add(controlView);
         controlView.setLocation(8, 543);
-
-        for(int i = 0; i < 20; i++){
-            System.out.println("\n" + i +" Prutt");
-        }
     }
 
     public void pickCards(Player player) {

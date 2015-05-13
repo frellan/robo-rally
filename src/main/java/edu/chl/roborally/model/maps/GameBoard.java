@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by axel on 2015-03-26.
  */
-public abstract class GameBoard {
+public class GameBoard {
 
     private GameTile[][] board;
     private List<Position> startPositions = new ArrayList<>();
