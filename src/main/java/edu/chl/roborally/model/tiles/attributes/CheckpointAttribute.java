@@ -37,7 +37,8 @@ public class CheckpointAttribute implements Attribute {
         g.setColor(Color.RED);
         g.fillRect(x,y, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(Color.BLACK);
-        char[] message = "CP".toCharArray();
+        String text = "CP: " + this.id;
+        char[] message = text.toCharArray();
         g.drawChars(message,0,message.length,x,y+10);
 
     }
