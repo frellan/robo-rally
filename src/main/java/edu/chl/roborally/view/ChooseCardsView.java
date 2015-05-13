@@ -33,19 +33,24 @@ public class ChooseCardsView extends JPanel implements ActionListener{
         add(doneButton);
     }
 
-    private void sendCards() {
+    private void addSelectedCards() {
         for (JCheckBox cardButton : cardButtons) {
             if (cardButton.isSelected()) {
                 outputCards.add(inputCards.get(cardButtons.indexOf(cardButton)));
             }
         }
-        EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS,outputCards);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == doneButton) {
-            sendCards();
+            addSelectedCards();
+            if(outputCards.size() == 5){
+                EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards);
+            }else{
+                outputCards.clear();
+                System.out.println("Please choose 5 cards");
+            }
         }
     }
 }
