@@ -64,6 +64,10 @@ public class Player {
         return position;
     }
 
+    public Position getCheckpoint() {
+        return checkpoint;
+    }
+
     public Constants.Directions getDirection() {
         return direction;
     }
@@ -212,6 +216,5 @@ public class Player {
         char[] position = getPosition().toString().toCharArray();
         g.drawChars(position, 0, position.length,
                 x-2, y+30);
-
     }
 }

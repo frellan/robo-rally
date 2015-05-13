@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.gameactions.CheckpointPlayer;
 import edu.chl.roborally.utilities.Constants;
 
 import java.awt.*;
@@ -24,20 +25,16 @@ public class CheckpointAttribute implements Attribute {
 
     @Override
     public void doAction(Player player) {
-
+        new CheckpointPlayer(player);
     }
 
     public String toString() {
         return name;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public void draw(Graphics g, int x, int y) {
-        g.setColor(Color.MAGENTA);
+        g.setColor(Color.RED);
         g.fillRect(x,y, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(Color.BLACK);
         char[] message = "CP".toCharArray();
