@@ -23,15 +23,15 @@ public class EventTram {
         SHOW_MENU,
 
         /**
-         * This event tries to create a new game
-         */
-        CREATE_MODEL,
-
-        /**
          * These events are used during setup to set name and map in model
          */
         SET_NAMES,
         SET_MAP,
+
+        /**
+         * This event tries to create a new game
+         */
+        CREATE_MODEL,
 
         /**
          * This event is fired when a new model is created

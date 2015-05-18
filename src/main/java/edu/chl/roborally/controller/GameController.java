@@ -86,23 +86,29 @@ public class GameController extends Thread implements IEventHandler {
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(evt == EventTram.Event.CREATE_MODEL) {
-            this.createModel();
-        } else if (evt == EventTram.Event.SET_MAP) {
-            this.tempMap = (String) o;
-            mapReady = true;
-            readyForGame();
-        } else if (evt == EventTram.Event.SET_NAMES) {
-            this.tempNames = (ArrayList<String>) o;
-            nameReady = true;
-            readyForGame();
-        } else if (evt == EventTram.Event.RUN_GAME) {
-            EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null);
-            newRound = true;
-            this.runGame();
-        } else if (evt == EventTram.Event.NEW_TURN) {
-            newTurn = true;
-            runGame();
+        switch (evt) {
+            case SET_MAP:
+                this.tempMap = (String) o;
+                mapReady = true;
+                readyForGame();
+                break;
+            case SET_NAMES:
+                this.tempNames = (ArrayList<String>) o;
+                nameReady = true;
+                readyForGame();
+                break;
+            case CREATE_MODEL:
+                this.createModel();
+                break;
+            case RUN_GAME:
+                EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null);
+                newRound = true;
+                this.runGame();
+                break;
+            case NEW_TURN:
+                newTurn = true;
+                runGame();
+                break;
         }
     }
 }
