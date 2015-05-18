@@ -2,11 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.*;
-import edu.chl.roborally.utilities.EventTram;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -17,11 +13,9 @@ public class ControlView extends JPanel {
     private ChooseCardsView chooseCardsView;
     private CardView cardView;
 
-
     public ControlView(){
         setLayout(null);
         setSize(984, 170);
-
     }
 
     public void pickCards(Player player) {
