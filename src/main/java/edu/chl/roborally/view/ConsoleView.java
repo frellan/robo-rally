@@ -46,7 +46,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
     }
 
     @Override
-    public void onEvent(EventTram.Event evt, Object o) {
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if(evt == EventTram.Event.PRINT_MESSAGE){
             printMessage((String) o);
         }

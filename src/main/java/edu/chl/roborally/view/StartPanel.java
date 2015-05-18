@@ -114,7 +114,7 @@ public class StartPanel extends JPanel implements ActionListener{
         for(JTextField name : tempNames) {
             names.add(name.getText());
         }
-        EventTram.getInstance().publish(EventTram.Event.SET_NAMES, names);
+        EventTram.getInstance().publish(EventTram.Event.SET_NAMES, names, null);
     }
 
     private void sendMapChocieToController() {
@@ -124,7 +124,7 @@ public class StartPanel extends JPanel implements ActionListener{
                 mapName = btn.getText();
             }
         }
-        EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName);
+        EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName, null);
     }
 
     public void summary(ArrayList<String> names, String mapName) {
@@ -153,7 +153,7 @@ public class StartPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(newGameButton)){
-            EventTram.getInstance().publish(EventTram.Event.SHOW_MENU, null);
+            EventTram.getInstance().publish(EventTram.Event.SHOW_MENU, null, null);
         } else if(e.getSource().equals(optionsButton)){
 
         } else if(e.getSource().equals(exitButton)){
@@ -165,7 +165,7 @@ public class StartPanel extends JPanel implements ActionListener{
         } else if (e.getSource() == chooseMapButton) {
             sendMapChocieToController();
         } else if (e.getSource() == startGameBtn) {
-            EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null);
+            EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
         }
     }
 

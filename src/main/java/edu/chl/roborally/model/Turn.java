@@ -37,8 +37,8 @@ public class Turn{
         executeBoardElements();
         fireLasers();
 
-        EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null);
-        EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null);
+        EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null, null);
+        EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null, null);
 
     }
 
@@ -79,7 +79,7 @@ public class Turn{
         System.out.println("------- Tile Actions -------");
         for (Player player : players) {
             if (player.isAlive()) {
-                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player);
+                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player, null);
             }
         }
         System.out.println("----- End tile actions -----");

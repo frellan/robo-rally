@@ -68,15 +68,15 @@ public class Round implements IEventHandler {
         System.out.println("Number of players " + model.getPlayers().size());
         if (chooserIndex < model.getPlayers().size()) {
             chooser = model.getPlayers().get(chooserIndex);
-            EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS,chooser);
+            EventTram.getInstance().publish(EventTram.Event.CHOOSE_CARDS,chooser, null);
         } else {
             System.out.println("All Players have choosen their cards, fire event");
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
         }
     }
 
     @Override
-    public void onEvent(EventTram.Event evt, Object o) {
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if (EventTram.Event.PLAYER_CHOOSEN_CARDS == evt) {
             ArrayList<RegisterCard> cards = (ArrayList<RegisterCard>) o;
             for (int i = 0; i<cards.size(); i++) {

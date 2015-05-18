@@ -51,14 +51,14 @@ public class ChooseCardsView extends JPanel implements ActionListener{
         if (e.getSource() == doneButton) {
             addSelectedCards();
             if(outputCards.size() == 5){
-                EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards);
+                EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards, null);
             }else{
                 outputCards.clear();
                 System.out.println("Please choose 5 cards");
             }
         }
         if(e.getSource() == nextTurnButton){
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null);
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
         }
     }
 }

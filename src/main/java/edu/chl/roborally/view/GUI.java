@@ -83,7 +83,7 @@ public class GUI implements IEventHandler{
     }
 
     @Override
-    public void onEvent(EventTram.Event evt, Object o) {
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
             case SHOW_MENU:
                 menu();

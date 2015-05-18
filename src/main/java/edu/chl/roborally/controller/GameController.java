@@ -40,7 +40,7 @@ public class GameController extends Thread implements IEventHandler {
         if (tempNames != null && tempMap != null && model == null) {
             this.model = new RoboRally(createPlayers(tempNames), mapFactory.createMap(tempMap));
             System.out.println("New roborally created");
-            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model);
+            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model, null);
         }
     }
 
@@ -78,14 +78,14 @@ public class GameController extends Thread implements IEventHandler {
 
     private boolean readyForGame() {
         if (mapReady && nameReady) {
-            EventTram.getInstance().publish(EventTram.Event.CREATE_MODEL, null);
+            EventTram.getInstance().publish(EventTram.Event.CREATE_MODEL, null, null);
             return true;
         }
         return false;
     }
 
     @Override
-    public void onEvent(EventTram.Event evt, Object o) {
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
             case SET_MAP:
                 this.tempMap = (String) o;
@@ -101,7 +101,7 @@ public class GameController extends Thread implements IEventHandler {
                 this.createModel();
                 break;
             case RUN_GAME:
-                EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null);
+                EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null, null);
                 newRound = true;
                 this.runGame();
                 break;

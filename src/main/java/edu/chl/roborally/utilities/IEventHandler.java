@@ -5,5 +5,5 @@ package edu.chl.roborally.utilities;
  */
 public interface IEventHandler {
 
-    void onEvent(EventTram.Event evt, Object o);
+    void onEvent(EventTram.Event evt, Object o, Object o2);
 }

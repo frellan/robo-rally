@@ -96,13 +96,13 @@ public class EventTram {
     }
 
     //Call this method to publish an event
-    public void publish(Event evt, Object data){
+    public void publish(Event evt, Object data, Object data2){
 
         if(trace){
             System.out.println(evt);
         }
         for (int i = 0; i<handlers.size(); i++) {
-            handlers.get(i).onEvent(evt, data);
+            handlers.get(i).onEvent(evt, data, data2);
         }
     }
 

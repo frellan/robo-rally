@@ -76,7 +76,7 @@ public class GameBoard implements IEventHandler{
     }
 
     @Override
-    public void onEvent(EventTram.Event evt, Object o) {
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {
             Player player = (Player) o;
             try {
