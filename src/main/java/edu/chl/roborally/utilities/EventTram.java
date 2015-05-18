@@ -23,7 +23,7 @@ public class EventTram {
         SET_MAP,
 
         /**
-         * Event is fired when new model is created
+         * This event is fired when new model is created
          */
         NEW_MODEL,
 
@@ -56,7 +56,12 @@ public class EventTram {
         UPDATE_BOARD,
 
         UPDATE_STATUS,
-        POWER_DOWN
+
+        /**
+         * If a player chooses to powerdown, this event is fired
+         * and a player is sent with the event
+         */
+        POWER_DOWN,
     }
 
     //for debugging
