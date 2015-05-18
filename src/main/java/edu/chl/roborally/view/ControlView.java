@@ -19,7 +19,7 @@ public class ControlView extends JPanel {
         setSize(984, 170);
     }
 
-    public void pickCards(Player player) {
+    public void showPickNewCards(Player player) {
         pickNewCardsView = new PickNewCardsView(player.getDealtCards());
         removeAll();
         add(pickNewCardsView);
@@ -29,31 +29,12 @@ public class ControlView extends JPanel {
         repaint();
     }
 
-    public void showCardsAndStatus(Player player) {
-        activeRegisterView = new ActiveRegisterView(testCards());
+    public void showActiveRegisterAndStatus(Player player) {
+        activeRegisterView = new ActiveRegisterView(player.getProgrammedCards());
         statusView = new StatusView(player);
         add(activeRegisterView);
         add(statusView);
         activeRegisterView.setLocation(4, 5);
         statusView.setLocation(662, 5);
-    }
-
-    private ArrayList<RegisterCard> testCards() {
-        RegisterCard card1 = new BackupCard(430, false);
-        RegisterCard card2 = new MoveOneCard(270, false);
-        RegisterCard card3 = new MoveTwoCard(670, false);
-        RegisterCard card4 = new RotateLeftCard(200, false);
-        RegisterCard card5 = new RotateRightCard(230, false);
-        ArrayList<RegisterCard> cards = new ArrayList<>();
-        cards.add(card1);
-        cards.add(card2);
-        cards.add(card3);
-        cards.add(card4);
-        cards.add(card5);
-        return cards;
-    }
-
-    public StatusView getStatusView() {
-        return this.statusView;
     }
 }
