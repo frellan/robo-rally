@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel {
 
-    private PickNewCardsView chooseCardsView;
+    private PickNewCardsView pickNewCardsView;
     private CardView cardView;
     private StatusView statusView;
 
@@ -20,11 +20,11 @@ public class ControlView extends JPanel {
     }
 
     public void pickCards(Player player) {
-        chooseCardsView = new PickNewCardsView(player.getDealtCards());
+        pickNewCardsView = new PickNewCardsView(player.getDealtCards());
         removeAll();
-        add(chooseCardsView);
+        add(pickNewCardsView);
 
-        chooseCardsView.setLocation(4, 5);
+        pickNewCardsView.setLocation(4, 5);
         revalidate();
         repaint();
     }
