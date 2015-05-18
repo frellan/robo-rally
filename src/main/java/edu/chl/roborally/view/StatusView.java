@@ -21,7 +21,7 @@ public class StatusView extends JPanel implements ActionListener {
 
     public StatusView (Player player){
         this.player = player;
-        setLayout(new BorderLayout());
+        setLayout(new GridLayout(4,1));
         setSize(322, 162);
 
         powerDown = new JButton("PowerDown");
@@ -41,4 +41,5 @@ public class StatusView extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, null);
     }
+
 }
