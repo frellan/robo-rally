@@ -57,11 +57,18 @@ public class GameController extends Thread implements IEventHandler {
     private void runGame() {
         if (newRound) {
             new Round(model);
+            System.out.println("New round");
             newRound = false;
+            turnIndex = 0;
         } else if (turnIndex < 5 && newTurn) {
             new Turn(model,turnIndex);
             turnIndex++;
             newTurn = false;
+
+            if(turnIndex == 4) {
+                model.returnCardsTodeck();
+                newRound = true;
+            }
         }
     }
 

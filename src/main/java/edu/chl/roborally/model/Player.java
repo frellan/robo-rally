@@ -25,7 +25,7 @@ public class Player {
     private int checkpointId;
     private Constants.Directions direction;
     private ArrayList<RegisterCard> dealtCards;
-    private RegisterCard[] programmedCards;
+    private ArrayList<RegisterCard> programmedCards;
     private Constants.Status status;
     private int laserPower;
 
@@ -37,7 +37,7 @@ public class Player {
         this.lifeTokens = 3;
         this.damageTokens = 0;
         this.direction = Constants.Directions.EAST;
-        this.programmedCards = new RegisterCard[5];
+        this.programmedCards = new ArrayList<>();
         this.status = Constants.Status.ALIVE;
         this.laserPower = 1;
         this.checkpointId = 0;
@@ -89,14 +89,14 @@ public class Player {
 
     public RegisterCard getProgrammedCard(int index) {
         if (index >= 0 && index < 5) {
-            return programmedCards[index];
+            return programmedCards.get(index);
         }
         else {
             throw new IllegalArgumentException("Index must be between 0 and 4");
         }
     }
 
-    public RegisterCard[] getProgrammedCards() {
+    public ArrayList<RegisterCard> getProgrammedCards() {
         return programmedCards;
     }
 
@@ -119,6 +119,10 @@ public class Player {
     /**
      * Commands
      */
+
+    public void emptyProgrammedCards() {
+        programmedCards.clear();
+    }
 
     /**
      * Give a player a damage token.
@@ -200,7 +204,7 @@ public class Player {
 
     public void setProgrammedCard(int index, RegisterCard c) {
         if (index >= 0 && index < 5) {
-            programmedCards[index] = c;
+            programmedCards.add(c);
         }
         else {
             throw new IllegalArgumentException("Index must be between 0 and 4");

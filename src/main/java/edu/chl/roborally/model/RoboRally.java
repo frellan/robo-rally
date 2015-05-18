@@ -1,6 +1,7 @@
 package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.CardDeck;
+import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.Position;
 import java.util.*;
@@ -39,6 +40,15 @@ public class RoboRally {
             deck = new CardDeck();
         } else {
             deck.reset();
+        }
+    }
+
+    public void returnCardsTodeck() {
+        for (Player player : players) {
+            for (RegisterCard card : player.getProgrammedCards()) {
+                deck.addCard(card);
+            }
+            player.emptyProgrammedCards();
         }
     }
 

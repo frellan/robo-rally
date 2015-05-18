@@ -17,7 +17,10 @@ public class EventTram {
     }
 
     public enum Event {
-        INIT_SETUP,
+        /**
+         * This event tells the GUI to show the menu
+         */
+        SHOW_MENU,
         INIT_GAME,
         SET_NAMES,
         SET_MAP,
