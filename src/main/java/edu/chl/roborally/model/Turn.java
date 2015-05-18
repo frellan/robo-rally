@@ -71,20 +71,14 @@ public class Turn{
         }
         System.out.println("------ End card Actions -----");
     }
+
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
         System.out.println("----------------------------");
         System.out.println("------- Tile Actions -------");
-        for (Player p : players) {
-            if (p.isAlive()) {
-                try {
-
-                    model.getGameBoard().getTile(p.getPosition()).getAction(p);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // If player is out of bounds we kill him
-                    System.out.println("Player fell of board and died");
-                    p.kill();
-                }
+        for (Player player : players) {
+            if (player.isAlive()) {
+                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player);
             }
         }
         System.out.println("----- End tile actions -----");

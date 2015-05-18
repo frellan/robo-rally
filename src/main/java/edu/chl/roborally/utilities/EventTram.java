@@ -62,6 +62,8 @@ public class EventTram {
          * and a player is sent with the event
          */
         POWER_DOWN,
+
+        EXECUTE_TILE_ACTION
     }
 
     //for debugging
