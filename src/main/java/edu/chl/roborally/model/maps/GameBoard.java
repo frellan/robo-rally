@@ -1,7 +1,10 @@
 package edu.chl.roborally.model.maps;
 
+import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.tiles.attributes.ConveyorAttribute;
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
 import edu.chl.roborally.model.tiles.*;
 import java.util.ArrayList;
@@ -10,7 +13,7 @@ import java.util.List;
 /**
  * Created by axel on 2015-03-26.
  */
-public class GameBoard {
+public class GameBoard implements IEventHandler{
 
     private GameTile[][] board;
     private List<Position> startPositions = new ArrayList<>();
@@ -26,6 +29,8 @@ public class GameBoard {
         startPositions.add(new Position(1, 3));
         startPositions.add(new Position(1, 8));
         startPositions.add(new Position(1, 1));
+
+        EventTram.getInstance().register(this);
     }
 
     //Used to create a specific gameboard
@@ -68,6 +73,20 @@ public class GameBoard {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public void onEvent(EventTram.Event evt, Object o) {
+        if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {
+            Player player = (Player) o;
+            try {
+                this.getTile(player.getPosition()).getAction(player);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // If player is out of bounds we kill him
+                System.out.println("Player fell of board and died");
+                player.kill();
+            }
+        }
     }
 }
 

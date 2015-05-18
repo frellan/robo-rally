@@ -79,7 +79,7 @@ public class GUI implements IEventHandler{
         } else if(evt == EventTram.Event.UPDATE_BOARD){
             gamePanel.getBoardView().repaint();
         } else if (evt == EventTram.Event.UPDATE_STATUS){
-            gamePanel.getStatusView().repaint();
+            //gamePanel.getStatusView().repaint();
         }
 
     }
