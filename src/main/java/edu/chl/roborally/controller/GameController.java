@@ -87,9 +87,6 @@ public class GameController extends Thread implements IEventHandler {
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
         switch (evt) {
-            case CREATE_MODEL:
-                this.createModel();
-                break;
             case SET_MAP:
                 this.tempMap = (String) o;
                 mapReady = true;
@@ -99,6 +96,9 @@ public class GameController extends Thread implements IEventHandler {
                 this.tempNames = (ArrayList<String>) o;
                 nameReady = true;
                 readyForGame();
+                break;
+            case CREATE_MODEL:
+                this.createModel();
                 break;
             case RUN_GAME:
                 EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null);
