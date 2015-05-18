@@ -21,13 +21,13 @@ public class MapFactory {
 
     public GameBoard createMap(String name){
         if (name.equals(maps.get(0))) {
-            System.out.print("New map created: " + maps.get(0));
+            System.out.println("New map created: " + maps.get(0));
             return new BlankMap();
         } else if (name.equals(maps.get(1))) {
-            System.out.print("New map created: " + maps.get(1));
+            System.out.println("New map created: " + maps.get(1));
             return new IslandKingMap();
         } else {
-            System.out.print("Created default: " + maps.get(0));
+            System.out.println("Created default: " + maps.get(0));
             return new BlankMap();
         }
     }

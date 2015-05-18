@@ -1,22 +1,28 @@
 package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.cards.*;
+
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.*;
 
 /**
  * Created by axel on 2015-05-06.
  */
 public class ControlView extends JPanel {
 
+    private CardLayout cardLayout = new CardLayout();
     private PickNewCardsView pickNewCardsView;
+    private JPanel pickNewCardsViewHolder = new JPanel();
     private ActiveRegisterView activeRegisterView;
+    private JPanel activeRegisterAndStatusViewsHolder = new JPanel();
     private StatusView statusView;
 
     public ControlView(){
-        setLayout(null);
+        setLayout(cardLayout);
         setSize(984, 170);
+        pickNewCardsView = new PickNewCardsView();
+        pickNewCardsViewHolder.setSize(588,170);
+        pickNewCardsViewHolder.add()
     }
 
     public void showPickNewCards(Player player) {

@@ -24,7 +24,7 @@ public class PickNewCardsView extends JPanel implements ActionListener, IEventHa
     public PickNewCardsView(ArrayList<RegisterCard> cards){
         this.inputCards = cards;
         setLayout(new FlowLayout());
-        setSize(588, 162);
+        setSize(588, 170);
 
         for (RegisterCard card : inputCards) {
             JCheckBox temp = new JCheckBox(card.toString());
