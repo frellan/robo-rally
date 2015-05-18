@@ -24,8 +24,8 @@ public class GUI implements IEventHandler{
 
     public GUI() {
         main = new MainFrame();
-        startMsg();
         EventTram.getInstance().register(this);
+        startMsg();
     }
 
     public void startMsg() {
@@ -91,7 +91,7 @@ public class GUI implements IEventHandler{
             case SET_NAMES:
                 chooseMap(new MapFactory().getMaps());
                 break;
-            case INIT_MODEL:
+            case CREATE_MODEL:
                 this.model = (RoboRally) o;
                 showSummary();
                 break;
