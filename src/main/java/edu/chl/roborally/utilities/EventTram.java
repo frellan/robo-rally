@@ -53,7 +53,10 @@ public class EventTram {
         /**
          * Use this event to reapint the gameboeard
          */
-        UPDATE_GAMEBOARD
+        UPDATE_BOARD,
+
+        UPDATE_STATUS,
+        POWER_DOWN
     }
 
     //for debugging

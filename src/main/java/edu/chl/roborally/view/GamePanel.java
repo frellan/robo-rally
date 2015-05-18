@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
     private BufferedImage componentsBG;
     private BufferedImage textBG;
     private BoardView boardView;
+    private StatusView statusView;
     private ConsoleView consoleView;
     private ControlView controlView;
 
@@ -71,4 +72,9 @@ public class GamePanel extends JPanel {
             System.out.println("Images could not be read");
         }
     }
+
+    public BoardView getBoardView(){
+        return this.boardView;
+    }
+    public StatusView getStatusView() { return this.statusView; }
 }
