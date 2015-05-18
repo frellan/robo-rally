@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ControlView extends JPanel {
 
     private PickNewCardsView pickNewCardsView;
-    private CardView cardView;
+    private ActiveRegisterView activeRegisterView;
     private StatusView statusView;
 
     public ControlView(){
@@ -30,11 +30,11 @@ public class ControlView extends JPanel {
     }
 
     public void showCardsAndStatus(Player player) {
-        cardView = new CardView(testCards());
+        activeRegisterView = new ActiveRegisterView(testCards());
         statusView = new StatusView(player);
-        add(cardView);
+        add(activeRegisterView);
         add(statusView);
-        cardView.setLocation(4, 5);
+        activeRegisterView.setLocation(4, 5);
         statusView.setLocation(662, 5);
     }
 

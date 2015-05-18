@@ -10,11 +10,11 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-06.
  */
-public class CardView extends JPanel {
+public class ActiveRegisterView extends JPanel {
 
     private ArrayList<RegisterCard> cards;
 
-    public CardView(ArrayList<RegisterCard> cards){
+    public ActiveRegisterView(ArrayList<RegisterCard> cards){
         this.cards = cards;
         setLayout(new BorderLayout());
         setSize(588, 162);
