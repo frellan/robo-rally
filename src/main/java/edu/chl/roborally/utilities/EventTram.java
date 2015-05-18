@@ -74,7 +74,9 @@ public class EventTram {
          */
         POWER_DOWN,
 
-        EXECUTE_TILE_ACTION
+        EXECUTE_TILE_ACTION,
+
+        PRINT_MESSAGE
     }
 
     //for debugging

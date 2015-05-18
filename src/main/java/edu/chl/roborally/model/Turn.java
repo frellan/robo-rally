@@ -39,6 +39,7 @@ public class Turn{
 
         EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null);
         EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null);
+
     }
 
     // Executing methods
