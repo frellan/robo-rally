@@ -27,6 +27,9 @@ public class EventTram {
          */
         CREATE_MODEL,
 
+        /**
+         * These events are used during setup to set name and map in model
+         */
         SET_NAMES,
         SET_MAP,
 
