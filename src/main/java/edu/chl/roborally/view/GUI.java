@@ -65,22 +65,29 @@ public class GUI implements IEventHandler{
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(EventTram.Event.INIT_SETUP == evt){
-            menu();
-        } else if (EventTram.Event.SET_NAMES == evt) {
-            chooseMap(new MapFactory().getMaps());
-        } else if (EventTram.Event.NEW_MODEL == evt) {
-            this.model = (RoboRally) o;
-            showSummary();
-        } else if (EventTram.Event.SHOW_GAMEPANEL == evt) {
-            showGamePanel();
-        } else if (EventTram.Event.CHOOSE_CARDS == evt) {
-            chooseCards((Player) o);
-        } else if(evt == EventTram.Event.UPDATE_BOARD){
-            gamePanel.getBoardView().repaint();
-        } else if (evt == EventTram.Event.UPDATE_STATUS){
-            //gamePanel.getStatusView().repaint();
+        switch (evt) {
+            case INIT_SETUP:
+                menu();
+                break;
+            case SET_NAMES:
+                chooseMap(new MapFactory().getMaps());
+                break;
+            case NEW_MODEL:
+                this.model = (RoboRally) o;
+                showSummary();
+                break;
+            case SHOW_GAMEPANEL:
+                showGamePanel();
+                break;
+            case CHOOSE_CARDS:
+                chooseCards((Player) o);
+                break;
+            case UPDATE_BOARD:
+                gamePanel.getBoardView().repaint();
+                break;
+            case UPDATE_STATUS:
+                gamePanel.getStatusView().repaint();
+                break;
         }
-
     }
 }
