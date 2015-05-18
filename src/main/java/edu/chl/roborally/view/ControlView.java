@@ -22,11 +22,11 @@ public class ControlView extends JPanel {
         setSize(984, 170);
         pickNewCardsView = new PickNewCardsView();
         pickNewCardsViewHolder.setSize(588,170);
-        pickNewCardsViewHolder.add()
+        pickNewCardsViewHolder.add(pickNewCardsView);
     }
 
     public void showPickNewCards(Player player) {
-        pickNewCardsView = new PickNewCardsView(player.getDealtCards());
+        pickNewCardsView.setCards(player.getDealtCards());
         removeAll();
         add(pickNewCardsView);
 

@@ -21,50 +21,13 @@ public class PickNewCardsView extends JPanel implements ActionListener, IEventHa
     private JButton doneButton;
     private JButton nextTurnButton;
 
-    public PickNewCardsView(ArrayList<RegisterCard> cards){
-        this.inputCards = cards;
+    public PickNewCardsView(){
         setLayout(new FlowLayout());
         setSize(588, 170);
-
-        for (RegisterCard card : inputCards) {
-            JCheckBox temp = new JCheckBox(card.toString());
-            cardButtons.add(temp);
-            add(temp);
-        }
-        doneButton = new JButton("Done");
-        doneButton.addActionListener(this);
-        nextTurnButton = new JButton("NextTurn");
-        nextTurnButton.addActionListener(this);
-        add(nextTurnButton);
-        add(doneButton);
-
-        EventTram.getInstance().register(this);
     }
 
-    private void addSelectedCards() {
-        for (JCheckBox cardButton : cardButtons) {
-            if (cardButton.isSelected()) {
-                outputCards.add(inputCards.get(cardButtons.indexOf(cardButton)));
-            }
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == doneButton) {
-            addSelectedCards();
-            if(outputCards.size() == 5){
-                EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards, null);
-                nextTurnButton.setEnabled(true);
-            }else{
-                outputCards.clear();
-                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
-            }
-
-        }
-        if(e.getSource() == nextTurnButton){
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
-        }
+    public void setCards(ArrayList<RegisterCard> cards) {
+        inputCards = cards;
     }
 
     @Override
