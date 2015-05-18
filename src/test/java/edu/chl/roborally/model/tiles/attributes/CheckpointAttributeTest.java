@@ -7,6 +7,7 @@ import edu.chl.roborally.model.maps.IslandKingMap;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Position;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -20,12 +21,13 @@ public class CheckpointAttributeTest {
 
     private Player player;
     private RoboRally model;
-    private CheckpointAttribute test;
+    private GameBoard map;
 
-    public CheckpointAttributeTest() {
+    @Before
+    public void setUp() throws Exception {
         player = new Player(1,"Dave");
-        test = new CheckpointAttribute(1);
-        GameBoard map = new IslandKingMap();
+        player.setCheckpointId(0);
+        map = new IslandKingMap();
         ArrayList<Player> players = new ArrayList<>();
         players.add(player);
         model = new RoboRally(players,map);
@@ -34,9 +36,16 @@ public class CheckpointAttributeTest {
 
     @Test
     public void testDoAction() throws Exception {
+        //Player goes to wrong third checkpoint
         player.setPosition(new Position(9, 5));
         System.out.println("New position " + player.getPosition());
-        test.doAction(player);
+        map.getTile(player.getPosition()).getAction(player);
+        assertTrue(player.getCheckpoint() != player.getPosition());
+
+        //Player goes to first checkpoint
+        player.setPosition(new Position(11, 5));
+        System.out.println("New position " + player.getPosition());
+        map.getTile(player.getPosition()).getAction(player);
         System.out.println("New Checkpoint " + player.getCheckpoint());
         assertTrue(player.getCheckpoint() == player.getPosition());
     }
