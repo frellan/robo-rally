@@ -76,5 +76,7 @@ public class GamePanel extends JPanel {
     public BoardView getBoardView(){
         return this.boardView;
     }
-    public StatusView getStatusView() { return this.statusView; }
+    public StatusView getStatusView() {
+        return this.statusView;
+    }
 }

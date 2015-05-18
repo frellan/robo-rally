@@ -2,7 +2,6 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
-import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.MapFactory;
