@@ -2,6 +2,7 @@ package edu.chl.roborally.model;
 
 
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.model.tiles.attributes.CheckpointAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.Position;
 
@@ -21,6 +22,7 @@ public class Player {
     private int iD;
     private Position position;
     private Position checkpoint;
+    private int checkpointId;
     private Constants.Directions direction;
     private ArrayList<RegisterCard> dealtCards;
     private RegisterCard[] programmedCards;
@@ -38,6 +40,7 @@ public class Player {
         this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
         this.laserPower = 1;
+        this.checkpointId = 0;
     }
 
     /**
@@ -66,6 +69,10 @@ public class Player {
 
     public Position getCheckpoint() {
         return checkpoint;
+    }
+
+    public int getCheckpointId() {
+        return checkpointId;
     }
 
     public Constants.Directions getDirection() {
@@ -155,6 +162,10 @@ public class Player {
             setStatus(Constants.Status.KAPUT);
             System.out.println(this.getName() + " is now Kaput and lost");
         }
+    }
+
+    public void setCheckpointId(int id) {
+        this.checkpointId = id;
     }
 
     public void backToCheckpoint() {

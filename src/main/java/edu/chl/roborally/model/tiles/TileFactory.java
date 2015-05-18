@@ -27,11 +27,10 @@ public class TileFactory {
      * RotTile W,E = 21,22
      * WallTile N,W,S,E = 31,32,33,34
      * PitTile = 4
-     * StarTile = 5
-     * StartTile with wall S = 53
      * RepairTile = 6
      * Repair with wall N = 61
-     * Checkpoint 1,2,3,4 = 71,72,73,74
+     * Checkpoint 0,1,2,3,4 = 70,71,72,73
+     * Checkpoint with WALL CP1_SOUTH = 703
      */
 
     public GameTile createTile(int tileNbr) {
@@ -132,16 +131,6 @@ public class TileFactory {
                 tile.addAttribute(new PitAttribute());
                 break;
 
-            //Startposition
-            case 5:
-                tile.addAttribute(new StartAttribute());
-                break;
-            //Startposition with WALL
-            case 53:
-                tile.addAttribute(new StartAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
-                break;
-
             //Repair
             case 6:
                 tile.addAttribute(new RepairAttribute());
@@ -152,6 +141,9 @@ public class TileFactory {
                 tile.addAttribute(new RepairAttribute());
                 break;
             //Checkpoint
+            case 70:
+                tile.addAttribute(new CheckpointAttribute(0));
+                break;
             case 71:
                 tile.addAttribute(new CheckpointAttribute(1));
                 break;
@@ -161,8 +153,10 @@ public class TileFactory {
             case 73:
                 tile.addAttribute(new CheckpointAttribute(3));
                 break;
-            case 74:
-                tile.addAttribute(new CheckpointAttribute(4));
+            //Checkpoint with WALL
+            case 703:
+                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                tile.addAttribute(new CheckpointAttribute(0));
                 break;
         }
         return tile;
