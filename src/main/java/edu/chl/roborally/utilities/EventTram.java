@@ -21,12 +21,38 @@ public class EventTram {
         INIT_GAME,
         SET_NAMES,
         SET_MAP,
+
+        /**
+         * Event is fired when new model is created
+         */
         NEW_MODEL,
+
         RUN_GAME,
+
+        /**
+         * Round executes this event when a player should
+         * choose cards.
+         *
+         * The object is an Arraylist with ReisterCards
+         *
+         */
         CHOOSE_CARDS,
+
+        /**
+         * The view fires this event when the player
+         * has choosen the cards to play.
+         *
+         * It return a arraylist with RegisterCards
+         *
+         */
         PLAYER_CHOOSEN_CARDS,
+
         SHOW_GAMEPANEL,
         NEW_TURN,
+
+        /**
+         * Use this event to reapint the gameboeard
+         */
         UPDATE_GAMEBOARD
     }
 

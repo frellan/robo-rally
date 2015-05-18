@@ -1,4 +1,4 @@
-package edu.chl.roborally.model;
+package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.cards.*;
 
