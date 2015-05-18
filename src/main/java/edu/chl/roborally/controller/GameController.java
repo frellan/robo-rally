@@ -4,9 +4,7 @@ import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.*;
 import edu.chl.roborally.model.maps.MapFactory;
-import edu.chl.roborally.utilities.Constants;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by Pertta on 15-04-23.

@@ -16,14 +16,12 @@ import java.util.ArrayList;
  */
 public class GUI implements IEventHandler{
 
-    private AppController appController;
     private JFrame main;
     private StartPanel start;
     private RoboRally model;
     private GamePanel gamePanel;
 
-    public GUI(AppController appController){
-        this.appController = appController;
+    public GUI(){
         main = new MainFrame();
         startMsg();
         EventTram.getInstance().register(this);
@@ -36,7 +34,6 @@ public class GUI implements IEventHandler{
     }
 
     public void menu() {
-        appController.initGameController();
         choosePlayerNames();
     }
 

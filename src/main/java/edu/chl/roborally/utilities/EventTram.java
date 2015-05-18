@@ -17,7 +17,6 @@ public class EventTram {
     }
 
     public enum Event {
-
         INIT_SETUP,
         INIT_GAME,
         SET_NAMES,

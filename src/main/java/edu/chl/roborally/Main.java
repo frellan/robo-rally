@@ -1,7 +1,8 @@
 package edu.chl.roborally;
 
 import edu.chl.roborally.controller.AppController;
-import edu.chl.roborally.dev.TestGameView;
+import edu.chl.roborally.view.GUI;
+//import edu.chl.roborally.dev.TestGameView;
 
 public final class Main {
 
@@ -13,6 +14,7 @@ public final class Main {
 
 	public static void main(String[] args) {
         new AppController();
+		new GUI();
 		//new TestGameView();
     }
 
