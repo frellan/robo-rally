@@ -25,10 +25,11 @@ public class GamePanel extends JPanel {
     private ControlView controlView;
     private Player player;
 
-    public GamePanel(GameBoard board, ArrayList<Player> players){
+    public GamePanel(GameBoard board, ArrayList<Player> players, Player player){
         initImages();
         setOpaque(false);
         setLayout(null);
+        this.player = player;
         boardView = new BoardView(board,players);
         controlView = new ControlView();
         consoleView = new ConsoleView();
@@ -40,8 +41,8 @@ public class GamePanel extends JPanel {
         controlView.setLocation(8, 543);
     }
 
-    public String getPlayerName() {
-        return player.getName();
+    public Player getPlayer() {
+        return player;
     }
 
     public void pickCards(Player player) {

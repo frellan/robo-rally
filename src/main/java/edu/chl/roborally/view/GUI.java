@@ -19,6 +19,8 @@ public class GUI implements IEventHandler{
     private StartPanel start;
     private RoboRally model;
     private GamePanel gamePanel;
+    private ArrayList<GamePanel> gamePanels = new ArrayList<>();
+    private JTabbedPane tabbedPane = new JTabbedPane();
 
     public GUI() {
         main = new MainFrame();
@@ -48,10 +50,24 @@ public class GUI implements IEventHandler{
         start.summary(model.getPlayerNames(), model.getGameBoard().getName());
     }
 
-    private void showGamePanel() {
+    private void createGamePanels() {
+        for (Player player : model.getPlayers()) {
+            gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
+        }
+        createTabbedPane();
+    }
+
+    private void createTabbedPane() {
+        for (GamePanel panel : gamePanels) {
+            tabbedPane.addTab(panel.getPlayer().getName(),panel);
+        }
+        showGamePanels();
+    }
+
+    private void showGamePanels() {
         main.remove(start);
-        gamePanel = new GamePanel(model.getGameBoard(),model.getPlayers());
-        main.add(gamePanel, BorderLayout.CENTER);
+        main.add(tabbedPane, BorderLayout.CENTER);
+        main.setSize(1030, 790);
         main.revalidate();
         main.repaint();
     }
@@ -76,7 +92,7 @@ public class GUI implements IEventHandler{
                 showSummary();
                 break;
             case SHOW_GAMEPANEL:
-                showGamePanel();
+                createGamePanels();
                 break;
             case CHOOSE_CARDS:
                 chooseCards((Player) o);
