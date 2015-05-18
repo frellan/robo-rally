@@ -67,7 +67,7 @@ public class GUI implements IEventHandler{
     private void showGamePanels() {
         main.remove(start);
         main.add(tabbedPane, BorderLayout.CENTER);
-        main.setSize(1030, 782);
+        main.setSize(1022, 790);
         main.revalidate();
         main.repaint();
     }
