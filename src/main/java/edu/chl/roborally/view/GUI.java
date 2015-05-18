@@ -2,7 +2,6 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
-import edu.chl.roborally.controller.AppController;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.MapFactory;
@@ -20,11 +19,13 @@ public class GUI implements IEventHandler{
     private StartPanel start;
     private RoboRally model;
     private GamePanel gamePanel;
+    private ArrayList<GamePanel> gamePanels = new ArrayList<>();
+    private JTabbedPane tabbedPane = new JTabbedPane();
 
-    public GUI(){
+    public GUI() {
         main = new MainFrame();
-        startMsg();
         EventTram.getInstance().register(this);
+        startMsg();
     }
 
     public void startMsg() {
@@ -49,38 +50,63 @@ public class GUI implements IEventHandler{
         start.summary(model.getPlayerNames(), model.getGameBoard().getName());
     }
 
-    private void showGamePanel() {
+    private void createGamePanels() {
+        for (Player player : model.getPlayers()) {
+            gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
+        }
+        createTabbedPane();
+    }
+
+    private void createTabbedPane() {
+        for (GamePanel panel : gamePanels) {
+            tabbedPane.addTab(panel.getPlayer().getName(),panel);
+        }
+        showGamePanels();
+    }
+
+    private void showGamePanels() {
         main.remove(start);
-        gamePanel = new GamePanel(model);
-        main.add(gamePanel, BorderLayout.CENTER);
+        main.add(tabbedPane, BorderLayout.CENTER);
+        main.setSize(1022, 790);
         main.revalidate();
         main.repaint();
     }
 
-    public void chooseCards(Player player) {
-        gamePanel.pickCards(player);
+    public void pickCards(Player player) {
+        for (GamePanel panel : gamePanels) {
+            if (panel.getPlayer().getiD() == player.getiD()) {
+                panel.pickCards();
+            }
+        }
         main.revalidate();
         main.repaint();
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o) {
-        if(EventTram.Event.SHOW_MENU == evt){
-            menu();
-        } else if (EventTram.Event.SET_NAMES == evt) {
-            chooseMap(new MapFactory().getMaps());
-        } else if (EventTram.Event.NEW_MODEL == evt) {
-            this.model = (RoboRally) o;
-            showSummary();
-        } else if (EventTram.Event.SHOW_GAMEPANEL == evt) {
-            showGamePanel();
-        } else if (EventTram.Event.CHOOSE_CARDS == evt) {
-            chooseCards((Player) o);
-        } else if(evt == EventTram.Event.UPDATE_BOARD){
-            gamePanel.getBoardView().repaint();
-        } else if (evt == EventTram.Event.UPDATE_STATUS){
-            //gamePanel.getStatusView().repaint();
+        switch (evt) {
+            case SHOW_MENU:
+                menu();
+                break;
+            case SET_NAMES:
+                chooseMap(new MapFactory().getMaps());
+                break;
+            case CREATE_MODEL:
+                this.model = (RoboRally) o;
+                showSummary();
+                break;
+            case SHOW_GAMEPANEL:
+                createGamePanels();
+                break;
+            case CHOOSE_CARDS:
+                pickCards((Player) o);
+                break;
+            case UPDATE_BOARD:
+                gamePanel.getBoardView().repaint();
+                break;
+            case UPDATE_STATUS:
+                gamePanel.getStatusView().repaint();
+                break;
         }
-
     }
 }

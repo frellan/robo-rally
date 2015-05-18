@@ -23,13 +23,27 @@ public class StatusView extends JPanel implements ActionListener {
         this.player = player;
         setLayout(new GridLayout(4,1));
         setSize(322, 162);
+        setBackground(Color.DARK_GRAY);
 
         powerDown = new JButton("PowerDown");
+        powerDown.setFont(new Font("Serif", Font.PLAIN, 30));
+        powerDown.setBackground(Color.RED);
+        powerDown.setForeground(Color.WHITE);
+        powerDown.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.BLACK));
         powerDown.addActionListener(this);
 
-        lifeTokens = new JLabel("LifeTokens " + player.getLifeTokens());
-        dmgTokens = new JLabel("DamageTokens " + player.getDamageTokens());
-        position = new JLabel("PlayerPosition " + player.getPosition());
+
+        lifeTokens = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
+        lifeTokens.setForeground(Color.GREEN);
+        lifeTokens.setFont(new Font("Serif", Font.PLAIN, 22));
+
+        dmgTokens = new JLabel("DamageTokens: " + player.getDamageTokens(), SwingConstants.CENTER);
+        dmgTokens.setForeground(Color.GREEN);
+        dmgTokens.setFont(new Font("Serif", Font.PLAIN, 22));
+
+        position = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
+        position.setForeground(Color.GREEN);
+        position.setFont(new Font("Serif", Font.PLAIN, 22));
 
         add(powerDown);
         add(lifeTokens);
@@ -43,3 +57,4 @@ public class StatusView extends JPanel implements ActionListener {
     }
 
 }
+

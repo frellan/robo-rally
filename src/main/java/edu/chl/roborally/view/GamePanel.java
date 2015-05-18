@@ -2,12 +2,14 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.imageio.ImageIO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-05-06.
@@ -21,12 +23,14 @@ public class GamePanel extends JPanel {
     private StatusView statusView;
     private ConsoleView consoleView;
     private ControlView controlView;
+    private Player player;
 
-    public GamePanel(RoboRally model){
+    public GamePanel(GameBoard board, ArrayList<Player> players, Player player){
         initImages();
         setOpaque(false);
         setLayout(null);
-        boardView = new BoardView(model);
+        this.player = player;
+        boardView = new BoardView(board,players);
         controlView = new ControlView();
         consoleView = new ConsoleView();
         add(boardView);
@@ -37,15 +41,18 @@ public class GamePanel extends JPanel {
         controlView.setLocation(8, 543);
     }
 
-    public void pickCards(Player player) {
+    public Player getPlayer() {
+        return player;
+    }
 
+    public void pickCards() {
         controlView.pickCards(player);
         revalidate();
         repaint();
     }
 
     public void showCards() {
-        controlView.showCards();
+        controlView.showCardsAndStatus(player);
     }
 
     // Draw background
@@ -76,5 +83,7 @@ public class GamePanel extends JPanel {
     public BoardView getBoardView(){
         return this.boardView;
     }
-    public StatusView getStatusView() { return this.statusView; }
+    public StatusView getStatusView() {
+        return this.statusView;
+    }
 }

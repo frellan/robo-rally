@@ -25,9 +25,9 @@ public class BoardView extends JPanel {
     private int width = (tileSize * columns) + columns;
     private int height = (tileSize * rows) + rows;
 
-    public BoardView(RoboRally model) {
-        board = model.getGameBoard();
-        players = model.getPlayers();
+    public BoardView(GameBoard board, ArrayList<Player> players) {
+        this.board = board;
+        this.players = players;
         setSize(width, height);
     }
 

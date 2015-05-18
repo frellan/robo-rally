@@ -28,7 +28,7 @@ public class EventTram {
         /**
          * This event is fired when new model is created
          */
-        NEW_MODEL,
+        CREATE_MODEL,
 
         RUN_GAME,
 
