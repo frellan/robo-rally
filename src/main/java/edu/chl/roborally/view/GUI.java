@@ -72,7 +72,7 @@ public class GUI implements IEventHandler{
         } else if (EventTram.Event.NEW_MODEL == evt) {
             this.model = (RoboRally) o;
             showSummary();
-        } else if (EventTram.Event.SHOW_GAMEPANEL == evt) {
+        } else if (EventTram.Event.RUN_GAME == evt) {
             showGamePanel();
         } else if (EventTram.Event.CHOOSE_CARDS == evt) {
             chooseCards((Player) o);
