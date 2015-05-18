@@ -5,6 +5,8 @@ import edu.chl.roborally.utilities.IEventHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by axel on 2015-05-18.
@@ -28,6 +30,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
         textArea.setEditable(false);
         textArea.setBackground(Color.DARK_GRAY);
         textArea.setForeground(Color.GREEN);
+        textArea.setFont(new Font("Serif", Font.PLAIN, 20));
 
         EventTram.getInstance().register(this);
 
