@@ -23,6 +23,7 @@ public class GamePanel extends JPanel {
     private StatusView statusView;
     private ConsoleView consoleView;
     private ControlView controlView;
+    private Player player;
 
     public GamePanel(GameBoard board, ArrayList<Player> players){
         initImages();
@@ -37,6 +38,10 @@ public class GamePanel extends JPanel {
         consoleView.setLocation(678, 23);
         add(controlView);
         controlView.setLocation(8, 543);
+    }
+
+    public String getPlayerName() {
+        return player.getName();
     }
 
     public void pickCards(Player player) {
