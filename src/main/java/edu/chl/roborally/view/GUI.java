@@ -76,6 +76,8 @@ public class GUI implements IEventHandler{
             showGamePanel();
         } else if (EventTram.Event.CHOOSE_CARDS == evt) {
             chooseCards((Player) o);
+        } else if(evt == EventTram.Event.UPDATE_GAMEBOARD){
+            gamePanel.getBoardView().repaint();
         }
 
     }

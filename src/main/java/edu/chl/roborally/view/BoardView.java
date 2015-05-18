@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class BoardView extends JPanel implements IEventHandler {
+public class BoardView extends JPanel {
     
     private GameBoard board;
     private ArrayList<Player> players;
@@ -75,13 +75,6 @@ public class BoardView extends JPanel implements IEventHandler {
             if(player.isAlive()){
                 player.draw(g, (pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
             }
-        }
-    }
-
-    @Override
-    public void onEvent(EventTram.Event evt, Object o) {
-        if(evt == EventTram.Event.UPDATE_GAMEBOARD){
-            repaint();
         }
     }
 }

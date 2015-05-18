@@ -17,6 +17,7 @@ public class StatusView extends JPanel implements ActionListener {
     private JButton powerDown;
     private JLabel lifeTokens;
     private JLabel dmgTokens;
+    private JLabel position;
 
     public StatusView (Player player){
         this.player = player;
@@ -28,10 +29,12 @@ public class StatusView extends JPanel implements ActionListener {
 
         lifeTokens = new JLabel("LifeTokens " + player.getLifeTokens());
         dmgTokens = new JLabel("DamageTokens " + player.getDamageTokens());
+        position = new JLabel("PlayerPosition " + player.getPosition());
 
         add(powerDown);
         add(lifeTokens);
         add(dmgTokens);
+        add(position);
     }
 
     @Override

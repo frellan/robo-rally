@@ -71,4 +71,8 @@ public class GamePanel extends JPanel {
             System.out.println("Images could not be read");
         }
     }
+
+    public BoardView getBoardView(){
+        return this.boardView;
+    }
 }
