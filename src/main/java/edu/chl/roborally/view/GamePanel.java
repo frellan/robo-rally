@@ -51,8 +51,8 @@ public class GamePanel extends JPanel {
         repaint();
     }
 
-    public void showCards() {
-        controlView.showCards();
+    public void showCards(Player player) {
+        controlView.showCardsAndStatus(player);
     }
 
     // Draw background

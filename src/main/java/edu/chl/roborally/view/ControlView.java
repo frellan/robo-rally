@@ -12,6 +12,7 @@ public class ControlView extends JPanel {
 
     private ChooseCardsView chooseCardsView;
     private CardView cardView;
+    private StatusView statusView;
 
     public ControlView(){
         setLayout(null);
@@ -28,10 +29,13 @@ public class ControlView extends JPanel {
         repaint();
     }
 
-    public void showCards() {
+    public void showCardsAndStatus(Player player) {
         cardView = new CardView(testCards());
+        statusView = new StatusView(player);
         add(cardView);
+        add(statusView);
         cardView.setLocation(4, 5);
+        statusView.setLocation(662, 5);
     }
 
     private ArrayList<RegisterCard> testCards() {
