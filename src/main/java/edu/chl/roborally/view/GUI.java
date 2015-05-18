@@ -20,7 +20,7 @@ public class GUI implements IEventHandler{
     private RoboRally model;
     private GamePanel gamePanel;
 
-    public GUI(){
+    public GUI() {
         main = new MainFrame();
         startMsg();
         EventTram.getInstance().register(this);
@@ -71,7 +71,7 @@ public class GUI implements IEventHandler{
             case SET_NAMES:
                 chooseMap(new MapFactory().getMaps());
                 break;
-            case NEW_MODEL:
+            case INIT_MODEL:
                 this.model = (RoboRally) o;
                 showSummary();
                 break;

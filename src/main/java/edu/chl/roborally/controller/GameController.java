@@ -43,7 +43,7 @@ public class GameController extends Thread implements IEventHandler {
         if (tempNames != null && tempMap != null && model == null) {
             this.model = new RoboRally(createPlayers(tempNames), mapFactory.createMap(tempMap));
             System.out.println("New roborally created");
-            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model);
+            EventTram.getInstance().publish(EventTram.Event.INIT_MODEL, model);
         }
 
         System.out.println("Could not start a new model");
