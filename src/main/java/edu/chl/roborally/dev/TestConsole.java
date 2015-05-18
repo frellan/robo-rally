@@ -1,4 +1,4 @@
-package edu.chl.roborally;
+package edu.chl.roborally.dev;
 
 import edu.chl.roborally.view.ConsoleView;
 

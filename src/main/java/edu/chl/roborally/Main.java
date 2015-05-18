@@ -1,6 +1,7 @@
 package edu.chl.roborally;
 
 import edu.chl.roborally.controller.AppController;
+import edu.chl.roborally.dev.TestGameView;
 
 public final class Main {
 

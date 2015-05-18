@@ -1,5 +1,6 @@
-package edu.chl.roborally;
+package edu.chl.roborally.dev;
 
+import edu.chl.roborally.Main;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.*;
