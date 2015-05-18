@@ -91,7 +91,7 @@ public class GUI implements IEventHandler{
             case SET_NAMES:
                 chooseMap(new MapFactory().getMaps());
                 break;
-            case CREATE_MODEL:
+            case NEW_MODEL:
                 this.model = (RoboRally) o;
                 showSummary();
                 break;

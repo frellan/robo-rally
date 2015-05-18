@@ -21,14 +21,19 @@ public class EventTram {
          * This event tells the GUI to show the menu
          */
         SHOW_MENU,
-        INIT_GAME,
+
+        /**
+         * This event tries to create a new game
+         */
+        CREATE_MODEL,
+
         SET_NAMES,
         SET_MAP,
 
         /**
-         * This event is fired when new model is created
+         * This event is fired when a new model is created
          */
-        CREATE_MODEL,
+        NEW_MODEL,
 
         RUN_GAME,
 
