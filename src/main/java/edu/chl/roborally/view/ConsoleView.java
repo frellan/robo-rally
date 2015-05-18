@@ -13,6 +13,8 @@ import java.awt.*;
  * fire the PRINT_MESSAGE event with a string that you want to print and it will print it
  * in a textArea.
  *
+ * If you want to print the message with a custom color, send a Color as the second parameter in the event.
+ *
  */
 public class ConsoleView extends JPanel implements IEventHandler {
 
@@ -41,14 +43,26 @@ public class ConsoleView extends JPanel implements IEventHandler {
         this.setSize(314, 492);
     }
 
+    //Print message with standard color
     public void printMessage(String str){
         textArea.append(str + "\n");
+    }
+
+    //Print message with custom color
+    public void printMessage(String str, Color color){
+        textArea.setForeground(color);
+        printMessage(str);
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if(evt == EventTram.Event.PRINT_MESSAGE){
-            printMessage((String) o);
+            if(o2 != null) {
+                printMessage((String) o, (Color) o2);
+
+            }else{
+                printMessage((String) o);
+            }
         }
     }
 }
