@@ -67,13 +67,17 @@ public class GUI implements IEventHandler{
     private void showGamePanels() {
         main.remove(start);
         main.add(tabbedPane, BorderLayout.CENTER);
-        main.setSize(1030, 790);
+        main.setSize(1030, 782);
         main.revalidate();
         main.repaint();
     }
 
-    public void chooseCards(Player player) {
-        gamePanel.pickCards(player);
+    public void pickCards(Player player) {
+        for (GamePanel panel : gamePanels) {
+            if (panel.getPlayer().getiD() == player.getiD()) {
+                panel.pickCards();
+            }
+        }
         main.revalidate();
         main.repaint();
     }
@@ -95,7 +99,7 @@ public class GUI implements IEventHandler{
                 createGamePanels();
                 break;
             case CHOOSE_CARDS:
-                chooseCards((Player) o);
+                pickCards((Player) o);
                 break;
             case UPDATE_BOARD:
                 gamePanel.getBoardView().repaint();

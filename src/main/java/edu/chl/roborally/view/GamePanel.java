@@ -45,14 +45,13 @@ public class GamePanel extends JPanel {
         return player;
     }
 
-    public void pickCards(Player player) {
-
+    public void pickCards() {
         controlView.pickCards(player);
         revalidate();
         repaint();
     }
 
-    public void showCards(Player player) {
+    public void showCards() {
         controlView.showCardsAndStatus(player);
     }
 
