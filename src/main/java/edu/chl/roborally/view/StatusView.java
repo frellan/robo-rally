@@ -57,3 +57,4 @@ public class StatusView extends JPanel implements ActionListener {
     }
 
 }
+
