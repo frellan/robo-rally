@@ -2,12 +2,14 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
+import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.imageio.ImageIO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-05-06.
@@ -22,11 +24,11 @@ public class GamePanel extends JPanel {
     private ConsoleView consoleView;
     private ControlView controlView;
 
-    public GamePanel(RoboRally model){
+    public GamePanel(GameBoard board, ArrayList<Player> players){
         initImages();
         setOpaque(false);
         setLayout(null);
-        boardView = new BoardView(model);
+        boardView = new BoardView(board,players);
         controlView = new ControlView();
         consoleView = new ConsoleView();
         add(boardView);

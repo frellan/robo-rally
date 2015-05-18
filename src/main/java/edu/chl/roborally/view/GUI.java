@@ -18,7 +18,7 @@ public class GUI implements IEventHandler{
     private JFrame main;
     private StartPanel start;
     private RoboRally model;
-    private GamePanel gamePanel;
+    private ArrayList<GamePanel> gamePanels;
 
     public GUI() {
         main = new MainFrame();
@@ -46,6 +46,12 @@ public class GUI implements IEventHandler{
 
     private void showSummary() {
         start.summary(model.getPlayerNames(), model.getGameBoard().getName());
+    }
+
+    private void createGamePanels() {
+        for(Player player : model.getPlayers()) {
+            gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers()));
+        }
     }
 
     private void showGamePanel() {
