@@ -29,9 +29,6 @@ public class BoardView extends JPanel {
         board = model.getGameBoard();
         players = model.getPlayers();
         setSize(width, height);
-
-        EventTram.getInstance().register(this);
-
     }
 
     @Override
