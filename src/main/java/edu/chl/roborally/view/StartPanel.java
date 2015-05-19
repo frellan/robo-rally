@@ -32,6 +32,7 @@ public class StartPanel extends JPanel implements ActionListener{
 
         this.setLayout(new GridBagLayout());
 
+
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         }catch(java.io.IOException | NullPointerException e){
@@ -68,28 +69,6 @@ public class StartPanel extends JPanel implements ActionListener{
     }
 
     // TODO tabort eftersom vi ska ha robotar med fasta namn
-    public void showNameForms(int i) {
-        this.removeAll();
-        JPanel nameForms = new StyledJPanel(new GridLayout(5,0));
-        tempNames = new ArrayList<>();
-        nameForms.add(new JLabel("Set Names on players"));
-
-        for (int j = 0; j<i; j++) {
-            JPanel panel = new JPanel(new GridLayout(0,2));
-            panel.setOpaque(true);
-            panel.setBackground(Color.DARK_GRAY);
-            panel.add(new JLabel("Player " + j));
-            tempNames.add(new JTextField());
-            panel.add(tempNames.get(j));
-            nameForms.add(panel);
-        }
-        saveNames = new JButton("Set Names");
-        saveNames.addActionListener(this);
-        nameForms.add(saveNames);
-        this.add(nameForms);
-        this.repaint();
-        this.revalidate();
-    }
 
     public void chooseMap(ArrayList<String> maps) {
         this.removeAll();
@@ -116,7 +95,7 @@ public class StartPanel extends JPanel implements ActionListener{
         for(JTextField name : tempNames) {
             names.add(name.getText());
         }
-        EventTram.getInstance().publish(EventTram.Event.SET_NAMES, names, null);
+        EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, names, null);
     }
 
     private void sendMapChocieToController() {
@@ -161,7 +140,7 @@ public class StartPanel extends JPanel implements ActionListener{
         } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
-            showNameForms((Integer) chooser.getValue());
+            EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
         } else if (e.getSource() == saveNames) {
             sendNamesToController();
         } else if (e.getSource() == chooseMapButton) {
