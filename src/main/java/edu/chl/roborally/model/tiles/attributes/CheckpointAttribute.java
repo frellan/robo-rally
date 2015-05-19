@@ -37,7 +37,7 @@ public class CheckpointAttribute implements Attribute {
                 System.out.println("It worked, new checkpoint set");
             }
             else if (id == 5) {
-                EventTram.getInstance().publish(EventTram.Event.VICTORY, player);
+                EventTram.getInstance().publish(EventTram.Event.VICTORY,player);
             }
         } else {
             System.out.println("Wrong checkpoint, go to " + (id - 1) + " first");
