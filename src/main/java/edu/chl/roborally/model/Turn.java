@@ -3,6 +3,8 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.utilities.EventTram;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -62,27 +64,28 @@ public class Turn{
     }
 
     private void executeActiveCards() {
-        System.out.println("----------------------------");
-        System.out.println("------- Card Actions -------");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "----------------------------", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "------- Card Actions -------", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
                 card.doAction(player);
             }
         }
-        System.out.println("------ End card Actions -----");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "------ End card Actions -----", null);
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        System.out.println("----------------------------");
-        System.out.println("------- Tile Actions -------");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"----------------------------", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"------- Tile Actions -------", null);
+
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player, null);
             }
         }
-        System.out.println("----- End tile actions -----");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"----- End tile actions -----", null);
     }
 
     private void fireLasers() {
@@ -134,7 +137,7 @@ public class Turn{
     }
 
     private void printFireMsg(Player p, Player enemy) {
-        System.out.println(p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName());
-        System.out.println(enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName() + "\n"
+                + enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens" , null);
     }
 }
