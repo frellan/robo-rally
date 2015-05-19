@@ -18,7 +18,6 @@ public class GUI implements IEventHandler{
     private JFrame main;
     private StartPanel start;
     private RoboRally model;
-    private GamePanel gamePanel;
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
     private JTabbedPane tabbedPane = new JTabbedPane();
 

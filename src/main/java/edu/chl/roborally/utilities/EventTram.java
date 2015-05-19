@@ -75,8 +75,12 @@ public class EventTram {
         POWER_DOWN,
 
         EXECUTE_TILE_ACTION,
-
-        PRINT_MESSAGE
+        PRINT_MESSAGE,
+        /**
+         * This event is fired by the attribute which holds the last checkpoint
+         * the event should include a player
+         */
+        VICTORY
     }
 
     //for debugging

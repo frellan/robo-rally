@@ -29,8 +29,10 @@ public class TileFactory {
      * PitTile = 4
      * RepairTile = 6
      * Repair with wall N = 61
-     * Checkpoint 0,1,2,3,4 = 70,71,72,73
-     * Checkpoint with WALL CP1_SOUTH = 703
+     * StartCheckpoint = 70
+     * FinalCheckpoint = 75
+     * Checkpoint 1,2,3,4 = 71,72,73
+     * StartCheckpoint with WALL CP1_SOUTH = 703
      */
 
     public GameTile createTile(int tileNbr) {
@@ -152,6 +154,10 @@ public class TileFactory {
                 break;
             case 73:
                 tile.addAttribute(new CheckpointAttribute(3));
+                break;
+            //Final Checkpoint
+            case 75:
+                tile.addAttribute(new CheckpointAttribute(5));
                 break;
             //Checkpoint with WALL
             case 703:

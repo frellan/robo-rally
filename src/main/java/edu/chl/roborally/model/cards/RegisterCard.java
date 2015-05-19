@@ -3,6 +3,7 @@ package edu.chl.roborally.model.cards;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.utilities.Constants;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -17,7 +18,10 @@ public abstract class RegisterCard {
     private String name;
     protected BufferedImage image;
 
-    public RegisterCard(int points, boolean isHidden,String name ) {
+    private static final int CARD_WIDTH = 96;
+    private static final int CARD_HEIGHT = 145;
+
+    public RegisterCard(int points, boolean isHidden, String name ) {
         this.points = points;
         this.isHidden = isHidden;
         this.isLocked = false;
@@ -25,6 +29,10 @@ public abstract class RegisterCard {
     }
 
     public abstract void doAction(Player p);
+
+    public ImageIcon getIcon() {
+        return new ImageIcon(image);
+    }
 
     public int getPoints() {
         return points;
@@ -50,8 +58,4 @@ public abstract class RegisterCard {
         return name + " " + "Points: " + points;
     }
 
-    public void draw(Graphics g, int x, int y){
-        g.drawImage(image,x,y,Constants.CARD_WIDTH,Constants.CARD_HEIGHT,null);
-        g.drawChars(name.toCharArray(),0, name.length(), x + 20, y + 30);
-    }
 }
