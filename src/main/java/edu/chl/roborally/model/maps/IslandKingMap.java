@@ -15,11 +15,12 @@ public class IslandKingMap extends GameBoard {
      * RotTile W,E = 21,22
      * WallTile N,W,S,E = 31,32,33,34
      * PitTile = 4
-     * StarTile = 5
-     * StartTile with wall S = 53
      * RepairTile = 6
      * Repair with wall N = 61
-     * Checkpoint 1,2,3,4 = 71,72,73,74
+     * StartCheckpoint = 70
+     * FinalCheckpoint = 75
+     * Checkpoint 1,2,3,4 = 71,72,73
+     * StartCheckpoint with WALL CP1_SOUTH = 703
      */
     private final int[][] map = {   { 0,703,  0,  0,  0,  0, 61,  0, 31,  0,  0, 31,  0, 31,  0,  0},
                                     { 0, 70,  0,  0,  0,  4,  4,  0,  0,  0,  0,  0,  0,  4,  4,  0},
