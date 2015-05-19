@@ -173,13 +173,4 @@ public class CardsView extends JPanel {
             return accept;
         }
     }
-
-    public static void main (String[] args) {
-        JFrame main = new JFrame();
-        main.setSize(760, 190);
-        JPanel panel = new CardsView();
-        main.add(panel);
-        main.setVisible(true);
-        main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
 }
