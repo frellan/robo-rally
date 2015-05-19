@@ -80,6 +80,8 @@ public class StartPanel extends JPanel implements ActionListener{
 
     public void chooseMap(ArrayList<String> maps) {
 
+        System.out.print("in choosemap");
+
         this.removeAll();
         JPanel mapChooser = new StyledJPanel(new FlowLayout());
 
@@ -111,11 +113,14 @@ public class StartPanel extends JPanel implements ActionListener{
 
         //Create the mapInfo
         JPanel mapInfo = new JPanel();
-        JLabel mapName = new JLabel(maps.get(index).toString());
+        //JLabel mapName = new JLabel(maps.get(index).toString());
 
-        mapInfo.add(mapName);
+        //mapInfo.add(mapName);
         mapChooser.add(mapInfo);
         this.add(mapChooser);
+        
+        repaint();
+        revalidate();
     }
 
     private void sendMapChocieToController() {
@@ -169,7 +174,7 @@ public class StartPanel extends JPanel implements ActionListener{
         } else if (e.getSource() == chooseNbrOfPlayers) {
             EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
         } else if (e.getSource() == saveNames) {
-            sendNamesToController();
+
         } else if (e.getSource() == chooseMapButton) {
             sendMapChocieToController();
         } else if (e.getSource() == startGameBtn) {
