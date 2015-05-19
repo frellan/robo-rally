@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
  */
 public class RegisterCardIcon extends JLabel {
 
+    private RegisterCard card;
     private boolean locked = false;
 
     public RegisterCardIcon() {
@@ -17,12 +18,8 @@ public class RegisterCardIcon extends JLabel {
         setSize(96,150);
     }
 
-    public RegisterCardIcon(RegisterCard card) {
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        setSize(96,150);
-    }
-
-    public void setIcon(RegisterCard card) {
-        setIcon(card.getIcon());
+    public void setCard(RegisterCard card) {
+        this.card = card;
+        setText(card.toString());
     }
 }

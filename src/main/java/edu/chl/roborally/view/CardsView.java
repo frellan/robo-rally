@@ -1,5 +1,7 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.model.cards.BackupCard;
+import edu.chl.roborally.model.cards.MoveOneCard;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardIcon;
 
@@ -20,8 +22,8 @@ public class CardsView extends JPanel {
 
     private JPanel registerView;
     private JPanel pickCardsView;
+    private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
-    private ArrayList<RegisterCard> newCardsToPick = new ArrayList<>();
 
     private static final int CARD_WIDTH = 96;
     private static final int CARD_GAP = 10;
@@ -30,6 +32,8 @@ public class CardsView extends JPanel {
         setLayout(null);
         setSize(760,170);
         createRegisterView();
+        newCardsToPick[0] = new BackupCard(200,false);
+        newCardsToPick[1] = new MoveOneCard(200,false);
         createPickCardsView();
     }
 
@@ -40,6 +44,7 @@ public class CardsView extends JPanel {
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
             registerCardIcons[i] = temp;
+            temp.setTransferHandler(new ValueImportTransferHandler());
             registerView.add(temp).setLocation(gap, 10);
             gap += CARD_WIDTH + CARD_GAP;
         }
@@ -56,10 +61,10 @@ public class CardsView extends JPanel {
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
-            if (newCardsToPick.get(index) != null) {
-                JButton btn = new JButton(newCardsToPick.get(index).toString());
+            if (newCardsToPick[index] != null) {
+                JButton btn = new JButton(newCardsToPick[index].toString());
                 pickCardsView.add(btn);
-                btn.setTransferHandler(new ValueExportTransferHandler(Integer.toString(index + 1)));
+                btn.setTransferHandler(new ValueExportTransferHandler(newCardsToPick[index].toString()));
 
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
@@ -77,7 +82,7 @@ public class CardsView extends JPanel {
     }
 
     public void newCardsToPick(ArrayList<RegisterCard> cards) {
-        newCardsToPick = cards;
+        newCardsToPick = convertToArray(cards);
         refreshNewCardButtons();
         revalidate();
         repaint();
@@ -95,9 +100,17 @@ public class CardsView extends JPanel {
         return temp;
     }
 
-    public static class ValueExportTransferHandler extends TransferHandler {
+    private RegisterCard getMatchingCard(String value) {
+        for (RegisterCard card : newCardsToPick) {
+            if (card.toString().equals(value)) {
+                return card;
+            }
+        }
+        return null;
+    }
 
-        public static final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
+    public class ValueExportTransferHandler extends TransferHandler {
+
         private String value;
 
         public ValueExportTransferHandler(String value) {
@@ -127,9 +140,9 @@ public class CardsView extends JPanel {
 
     }
 
-    public static class ValueImportTransferHandler extends TransferHandler {
+    public class ValueImportTransferHandler extends TransferHandler {
 
-        public static final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
+        public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
 
         public ValueImportTransferHandler() {
         }
@@ -148,8 +161,8 @@ public class CardsView extends JPanel {
                     Object value = t.getTransferData(SUPPORTED_DATE_FLAVOR);
                     if (value instanceof String) {
                         Component component = support.getComponent();
-                        if (component instanceof JLabel) {
-                            ((JLabel) component).setText(value.toString());
+                        if (component instanceof RegisterCardIcon) {
+                            ((RegisterCardIcon) component).setCard(getMatchingCard((String) value));
                             accept = true;
                         }
                     }
