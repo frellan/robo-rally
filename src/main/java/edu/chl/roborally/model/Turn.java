@@ -167,7 +167,7 @@ public class Turn{
     }
 
     private void printFireMsg(Player p, Player enemy) {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getRobot() + " shoot in " + p.getDirection() + " and hit " + enemy.getRobot() + "\n"
-                + enemy.getRobot() + " now has " + enemy.getDamageTokens() + " damage tokens" , null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName() + "\n"
+                + enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens" , null);
     }
 }
