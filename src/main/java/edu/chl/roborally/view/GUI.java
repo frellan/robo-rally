@@ -102,11 +102,14 @@ public class GUI implements IEventHandler{
                 pickCards((Player) o);
                 break;
             case UPDATE_BOARD:
-                gamePanel.getBoardView().repaint();
+                for(GamePanel panel : gamePanels)
+                    panel.getBoardView().repaint();
                 break;
-            case UPDATE_STATUS:
-                gamePanel.getStatusView().repaint();
-                break;
+            //showCardsAndStatus not used yet --> Status View not initialized
+            /*case UPDATE_STATUS:
+                for(GamePanel panel : gamePanels)
+                    panel.getControlView().getStatusView().repaint();
+                break;*/
         }
     }
 }

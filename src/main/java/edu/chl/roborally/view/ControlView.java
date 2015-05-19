@@ -52,4 +52,8 @@ public class ControlView extends JPanel {
         cards.add(card5);
         return cards;
     }
+
+    public StatusView getStatusView() {
+        return this.statusView;
+    }
 }
