@@ -14,12 +14,20 @@ public class ActiveRegisterView extends JPanel {
 
     private ArrayList<RegisterCard> cards;
 
+    private static final int CARD_SLOT_WIDTH = 95;
+    private static final int CARD_SLOT_HEIGHT = 147;
+    private static final int CARD_SLOT_ARC = 5;
+    private static final int CARD_WIDTH = 90;
+    private static final int CARD_HEIGHT = 145;
+    private static final int CARD_GAP = 18;
+
     public ActiveRegisterView(ArrayList<RegisterCard> cards){
         this.cards = cards;
         setLayout(new BorderLayout());
         setSize(588, 162);
     }
 
+    /*
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -30,10 +38,11 @@ public class ActiveRegisterView extends JPanel {
         int gap = 5;
         for (RegisterCard card : cards) {
             g.drawRoundRect(gap, 5,
-                    Constants.CARD_SLOT_WIDTH, Constants.CARD_SLOT_HEIGHT,
-                    Constants.CARD_SLOT_ARC, Constants.CARD_SLOT_ARC);
+                    CARD_SLOT_WIDTH, CARD_SLOT_HEIGHT,
+                    CARD_SLOT_ARC, CARD_SLOT_ARC);
             card.draw(g, gap + 1, 6);
-            gap += Constants.CARD_WIDTH + Constants.CARD_GAP;
+            gap += CARD_WIDTH + CARD_GAP;
         }
     }
+    */
 }

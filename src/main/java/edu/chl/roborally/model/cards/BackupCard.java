@@ -5,6 +5,7 @@ import edu.chl.roborally.model.gameactions.*;
 import edu.chl.roborally.utilities.Constants;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

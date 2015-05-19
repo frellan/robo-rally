@@ -12,7 +12,7 @@ public class ControlView extends JPanel {
 
     private CardLayout cardLayout = new CardLayout();
     private PickNewCardsView pickNewCardsView;
-    private JPanel pickNewCardsViewHolder = new JPanel();
+    private JPanel pickNewCardsViewHolder = new JPanel(new BorderLayout());
     private ActiveRegisterView activeRegisterView;
     private JPanel activeRegisterAndStatusViewsHolder = new JPanel();
     private StatusView statusView;
@@ -21,18 +21,14 @@ public class ControlView extends JPanel {
         setLayout(cardLayout);
         setSize(984, 170);
         pickNewCardsView = new PickNewCardsView();
-        pickNewCardsViewHolder.setSize(588,170);
-        pickNewCardsViewHolder.add(pickNewCardsView);
+        pickNewCardsViewHolder.setSize(984, 170);
+        pickNewCardsViewHolder.add(pickNewCardsView, BorderLayout.CENTER);
+        add(pickNewCardsViewHolder,"PickNewCards");
     }
 
     public void showPickNewCards(Player player) {
         pickNewCardsView.setCards(player.getDealtCards());
-        removeAll();
-        add(pickNewCardsView);
-
-        pickNewCardsView.setLocation(4, 5);
-        revalidate();
-        repaint();
+        cardLayout.show(this,"PickNewCards");
     }
 
     public void showActiveRegisterAndStatus(Player player) {
