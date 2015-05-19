@@ -11,32 +11,16 @@ import java.awt.*;
 public class ControlView extends JPanel {
 
     private CardLayout cardLayout = new CardLayout();
-    private PickNewCardsView pickNewCardsView;
-    private JPanel pickNewCardsViewHolder = new JPanel(new BorderLayout());
-    private ActiveRegisterView activeRegisterView;
-    private JPanel activeRegisterAndStatusViewsHolder = new JPanel();
-    private StatusView statusView;
+    private CardsView cardsView;
 
     public ControlView(){
-        setLayout(cardLayout);
+        setLayout(null);
         setSize(984, 170);
-        pickNewCardsView = new PickNewCardsView();
-        pickNewCardsViewHolder.setSize(984, 170);
-        pickNewCardsViewHolder.add(pickNewCardsView, BorderLayout.CENTER);
-        add(pickNewCardsViewHolder,"PickNewCards");
+        cardsView = new CardsView();
+        add(cardsView).setLocation(0, 0);
     }
 
-    public void showPickNewCards(Player player) {
-        pickNewCardsView.refreshCards(player.getDealtCards());
-        cardLayout.show(this,"PickNewCards");
-    }
-
-    public void showActiveRegisterAndStatus(Player player) {
-        activeRegisterView = new ActiveRegisterView(null);
-        statusView = new StatusView(player);
-        add(activeRegisterView);
-        add(statusView);
-        activeRegisterView.setLocation(4, 5);
-        statusView.setLocation(662, 5);
+    public void newCardsToPick(Player player) {
+        cardsView.newCardsToPick(player.getDealtCards());
     }
 }

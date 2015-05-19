@@ -44,13 +44,9 @@ public class GamePanel extends JPanel {
     }
 
     public void pickCards() {
-        controlView.showPickNewCards(player);
+        controlView.newCardsToPick(player);
         revalidate();
         repaint();
-    }
-
-    public void showCards() {
-        controlView.showActiveRegisterAndStatus(player);
     }
 
     // Draw background
