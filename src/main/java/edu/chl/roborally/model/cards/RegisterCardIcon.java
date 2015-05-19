@@ -18,6 +18,9 @@ public class RegisterCardIcon extends JLabel {
         setSize(96, 140);
     }
 
+    public RegisterCard getCard() {
+        return card;
+    }
     public void setCard(RegisterCard card) {
         this.card = card;
         setText(card.toString());

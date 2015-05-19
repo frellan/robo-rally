@@ -29,7 +29,7 @@ public class CardsView extends JPanel {
 
     public CardsView() {
         setLayout(null);
-        setSize(680,170);
+        setSize(664,170);
         createRegisterView();
         createPickCardsView();
     }
@@ -54,8 +54,8 @@ public class CardsView extends JPanel {
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
         pickCardsView.setSize(136, 170);
-        add(pickCardsView).setLocation(522, 0);
         refreshNewCardButtons();
+        add(pickCardsView).setLocation(522, 0);
     }
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
@@ -90,12 +90,8 @@ public class CardsView extends JPanel {
         revalidate();
         repaint();
     }
-    public void sendSelectedCards() {
-        for (JButton button : cardButtons) {
-            if (button.isSelected()) {
-                outputCards.add(inputCards.get(cardButtons.indexOf(button)));
-            }
-        }
+    public RegisterCard getProgrammedCard(int index) {
+        return registerCardIcons[index].getCard();
     }
 
     /*

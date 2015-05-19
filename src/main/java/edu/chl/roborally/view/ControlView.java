@@ -14,14 +14,14 @@ public class ControlView extends JPanel {
     private StatusView statusView;
     private Player player;
 
-    public ControlView(Player player){
+    public ControlView(Player player) {
         this.player = player;
         setLayout(null);
         setSize(984, 170);
         cardsView = new CardsView();
         statusView = new StatusView(player);
         add(cardsView).setLocation(0, 0);
-        add(statusView).setLocation(660, 0);
+        add(statusView).setLocation(668, 0);
     }
 
     public void newCardsToPick(Player player) {
