@@ -4,8 +4,6 @@ import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.maps.IslandKingMap;
-import edu.chl.roborally.model.maps.MapFactory;
-import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Position;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +29,7 @@ public class CheckpointAttributeTest {
         ArrayList<Player> players = new ArrayList<>();
         players.add(player);
         model = new RoboRally(players,map);
-        System.out.println(player.getName() + " starts at position " + player.getPosition() + " and has checkpoint " + player.getCheckpoint());
+        System.out.println(player.getRobot() + " starts at position " + player.getPosition() + " and has checkpoint " + player.getCheckpoint());
     }
 
     @Test

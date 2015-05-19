@@ -20,7 +20,7 @@ public class MoveAndBackUpPlayerTest {
         player = new Player(0, "MoveAndBackUpPlayer");
         player.setPosition(new Position(4,6));
         player.setDirection(Constants.Directions.NORTH);
-        System.out.println(player.getName() + " starts at position " + player.getPosition());
+        System.out.println(player.getRobot() + " starts at position " + player.getPosition());
     }
 
     @Test

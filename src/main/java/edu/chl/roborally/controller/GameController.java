@@ -1,5 +1,6 @@
 package edu.chl.roborally.controller;
 
+import edu.chl.roborally.model.robot.RobotFactory;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.*;
@@ -19,10 +20,10 @@ public class GameController extends Thread implements IEventHandler {
     private MapFactory mapFactory;
 
     // Collect information to init model
-    private ArrayList<String> tempNames = null;
+    private Integer tempNbrOfRobots = null;
     private String tempMap = null;
     private boolean mapReady = false;
-    private boolean nameReady = false;
+    private boolean robotsReady = false;
     private int turnIndex = 0;
     private boolean newTurn = false;
     private boolean newRound = true;
@@ -37,8 +38,8 @@ public class GameController extends Thread implements IEventHandler {
      * dependencies for the game
      */
     private void createModel() {
-        if (tempNames != null && tempMap != null && model == null) {
-            this.model = new RoboRally(createPlayers(tempNames), mapFactory.createMap(tempMap));
+        if (tempNbrOfRobots != null && tempMap != null && model == null) {
+            this.model = new RoboRally(createRobots(tempNbrOfRobots), mapFactory.createMap(tempMap));
             System.out.println("New roborally created");
             EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model, null);
         }
@@ -70,17 +71,17 @@ public class GameController extends Thread implements IEventHandler {
         }
     }
 
-    private ArrayList<Player> createPlayers(ArrayList<String> names) {
+    private ArrayList<Player> createRobots(Integer j) {
         ArrayList<Player> players = new ArrayList<>();
-        for (int i = 0; i<names.size(); i++) {
-            players.add(new Player(i, names.get(i)));
-            System.out.println("Created new Player named: " + names.get(i));
+        for (int i = 0; i<j; i++) {
+            players.add(new Player(i, RobotFactory.getInstance().constructRobot(i)));
+            System.out.println("Created new Player named: " + players.get(i).getName());
         }
         return players;
     }
 
     private boolean readyForGame() {
-        if (mapReady && nameReady) {
+        if (mapReady && robotsReady) {
             EventTram.getInstance().publish(EventTram.Event.CREATE_MODEL, null, null);
             return true;
         }
@@ -96,8 +97,8 @@ public class GameController extends Thread implements IEventHandler {
                 readyForGame();
                 break;
             case SET_NAMES:
-                this.tempNames = (ArrayList<String>) o;
-                nameReady = true;
+                this.tempNbrOfRobots = (Integer) o;
+                robotsReady = true;
                 readyForGame();
                 break;
             case CREATE_MODEL:
