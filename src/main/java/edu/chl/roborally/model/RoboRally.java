@@ -68,7 +68,7 @@ public class RoboRally implements IEventHandler{
             player.setCheckpoint(start.get(index));
             player.backToCheckpoint();
             index++;
-            System.out.println(player.getRobot() + " is at " + player.getPosition());
+            System.out.println(player.getName() + " is at " + player.getPosition());
         }
     }
 
@@ -89,7 +89,7 @@ public class RoboRally implements IEventHandler{
     public ArrayList<String> getPlayerNames() {
         ArrayList<String> names = new ArrayList<>();
         for (Player p : players) {
-            names.add(p.getRobot());
+            names.add(p.getName());
         }
         return names;
     }

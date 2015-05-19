@@ -30,7 +30,7 @@ public class CheckpointAttributeTest {
         ArrayList<Player> players = new ArrayList<>();
         players.add(player);
         model = new RoboRally(players,map);
-        System.out.println(player.getRobot() + " starts at position " + player.getPosition() + " and has checkpoint " + player.getCheckpoint());
+        System.out.println(player.getName() + " starts at position " + player.getPosition() + " and has checkpoint " + player.getCheckpoint());
     }
 
     @Test
