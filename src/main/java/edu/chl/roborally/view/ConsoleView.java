@@ -4,6 +4,10 @@ import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 
 
@@ -12,28 +16,28 @@ import java.awt.*;
  *
  * This Panel works as a "terminal", to use it:
  * fire the PRINT_MESSAGE event with a string that you want to print and it will print it
- * in a textArea.
+ * in a jTextPane.
  *
  * If you want to print the message with a custom color, send a Color as the second parameter in the event.
  *
  */
 public class ConsoleView extends JPanel implements IEventHandler {
 
-    private JTextArea textArea;
+    private JTextPane jTextPane;
+
 
     public ConsoleView(){
 
         this.setLayout(new BorderLayout());
 
-        textArea = new JTextArea(20,5);
-        textArea.setEditable(false);
-        textArea.setBackground(Color.DARK_GRAY);
-        textArea.setForeground(Color.GREEN);
-        //textArea.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
+        jTextPane = new JTextPane();
+        jTextPane.setEditable(false);
+        jTextPane.setBackground(Color.DARK_GRAY);
+        jTextPane.setForeground(Color.GREEN);
 
         EventTram.getInstance().register(this);
 
-        JScrollPane scrollPane = new JScrollPane(textArea);
+        JScrollPane scrollPane = new JScrollPane(jTextPane);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -44,26 +48,50 @@ public class ConsoleView extends JPanel implements IEventHandler {
 
         this.setSize(314, 492);
     }
-
+/*
     //Print message with standard color
     public void printMessage(String str){
-        textArea.append(str + "\n");
+        jTextPane.append(str + "\n");
     }
 
     //Print message with custom color
     public void printMessage(String str, Color color){
-        textArea.setForeground(color);
+        jTextPane.(color);
         printMessage(str);
+
     }
+
+*/
+
+    private void append(String str){
+        StyledDocument doc = jTextPane.getStyledDocument();
+        try {
+            doc.insertString(doc.getLength(), str, null);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void append(String str, Color color){
+        StyledDocument doc = jTextPane.getStyledDocument();
+        SimpleAttributeSet keyWord = new SimpleAttributeSet();
+        StyleConstants.setForeground(keyWord, color);
+        try {
+            doc.insertString(doc.getLength(), str, keyWord);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if(evt == EventTram.Event.PRINT_MESSAGE){
             if(o2 != null) {
-                printMessage((String) o, (Color) o2);
+                append((String) o, (Color) o2);
 
             }else{
-                printMessage((String) o);
+                append((String) o);
             }
         }
     }
