@@ -2,6 +2,7 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
 
 /**
@@ -15,9 +16,9 @@ public class MovePlayer extends GameAction {
         super(p);
         this.d = d;
         action();
-        System.out.println("Moved " + p.getName());
-        System.out.println("New positon " + p.getPosition().toString());
-        System.out.println("");
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"Moved " + p.getName() + "\n" +
+                                        "New position " + p.getPosition().toString() + "\n", null);
     }
 
     public MovePlayer(Player p) {

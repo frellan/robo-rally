@@ -53,7 +53,7 @@ public class StatusView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, null, null);
+        EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, this.player, null);
     }
 
 }

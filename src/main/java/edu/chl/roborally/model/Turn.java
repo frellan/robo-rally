@@ -64,8 +64,7 @@ public class Turn{
     }
 
     private void executeActiveCards() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "----------------------------", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "------- Card Actions -------", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "\n" + "------- Card Actions -------", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
@@ -77,15 +76,15 @@ public class Turn{
 
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"----------------------------", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"------- Tile Actions -------", null);
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"\n" + "------- Tile Actions -------", Color.RED);
 
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player, null);
             }
         }
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"----- End tile actions -----", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"----- End tile actions -----", Color.RED);
     }
 
     private void fireLasers() {

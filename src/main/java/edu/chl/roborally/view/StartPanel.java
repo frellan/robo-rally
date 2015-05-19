@@ -154,13 +154,13 @@ public class StartPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(newGameButton)){
+        if (e.getSource().equals(newGameButton)) {
             EventTram.getInstance().publish(EventTram.Event.SELECT_PLAYERS, null, null);
-        } else if(e.getSource().equals(optionsButton)){
+        } else if(e.getSource().equals(optionsButton)) {
 
-        } else if(e.getSource().equals(exitButton)){
+        } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
-        } else if(e.getSource() == chooseNbrOfPlayers) {
+        } else if (e.getSource() == chooseNbrOfPlayers) {
             showNameForms((Integer) chooser.getValue());
         } else if (e.getSource() == saveNames) {
             sendNamesToController();
