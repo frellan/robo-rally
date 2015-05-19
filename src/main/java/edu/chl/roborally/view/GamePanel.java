@@ -29,7 +29,7 @@ public class GamePanel extends JPanel {
         setLayout(null);
         this.player = player;
         boardView = new BoardView(board,players);
-        controlView = new ControlView();
+        controlView = new ControlView(player);
         consoleView = new ConsoleView();
         add(boardView);
         boardView.setLocation(8, 23);

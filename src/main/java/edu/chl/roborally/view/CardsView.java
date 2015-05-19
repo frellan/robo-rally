@@ -25,12 +25,11 @@ public class CardsView extends JPanel {
     private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
-    private static final int CARD_WIDTH = 96;
     private static final int CARD_GAP = 10;
 
     public CardsView() {
         setLayout(null);
-        setSize(760,170);
+        setSize(690,170);
         createRegisterView();
         createPickCardsView();
     }
@@ -43,15 +42,15 @@ public class CardsView extends JPanel {
             RegisterCardIcon temp = new RegisterCardIcon();
             registerCardIcons[i] = temp;
             temp.setTransferHandler(new ValueImportTransferHandler());
-            registerView.add(temp).setLocation(gap, 10);
-            gap += CARD_WIDTH + CARD_GAP;
+            registerView.add(temp).setLocation(gap, 20);
+            gap += temp.getWidth() + CARD_GAP;
         }
         add(registerView).setLocation(0, 0);
     }
 
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
-        pickCardsView.setSize(150, 170);
+        pickCardsView.setSize(140, 170);
         add(pickCardsView).setLocation(541, 0);
         refreshNewCardButtons();
     }

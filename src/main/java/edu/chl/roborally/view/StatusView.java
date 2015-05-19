@@ -51,6 +51,41 @@ public class StatusView extends JPanel implements ActionListener {
         add(position);
     }
 
+    /*
+
+    private void sendSelectedCards() {
+        for (JButton button : cardButtons) {
+            if (button.isSelected()) {
+                outputCards.add(inputCards.get(cardButtons.indexOf(button)));
+            }
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == doneButton) {
+            sendSelectedCards();
+            if (outputCards.size() == 5) {
+                EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards, null);
+                nextTurnButton.setEnabled(true);
+            } else {
+                outputCards.clear();
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
+            }
+        }
+        if (e.getSource() == nextTurnButton){
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
+        }
+    }
+
+    @Override
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
+        if(evt == EventTram.Event.CHOOSE_CARDS){
+            nextTurnButton.setEnabled(false);
+        }
+    }
+    */
+
     @Override
     public void actionPerformed(ActionEvent e) {
         EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, this.player, null);
