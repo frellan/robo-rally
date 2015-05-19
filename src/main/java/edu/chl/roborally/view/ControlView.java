@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel {
 
-    private ChooseCardsView chooseCardsView;
+    private PickNewCardsView chooseCardsView;
     private CardView cardView;
     private StatusView statusView;
 
@@ -20,7 +20,7 @@ public class ControlView extends JPanel {
     }
 
     public void pickCards(Player player) {
-        chooseCardsView = new ChooseCardsView(player.getDealtCards());
+        chooseCardsView = new PickNewCardsView(player.getDealtCards());
         removeAll();
         add(chooseCardsView);
 

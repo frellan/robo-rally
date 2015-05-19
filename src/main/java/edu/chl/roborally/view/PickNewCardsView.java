@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-06.
  */
-public class ChooseCardsView extends JPanel implements ActionListener, IEventHandler {
+public class PickNewCardsView extends JPanel implements ActionListener, IEventHandler {
 
     private ArrayList<RegisterCard> inputCards = new ArrayList<>();
     private ArrayList<RegisterCard> outputCards = new ArrayList<>();
@@ -21,7 +21,7 @@ public class ChooseCardsView extends JPanel implements ActionListener, IEventHan
     private JButton doneButton;
     private JButton nextTurnButton;
 
-    public ChooseCardsView(ArrayList<RegisterCard> cards){
+    public PickNewCardsView(ArrayList<RegisterCard> cards){
         this.inputCards = cards;
         setLayout(new FlowLayout());
         setSize(588, 162);
