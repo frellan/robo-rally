@@ -48,25 +48,11 @@ public class ConsoleView extends JPanel implements IEventHandler {
 
         this.setSize(314, 492);
     }
-/*
-    //Print message with standard color
-    public void printMessage(String str){
-        jTextPane.append(str + "\n");
-    }
-
-    //Print message with custom color
-    public void printMessage(String str, Color color){
-        jTextPane.(color);
-        printMessage(str);
-
-    }
-
-*/
 
     private void append(String str){
         StyledDocument doc = jTextPane.getStyledDocument();
         try {
-            doc.insertString(doc.getLength(), str, null);
+            doc.insertString(doc.getLength(), "\n" + str, null);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }

@@ -2,6 +2,7 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.EventTram;
 
 /**
  * Created by henriknilson on 31/03/15.
@@ -14,9 +15,8 @@ public class RotatePlayer extends GameAction {
         super(p);
         this.d = d;
         action();
-        System.out.println("Rotated " + p.getName());
-        System.out.println("New direction " + p.getDirection().toString());
-        System.out.println("");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotated " + p.getName() + "\n" +
+                "New direction " + p.getDirection().toString() + "\n", null);
     }
 
     @Override

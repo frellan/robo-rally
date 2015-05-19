@@ -2,6 +2,7 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
 
 /**
@@ -15,9 +16,8 @@ public class BackUpPlayer extends GameAction {
         super(p);
         this.d = d;
         action();
-        System.out.println("Backed up " + p.getName());
-        System.out.println("New positon " + p.getPosition().toString());
-        System.out.println("");
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Backed up " + p.getName() + "\n" +
+                "New position " + p.getPosition().toString() + "\n", null);
     }
 
     public BackUpPlayer(Player p) {
