@@ -139,7 +139,10 @@ public class Player {
      */
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens + amount;
-        if(this.damageTokens == 10) {
+        if (this.damageTokens > 3) {
+            lockCards();
+        }
+        if (this.damageTokens == 9) {
             this.kill();
         }
     }
@@ -152,6 +155,24 @@ public class Player {
             this.damageTokens = damageTokens--;
         } else {
             this.damageTokens = 0;
+        }
+    }
+
+    public void lockCards() {
+        if (this.damageTokens == 4) {
+            programmedCards[4].setLocked(true);
+        }
+        else if (this.damageTokens == 5) {
+            programmedCards[3].setLocked(true);
+        }
+        else if (this.damageTokens == 6) {
+            programmedCards[2].setLocked(true);
+        }
+        else if (this.damageTokens == 7) {
+            programmedCards[1].setLocked(true);
+        }
+        else if (this.damageTokens == 8) {
+            programmedCards[0].setLocked(true);
         }
     }
 

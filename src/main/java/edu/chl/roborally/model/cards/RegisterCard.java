@@ -13,12 +13,14 @@ public abstract class RegisterCard {
 
     private int points;
     private boolean isHidden;
+    private boolean isLocked;
     private String name;
     protected BufferedImage image;
 
-    public RegisterCard(int points, boolean isHidden, String name ) {
+    public RegisterCard(int points, boolean isHidden,String name ) {
         this.points = points;
         this.isHidden = isHidden;
+        this.isLocked = false;
         this.name = name;
     }
 
@@ -34,6 +36,14 @@ public abstract class RegisterCard {
 
     public void setHidden(boolean b) {
         isHidden = b;
+    }
+
+    public boolean getLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean b) {
+        isLocked = b;
     }
 
     public String toString() {
