@@ -25,7 +25,7 @@ public class Player {
     private int checkpointId;
     private Constants.Directions direction;
     private ArrayList<RegisterCard> dealtCards;
-    private ArrayList<RegisterCard> programmedCards;
+    private RegisterCard[] programmedCards;
     private Constants.Status status;
     private int laserPower;
 
@@ -37,7 +37,7 @@ public class Player {
         this.lifeTokens = 3;
         this.damageTokens = 0;
         this.direction = Constants.Directions.EAST;
-        this.programmedCards = new ArrayList<>();
+        this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
         this.laserPower = 1;
         this.checkpointId = 0;
@@ -89,14 +89,14 @@ public class Player {
 
     public RegisterCard getProgrammedCard(int index) {
         if (index >= 0 && index < 5) {
-            return programmedCards.get(index);
+            return programmedCards[index];
         }
         else {
             throw new IllegalArgumentException("Index must be between 0 and 4");
         }
     }
 
-    public ArrayList<RegisterCard> getProgrammedCards() {
+    public RegisterCard[] getProgrammedCards() {
         return programmedCards;
     }
 
@@ -121,7 +121,16 @@ public class Player {
      */
 
     public void emptyProgrammedCards() {
-        programmedCards.clear();
+        ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
+        for (int i = 0; i<programmedCards.length; i++) {
+            if (programmedCards[i].getLocked()) {
+                tempLockedCards.add(0,programmedCards[i]);
+            }
+        }
+        programmedCards = new RegisterCard[5];
+        for (int i = 0; i< tempLockedCards.size(); i++) {
+            programmedCards[4-i] = tempLockedCards.get(i);
+        }
     }
 
     /**
@@ -130,7 +139,10 @@ public class Player {
      */
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens + amount;
-        if(this.damageTokens == 10) {
+        if (this.damageTokens > 3) {
+            lockCards();
+        }
+        else if (this.damageTokens == 9) {
             this.kill();
         }
     }
@@ -143,6 +155,26 @@ public class Player {
             this.damageTokens = damageTokens--;
         } else {
             this.damageTokens = 0;
+        }
+    }
+
+    public void lockCards() {
+        switch (this.damageTokens) {
+            case 4:
+                programmedCards[4].setLocked(true);
+                break;
+            case 5:
+                programmedCards[3].setLocked(true);
+                break;
+            case 6:
+                programmedCards[2].setLocked(true);
+                break;
+            case 7:
+                programmedCards[1].setLocked(true);
+                break;
+            case 8:
+                programmedCards[0].setLocked(true);
+                break;
         }
     }
 
@@ -204,7 +236,7 @@ public class Player {
 
     public void setProgrammedCard(int index, RegisterCard c) {
         if (index >= 0 && index < 5) {
-            programmedCards.add(c);
+            programmedCards[index] = c;
         }
         else {
             throw new IllegalArgumentException("Index must be between 0 and 4");
