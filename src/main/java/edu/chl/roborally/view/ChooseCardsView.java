@@ -2,6 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.IEventHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-06.
  */
-public class ChooseCardsView extends JPanel implements ActionListener{
+public class ChooseCardsView extends JPanel implements ActionListener, IEventHandler {
 
     private ArrayList<RegisterCard> inputCards = new ArrayList<>();
     private ArrayList<RegisterCard> outputCards = new ArrayList<>();
@@ -36,6 +37,8 @@ public class ChooseCardsView extends JPanel implements ActionListener{
         nextTurnButton.addActionListener(this);
         add(nextTurnButton);
         add(doneButton);
+
+        EventTram.getInstance().register(this);
     }
 
     private void addSelectedCards() {
@@ -52,13 +55,22 @@ public class ChooseCardsView extends JPanel implements ActionListener{
             addSelectedCards();
             if(outputCards.size() == 5){
                 EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards, null);
+                nextTurnButton.setEnabled(true);
             }else{
                 outputCards.clear();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
             }
+
         }
         if(e.getSource() == nextTurnButton){
             EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
+        }
+    }
+
+    @Override
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
+        if(evt == EventTram.Event.CHOOSE_CARDS){
+            nextTurnButton.setEnabled(false);
         }
     }
 }
