@@ -25,23 +25,28 @@ public class GUI implements IEventHandler{
     public GUI() {
         main = new MainFrame();
         EventTram.getInstance().register(this);
-        startMsg();
+        menu();
     }
 
-    public void startMsg() {
+    /**
+     * Shows start menu
+     */
+    public void menu() {
         start = new StartPanel();
         main.add(start, BorderLayout.CENTER);
         main.revalidate();
     }
 
-    public void menu() {
-        choosePlayerNames();
-    }
-
-    public void choosePlayerNames() {
+    /**
+     * Set how many players the game should have
+     */
+    public void selectPlayers() {
         start.nbrOfPlayers();
     }
 
+    /**
+     * Choose Map
+     */
     public void chooseMap(ArrayList<String> maps) {
         start.chooseMap(maps);
     }
@@ -85,8 +90,8 @@ public class GUI implements IEventHandler{
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
-            case SHOW_MENU:
-                menu();
+            case SELECT_PLAYERS:
+                selectPlayers();
                 break;
             case SET_NAMES:
                 chooseMap(new MapFactory().getMaps());

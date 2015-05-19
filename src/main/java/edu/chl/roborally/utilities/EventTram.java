@@ -20,7 +20,7 @@ public class EventTram {
         /**
          * This event tells the GUI to show the menu
          */
-        SHOW_MENU,
+        SELECT_PLAYERS,
 
         /**
          * These events are used during setup to set name and map in model

@@ -52,6 +52,7 @@ public class StartPanel extends JPanel implements ActionListener{
 
         add(buttonPanel);
     }
+
     public void nbrOfPlayers() {
         this.removeAll();
         JPanel nbrPanel= new StyledJPanel(new GridLayout(3,0));
@@ -66,6 +67,7 @@ public class StartPanel extends JPanel implements ActionListener{
         this.revalidate();
     }
 
+    // TODO tabort eftersom vi ska ha robotar med fasta namn
     public void showNameForms(int i) {
         this.removeAll();
         JPanel nameForms = new StyledJPanel(new GridLayout(5,0));
@@ -153,7 +155,7 @@ public class StartPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(newGameButton)){
-            EventTram.getInstance().publish(EventTram.Event.SHOW_MENU, null, null);
+            EventTram.getInstance().publish(EventTram.Event.SELECT_PLAYERS, null, null);
         } else if(e.getSource().equals(optionsButton)){
 
         } else if(e.getSource().equals(exitButton)){
