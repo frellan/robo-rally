@@ -39,7 +39,7 @@ public class CardsView extends JPanel {
 
     private void createRegisterView() {
         registerView = new JPanel(null);
-        registerView.setSize(560, 170);
+        registerView.setSize(540, 170);
         int gap = 8;
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
@@ -53,8 +53,8 @@ public class CardsView extends JPanel {
 
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
-        pickCardsView.setSize(180, 170);
-        add(pickCardsView).setLocation(561, 0);
+        pickCardsView.setSize(150, 170);
+        add(pickCardsView).setLocation(541, 0);
         refreshNewCardButtons();
     }
 
@@ -109,7 +109,7 @@ public class CardsView extends JPanel {
         return null;
     }
 
-    public class ValueExportTransferHandler extends TransferHandler {
+    private class ValueExportTransferHandler extends TransferHandler {
 
         private String value;
 
@@ -139,8 +139,7 @@ public class CardsView extends JPanel {
         }
 
     }
-
-    public class ValueImportTransferHandler extends TransferHandler {
+    private class ValueImportTransferHandler extends TransferHandler {
 
         public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
 
