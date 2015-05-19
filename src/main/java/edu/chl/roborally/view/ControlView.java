@@ -32,7 +32,7 @@ public class ControlView extends JPanel {
     }
 
     public void showActiveRegisterAndStatus(Player player) {
-        activeRegisterView = new ActiveRegisterView(player.getProgrammedCards());
+        activeRegisterView = new ActiveRegisterView(null);
         statusView = new StatusView(player);
         add(activeRegisterView);
         add(statusView);
