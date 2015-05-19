@@ -96,7 +96,11 @@ public class GameController extends Thread implements IEventHandler {
                 mapReady = true;
                 readyForGame();
                 break;
+<<<<<<< HEAD
             case SET_NBR_OF_ROBOTS:
+=======
+            case SET_NAMES:
+>>>>>>> new robot class
                 this.tempNbrOfRobots = (Integer) o;
                 robotsReady = true;
                 readyForGame();
