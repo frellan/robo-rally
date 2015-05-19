@@ -19,8 +19,8 @@ public class StatusView extends JPanel implements ActionListener, IEventHandler 
     private JLabel lifeTokens;
     private JLabel dmgTokens;
     private JLabel position;
-    private JButton done;
-    private JButton nextTurn;
+    protected JButton done;
+    protected JButton nextTurn;
 
     public StatusView (Player player){
         this.player = player;
@@ -42,6 +42,7 @@ public class StatusView extends JPanel implements ActionListener, IEventHandler 
         done = new JButton("Done");
 
         nextTurn = new JButton("Next Turn");
+        nextTurn.addActionListener(this);
 
         add(powerDown);
         add(lifeTokens);
@@ -53,9 +54,6 @@ public class StatusView extends JPanel implements ActionListener, IEventHandler 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == done) {
-
-        }
         if (e.getSource() == nextTurn){
             EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
         }

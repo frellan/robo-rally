@@ -90,8 +90,20 @@ public class CardsView extends JPanel {
         revalidate();
         repaint();
     }
-    public RegisterCard getProgrammedCard(int index) {
-        return registerCardIcons[index].getCard();
+    public ArrayList<RegisterCard> getProgrammedCards() {
+        ArrayList<RegisterCard> temp = new ArrayList<>();
+        for (RegisterCardIcon icon : registerCardIcons) {
+            temp.add(icon.getCard());
+        }
+        return temp;
+    }
+    public boolean programmedCardsIsValid() {
+        for (RegisterCardIcon card : registerCardIcons) {
+            if (card.getCard() == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /*
