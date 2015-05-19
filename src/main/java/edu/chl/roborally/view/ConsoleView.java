@@ -63,7 +63,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
         SimpleAttributeSet keyWord = new SimpleAttributeSet();
         StyleConstants.setForeground(keyWord, color);
         try {
-            doc.insertString(doc.getLength(), str, keyWord);
+            doc.insertString(doc.getLength(), "\n" + str, keyWord);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
