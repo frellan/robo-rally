@@ -55,7 +55,7 @@ public abstract class RegisterCard {
     }
 
     public String toString() {
-        return name + " " + "Points: " + points;
+        return name + " (" + points + ")";
     }
 
 }

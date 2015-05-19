@@ -10,7 +10,6 @@ import java.awt.*;
  */
 public class ControlView extends JPanel {
 
-    private CardLayout cardLayout = new CardLayout();
     private CardsView cardsView;
 
     public ControlView(){
