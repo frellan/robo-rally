@@ -1,12 +1,16 @@
 package edu.chl.roborally.view;
 
 
+import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -27,6 +31,8 @@ public class StartPanel extends JPanel implements ActionListener{
     private ArrayList<JTextField> tempNames;
     private JButton chooseMapButton;
     private ArrayList<JRadioButton> radioBtnList;
+    private DefaultListModel<String> listModel;
+    private JList<String> mapList;
 
     public StartPanel(){
 
@@ -52,6 +58,8 @@ public class StartPanel extends JPanel implements ActionListener{
         buttonPanel.add(exitButton);
 
         add(buttonPanel);
+
+
     }
 
     public void nbrOfPlayers() {
@@ -71,31 +79,43 @@ public class StartPanel extends JPanel implements ActionListener{
     // TODO tabort eftersom vi ska ha robotar med fasta namn
 
     public void chooseMap(ArrayList<String> maps) {
-        this.removeAll();
-        JPanel mapChooser = new StyledJPanel(new GridLayout(4,0));
-        mapChooser.add(new JLabel("Choose Map"));
-       radioBtnList = new ArrayList<>();
-        ButtonGroup btnGroup = new ButtonGroup();
-        for (String s : maps) {
-            JRadioButton btn = new JRadioButton(s);
-            radioBtnList.add(btn);
-            btnGroup.add(btn);
-            mapChooser.add(btn);
-        }
-        chooseMapButton = new JButton("Set Map");
-        chooseMapButton.addActionListener(this);
-        mapChooser.add(chooseMapButton);
-        this.add(mapChooser);
-        this.repaint();
-        this.revalidate();
-    }
 
-    private void sendNamesToController() {
-        ArrayList<String> names = new ArrayList<>();
-        for(JTextField name : tempNames) {
-            names.add(name.getText());
+        this.removeAll();
+        JPanel mapChooser = new StyledJPanel(new FlowLayout());
+
+        //Create the List with maps
+        JPanel listHolder = new JPanel();
+
+        listModel = new DefaultListModel<>();
+        for (String map : maps) {
+            listModel.addElement(map);
+
         }
-        EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, names, null);
+
+        JList<String> mapList = new JList<>(listModel);
+
+        mapList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                JList list = (JList) e.getSource();
+                if(e.getClickCount() == 2){
+                    int index = list.locationToIndex(e.getPoint());
+                }
+                System.out.print("im in the list mothfu");
+            }
+        });
+
+        listHolder.add(mapList);
+        mapChooser.add(listHolder);
+
+        //Create the mapInfo
+        JPanel mapInfo = new JPanel();
+        JLabel mapName = new JLabel(maps.get(index).toString());
+
+        mapInfo.add(mapName);
+        mapChooser.add(mapInfo);
+        this.add(mapChooser);
     }
 
     private void sendMapChocieToController() {
@@ -129,6 +149,13 @@ public class StartPanel extends JPanel implements ActionListener{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(bi, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting() == false) {
+
+            System.out.println("Woo");
+        }
     }
 
     @Override
