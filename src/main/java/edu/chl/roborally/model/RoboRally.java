@@ -3,6 +3,8 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.CardDeck;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.maps.GameBoard;
+import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
 import java.util.*;
 
@@ -12,7 +14,7 @@ import java.util.*;
  * Our model which holds the status of the game
  *
  */
-public class RoboRally {
+public class RoboRally implements IEventHandler{
 
     // Variables
     private GameBoard gameBoard;
@@ -31,6 +33,8 @@ public class RoboRally {
         setStartPositions();
         //Init game
         this.isGameRunning = true;
+
+        EventTram.getInstance().register(this);
     }
 
     // Game logic
@@ -53,7 +57,6 @@ public class RoboRally {
     }
 
     public boolean shouldIContinue() {
-        //TODO Check end conditions
         return isGameRunning;
     }
 
@@ -89,5 +92,14 @@ public class RoboRally {
             names.add(p.getName());
         }
         return names;
+    }
+
+    @Override
+    public void onEvent(EventTram.Event evt, Object o, Object o2) {
+        if(EventTram.Event.VICTORY == evt) {
+            isGameRunning = false;
+            System.out.println("Player: " + (Player) o + " won the game");
+            System.out.println("Fire event so that the GUI know that we should end the game");
+        }
     }
 }
