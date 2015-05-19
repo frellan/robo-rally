@@ -54,7 +54,7 @@ public class ChooseCardsView extends JPanel implements ActionListener{
                 EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, outputCards, null);
             }else{
                 outputCards.clear();
-                System.out.println("Please choose 5 cards");
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
             }
         }
         if(e.getSource() == nextTurnButton){
