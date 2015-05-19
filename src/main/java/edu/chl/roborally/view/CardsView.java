@@ -1,7 +1,5 @@
 package edu.chl.roborally.view;
 
-import edu.chl.roborally.model.cards.BackupCard;
-import edu.chl.roborally.model.cards.MoveOneCard;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardIcon;
 
