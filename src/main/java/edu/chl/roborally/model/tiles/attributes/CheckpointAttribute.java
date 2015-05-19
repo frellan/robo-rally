@@ -65,7 +65,7 @@ public class CheckpointAttribute implements Attribute {
             g.drawChars(message, 0, message.length, x, y + 10);
         }
         else if (id == 5) {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.WHITE);
             g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
             g.setColor(Color.BLACK);
             String text = "FINAL";
