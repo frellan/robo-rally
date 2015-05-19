@@ -25,7 +25,11 @@ public class CheckpointAttribute implements Attribute {
 
     @Override
     public void doAction(Player player) {
-        if (player.getCheckpointId() == (id - 1)) {
+
+        if (id == 0) {
+            System.out.println("Standing on START-tile");
+        }
+        else if (player.getCheckpointId() == (id - 1)) {
             player.setCheckpointId(id);
             new CheckpointPlayer(player);
             System.out.println("It worked, new checkpoint set");

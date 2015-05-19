@@ -29,7 +29,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
         textArea.setEditable(false);
         textArea.setBackground(Color.DARK_GRAY);
         textArea.setForeground(Color.GREEN);
-        textArea.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
+        //textArea.setFont(new Font("Sans-Serif", Font.PLAIN, 20));
 
         EventTram.getInstance().register(this);
 
