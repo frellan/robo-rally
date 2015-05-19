@@ -97,10 +97,14 @@ public class GameController extends Thread implements IEventHandler {
                 readyForGame();
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
             case SET_NBR_OF_ROBOTS:
 =======
             case SET_NAMES:
 >>>>>>> new robot class
+=======
+            case SET_NBR_OF_ROBOTS:
+>>>>>>> removed shownamesform, added SET_NBR_OF_ROBOTS
                 this.tempNbrOfRobots = (Integer) o;
                 robotsReady = true;
                 readyForGame();

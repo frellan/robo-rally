@@ -40,6 +40,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
         this.setLayout(new GridBagLayout());
 
+
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         }catch(java.io.IOException | NullPointerException e){
@@ -146,6 +147,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
             EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
+
         } else if (e.getSource() == chooseMapButton) {
             EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName.getText(), null);
         } else if (e.getSource() == startGameBtn) {
