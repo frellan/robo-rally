@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardIcon;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
  * Created by fredrikkindstrom on 19/05/15.
@@ -19,6 +21,7 @@ public class CardsView extends JPanel {
     private JPanel registerView;
     private JPanel pickCardsView;
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
+    private ArrayList<RegisterCard> newCardsToPick = new ArrayList<>();
 
     private static final int CARD_WIDTH = 96;
     private static final int CARD_GAP = 10;
@@ -33,7 +36,7 @@ public class CardsView extends JPanel {
     private void createRegisterView() {
         registerView = new JPanel(null);
         registerView.setSize(560, 170);
-        int gap = 6;
+        int gap = 8;
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
             registerCardIcons[i] = temp;
@@ -47,20 +50,49 @@ public class CardsView extends JPanel {
         pickCardsView = new JPanel(new GridLayout(9,1));
         pickCardsView.setSize(180, 170);
         add(pickCardsView).setLocation(561, 0);
-        for (int index = 0; index < 9; index++) {
-            JButton btn = new JButton(Integer.toString(index + 1));
-            pickCardsView.add(btn);
-            btn.setTransferHandler(new ValueExportTransferHandler(Integer.toString(index + 1)));
+        refreshNewCardButtons();
+    }
 
-            btn.addMouseMotionListener(new MouseAdapter() {
-                @Override
-                public void mouseDragged(MouseEvent e) {
-                    JButton button = (JButton) e.getSource();
-                    TransferHandler handle = button.getTransferHandler();
-                    handle.exportAsDrag(button, e, TransferHandler.COPY);
-                }
-            });
+    private void refreshNewCardButtons() {
+        pickCardsView.removeAll();
+        for (int index = 0; index < 9; index++) {
+            if (newCardsToPick.get(index) != null) {
+                JButton btn = new JButton(newCardsToPick.get(index).toString());
+                pickCardsView.add(btn);
+                btn.setTransferHandler(new ValueExportTransferHandler(Integer.toString(index + 1)));
+
+                btn.addMouseMotionListener(new MouseAdapter() {
+                    @Override
+                    public void mouseDragged(MouseEvent e) {
+                        JButton button = (JButton) e.getSource();
+                        TransferHandler handle = button.getTransferHandler();
+                        handle.exportAsDrag(button, e, TransferHandler.COPY);
+                    }
+                });
+            } else {
+                JButton btn = new JButton("Empty");
+                pickCardsView.add(btn);
+            }
         }
+    }
+
+    public void newCardsToPick(ArrayList<RegisterCard> cards) {
+        newCardsToPick = cards;
+        refreshNewCardButtons();
+        revalidate();
+        repaint();
+    }
+
+    private RegisterCard[] convertToArray(ArrayList<RegisterCard> input) {
+        RegisterCard[] temp = new RegisterCard[9];
+        for (int i = 0; i < 9; i++) {
+            try {
+                temp[i] = input.get(i);
+            } catch (IndexOutOfBoundsException e) {
+                temp[i] = null;
+            }
+        }
+        return temp;
     }
 
     public static class ValueExportTransferHandler extends TransferHandler {
