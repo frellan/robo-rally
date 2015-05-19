@@ -1,13 +1,19 @@
 package edu.chl.roborally.view;
 
 
+
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -24,6 +30,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JButton startGameBtn;
     private JButton chooseMapButton;
 
+
     private JLabel mapName;
     private JSpinner chooser;
     private JPanel mapInfo;
@@ -36,10 +43,10 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     private int mapIndex;
 
+
     public StartPanel(){
 
         this.setLayout(new GridBagLayout());
-
 
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
@@ -60,6 +67,8 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         buttonPanel.add(exitButton);
 
         add(buttonPanel);
+
+
     }
 
     public void nbrOfPlayers() {
@@ -77,6 +86,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     }
 
     public void chooseMap(ArrayList<String> maps) {
+
         this.removeAll();
         this.maps=maps;
         JPanel mapChooser = new StyledJPanel(new FlowLayout());
@@ -103,10 +113,17 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
 
+        listHolder.add(mapList);
+        mapChooser.add(listHolder);
+
+        //Create the mapInfo
+        JPanel mapInfo = new JPanel();
+        JLabel mapName = new JLabel(maps.get(mapIndex));
+
         mapInfo.add(mapName);
-        mapInfo.add(chooseMapButton);
         mapChooser.add(mapInfo);
         this.add(mapChooser);
+
 
         System.out.print(mapName.getText());
         System.out.print(mapIndex);
@@ -135,6 +152,13 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(bi, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting() == false) {
+
+            System.out.println("Woo");
+        }
     }
 
     @Override
