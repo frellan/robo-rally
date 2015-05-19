@@ -112,6 +112,10 @@ public class Player {
         return this.status != Constants.Status.DEAD;
     }
 
+    public boolean isKaput() {
+        return this.status != Constants.Status.KAPUT;
+    }
+
     public boolean isPowerDown() {
         return this.status == Constants.Status.POWERDOWN;
     }

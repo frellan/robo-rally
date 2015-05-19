@@ -31,9 +31,9 @@ public class Round implements IEventHandler {
     }
 
     public void startRound() {
+        putBackPlayers();
         deck.shuffle();
         dealCards();
-        putBackPlayers();
         chooseCardsToPlay();
     }
 
@@ -45,10 +45,10 @@ public class Round implements IEventHandler {
     */
     private void putBackPlayers() {
         for (Player p : players) {
-            if(!p.isAlive()) {
-                p.backToCheckpoint();
-                p.setStatus(Constants.Status.ALIVE);
-            }
+                if (!p.isAlive() && !p.isKaput()) {
+                    p.backToCheckpoint();
+                    p.setStatus(Constants.Status.ALIVE);
+                }
         }
     }
 

@@ -38,6 +38,7 @@ public class Turn{
         executeActiveCards();
         executeBoardElements();
         fireLasers();
+        checkIfOnlyOneSurvivor();
 
         EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null, null);
         EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null, null);
@@ -131,6 +132,35 @@ public class Turn{
                         }
                     }
                     break;
+            }
+        }
+    }
+
+    /**
+     * Checks if only one player is alive and all others Kaput
+     */
+    public void checkIfOnlyOneSurvivor() {
+        int nbrPlayersKaput = 0;
+        int totalPlayers = players.size();
+        for (Player player : players) {
+            if (player.isKaput()) {
+                nbrPlayersKaput++;
+            }
+        }
+        if ((totalPlayers - nbrPlayersKaput) == 1) {
+            endGameSurvivor();
+        } else {
+            System.out.print("Everybody not dead, continue ");
+        }
+    }
+
+    /**
+     * Method only called when one player is alive
+     */
+    public void endGameSurvivor() {
+        for (Player player : players) {
+            if (player.isAlive()) {
+                EventTram.getInstance().publish(EventTram.Event.VICTORY, player, null);
             }
         }
     }
