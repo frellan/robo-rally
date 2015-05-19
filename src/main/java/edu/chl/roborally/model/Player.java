@@ -142,7 +142,7 @@ public class Player {
         if (this.damageTokens > 3) {
             lockCards();
         }
-        if (this.damageTokens == 9) {
+        else if (this.damageTokens == 9) {
             this.kill();
         }
     }
@@ -159,20 +159,22 @@ public class Player {
     }
 
     public void lockCards() {
-        if (this.damageTokens == 4) {
-            programmedCards[4].setLocked(true);
-        }
-        else if (this.damageTokens == 5) {
-            programmedCards[3].setLocked(true);
-        }
-        else if (this.damageTokens == 6) {
-            programmedCards[2].setLocked(true);
-        }
-        else if (this.damageTokens == 7) {
-            programmedCards[1].setLocked(true);
-        }
-        else if (this.damageTokens == 8) {
-            programmedCards[0].setLocked(true);
+        switch (this.damageTokens) {
+            case 4:
+                programmedCards[4].setLocked(true);
+                break;
+            case 5:
+                programmedCards[3].setLocked(true);
+                break;
+            case 6:
+                programmedCards[2].setLocked(true);
+                break;
+            case 7:
+                programmedCards[1].setLocked(true);
+                break;
+            case 8:
+                programmedCards[0].setLocked(true);
+                break;
         }
     }
 

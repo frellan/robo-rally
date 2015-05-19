@@ -2,9 +2,7 @@ package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.CheckpointPlayer;
-import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.utilities.Position;
 
 import java.awt.*;
 
@@ -15,7 +13,6 @@ public class CheckpointAttribute implements Attribute {
 
     private String name = "CP";
     private int id;
-    private GameBoard board;
 
     public CheckpointAttribute(int id) {
         this.id = id;

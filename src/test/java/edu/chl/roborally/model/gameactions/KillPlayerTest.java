@@ -16,7 +16,6 @@ public class KillPlayerTest {
     public void setUp() throws Exception {
         player = new Player(0, "KillPlayer");
         player.setPosition(new Position(3,5));
-        player.takeDamage(5);
     }
     @Test
     public void testKillPlayer() throws Exception {
