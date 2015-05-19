@@ -15,7 +15,7 @@ public class RegisterCardIcon extends JLabel {
 
     public RegisterCardIcon() {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        setSize(90,135);
+        setSize(96, 140);
     }
 
     public void setCard(RegisterCard card) {

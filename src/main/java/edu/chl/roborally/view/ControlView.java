@@ -21,7 +21,7 @@ public class ControlView extends JPanel {
         cardsView = new CardsView();
         statusView = new StatusView(player);
         add(cardsView).setLocation(0, 0);
-        add(statusView).setLocation(691, 0);
+        add(statusView).setLocation(660, 0);
     }
 
     public void newCardsToPick(Player player) {

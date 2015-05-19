@@ -52,15 +52,6 @@ public class StatusView extends JPanel implements ActionListener {
     }
 
     /*
-
-    private void sendSelectedCards() {
-        for (JButton button : cardButtons) {
-            if (button.isSelected()) {
-                outputCards.add(inputCards.get(cardButtons.indexOf(button)));
-            }
-        }
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == doneButton) {

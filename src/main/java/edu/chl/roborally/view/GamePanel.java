@@ -80,5 +80,4 @@ public class GamePanel extends JPanel {
     public ControlView getControlView(){
         return this.controlView;
     }
-
 }

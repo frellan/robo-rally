@@ -25,36 +25,38 @@ public class CardsView extends JPanel {
     private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
-    private static final int CARD_GAP = 10;
+    private static final int CARD_GAP = 7;
 
     public CardsView() {
         setLayout(null);
-        setSize(690,170);
+        setSize(680,170);
         createRegisterView();
         createPickCardsView();
     }
 
+    /*
+    Class Methods
+     */
+
     private void createRegisterView() {
         registerView = new JPanel(null);
-        registerView.setSize(540, 170);
-        int gap = 8;
+        registerView.setSize(521, 170);
+        int gap = 6;
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
             registerCardIcons[i] = temp;
             temp.setTransferHandler(new ValueImportTransferHandler());
-            registerView.add(temp).setLocation(gap, 20);
+            registerView.add(temp).setLocation(gap, 6);
             gap += temp.getWidth() + CARD_GAP;
         }
         add(registerView).setLocation(0, 0);
     }
-
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
-        pickCardsView.setSize(140, 170);
-        add(pickCardsView).setLocation(541, 0);
+        pickCardsView.setSize(136, 170);
+        add(pickCardsView).setLocation(522, 0);
         refreshNewCardButtons();
     }
-
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
@@ -78,12 +80,27 @@ public class CardsView extends JPanel {
         }
     }
 
+    /*
+    Command Methods
+     */
+
     public void newCardsToPick(ArrayList<RegisterCard> cards) {
         newCardsToPick = convertToArray(cards);
         refreshNewCardButtons();
         revalidate();
         repaint();
     }
+    public void sendSelectedCards() {
+        for (JButton button : cardButtons) {
+            if (button.isSelected()) {
+                outputCards.add(inputCards.get(cardButtons.indexOf(button)));
+            }
+        }
+    }
+
+    /*
+    Help Methods and Classes
+     */
 
     private RegisterCard[] convertToArray(ArrayList<RegisterCard> input) {
         RegisterCard[] temp = new RegisterCard[9];
@@ -96,7 +113,6 @@ public class CardsView extends JPanel {
         }
         return temp;
     }
-
     private RegisterCard getMatchingCard(String value) {
         for (RegisterCard card : newCardsToPick) {
             if (card.toString().equals(value)) {
@@ -105,7 +121,6 @@ public class CardsView extends JPanel {
         }
         return null;
     }
-
     private class ValueExportTransferHandler extends TransferHandler {
 
         private String value;
