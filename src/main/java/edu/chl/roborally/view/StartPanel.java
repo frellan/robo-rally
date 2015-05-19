@@ -87,6 +87,8 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     public void chooseMap(ArrayList<String> maps) {
 
+        System.out.print("in choosemap");
+
         this.removeAll();
         this.maps=maps;
         JPanel mapChooser = new StyledJPanel(new FlowLayout());
@@ -118,12 +120,13 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
         //Create the mapInfo
         JPanel mapInfo = new JPanel();
+
         JLabel mapName = new JLabel(maps.get(mapIndex));
 
-        mapInfo.add(mapName);
+
+        //mapInfo.add(mapName);
         mapChooser.add(mapInfo);
         this.add(mapChooser);
-
 
         System.out.print(mapName.getText());
         System.out.print(mapIndex);
