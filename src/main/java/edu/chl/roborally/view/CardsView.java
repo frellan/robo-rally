@@ -32,8 +32,6 @@ public class CardsView extends JPanel {
         setLayout(null);
         setSize(760,170);
         createRegisterView();
-        newCardsToPick[0] = new BackupCard(200,false);
-        newCardsToPick[1] = new MoveOneCard(200,false);
         createPickCardsView();
     }
 
