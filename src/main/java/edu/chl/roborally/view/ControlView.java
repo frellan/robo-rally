@@ -27,7 +27,7 @@ public class ControlView extends JPanel {
     }
 
     public void showPickNewCards(Player player) {
-        pickNewCardsView.setCards(player.getDealtCards());
+        pickNewCardsView.refreshCards(player.getDealtCards());
         cardLayout.show(this,"PickNewCards");
     }
 

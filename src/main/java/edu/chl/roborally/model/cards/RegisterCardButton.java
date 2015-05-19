@@ -1,7 +1,6 @@
 package edu.chl.roborally.model.cards;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,23 +12,20 @@ public class RegisterCardButton extends JButton {
 
     private boolean selected = false;
 
-    private static final int CARD_SLOT_WIDTH = 98;
-    private static final int CARD_SLOT_HEIGHT = 147;
-    private static final int CARD_SLOT_ARC = 5;
-    private static final int CARD_WIDTH = 96;
-
     public RegisterCardButton(RegisterCard card) {
-        setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        setSize(92,144);
         setIcon(card.getIcon());
+        add(new JLabel(card.toString()));
         addMouseListener(new MouseListener() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (!selected) {
                     selected = true;
-                    setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.RED));
+                    setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 } else {
                     selected = false;
-                    setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                    setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
                 }
             }
 
@@ -37,28 +33,28 @@ public class RegisterCardButton extends JButton {
             public void mousePressed(MouseEvent e) {
                 if (!selected) {
                     selected = true;
-                    setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.RED));
+                    setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 } else {
                     selected = false;
-                    setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                    setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
                 }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 if (selected) {
-                    setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.RED));
+                    setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 } else {
-                    setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                    setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
                 }
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 if (selected) {
-                    setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.RED));
+                    setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 } else {
-                    setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
+                    setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                 }
             }
 
@@ -66,21 +62,17 @@ public class RegisterCardButton extends JButton {
             public void mouseClicked(MouseEvent e) {
                 if (!selected) {
                     selected = true;
-                    setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.RED));
+                    setBorder(BorderFactory.createLineBorder(Color.RED, 3));
                 } else {
                     selected = false;
-                    setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                    setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
                 }
             }
         });
     }
 
-    public static void main(String[] args) {
-        JFrame main = new JFrame();
-        JPanel panel = new JPanel();
-        panel.add(new RegisterCardButton(new BackupCard(100,false)));
-        main.add(panel);
-        main.pack();
-        main.setVisible(true);
+    @Override
+    public boolean isSelected() {
+        return selected;
     }
 }
