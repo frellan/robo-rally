@@ -64,7 +64,15 @@ public class ControlView extends JPanel implements ActionListener{
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
             registerCardIcons[i] = temp;
-            temp.setTransferHandler(new ValueImportTransferHandler());
+            temp.setTransferHandler(new StringTransferHandler());
+            temp.addMouseMotionListener(new MouseAdapter() {
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    RegisterCardIcon button = (RegisterCardIcon) e.getSource();
+                    TransferHandler handle = button.getTransferHandler();
+                    handle.exportAsDrag(button, e, TransferHandler.COPY);
+                }
+            });
             registerView.add(temp).setLocation(gap, 6);
             gap += temp.getWidth() + CARD_GAP;
         }
@@ -114,7 +122,7 @@ public class ControlView extends JPanel implements ActionListener{
             if (newCardsToPick[index] != null) {
                 JButton btn = new JButton(newCardsToPick[index].toString());
                 pickCardsView.add(btn);
-                btn.setTransferHandler(new ValueExportTransferHandler(newCardsToPick[index].toString()));
+                btn.setTransferHandler(new StringTransferHandler(newCardsToPick[index].toString()));
 
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
@@ -180,11 +188,14 @@ public class ControlView extends JPanel implements ActionListener{
         }
         return null;
     }
-    private class ValueExportTransferHandler extends TransferHandler {
+    private class StringTransferHandler extends TransferHandler {
 
+        public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
         private String value;
 
-        public ValueExportTransferHandler(String value) {
+        public StringTransferHandler() {}
+
+        public StringTransferHandler(String value) {
             this.value = value;
         }
 
@@ -206,15 +217,10 @@ public class ControlView extends JPanel implements ActionListener{
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
             super.exportDone(source, data, action);
+            try {
+                ((RegisterCardIcon) source).removeCard();
+            } catch (ClassCastException e) {}
             // Decide what to do after the drop has been accepted
-        }
-
-    }
-    private class ValueImportTransferHandler extends TransferHandler {
-
-        public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
-
-        public ValueImportTransferHandler() {
         }
 
         @Override
@@ -233,6 +239,7 @@ public class ControlView extends JPanel implements ActionListener{
                         Component component = support.getComponent();
                         if (component instanceof RegisterCardIcon) {
                             ((RegisterCardIcon) component).setCard(getMatchingCard((String) value));
+                            ((RegisterCardIcon) component).setTransferHandler(new StringTransferHandler(((RegisterCardIcon) component).getCard().toString()));
                             accept = true;
                         }
                     }
@@ -242,6 +249,7 @@ public class ControlView extends JPanel implements ActionListener{
             }
             return accept;
         }
+
     }
 
     @Override

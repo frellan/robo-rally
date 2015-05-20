@@ -28,4 +28,9 @@ public class RegisterCardIcon extends JLabel {
         setBackground(Color.PINK);
         setText(card.toString());
     }
+    public void removeCard() {
+        card = null;
+        setBackground(Color.BLACK);
+        setText("");
+    }
 }
