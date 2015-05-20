@@ -21,6 +21,7 @@ public class ControlView extends JPanel implements ActionListener{
         this.player = player;
         setLayout(null);
         setSize(984, 170);
+        setBackground(Color.DARK_GRAY);
         cardsView = new CardsView();
         statusView = new StatusView(player);
         add(cardsView).setLocation(0, 0);

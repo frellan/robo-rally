@@ -29,7 +29,7 @@ public class CardsView extends JPanel {
     public CardsView() {
         setLayout(null);
         setSize(664,170);
-        setBackground(Color.DARK_GRAY);
+        setOpaque(false);
         createRegisterView();
         createTurnIndicatorView();
         createPickCardsView();
@@ -56,11 +56,13 @@ public class CardsView extends JPanel {
     private void createTurnIndicatorView() {
         turnIndicatorView = new JPanel(null);
         turnIndicatorView.setSize(521, 24);
+        turnIndicatorView.setOpaque(false);
         add(turnIndicatorView).setLocation(0, 147);
     }
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
         pickCardsView.setSize(136, 170);
+        pickCardsView.setOpaque(false);
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);
     }
