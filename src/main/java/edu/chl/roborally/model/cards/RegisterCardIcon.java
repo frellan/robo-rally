@@ -23,6 +23,7 @@ public class RegisterCardIcon extends JLabel {
     }
     public void setCard(RegisterCard card) {
         this.card = card;
+        setBackground(Color.PINK);
         setText(card.toString());
     }
 }
