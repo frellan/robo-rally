@@ -13,6 +13,8 @@ public class RegisterCardIcon extends JLabel {
     private RegisterCard card;
 
     public RegisterCardIcon() {
+        setHorizontalAlignment(SwingConstants.CENTER);
+        setVerticalAlignment(SwingConstants.CENTER);
         setBackground(Color.WHITE);
         setForeground(Color.BLACK);
         setText("No card");
@@ -27,7 +29,7 @@ public class RegisterCardIcon extends JLabel {
     public void setCard(RegisterCard card) {
         this.card = card;
         setBackground(Color.PINK);
-        setText(card.toString());
+        setText("<html>"+card.getName()+"<br>"+card.getPoints()+"</html>");
     }
     public void removeCard() {
         card = null;

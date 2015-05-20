@@ -38,6 +38,10 @@ public abstract class RegisterCard {
         return points;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public boolean getHidden() {
         return isHidden;
     }
