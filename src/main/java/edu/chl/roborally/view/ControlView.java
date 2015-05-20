@@ -64,7 +64,7 @@ public class ControlView extends JPanel implements ActionListener{
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
             registerCardIcons[i] = temp;
-            temp.setTransferHandler(new StringTransferHandler());
+            temp.setTransferHandler(new StringTransferHandler(null));
             temp.addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e) {
@@ -193,8 +193,6 @@ public class ControlView extends JPanel implements ActionListener{
         public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
         private String value;
 
-        public StringTransferHandler() {}
-
         public StringTransferHandler(String value) {
             this.value = value;
         }
@@ -203,31 +201,35 @@ public class ControlView extends JPanel implements ActionListener{
             return value;
         }
 
+        /*
+        Export stuff
+         */
+
         @Override
         public int getSourceActions(JComponent c) {
             return DnDConstants.ACTION_COPY_OR_MOVE;
         }
-
         @Override
         protected Transferable createTransferable(JComponent c) {
             Transferable t = new StringSelection(getValue());
             return t;
         }
-
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
             super.exportDone(source, data, action);
             try {
                 ((RegisterCardIcon) source).removeCard();
             } catch (ClassCastException e) {}
-            // Decide what to do after the drop has been accepted
         }
+
+        /*
+        Import stuff
+         */
 
         @Override
         public boolean canImport(TransferHandler.TransferSupport support) {
             return support.isDataFlavorSupported(SUPPORTED_DATE_FLAVOR);
         }
-
         @Override
         public boolean importData(TransferHandler.TransferSupport support) {
             boolean accept = false;
@@ -239,7 +241,8 @@ public class ControlView extends JPanel implements ActionListener{
                         Component component = support.getComponent();
                         if (component instanceof RegisterCardIcon) {
                             ((RegisterCardIcon) component).setCard(getMatchingCard((String) value));
-                            ((RegisterCardIcon) component).setTransferHandler(new StringTransferHandler(((RegisterCardIcon) component).getCard().toString()));
+                            ((RegisterCardIcon) component).setTransferHandler
+                                    (new StringTransferHandler(((RegisterCardIcon) component).getCard().toString()));
                             accept = true;
                         }
                     }
