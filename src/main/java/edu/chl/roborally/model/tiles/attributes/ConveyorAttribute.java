@@ -13,9 +13,11 @@ import java.awt.*;
 public class ConveyorAttribute implements Attribute {
 
     private Constants.Directions d;
+    private int speed;
 
-    public ConveyorAttribute(Constants.Directions d){
+    public ConveyorAttribute(Constants.Directions d, int speed){
         this.d = d;
+        this.speed = speed;
     }
 
 
@@ -26,7 +28,12 @@ public class ConveyorAttribute implements Attribute {
 
     @Override
     public void doAction(Player p){
-        new MovePlayer(p, d);
+        if (speed == 2) {
+            new MovePlayer(p, d);
+            new MovePlayer(p, d);
+        } else {
+            new MovePlayer(p, d);
+        }
         //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
     }
 
