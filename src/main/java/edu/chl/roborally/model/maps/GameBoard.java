@@ -69,6 +69,10 @@ public class GameBoard implements IEventHandler{
         return this.board[x][y];
     }
 
+    public String getName() {
+        return "Dummy name";
+    }
+
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {

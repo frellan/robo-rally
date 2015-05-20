@@ -1,32 +1,39 @@
 package edu.chl.roborally.view;
 
-
+import edu.chl.roborally.model.maps.GameBoard;
+import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-04-29.
  */
-public class StartPanel extends JPanel implements ActionListener{
+public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
+    //Butons
     private JButton newGameButton;
     private JButton optionsButton;
     private JButton exitButton;
-    private BufferedImage bi;
-    private JPanel buttonPanel;
-    private JSpinner chooser;
     private JButton chooseNbrOfPlayers;
-    private JButton saveNames;
     private JButton startGameBtn;
-    private ArrayList<JTextField> tempNames;
     private JButton chooseMapButton;
-    private ArrayList<JRadioButton> radioBtnList;
+
+    private JLabel mapName;
+    private JSpinner chooser;
+    private JPanel mapInfo;
+
+    private BufferedImage bi;
+
+    private DefaultListModel<String> listModel;
+    private JList<String> mapList;
+    private ArrayList<GameBoard> maps;
+
+    private int mapIndex;
 
     public StartPanel(){
 
@@ -38,7 +45,7 @@ public class StartPanel extends JPanel implements ActionListener{
             System.out.println("Image could not be read");
         }
 
-        buttonPanel = new StyledJPanel(new GridLayout(0,1,0,5));
+        JPanel buttonPanel= new StyledJPanel(new GridLayout(0,1,0,5));
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
         newGameButton.addActionListener(this);
         optionsButton = new Button("options_btn.png","options_btn_hover.png");
@@ -67,66 +74,44 @@ public class StartPanel extends JPanel implements ActionListener{
         this.revalidate();
     }
 
-    // TODO tabort eftersom vi ska ha robotar med fasta namn
-    public void showNameForms(int i) {
+    public void chooseMap(ArrayList<GameBoard> maps) {
         this.removeAll();
-        JPanel nameForms = new StyledJPanel(new GridLayout(5,0));
-        tempNames = new ArrayList<>();
-        nameForms.add(new JLabel("Set Names on players"));
+        this.maps=maps;
+        JPanel mapChooser = new StyledJPanel(new FlowLayout());
+        mapChooser.setSize(900,600);
 
-        for (int j = 0; j<i; j++) {
-            JPanel panel = new JPanel(new GridLayout(0,2));
-            panel.setOpaque(true);
-            panel.setBackground(Color.DARK_GRAY);
-            panel.add(new JLabel("Player " + j));
-            tempNames.add(new JTextField());
-            panel.add(tempNames.get(j));
-            nameForms.add(panel);
-        }
-        saveNames = new JButton("Set Names");
-        saveNames.addActionListener(this);
-        nameForms.add(saveNames);
-        this.add(nameForms);
-        this.repaint();
-        this.revalidate();
-    }
+        //Create the List with maps
+        JPanel listHolder = new JPanel(new FlowLayout());
+        listHolder.setSize(400,600);
 
-    public void chooseMap(ArrayList<String> maps) {
-        this.removeAll();
-        JPanel mapChooser = new StyledJPanel(new GridLayout(4,0));
-        mapChooser.add(new JLabel("Choose Map"));
-       radioBtnList = new ArrayList<>();
-        ButtonGroup btnGroup = new ButtonGroup();
-        for (String s : maps) {
-            JRadioButton btn = new JRadioButton(s);
-            radioBtnList.add(btn);
-            btnGroup.add(btn);
-            mapChooser.add(btn);
+        listModel = new DefaultListModel<>();
+        for (GameBoard map : maps) {
+            listModel.addElement(map.getName());
         }
-        chooseMapButton = new JButton("Set Map");
+
+        JList<String> mapList = new JList<>(listModel);
+        mapList.setSize(400,600);
+        mapList.addMouseListener(this);
+
+        listHolder.add(mapList);
+        mapChooser.add(listHolder);
+
+        //Create the mapInfo
+
+        mapInfo = new JPanel(new FlowLayout());
+        mapName = new JLabel(maps.get(mapIndex).getName());
+        chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
-        mapChooser.add(chooseMapButton);
+
+        mapInfo.add(mapName);
+        mapInfo.add(chooseMapButton);
+        mapChooser.add(mapInfo);
         this.add(mapChooser);
-        this.repaint();
-        this.revalidate();
-    }
 
-    private void sendNamesToController() {
-        ArrayList<String> names = new ArrayList<>();
-        for(JTextField name : tempNames) {
-            names.add(name.getText());
-        }
-        EventTram.getInstance().publish(EventTram.Event.SET_NAMES, names, null);
-    }
-
-    private void sendMapChocieToController() {
-        String mapName = "Default";
-        for (JRadioButton btn : radioBtnList) {
-            if (btn.isSelected()) {
-                mapName = btn.getText();
-            }
-        }
-        EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName, null);
+        System.out.print(mapName.getText());
+        System.out.print(mapIndex);
+        repaint();
+        revalidate();
     }
 
     public void summary(ArrayList<String> names, String mapName) {
@@ -161,14 +146,47 @@ public class StartPanel extends JPanel implements ActionListener{
         } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
-            showNameForms((Integer) chooser.getValue());
-        } else if (e.getSource() == saveNames) {
-            sendNamesToController();
+            EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
+
         } else if (e.getSource() == chooseMapButton) {
-            sendMapChocieToController();
+            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName.getText(), null);
         } else if (e.getSource() == startGameBtn) {
             EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JList list = (JList) e.getSource();
+        if (e.getClickCount() == 1) {
+            mapIndex = list.locationToIndex(e.getPoint());
+            mapName.setText(maps.get(mapIndex));
+            mapInfo.repaint();
+            mapInfo.revalidate();
+        }
+        System.out.print(mapIndex);
+        System.out.print(mapName.getText());
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
     public class StyledJPanel extends JPanel {

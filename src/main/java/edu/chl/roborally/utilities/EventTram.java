@@ -25,7 +25,7 @@ public class EventTram {
         /**
          * These events are used during setup to set name and map in model
          */
-        SET_NAMES,
+        SET_NBR_OF_ROBOTS,
         SET_MAP,
 
         /**

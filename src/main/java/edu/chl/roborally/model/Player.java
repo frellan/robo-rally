@@ -2,7 +2,8 @@ package edu.chl.roborally.model;
 
 
 import edu.chl.roborally.model.cards.RegisterCard;
-import edu.chl.roborally.model.tiles.attributes.CheckpointAttribute;
+import edu.chl.roborally.model.robot.*;
+import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.Position;
 
@@ -16,7 +17,7 @@ public class Player {
 
     //Variables
 
-    private String name;
+    private Robot robot;
     private int lifeTokens;
     private int damageTokens;
     private int iD;
@@ -31,9 +32,9 @@ public class Player {
 
     //Constructor
 
-    public Player(int iD, String name) {
+    public Player(int iD, Robot robot) {
         this.iD = iD;
-        this.name = name;
+        this.robot = robot;
         this.lifeTokens = 3;
         this.damageTokens = 0;
         this.direction = Constants.Directions.EAST;
@@ -48,7 +49,7 @@ public class Player {
      */
 
     public String getName() {
-        return name;
+        return robot.getName();
     }
 
     public int getLifeTokens() {
@@ -200,7 +201,7 @@ public class Player {
         this.lifeTokens = lifeTokens -1;
         if (this.lifeTokens == -1) {
             setStatus(Constants.Status.KAPUT);
-            System.out.println(this.getName() + " is now Kaput and lost");
+            System.out.println(this.robot.getName() + " is now Kaput and lost");
         }
     }
 
@@ -263,7 +264,7 @@ public class Player {
         g.setColor(Color.YELLOW);
         g.fillOval(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(Color.BLACK);
-        g.drawString(getName()+ " " + getDirection(), x+15, y+15);
+        g.drawString(robot.getName() + " " + getDirection(), x+15, y+15);
         char[] position = getPosition().toString().toCharArray();
         g.drawChars(position, 0, position.length,
                 x-2, y+30);

@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.Player;
@@ -45,13 +46,14 @@ public class GUI implements IEventHandler{
 
     /**
      * Choose Map
+     * @param maps
      */
-    public void chooseMap(ArrayList<String> maps) {
+    public void chooseMap(ArrayList<GameBoard> maps) {
         start.chooseMap(maps);
     }
 
     private void showSummary() {
-        start.summary(model.getPlayerNames(), model.getGameBoard().getName());
+        start.summary(model.getPlayerNames(), "Map"); // TODO model.getGameBoard().getName());
     }
 
     private void createGamePanels() {
@@ -92,8 +94,8 @@ public class GUI implements IEventHandler{
             case SELECT_PLAYERS:
                 selectPlayers();
                 break;
-            case SET_NAMES:
-                chooseMap(new MapFactory().getMaps());
+            case SET_NBR_OF_ROBOTS:
+                chooseMap(MapFactory.getInstance().getMaps());
                 break;
             case NEW_MODEL:
                 this.model = (RoboRally) o;

@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.gameactions;
 
+import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.utilities.Position;
@@ -17,7 +18,7 @@ public class MoveAndBackUpPlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, "MoveAndBackUpPlayer");
+        player = new Player(0, new Robot("Test Robot"));
         player.setPosition(new Position(4,6));
         player.setDirection(Constants.Directions.NORTH);
         System.out.println(player.getName() + " starts at position " + player.getPosition());

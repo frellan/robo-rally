@@ -1,10 +1,15 @@
 package edu.chl.roborally.model.maps;
 
+import edu.chl.roborally.utilities.Constants;
+
 /**
  * Created by axel on 2015-03-30.
  */
 public class IslandKingMap extends GameBoard implements IMap {
 
+    private final Constants.Difficulty difficulty;
+    private final String players;
+    private final String name;
     private final int[][] map = {   { 0,703,  0,  0,  0,  0, 61,  0, 31,  0,  0, 31,  0, 31,  0,  0},
                                     { 0, 70,  0,  0,  0,  4,  4,  0,  0,  0,  0,  0,  0,  4,  4,  0},
                                     {32, 33,  0, 34,  0,  4, 11, 14, 14, 14,143, 14, 14, 22,  4, 34},
@@ -19,7 +24,23 @@ public class IslandKingMap extends GameBoard implements IMap {
                                     { 0, 70,  0,  0,  0,  0, 33,  0, 33,  0,  0, 33,  0, 33,  0,  6}};
 
     public IslandKingMap() {
-        super("Island King");
+        this.name = "Island King";
+        this.difficulty = Constants.Difficulty.EASY;
+        this.players = "2-4";
         generateMap(map);
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    public String getDifficulty() {
+        return difficulty.toString();
+    }
+
+    @Override
+    public String getNbrOfPlayers() {
+        return players;
     }
 }
