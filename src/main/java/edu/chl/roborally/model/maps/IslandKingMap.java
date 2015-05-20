@@ -25,8 +25,8 @@ public class IslandKingMap extends GameBoard {
 
     public IslandKingMap() {
         this.name = "Island King";
-        this.difficulty = Constants.Difficulty.EASY;
-        this.players = "2-4";
+        this.difficulty = Constants.Difficulty.HARD;
+        this.players = "5-8";
         generateMap(map);
     }
 

@@ -45,8 +45,4 @@ public class Constants {
         MEDIUM,
         HARD,
     }
-
-    public enum Players {
-        TWO_TO_FOUR,
-    }
 }
