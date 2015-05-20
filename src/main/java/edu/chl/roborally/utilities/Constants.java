@@ -15,17 +15,6 @@ public class Constants {
     public static final int NUM_COLS = 16;
     public static final int NUM_ROWS = 12;
 
-    // Card move types
-    public enum MoveTypes {
-        MOVE_ONE,
-        MOVE_TWO,
-        MOVE_THREE,
-        BACKUP,
-        ROTATE_LEFT,
-        ROTATE_RIGHT,
-        U_TURN
-    }
-
     // Player & tile directions
     public enum Directions {
         NORTH,

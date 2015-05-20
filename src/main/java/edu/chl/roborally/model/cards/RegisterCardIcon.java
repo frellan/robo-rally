@@ -11,9 +11,11 @@ import java.awt.event.MouseListener;
 public class RegisterCardIcon extends JLabel {
 
     private RegisterCard card;
-    private boolean locked = false;
 
     public RegisterCardIcon() {
+        setBackground(Color.BLACK);
+        setForeground(Color.BLACK);
+        setOpaque(true);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         setSize(96, 140);
     }
@@ -23,6 +25,7 @@ public class RegisterCardIcon extends JLabel {
     }
     public void setCard(RegisterCard card) {
         this.card = card;
+        setBackground(Color.PINK);
         setText(card.toString());
     }
 }
