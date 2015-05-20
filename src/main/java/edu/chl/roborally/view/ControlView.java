@@ -22,14 +22,21 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel implements ActionListener{
 
-    private StatusView statusView;
     private Player player;
 
     private JPanel registerView;
     private JPanel turnIndicatorView;
     private JPanel pickCardsView;
+    private JPanel statusView;
     private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
+
+    private JButton powerDown;
+    private JLabel lifeTokens;
+    private JLabel dmgTokens;
+    private JLabel position;
+    protected JButton done;
+    protected JButton nextTurn;
 
     private static final int CARD_GAP = 7;
 
@@ -41,9 +48,7 @@ public class ControlView extends JPanel implements ActionListener{
         createRegisterView();
         createTurnIndicatorView();
         createPickCardsView();
-        statusView = new StatusView(player);
-        add(statusView).setLocation(668, 0);
-        statusView.done.addActionListener(this);
+        createStatusView();
     }
 
 
@@ -77,6 +82,31 @@ public class ControlView extends JPanel implements ActionListener{
         pickCardsView.setOpaque(false);
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);
+    }
+    private void createStatusView() {
+        statusView = new JPanel(new GridLayout(6,1));
+        statusView.setSize(320, 170);
+        statusView.setOpaque(false);
+        add(statusView).setLocation(668, 0);
+
+        powerDown = new JButton("PowerDown");
+        lifeTokens = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
+        lifeTokens.setForeground(Color.WHITE);
+        dmgTokens = new JLabel("DamageTokens: " + player.getDamageTokens(), SwingConstants.CENTER);
+        dmgTokens.setForeground(Color.WHITE);
+        position = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
+        position.setForeground(Color.WHITE);
+        done = new JButton("Done");
+        done.addActionListener(this);
+        nextTurn = new JButton("Next Turn");
+        nextTurn.addActionListener(this);
+
+        statusView.add(powerDown);
+        statusView.add(lifeTokens);
+        statusView.add(dmgTokens);
+        statusView.add(position);
+        statusView.add(done);
+        statusView.add(nextTurn);
     }
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
@@ -216,13 +246,16 @@ public class ControlView extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == statusView.done) {
+        if (e.getSource() == done) {
             if (programmedCardsIsValid()) {
                 EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, getProgrammedCards(), null);
-                statusView.nextTurn.setEnabled(true);
+                nextTurn.setEnabled(true);
             } else {
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
             }
+        }
+        if (e.getSource() == nextTurn){
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
         }
     }
 }
