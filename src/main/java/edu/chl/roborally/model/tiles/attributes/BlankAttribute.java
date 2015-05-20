@@ -12,7 +12,6 @@ import java.awt.*;
  */
 public class BlankAttribute implements Attribute {
 
-
     @Override
     public void beforeAction(Player player) {
 

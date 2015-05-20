@@ -1,7 +1,5 @@
 package edu.chl.roborally.utilities;
 
-import java.awt.*;
-
 /**
  * Created by fredrikkindstrom on 27/03/15.
  */
