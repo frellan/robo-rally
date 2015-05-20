@@ -149,7 +149,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
 
         } else if (e.getSource() == chooseMapButton) {
-            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName.getText(), null);
+            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {
             EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
         }
@@ -160,7 +160,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         JList list = (JList) e.getSource();
         if (e.getClickCount() == 1) {
             mapIndex = list.locationToIndex(e.getPoint());
-            mapName.setText(maps.get(mapIndex));
+            mapName.setText(maps.get(mapIndex).getName());
             mapInfo.repaint();
             mapInfo.revalidate();
         }
