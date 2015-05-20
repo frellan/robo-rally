@@ -1,43 +1,44 @@
 package edu.chl.roborally.view;
 
 
+import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-04-29.
  */
-public class StartPanel extends JPanel implements ActionListener{
+public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
+    //Butons
     private JButton newGameButton;
     private JButton optionsButton;
     private JButton exitButton;
-    private BufferedImage bi;
-    private JPanel buttonPanel;
-    private JSpinner chooser;
     private JButton chooseNbrOfPlayers;
-    private JButton saveNames;
     private JButton startGameBtn;
-    private ArrayList<JTextField> tempNames;
     private JButton chooseMapButton;
-    private ArrayList<JRadioButton> radioBtnList;
+
+    private JLabel mapName;
+    private JSpinner chooser;
+    private JPanel mapInfo;
+
+    private BufferedImage bi;
+
     private DefaultListModel<String> listModel;
     private JList<String> mapList;
+    private ArrayList<String> maps;
+
+    private int mapIndex;
 
     public StartPanel(){
 
         this.setLayout(new GridBagLayout());
-
 
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
@@ -45,7 +46,7 @@ public class StartPanel extends JPanel implements ActionListener{
             System.out.println("Image could not be read");
         }
 
-        buttonPanel = new StyledJPanel(new GridLayout(0,1,0,5));
+        JPanel buttonPanel= new StyledJPanel(new GridLayout(0,1,0,5));
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
         newGameButton.addActionListener(this);
         optionsButton = new Button("options_btn.png","options_btn_hover.png");
@@ -58,8 +59,6 @@ public class StartPanel extends JPanel implements ActionListener{
         buttonPanel.add(exitButton);
 
         add(buttonPanel);
-
-
     }
 
     public void nbrOfPlayers() {
@@ -76,61 +75,42 @@ public class StartPanel extends JPanel implements ActionListener{
         this.revalidate();
     }
 
-    // TODO tabort eftersom vi ska ha robotar med fasta namn
-
     public void chooseMap(ArrayList<String> maps) {
-
-        System.out.print("in choosemap");
-
         this.removeAll();
+        this.maps=maps;
         JPanel mapChooser = new StyledJPanel(new FlowLayout());
+        mapChooser.setSize(900,600);
 
         //Create the List with maps
-        JPanel listHolder = new JPanel();
+        JPanel listHolder = new JPanel(new FlowLayout());
+        listHolder.setSize(400,600);
 
         listModel = new DefaultListModel<>();
         for (String map : maps) {
             listModel.addElement(map);
-
         }
 
         JList<String> mapList = new JList<>(listModel);
-
-        mapList.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                JList list = (JList) e.getSource();
-                if(e.getClickCount() == 2){
-                    int index = list.locationToIndex(e.getPoint());
-                }
-                System.out.print("im in the list mothfu");
-            }
-        });
-
+        mapList.setSize(400,600);
+        mapList.addMouseListener(this);
         listHolder.add(mapList);
         mapChooser.add(listHolder);
 
         //Create the mapInfo
-        JPanel mapInfo = new JPanel();
-        //JLabel mapName = new JLabel(maps.get(index).toString());
+        mapInfo = new JPanel(new FlowLayout());
+        mapName = new JLabel(maps.get(mapIndex));
+        chooseMapButton = new JButton("Choose Map");
+        chooseMapButton.addActionListener(this);
 
-        //mapInfo.add(mapName);
+        mapInfo.add(mapName);
+        mapInfo.add(chooseMapButton);
         mapChooser.add(mapInfo);
         this.add(mapChooser);
-        
+
+        System.out.print(mapName.getText());
+        System.out.print(mapIndex);
         repaint();
         revalidate();
-    }
-
-    private void sendMapChocieToController() {
-        String mapName = "Default";
-        for (JRadioButton btn : radioBtnList) {
-            if (btn.isSelected()) {
-                mapName = btn.getText();
-            }
-        }
-        EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName, null);
     }
 
     public void summary(ArrayList<String> names, String mapName) {
@@ -156,13 +136,6 @@ public class StartPanel extends JPanel implements ActionListener{
         g.drawImage(bi, 0, 0, getWidth(), getHeight(), this);
     }
 
-    public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
-
-            System.out.println("Woo");
-        }
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(newGameButton)) {
@@ -173,13 +146,45 @@ public class StartPanel extends JPanel implements ActionListener{
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
             EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
-        } else if (e.getSource() == saveNames) {
-
         } else if (e.getSource() == chooseMapButton) {
-            sendMapChocieToController();
+            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapName.getText(), null);
         } else if (e.getSource() == startGameBtn) {
             EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JList list = (JList) e.getSource();
+        if (e.getClickCount() == 1) {
+            mapIndex = list.locationToIndex(e.getPoint());
+            mapName.setText(maps.get(mapIndex));
+            mapInfo.repaint();
+            mapInfo.revalidate();
+        }
+        System.out.print(mapIndex);
+        System.out.print(mapName.getText());
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
     public class StyledJPanel extends JPanel {
