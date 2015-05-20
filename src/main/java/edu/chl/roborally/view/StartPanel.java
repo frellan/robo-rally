@@ -17,14 +17,13 @@ import java.util.ArrayList;
  */
 public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
-    //Butons
+    //Components
     private JButton newGameButton;
     private JButton optionsButton;
     private JButton exitButton;
     private JButton chooseNbrOfPlayers;
     private JButton startGameBtn;
     private JButton chooseMapButton;
-
     private JLabel mapName;
     private JLabel mapDifficulty;
     private JLabel mapPlayers;
@@ -33,9 +32,6 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JPanel mapInfo;
 
     private BufferedImage bi;
-
-    private DefaultListModel<String> listModel;
-    private JList<String> mapList;
     private ArrayList<GameBoard> maps;
 
     private int mapIndex;
@@ -69,14 +65,38 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     public void nbrOfPlayers() {
         this.removeAll();
-        JPanel nbrPanel= new StyledJPanel(new GridLayout(3,0));
+        JPanel nbrPanel= new StyledJPanel(null);
         nbrPanel.setSize(200,200);
-        nbrPanel.add(new StyledLabel("Choose Number of Players"));
+
+        StyledLabel welcomeLabel = new StyledLabel("WELCOME TO ROBO RALLY!!!");
+        StyledLabel msgLabel = new StyledLabel("How many robots will be racing?");
+
+        nbrPanel.add(welcomeLabel);
+        nbrPanel.add(msgLabel);
+        welcomeLabel.setLocation(16,10);
+        msgLabel.setLocation(9,40);
+
+        //Spinner
         chooser = new JSpinner(new SpinnerNumberModel(2, 2, 5, 1));
+        chooser.setBorder(BorderFactory.createEmptyBorder());
+        chooser.setSize(50,50);
+
+        //Customize the spinners textfield
+        Component tf = chooser.getEditor().getComponent(0);
+        tf.setBackground(Color.DARK_GRAY);
+        tf.setForeground(Color.WHITE);
+        tf.setFont(new Font("SansSerif", Font.BOLD, 50));
+        tf.setSize(50,40);
+
         nbrPanel.add(chooser);
+        chooser.setLocation(75,90);
+
         chooseNbrOfPlayers = new JButton("Next");
         chooseNbrOfPlayers.addActionListener(this);
+        chooseNbrOfPlayers.setSize(180, 20);
         nbrPanel.add(chooseNbrOfPlayers);
+        chooseNbrOfPlayers.setLocation(10,170);
+
         this.add(nbrPanel);
         nbrPanel.setLocation(400,250);
         this.repaint();
@@ -95,7 +115,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         listHolder.setSize(100,380);
         listHolder.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 
-        listModel = new DefaultListModel<>();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
         for (GameBoard map : maps) {
             listModel.addElement(map.getName());
         }
