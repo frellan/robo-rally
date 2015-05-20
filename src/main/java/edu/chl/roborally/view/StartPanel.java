@@ -124,6 +124,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
+        chooseMapButton.setSize(150,20);
 
         mapInfo.add(mapIcon);
         mapIcon.setLocation(10, 10);
@@ -134,11 +135,11 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         mapInfo.add(mapPlayers);
         mapPlayers.setLocation(10, 300);
         mapInfo.add(chooseMapButton);
-        chooseMapButton.setLocation(10, 350);
+        chooseMapButton.setLocation(66, 350);
         mapChooser.add(mapInfo);
         mapInfo.setLocation(108, 10);
         this.add(mapChooser);
-        mapChooser.setLocation(300,250);
+        mapChooser.setLocation(300,180);
 
         repaint();
         revalidate();
