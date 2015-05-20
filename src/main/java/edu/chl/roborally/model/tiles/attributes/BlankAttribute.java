@@ -27,7 +27,7 @@ public class BlankAttribute implements Attribute {
     @Override
     public void draw(Graphics g, int x, int y) {
         BufferedImage temp = LargeImageHolder.getInstance().getBoardTileImage().getSubimage(
-                4 * Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                4*Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.drawImage(temp,x,y,null);
     }
 }
