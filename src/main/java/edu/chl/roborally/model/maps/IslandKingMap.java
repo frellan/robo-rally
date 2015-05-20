@@ -35,6 +35,7 @@ public class IslandKingMap extends GameBoard {
         return this.name;
     }
 
+    @Override
     public String getDifficulty() {
         return difficulty.toString();
     }

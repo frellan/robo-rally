@@ -24,6 +24,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JButton chooseMapButton;
 
     private JLabel mapName;
+    private JLabel mapDifficulty;
     private JSpinner chooser;
     private JPanel mapInfo;
 
@@ -90,7 +91,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         }
 
         JList<String> mapList = new JList<>(listModel);
-        mapList.setSize(400,600);
+        mapList.setSize(400, 600);
         mapList.addMouseListener(this);
 
         listHolder.add(mapList);
@@ -100,10 +101,12 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
         mapInfo = new JPanel(new FlowLayout());
         mapName = new JLabel(maps.get(mapIndex).getName());
+        mapDifficulty = new JLabel(maps.get(mapIndex).getDifficulty());
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
 
         mapInfo.add(mapName);
+        mapInfo.add(mapDifficulty);
         mapInfo.add(chooseMapButton);
         mapChooser.add(mapInfo);
         this.add(mapChooser);
@@ -161,6 +164,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         if (e.getClickCount() == 1) {
             mapIndex = list.locationToIndex(e.getPoint());
             mapName.setText(maps.get(mapIndex).getName());
+            mapDifficulty.setText(maps.get(mapIndex).getDifficulty());
             mapInfo.repaint();
             mapInfo.revalidate();
         }
