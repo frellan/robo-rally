@@ -28,7 +28,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JLabel mapName;
     private JLabel mapDifficulty;
     private JLabel mapPlayers;
-    private Button mapIcon;
+    private JLabel mapIcon;
     private JSpinner chooser;
     private JPanel mapInfo;
 
@@ -119,23 +119,24 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         mapDifficulty = new StyledLabel("Difficulty: " + maps.get(mapIndex).getDifficulty());
         mapPlayers = new StyledLabel("NbrOfRobots: " + maps.get(mapIndex).getNbrOfPlayers());
 
-        mapIcon = new Button(maps.get(mapIndex).getMapIcon());
-        mapIcon.setSize(100,150);
+        mapIcon = new JLabel();
+        mapIcon.setIcon(createIcon(this.getClass().getClassLoader().getResource(maps.get(mapIndex).getMapIcon())));
+        mapIcon.setSize(200,200);
 
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
-        chooseMapButton.setSize(150,20);
+        chooseMapButton.setSize(200,20);
 
         mapInfo.add(mapIcon);
-        mapIcon.setLocation(10, 10);
+        mapIcon.setLocation(41, 20);
         mapInfo.add(mapName);
-        mapName.setLocation(10, 200);
+        mapName.setLocation(41, 240);
         mapInfo.add(mapDifficulty);
-        mapDifficulty.setLocation(10, 250);
+        mapDifficulty.setLocation(41, 270);
         mapInfo.add(mapPlayers);
-        mapPlayers.setLocation(10, 300);
+        mapPlayers.setLocation(41, 300);
         mapInfo.add(chooseMapButton);
-        chooseMapButton.setLocation(66, 350);
+        chooseMapButton.setLocation(41, 340);
         mapChooser.add(mapInfo);
         mapInfo.setLocation(108, 10);
         this.add(mapChooser);
@@ -195,6 +196,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             mapName.setText("MapName: " + maps.get(mapIndex).getName());
             mapDifficulty.setText("Difficulty: " + maps.get(mapIndex).getDifficulty());
             mapPlayers.setText("NbrOfRobots: " + maps.get(mapIndex).getNbrOfPlayers());
+            mapIcon.setIcon(createIcon(this.getClass().getClassLoader().getResource(maps.get(mapIndex).getMapIcon())));
             mapInfo.repaint();
         }
     }
@@ -234,5 +236,16 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             this.setForeground(Color.WHITE);
             this.setText(str);
         }
+    }
+
+    private ImageIcon createIcon(URL url){
+        BufferedImage bi;
+        try {
+            bi = ImageIO.read(url);
+            return new ImageIcon(bi);
+        } catch(java.io.IOException e){
+            System.out.println("Image could not be read");
+        }
+        return null;
     }
 }
