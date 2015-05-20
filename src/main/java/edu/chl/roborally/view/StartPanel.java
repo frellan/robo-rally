@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +27,8 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     private JLabel mapName;
     private JLabel mapDifficulty;
+    private JLabel mapPlayers;
+    private Button mapIcon;
     private JSpinner chooser;
     private JPanel mapInfo;
 
@@ -38,7 +42,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     public StartPanel(){
 
-        this.setLayout(new GridBagLayout());
+        this.setLayout(null);
 
         try {
             bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
@@ -47,6 +51,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         }
 
         JPanel buttonPanel= new StyledJPanel(new GridLayout(0,1,0,5));
+        buttonPanel.setSize(200,200);
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
         newGameButton.addActionListener(this);
         optionsButton = new Button("options_btn.png","options_btn_hover.png");
@@ -59,11 +64,13 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         buttonPanel.add(exitButton);
 
         add(buttonPanel);
+        buttonPanel.setLocation(400, 250);
     }
 
     public void nbrOfPlayers() {
         this.removeAll();
         JPanel nbrPanel= new StyledJPanel(new GridLayout(3,0));
+        nbrPanel.setSize(200,200);
         nbrPanel.add(new JLabel("Choose Number of Players"));
         chooser = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
         nbrPanel.add(chooser);
@@ -71,6 +78,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         chooseNbrOfPlayers.addActionListener(this);
         nbrPanel.add(chooseNbrOfPlayers);
         this.add(nbrPanel);
+        nbrPanel.setLocation(400,250);
         this.repaint();
         this.revalidate();
     }
@@ -78,12 +86,13 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     public void chooseMap(ArrayList<GameBoard> maps) {
         this.removeAll();
         this.maps=maps;
-        JPanel mapChooser = new StyledJPanel(new FlowLayout());
-        mapChooser.setSize(900,600);
+        JPanel mapChooser = new StyledJPanel(new GridLayout(1,2));
+        mapChooser.setSize(400,200);
 
         //Create the List with maps
-        JPanel listHolder = new JPanel(new FlowLayout());
-        listHolder.setSize(400,600);
+        JPanel listHolder = new JPanel(new BorderLayout());
+        listHolder.setOpaque(false);
+       // listHolder.setSize(100,400);
 
         listModel = new DefaultListModel<>();
         for (GameBoard map : maps) {
@@ -91,7 +100,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         }
 
         JList<String> mapList = new JList<>(listModel);
-        mapList.setSize(400, 600);
+
         mapList.addMouseListener(this);
 
         listHolder.add(mapList);
@@ -100,19 +109,24 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         //Create the mapInfo
 
         mapInfo = new JPanel(new FlowLayout());
+        mapInfo.setOpaque(false);
+
         mapName = new JLabel(maps.get(mapIndex).getName());
         mapDifficulty = new JLabel(maps.get(mapIndex).getDifficulty());
+        mapPlayers = new JLabel(maps.get(mapIndex).getNbrOfPlayers());
+        mapIcon = new Button("dhuai");
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
 
+
         mapInfo.add(mapName);
         mapInfo.add(mapDifficulty);
+        mapInfo.add(mapPlayers);
         mapInfo.add(chooseMapButton);
         mapChooser.add(mapInfo);
         this.add(mapChooser);
+        mapChooser.setLocation(300,250);
 
-        System.out.print(mapName.getText());
-        System.out.print(mapIndex);
         repaint();
         revalidate();
     }
@@ -120,6 +134,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     public void summary(ArrayList<String> names, String mapName) {
         this.removeAll();
         JPanel sumPanel = new StyledJPanel(new GridLayout(5,0));
+        sumPanel.setSize(200,200);
         sumPanel.add(new JLabel("We are now ready for this game!!!"));
         for (String s : names) {
             sumPanel.add(new JLabel(s));
@@ -129,6 +144,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         startGameBtn.addActionListener(this);
         sumPanel.add(startGameBtn);
         this.add(sumPanel);
+        sumPanel.setLocation(400, 250);
         this.repaint();
         this.revalidate();
     }
@@ -165,12 +181,10 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             mapIndex = list.locationToIndex(e.getPoint());
             mapName.setText(maps.get(mapIndex).getName());
             mapDifficulty.setText(maps.get(mapIndex).getDifficulty());
+            mapPlayers.setText(maps.get(mapIndex).getNbrOfPlayers());
             mapInfo.repaint();
             mapInfo.revalidate();
         }
-        System.out.print(mapIndex);
-        System.out.print(mapName.getText());
-
     }
 
     @Override
