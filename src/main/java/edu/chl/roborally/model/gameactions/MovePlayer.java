@@ -47,10 +47,10 @@ public class MovePlayer extends GameAction {
                 super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY()+1));
                 break;
             case WEST_SOUTH:
-                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
                 break;
             case EAST_SOUTH:
-                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
                 break;
             case NORTH_EAST:
                 super.player.setPosition(new Position(super.player.getPosition().getX()+1, super.player.getPosition().getY()));

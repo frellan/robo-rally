@@ -29,6 +29,6 @@ public class MoveOneCardTest {
     public void testDoAction() throws Exception {
         card = new MoveOneCard(10,false);
         card.doAction(player);
-        assertTrue(player.getPosition().getY() == 7 && player.getPosition().getX() == 4);
+        assertTrue(player.getPosition().getY() == 5 && player.getPosition().getX() == 4);
     }
 }

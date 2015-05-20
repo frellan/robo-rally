@@ -28,10 +28,10 @@ public class BackUpPlayer extends GameAction {
     public void action() {
         switch (d) {
             case NORTH:
-                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
                 break;
             case SOUTH:
-                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
             case EAST:
                 super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
                 break;

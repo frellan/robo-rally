@@ -18,7 +18,7 @@ public class TileFactory {
     }
 
     /**
-     * ConVey N,W,S,E : NW,NE,SW,SE = 11,12,13,14 : 15,16,17,18
+     * ConVey N,W,S,E : NW,NE,SW,SE,WS = 11,12,13,14 : 15,16,17,18,19
      * ConVey NORTH with wall W,S,E = 112,113,114
      * ConVey WEST with wall N,S,E = 121,123,124
      * ETC..
@@ -66,6 +66,9 @@ public class TileFactory {
                 break;
             case 18:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
+                break;
+            case 19:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST_SOUTH));
                 break;
 
             //Straight ConveyerNORTH with WALL

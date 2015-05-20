@@ -29,7 +29,7 @@ public class MoveThreeCardTest {
     public void testDoAction() throws Exception {
         card = new MoveThreeCard(10,false);
         card.doAction(player);
-        assertTrue(player.getPosition().getY() == 9 && player.getPosition().getX() == 4);
+        assertTrue(player.getPosition().getY() == 3 && player.getPosition().getX() == 4);
 
     }
 }
