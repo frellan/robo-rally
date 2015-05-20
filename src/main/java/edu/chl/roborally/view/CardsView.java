@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class CardsView extends JPanel {
 
     private JPanel registerView;
+    private JPanel turnIndicatorView;
     private JPanel pickCardsView;
     private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
@@ -28,7 +29,9 @@ public class CardsView extends JPanel {
     public CardsView() {
         setLayout(null);
         setSize(664,170);
+        setBackground(Color.DARK_GRAY);
         createRegisterView();
+        createTurnIndicatorView();
         createPickCardsView();
     }
 
@@ -38,7 +41,8 @@ public class CardsView extends JPanel {
 
     private void createRegisterView() {
         registerView = new JPanel(null);
-        registerView.setSize(521, 170);
+        registerView.setSize(521, 146);
+        registerView.setOpaque(false);
         int gap = 6;
         for (int i = 0; i < 5; i++) {
             RegisterCardIcon temp = new RegisterCardIcon();
@@ -48,6 +52,11 @@ public class CardsView extends JPanel {
             gap += temp.getWidth() + CARD_GAP;
         }
         add(registerView).setLocation(0, 0);
+    }
+    private void createTurnIndicatorView() {
+        turnIndicatorView = new JPanel(null);
+        turnIndicatorView.setSize(521, 24);
+        add(turnIndicatorView).setLocation(0, 147);
     }
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
