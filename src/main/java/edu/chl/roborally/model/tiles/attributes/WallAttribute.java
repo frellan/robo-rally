@@ -4,8 +4,10 @@ import edu.chl.roborally.model.gameactions.StopPlayer;
 import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.LargeImageHolder;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-31.
@@ -35,26 +37,28 @@ public class WallAttribute implements Attribute {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        g.setColor(new Color(204,204,204));
-        g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        char[] message;
-        g.setColor(Color.RED);
+        BufferedImage allTiles = LargeImageHolder.getInstance().getBoardTileImage();
+        BufferedImage currentTile;
         switch (d) {
             case EAST:
-                message = "WE".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        6*Constants.TILE_SIZE, 2*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case WEST:
-                message = "WW".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        5*Constants.TILE_SIZE, 3*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case NORTH:
-                message = "WN".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        6*Constants.TILE_SIZE, 3*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case SOUTH:
-                message = "WS".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        4*Constants.TILE_SIZE, 3*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
         }
     }
