@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class LargeImageHolder {
 
     private static LargeImageHolder lih;
-    private static BufferedImage boardTileImage;
+    private BufferedImage boardTileImage;
 
     public LargeImageHolder() {
         try {
@@ -26,7 +26,7 @@ public class LargeImageHolder {
         return lih;
     }
 
-    public static BufferedImage getBoardTileImage() {
+    public BufferedImage getBoardTileImage() {
         return boardTileImage;
     }
 }
