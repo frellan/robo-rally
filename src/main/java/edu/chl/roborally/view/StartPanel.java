@@ -86,13 +86,14 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     public void chooseMap(ArrayList<GameBoard> maps) {
         this.removeAll();
         this.maps=maps;
-        JPanel mapChooser = new StyledJPanel(new GridLayout(1,2));
-        mapChooser.setSize(400,200);
+        JPanel mapChooser = new StyledJPanel(null);
+        mapChooser.setSize(400,400);
 
         //Create the List with maps
         JPanel listHolder = new JPanel(new BorderLayout());
         listHolder.setOpaque(false);
-        listHolder.setSize(100,400);
+        listHolder.setSize(100,380);
+        listHolder.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 
         listModel = new DefaultListModel<>();
         for (GameBoard map : maps) {
@@ -102,36 +103,40 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         JList<String> mapList = new JList<>(listModel);
         mapList.setBackground(Color.DARK_GRAY);
         mapList.setForeground(Color.WHITE);
-        mapList.setFixedCellWidth(30);
         mapList.addMouseListener(this);
 
         listHolder.add(mapList);
         mapChooser.add(listHolder);
+        listHolder.setLocation(10,10);
 
         //Create the mapInfo
-        mapInfo = new JPanel(new FlowLayout());
+        mapInfo = new JPanel(null);
         mapInfo.setOpaque(false);
+        mapInfo.setSize(282, 380);
+        mapInfo.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 
-        mapName = new JLabel(maps.get(mapIndex).getName());
-        mapName.setForeground(Color.WHITE);
-
-        mapDifficulty = new JLabel(maps.get(mapIndex).getDifficulty());
-        mapDifficulty.setForeground(Color.WHITE);
-
-        mapPlayers = new JLabel(maps.get(mapIndex).getNbrOfPlayers());
-        mapPlayers.setForeground(Color.WHITE);
+        mapName = new StyledLabel("MapName: " + maps.get(mapIndex).getName());
+        mapDifficulty = new StyledLabel("Difficulty: " + maps.get(mapIndex).getDifficulty());
+        mapPlayers = new StyledLabel("NbrOfRobots: " + maps.get(mapIndex).getNbrOfPlayers());
 
         mapIcon = new Button(maps.get(mapIndex).getMapIcon());
+        mapIcon.setSize(100,150);
 
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
 
         mapInfo.add(mapIcon);
+        mapIcon.setLocation(10, 10);
         mapInfo.add(mapName);
+        mapName.setLocation(10, 200);
         mapInfo.add(mapDifficulty);
+        mapDifficulty.setLocation(10, 250);
         mapInfo.add(mapPlayers);
+        mapPlayers.setLocation(10, 300);
         mapInfo.add(chooseMapButton);
+        chooseMapButton.setLocation(10, 350);
         mapChooser.add(mapInfo);
+        mapInfo.setLocation(108, 10);
         this.add(mapChooser);
         mapChooser.setLocation(300,250);
 
@@ -186,11 +191,10 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         JList list = (JList) e.getSource();
         if (e.getClickCount() == 1) {
             mapIndex = list.locationToIndex(e.getPoint());
-            mapName.setText(maps.get(mapIndex).getName());
-            mapDifficulty.setText(maps.get(mapIndex).getDifficulty());
-            mapPlayers.setText(maps.get(mapIndex).getNbrOfPlayers());
+            mapName.setText("MapName: " + maps.get(mapIndex).getName());
+            mapDifficulty.setText("Difficulty: " + maps.get(mapIndex).getDifficulty());
+            mapPlayers.setText("NbrOfRobots: " + maps.get(mapIndex).getNbrOfPlayers());
             mapInfo.repaint();
-            mapInfo.revalidate();
         }
     }
 
@@ -220,6 +224,14 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             this.setOpaque(true);
             this.setBackground(Color.DARK_GRAY);
             this.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
+        }
+    }
+
+    private class StyledLabel extends JLabel {
+        public StyledLabel(String str){
+            this.setSize(200,20);
+            this.setForeground(Color.WHITE);
+            this.setText(str);
         }
     }
 }
