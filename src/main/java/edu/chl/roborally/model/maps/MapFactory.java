@@ -7,32 +7,29 @@ import java.util.ArrayList;
  */
 public class MapFactory {
 
-    private ArrayList<String> maps;
+    private static MapFactory mapFactory;
+    private ArrayList<GameBoard> maps;
 
-    public MapFactory(){
-        maps = new ArrayList<>();
-        addMap("Blank Map");
-        addMap("Island King");
-    }
+    public static MapFactory getInstance(){
+        if (mapFactory == null) {
+            mapFactory = new MapFactory();
 
-    private void addMap(String map){
-        maps.add(map);
-    }
-
-    public GameBoard createMap(String name){
-        if (name.equals(maps.get(0))) {
-            System.out.println("New map created: " + maps.get(0));
-            return new BlankMap();
-        } else if (name.equals(maps.get(1))) {
-            System.out.println("New map created: " + maps.get(1));
-            return new IslandKingMap();
-        } else {
-            System.out.println("Created default: " + maps.get(0));
-            return new BlankMap();
+            mapFactory.createMaps();
         }
+        return mapFactory;
     }
 
-    public ArrayList<String> getMaps(){
+    private void createMaps() {
+        maps = new ArrayList<>();
+        maps.add(new BlankMap());
+        maps.add(new IslandKingMap());
+    }
+
+    public ArrayList<GameBoard> getMaps(){
         return maps;
+    }
+
+    public GameBoard getMap(int i) {
+        return maps.get(i);
     }
 }

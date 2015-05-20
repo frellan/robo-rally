@@ -20,7 +20,7 @@ public class GameController extends Thread implements IEventHandler {
 
     // Collect information to init model
     private ArrayList<String> tempNames = null;
-    private String tempMap = null;
+    private Integer tempMapIndex = null;
     private boolean mapReady = false;
     private boolean nameReady = false;
     private int turnIndex = 0;
@@ -37,8 +37,8 @@ public class GameController extends Thread implements IEventHandler {
      * dependencies for the game
      */
     private void createModel() {
-        if (tempNames != null && tempMap != null && model == null) {
-            this.model = new RoboRally(createPlayers(tempNames), mapFactory.createMap(tempMap));
+        if (tempNames != null && tempMapIndex != null && model == null) {
+            this.model = new RoboRally(createPlayers(tempNames), MapFactory.getInstance().getMap(tempMapIndex));
             System.out.println("New roborally created");
             EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model, null);
         }
@@ -91,7 +91,7 @@ public class GameController extends Thread implements IEventHandler {
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
             case SET_MAP:
-                this.tempMap = (String) o;
+                this.tempMapIndex = (Integer) o;
                 mapReady = true;
                 readyForGame();
                 break;
