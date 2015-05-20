@@ -92,7 +92,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         //Create the List with maps
         JPanel listHolder = new JPanel(new BorderLayout());
         listHolder.setOpaque(false);
-       // listHolder.setSize(100,400);
+        listHolder.setSize(100,400);
 
         listModel = new DefaultListModel<>();
         for (GameBoard map : maps) {
@@ -100,25 +100,33 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         }
 
         JList<String> mapList = new JList<>(listModel);
-
+        mapList.setBackground(Color.DARK_GRAY);
+        mapList.setForeground(Color.WHITE);
+        mapList.setFixedCellWidth(30);
         mapList.addMouseListener(this);
 
         listHolder.add(mapList);
         mapChooser.add(listHolder);
 
         //Create the mapInfo
-
         mapInfo = new JPanel(new FlowLayout());
         mapInfo.setOpaque(false);
 
         mapName = new JLabel(maps.get(mapIndex).getName());
+        mapName.setForeground(Color.WHITE);
+
         mapDifficulty = new JLabel(maps.get(mapIndex).getDifficulty());
+        mapDifficulty.setForeground(Color.WHITE);
+
         mapPlayers = new JLabel(maps.get(mapIndex).getNbrOfPlayers());
-        mapIcon = new Button("dhuai");
+        mapPlayers.setForeground(Color.WHITE);
+
+        mapIcon = new Button(maps.get(mapIndex).getMapIcon());
+
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
 
-
+        mapInfo.add(mapIcon);
         mapInfo.add(mapName);
         mapInfo.add(mapDifficulty);
         mapInfo.add(mapPlayers);
@@ -166,7 +174,6 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
             EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
-
         } else if (e.getSource() == chooseMapButton) {
             EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {

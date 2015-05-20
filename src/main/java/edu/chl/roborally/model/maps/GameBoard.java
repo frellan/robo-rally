@@ -72,6 +72,7 @@ public abstract class GameBoard implements IEventHandler{
     public abstract String getName();
     public abstract String getDifficulty();
     public abstract String getNbrOfPlayers();
+    public abstract String getMapIcon();
 
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
