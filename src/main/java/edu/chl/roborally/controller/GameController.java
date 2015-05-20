@@ -63,7 +63,7 @@ public class GameController extends Thread implements IEventHandler {
             turnIndex++;
             newTurn = false;
 
-            if(turnIndex == 4) {
+            if(turnIndex == 5) {
                 model.returnCardsTodeck();
                 newRound = true;
             }

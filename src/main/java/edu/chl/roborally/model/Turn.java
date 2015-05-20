@@ -57,6 +57,7 @@ public class Turn{
             card.setHidden(false);
             activeCards.add(card);
             activeCardPlayer.put(card,player);
+            System.out.println("Picked card with index " + turnIndex + " from " + player.getName());
         }
     }
 
@@ -85,7 +86,7 @@ public class Turn{
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player, null);
             }
         }
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"----- End tile actions -----", Color.RED);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "----- End tile actions -----", Color.RED);
     }
 
     private void fireLasers() {
