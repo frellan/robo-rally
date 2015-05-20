@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by axel on 2015-03-26.
  */
-public class GameBoard implements IEventHandler{
+public abstract class GameBoard implements IEventHandler{
 
     private GameTile[][] board;
     private List<Position> startPositions = new ArrayList<>();
@@ -69,9 +69,9 @@ public class GameBoard implements IEventHandler{
         return this.board[x][y];
     }
 
-    public String getName() {
-        return "Dummy name";
-    }
+    public abstract String getName();
+    public abstract String getDifficulty();
+    public abstract String getNbrOfPlayers();
 
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {

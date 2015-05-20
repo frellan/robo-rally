@@ -5,7 +5,7 @@ import edu.chl.roborally.utilities.Constants;
 /**
  * Created by axel on 2015-03-30.
  */
-public class IslandKingMap extends GameBoard implements IMap {
+public class IslandKingMap extends GameBoard {
 
     private final Constants.Difficulty difficulty;
     private final String players;
@@ -32,7 +32,7 @@ public class IslandKingMap extends GameBoard implements IMap {
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public String getDifficulty() {

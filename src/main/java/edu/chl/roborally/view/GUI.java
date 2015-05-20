@@ -53,7 +53,7 @@ public class GUI implements IEventHandler{
     }
 
     private void showSummary() {
-        start.summary(model.getPlayerNames(), "Map"); // TODO model.getGameBoard().getName());
+        start.summary(model.getPlayerNames(), model.getGameBoard().getName());
     }
 
     private void createGamePanels() {

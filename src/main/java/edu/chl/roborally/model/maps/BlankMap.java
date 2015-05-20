@@ -5,7 +5,7 @@ import edu.chl.roborally.utilities.Constants;
 /**
  * Created by axel on 2015-03-30.
  */
-public class BlankMap extends GameBoard implements IMap{
+public class BlankMap extends GameBoard {
 
     private final Constants.Difficulty difficulty;
     private final String players;
@@ -24,7 +24,7 @@ public class BlankMap extends GameBoard implements IMap{
                                     { 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0}};
 
     public BlankMap(){
-        this.name = "";
+        this.name = "Blank Map";
         this.difficulty = Constants.Difficulty.HARD;
         this.players = "2-4";
         generateMap(map);
@@ -32,16 +32,16 @@ public class BlankMap extends GameBoard implements IMap{
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
     public String getDifficulty() {
-        return null;
+        return this.difficulty.toString();
     }
 
     @Override
     public String getNbrOfPlayers() {
-        return null;
+        return players;
     }
 }
