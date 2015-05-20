@@ -44,4 +44,9 @@ public class IslandKingMap extends GameBoard {
     public String getNbrOfPlayers() {
         return players;
     }
+
+    @Override
+    public String getMapIcon() {
+        return "tupp.jpg";
+    }
 }
