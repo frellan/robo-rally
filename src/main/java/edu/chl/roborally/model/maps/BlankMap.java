@@ -25,7 +25,7 @@ public class BlankMap extends GameBoard {
 
     public BlankMap(){
         this.name = "Blank Map";
-        this.difficulty = Constants.Difficulty.HARD;
+        this.difficulty = Constants.Difficulty.MEDIUM;
         this.players = "2-4";
         generateMap(map);
     }
