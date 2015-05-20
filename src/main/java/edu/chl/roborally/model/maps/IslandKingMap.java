@@ -1,9 +1,15 @@
 package edu.chl.roborally.model.maps;
 
+import edu.chl.roborally.utilities.Constants;
+
 /**
  * Created by axel on 2015-03-30.
  */
 public class IslandKingMap extends GameBoard {
+
+    private String difficulty;
+    private String players;
+    private String name;
 
     /**
      * ConVey N,W,S,E : NW,NE,SW,SE = 11,12,13,14 : 15,16,17,18
@@ -37,6 +43,24 @@ public class IslandKingMap extends GameBoard {
 
     public IslandKingMap() {
         super("Island King");
+        this.name = "Island King";
+        this.difficulty = "EASY";
+        this.players = "2-4";
         generateMap(map);
+    }
+
+    public String getMapName() {
+        return name;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    /**
+     * Returns the suitable amount of players for this map
+     */
+    public String getNbrPlayer() {
+        return this.players;
     }
 }

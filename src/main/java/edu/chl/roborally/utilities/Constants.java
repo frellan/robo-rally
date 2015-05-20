@@ -29,8 +29,6 @@ public class Constants {
         WEST_SOUTH,
         EAST_NORTH,
         EAST_SOUTH,
-        LEFT,
-        RIGHT
     }
 
     // The status of a player
@@ -39,5 +37,16 @@ public class Constants {
         DEAD,
         POWERDOWN,
         KAPUT,
+    }
+
+    // The level of difficulty
+    public enum Difficulty {
+        EASY,
+        MEDIUM,
+        HARD,
+    }
+
+    public enum Players {
+        TWO_TO_FOUR,
     }
 }
