@@ -71,8 +71,8 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         this.removeAll();
         JPanel nbrPanel= new StyledJPanel(new GridLayout(3,0));
         nbrPanel.setSize(200,200);
-        nbrPanel.add(new JLabel("Choose Number of Players"));
-        chooser = new JSpinner(new SpinnerNumberModel(0, 0, 30, 1));
+        nbrPanel.add(new StyledLabel("Choose Number of Players"));
+        chooser = new JSpinner(new SpinnerNumberModel(2, 2, 5, 1));
         nbrPanel.add(chooser);
         chooseNbrOfPlayers = new JButton("Next");
         chooseNbrOfPlayers.addActionListener(this);
@@ -122,6 +122,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         mapIcon = new JLabel();
         mapIcon.setIcon(createIcon(this.getClass().getClassLoader().getResource(maps.get(mapIndex).getMapIcon())));
         mapIcon.setSize(200,200);
+        mapIcon.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
 
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
