@@ -145,15 +145,19 @@ public class TileFactory {
 
             //Walls
             case 31:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
                 break;
             case 32:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
             case 33:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
             case 34:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
@@ -168,6 +172,7 @@ public class TileFactory {
                 break;
             //Repair with WALL
             case 61:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
                 tile.addAttribute(new RepairAttribute());
                 break;
@@ -190,6 +195,7 @@ public class TileFactory {
                 break;
             //Checkpoint with WALL
             case 703:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 tile.addAttribute(new CheckpointAttribute(0));
                 break;

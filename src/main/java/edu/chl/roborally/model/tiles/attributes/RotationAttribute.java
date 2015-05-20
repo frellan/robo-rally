@@ -4,8 +4,10 @@ import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
+import edu.chl.roborally.utilities.LargeImageHolder;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-30.
@@ -34,18 +36,18 @@ public class RotationAttribute implements Attribute {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        char[] message;
-        g.setColor(new Color(156,207,49));
-        g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(Color.BLACK);
+        BufferedImage allTiles = LargeImageHolder.getInstance().getBoardTileImage();
+        BufferedImage currentTile;
         switch (d) {
             case WEST:
-                message = "RL".toCharArray();
-                g.drawChars(message, 0, message.length, x, y+10);
+                currentTile = allTiles.getSubimage(
+                        4*Constants.TILE_SIZE, 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case EAST:
-                message = "RR".toCharArray();
-                g.drawChars(message, 0, message.length, x, y+10);
+                currentTile = allTiles.getSubimage(
+                        5*Constants.TILE_SIZE, 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
         }
     }

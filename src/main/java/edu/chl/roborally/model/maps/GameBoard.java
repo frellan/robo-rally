@@ -1,12 +1,14 @@
 package edu.chl.roborally.model.maps;
 
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.tiles.attributes.ConveyorAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
 import edu.chl.roborally.model.tiles.*;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
