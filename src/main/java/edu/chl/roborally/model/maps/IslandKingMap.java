@@ -3,7 +3,7 @@ package edu.chl.roborally.model.maps;
 /**
  * Created by axel on 2015-03-30.
  */
-public class IslandKingMap extends GameBoard {
+public class IslandKingMap extends GameBoard implements IMap {
 
     private final int[][] map = {   { 0,703,  0,  0,  0,  0, 61,  0, 31,  0,  0, 31,  0, 31,  0,  0},
                                     { 0, 70,  0,  0,  0,  4,  4,  0,  0,  0,  0,  0,  0,  4,  4,  0},

@@ -17,12 +17,10 @@ public class GameBoard implements IEventHandler{
 
     private GameTile[][] board;
     private List<Position> startPositions = new ArrayList<>();
-    private String name;
 
-    public GameBoard(String n) {
+    public GameBoard() {
 
         this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
-        this.name = n;
 
         startPositions.add(new Position(1, 5));
         startPositions.add(new Position(1, 6));
@@ -69,10 +67,6 @@ public class GameBoard implements IEventHandler{
     // Return tile on given x and y coordinate
     public GameTile getTile(int x, int y) throws ArrayIndexOutOfBoundsException {
         return this.board[x][y];
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     @Override
