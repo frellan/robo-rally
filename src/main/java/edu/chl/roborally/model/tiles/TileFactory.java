@@ -18,10 +18,11 @@ public class TileFactory {
     }
 
     /**
-     * ConVey N,W,S,E : NW,NE,SW,SE,WS = 11,12,13,14 : 15,16,17,18,19
+     * ConVey N,W,S,E : NW,NE,SW,SE,WS,WN = 11,12,13,14 : 15,16,17,18,19,120
      * ConVey NORTH with wall W,S,E = 112,113,114
      * ConVey WEST with wall N,S,E = 121,123,124
-     * ETC..
+     * DubbleConvey W,S = 212,213
+     * DubbleConveySOUTH with wall W = 232
      * TurnConVey NW = 011
      *
      * RotTile W,E = 21,22
@@ -44,66 +45,91 @@ public class TileFactory {
 
             //Straight Conveyers NO walls
             case 11:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
                 break;
             case 12:
-                tile.addAttribute(new ConveyorAttribute((Constants.Directions.WEST)));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
                 break;
             case 13:
-                tile.addAttribute((new ConveyorAttribute(Constants.Directions.SOUTH)));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH,1));
                 break;
             case 14:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST,1));
                 break;
             case 15:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_WEST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_WEST,1));
                 break;
             case 16:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_EAST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH_EAST,1));
                 break;
             case 17:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_WEST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_WEST,1));
                 break;
             case 18:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH_EAST,1));
                 break;
             case 19:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST_SOUTH));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST_SOUTH,1));
+                break;
+            case 120:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST_SOUTH,1));
                 break;
 
             //Straight ConveyerNORTH with WALL
             case 112:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
             case 113:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
             case 114:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
-            //Straight ConveyerWEST with WALL
+            //ConveyerWEST with WALL
             case 121:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
                 break;
             case 123:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
             case 124:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
-            //Straight ConveyerEAST with WALL
+            //ConveySOUTH with WALL
+            case 132:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH,1));
+                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                break;
+
+            //ConveyerEAST with WALL
             case 143:
-                tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST));
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST,1));
                 tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
+
+            //Dubbelspeed Conveyers
+            case 212:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,2));
+                break;
+
+            case 213:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH,2));
+                break;
+
+            //DubbleSpeed ConveyersSOUTH with WALL
+            case 232:
+                tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH,2));
+                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                break;
+
             //Turning Conveyers
             case 011:
                 tile.addAttribute(new TurnConveyorAttribute(Constants.Directions.NORTH_WEST));

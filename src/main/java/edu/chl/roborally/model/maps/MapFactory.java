@@ -23,6 +23,7 @@ public class MapFactory {
         maps = new ArrayList<>();
         maps.add(new BlankMap());
         maps.add(new IslandKingMap());
+        maps.add(new RiskyExchangeMap());
     }
 
     public ArrayList<GameBoard> getMaps(){
