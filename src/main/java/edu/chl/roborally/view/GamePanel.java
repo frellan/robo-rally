@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class GamePanel extends JPanel {
 
-    private BufferedImage componentsBG;
+    private BufferedImage imageBG;
     private BufferedImage textBG;
     private BoardView boardView;
     private ConsoleView consoleView;
@@ -56,10 +56,15 @@ public class GamePanel extends JPanel {
     /*
     Painters
      */
+    private void paintBorders(Graphics g) {
+        g.fillRect(4, 19, 664, 500);
+        g.fillRect(674, 19, 322, 500);
+        g.fillRect(4, 538, 992, 179);
+    }
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(componentsBG, 0, 1, 1000, 730, this);
+        g.drawImage(imageBG, 0, 0, 1000, 730, this);
     }
     @Override
     public void paintChildren(Graphics g) {
@@ -68,8 +73,8 @@ public class GamePanel extends JPanel {
     }
 
     private void initImages() {
+        imageBG = LargeImageHolder.getInstance().getBoardTileImage();
         try {
-            componentsBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background.png"));
             textBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Images could not be read");

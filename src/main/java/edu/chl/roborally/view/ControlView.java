@@ -49,7 +49,7 @@ public class ControlView extends JPanel implements ActionListener{
     public ControlView(Player player) {
         this.player = player;
         setLayout(null);
-        setSize(984, 170);
+        setSize(984, 171);
         setBackground(Color.DARK_GRAY);
         createRegisterView();
         createTurnIndicatorView();
@@ -84,7 +84,7 @@ public class ControlView extends JPanel implements ActionListener{
     }
     private void createTurnIndicatorView() {
         turnIndicatorView = new JPanel(new GridLayout(1, 5));
-        turnIndicatorView.setSize(508, 25);
+        turnIndicatorView.setSize(508, 26);
         turnIndicatorView.setOpaque(false);
         firstTurnLabel = new JLabel("Turn 1", SwingConstants.CENTER);
         secondTurnLabel = new JLabel("Turn 2", SwingConstants.CENTER);
@@ -100,14 +100,14 @@ public class ControlView extends JPanel implements ActionListener{
     }
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
-        pickCardsView.setSize(138, 170);
+        pickCardsView.setSize(138, 171);
         pickCardsView.setOpaque(false);
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);
     }
     private void createStatusView() {
         statusView = new JPanel(new GridLayout(6,1));
-        statusView.setSize(320, 170);
+        statusView.setSize(320, 171);
         statusView.setOpaque(false);
         powerDownButton = new JButton("PowerDown");
         lifeTokensLabel = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
