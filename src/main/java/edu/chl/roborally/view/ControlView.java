@@ -57,7 +57,6 @@ public class ControlView extends JPanel implements ActionListener{
         createStatusView();
     }
 
-
     /*
     Class Methods
      */
@@ -102,7 +101,7 @@ public class ControlView extends JPanel implements ActionListener{
     }
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
-        pickCardsView.setSize(136, 170);
+        pickCardsView.setSize(138, 170);
         pickCardsView.setOpaque(false);
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);
