@@ -85,7 +85,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         tf.setForeground(Color.WHITE);
         tf.setFont(new Font("SansSerif", Font.BOLD, 50));
         tf.setSize(50,40);
-
+        
         nbrPanel.add(chooser);
         chooser.setLocation(75,90);
 

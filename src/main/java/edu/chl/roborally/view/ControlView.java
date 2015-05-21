@@ -129,11 +129,6 @@ public class ControlView extends JPanel implements ActionListener{
         statusView.add(nextTurnButton);
         add(statusView).setLocation(668, 0);
     }
-    private void resetRegisterCards() {
-        for (RegisterCardIcon icon : registerCardIcons) {
-            icon.removeCard();
-        }
-    }
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
@@ -160,9 +155,13 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
+    public void resetRegisterCards() {
+        for (RegisterCardIcon icon : registerCardIcons) {
+            icon.removeCard();
+        }
+    }
     public void newCardsToPick(Player player) {
         newCardsToPick = convertToArray(player.getDealtCards());
-        resetRegisterCards();
         refreshNewCardButtons();
         revalidate();
         repaint();
