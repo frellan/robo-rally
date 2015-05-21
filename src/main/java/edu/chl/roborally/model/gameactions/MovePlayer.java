@@ -2,10 +2,7 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
-
-import java.awt.*;
 
 /**
  * Created by henriknilson on 31/03/15.
@@ -65,5 +62,4 @@ public class MovePlayer extends GameAction {
                 break;
         }
     }
-
 }

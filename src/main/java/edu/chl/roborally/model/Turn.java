@@ -81,7 +81,7 @@ public class Turn{
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "    TILEACTIONS" + "\n" ,null);
         for (Player player : players) {
             if (player.isAlive()) {
-                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION, player, null);
+                model.getGameBoard().getTile(player.getPosition()).getAction(player);
             }
         }
     }
