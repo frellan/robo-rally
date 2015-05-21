@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
         controlView = new ControlView(player);
         consoleView = new ConsoleView();
         add(boardView);
-        boardView.setLocation(8, 23);
+        boardView.setLocation(7, 23);
         add(consoleView);
         consoleView.setLocation(678, 23);
         add(controlView);
@@ -57,14 +57,16 @@ public class GamePanel extends JPanel {
     Painters
      */
     private void paintBorders(Graphics g) {
+        g.setColor(Color.BLACK);
         g.fillRect(4, 19, 664, 500);
         g.fillRect(674, 19, 322, 500);
-        g.fillRect(4, 538, 992, 179);
+        g.fillRect(4, 539, 992, 179);
     }
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, 1000, 730, this);
+        paintBorders(g);
     }
     @Override
     public void paintChildren(Graphics g) {
@@ -73,7 +75,7 @@ public class GamePanel extends JPanel {
     }
 
     private void initImages() {
-        imageBG = LargeImageHolder.getInstance().getBoardTileImage();
+        imageBG = LargeImageHolder.getInstance().getMainBackgroundImage();
         try {
             textBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
         } catch (java.io.IOException | NullPointerException e){
