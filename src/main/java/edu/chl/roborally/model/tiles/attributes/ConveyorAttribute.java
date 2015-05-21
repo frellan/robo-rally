@@ -34,6 +34,7 @@ public class ConveyorAttribute implements Attribute {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         if (speed == 2) {
+            //TODO If player is outside conveyer don't move two steps! 
             new MovePlayer(p, d);
             new MovePlayer(p, d);
             EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Two Tiles" + "\n", null);
