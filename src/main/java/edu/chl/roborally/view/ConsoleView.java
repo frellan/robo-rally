@@ -25,7 +25,6 @@ public class ConsoleView extends JPanel implements IEventHandler {
 
     private JTextPane jTextPane;
 
-
     public ConsoleView(){
 
         this.setLayout(new BorderLayout());
@@ -52,7 +51,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
     private void append(String str){
         StyledDocument doc = jTextPane.getStyledDocument();
         try {
-            doc.insertString(doc.getLength(), "\n" + str, null);
+            doc.insertString(doc.getLength(), str, null);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -63,7 +62,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
         SimpleAttributeSet keyWord = new SimpleAttributeSet();
         StyleConstants.setForeground(keyWord, color);
         try {
-            doc.insertString(doc.getLength(), "\n" + str, keyWord);
+            doc.insertString(doc.getLength(), str, keyWord);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
