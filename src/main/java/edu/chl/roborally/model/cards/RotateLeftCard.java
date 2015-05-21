@@ -21,6 +21,6 @@ public class RotateLeftCard extends RegisterCard{
     }
 
     public void doAction(Player p) {
-        new RotatePlayer(p,Constants.Directions.EAST);
+        new RotatePlayer(p,Constants.Directions.WEST);
     }
 }
