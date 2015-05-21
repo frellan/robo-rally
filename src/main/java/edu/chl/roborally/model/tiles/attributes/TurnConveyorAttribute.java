@@ -4,6 +4,7 @@ import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.Turn;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.EventTram;
 
 import java.awt.*;
 
@@ -26,6 +27,9 @@ public class TurnConveyorAttribute implements Attribute {
     @Override
     public void doAction(Player player) {
         new MovePlayer(player, d);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Moving and Rotating ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player .getName() , player.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "One Tile + Right" + "\n", null);
     }
 
     public String toString() {

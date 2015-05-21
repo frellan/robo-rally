@@ -25,7 +25,7 @@ public class RotateLeftCard extends RegisterCard{
     public void doAction(Player p) {
         new RotatePlayer(p,Constants.Directions.WEST);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints() + ": Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , Color.BLUE);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Left" + "\n", null);
     }
 }

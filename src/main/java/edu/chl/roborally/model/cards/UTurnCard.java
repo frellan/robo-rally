@@ -3,6 +3,7 @@ package edu.chl.roborally.model.cards;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
+import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 
@@ -23,5 +24,9 @@ public class UTurnCard extends RegisterCard{
     public void doAction(Player p) {
         new RotatePlayer(p, Constants.Directions.EAST);
         new RotatePlayer(p, Constants.Directions.EAST);
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints(), null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Made a U-Turn" , null);
     }
 }
