@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-04-29.
  */
-public class GUI implements IEventHandler{
+public class GUI implements IEventHandler {
 
     private JFrame main;
     private StartPanel start;
