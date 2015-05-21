@@ -39,14 +39,28 @@ public class GamePanel extends JPanel {
         controlView.setLocation(8, 543);
     }
 
-    public Player getPlayer() {
-        return player;
-    }
+    /*
+    Class methods
+     */
 
     public void pickCards() {
         controlView.newCardsToPick(player);
         revalidate();
         repaint();
+    }
+
+    /*
+    Getters
+     */
+
+    public Player getPlayer() {
+        return player;
+    }
+    public BoardView getBoardView(){
+        return this.boardView;
+    }
+    public ControlView getControlView(){
+        return this.controlView;
     }
 
     // Draw background
@@ -72,12 +86,5 @@ public class GamePanel extends JPanel {
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Images could not be read");
         }
-    }
-
-    public BoardView getBoardView(){
-        return this.boardView;
-    }
-    public ControlView getControlView(){
-        return this.controlView;
     }
 }

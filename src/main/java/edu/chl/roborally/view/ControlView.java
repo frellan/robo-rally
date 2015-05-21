@@ -31,12 +31,18 @@ public class ControlView extends JPanel implements ActionListener{
     private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
-    private JButton powerDown;
-    private JLabel lifeTokens;
-    private JLabel dmgTokens;
-    private JLabel position;
-    protected JButton done;
-    protected JButton nextTurn;
+    private JLabel firstTurnLabel;
+    private JLabel secondTurnLabel;
+    private JLabel thirdTurnLabel;
+    private JLabel fourthTurnLabel;
+    private JLabel fifthTurnLabel;
+
+    private JButton powerDownButton;
+    private JLabel lifeTokensLabel;
+    private JLabel dmgTokensLabel;
+    private JLabel positionLabel;
+    protected JButton doneButton;
+    protected JButton nextTurnButton;
 
     private static final int CARD_GAP = 7;
 
@@ -79,10 +85,20 @@ public class ControlView extends JPanel implements ActionListener{
         add(registerView).setLocation(0, 0);
     }
     private void createTurnIndicatorView() {
-        turnIndicatorView = new JPanel(null);
-        turnIndicatorView.setSize(521, 24);
+        turnIndicatorView = new JPanel(new GridLayout(1, 5));
+        turnIndicatorView.setSize(508, 25);
         turnIndicatorView.setOpaque(false);
-        add(turnIndicatorView).setLocation(0, 147);
+        firstTurnLabel = new JLabel("Turn 1", SwingConstants.CENTER);
+        secondTurnLabel = new JLabel("Turn 2", SwingConstants.CENTER);
+        thirdTurnLabel = new JLabel("Turn 3", SwingConstants.CENTER);
+        fourthTurnLabel = new JLabel("Turn 4", SwingConstants.CENTER);
+        fifthTurnLabel = new JLabel("Turn 5", SwingConstants.CENTER);
+        turnIndicatorView.add(firstTurnLabel).setForeground(Color.WHITE);
+        turnIndicatorView.add(secondTurnLabel).setForeground(Color.WHITE);
+        turnIndicatorView.add(thirdTurnLabel).setForeground(Color.WHITE);
+        turnIndicatorView.add(fourthTurnLabel).setForeground(Color.WHITE);
+        turnIndicatorView.add(fifthTurnLabel).setForeground(Color.WHITE);
+        add(turnIndicatorView).setLocation(6, 146);
     }
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
@@ -95,26 +111,29 @@ public class ControlView extends JPanel implements ActionListener{
         statusView = new JPanel(new GridLayout(6,1));
         statusView.setSize(320, 170);
         statusView.setOpaque(false);
+        powerDownButton = new JButton("PowerDown");
+        lifeTokensLabel = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
+        lifeTokensLabel.setForeground(Color.WHITE);
+        dmgTokensLabel = new JLabel("DamageTokens: " + player.getDamageTokens(), SwingConstants.CENTER);
+        dmgTokensLabel.setForeground(Color.WHITE);
+        positionLabel = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
+        positionLabel.setForeground(Color.WHITE);
+        doneButton = new JButton("Done");
+        doneButton.addActionListener(this);
+        nextTurnButton = new JButton("Next Turn");
+        nextTurnButton.addActionListener(this);
+        statusView.add(powerDownButton);
+        statusView.add(lifeTokensLabel);
+        statusView.add(dmgTokensLabel);
+        statusView.add(positionLabel);
+        statusView.add(doneButton);
+        statusView.add(nextTurnButton);
         add(statusView).setLocation(668, 0);
-
-        powerDown = new JButton("PowerDown");
-        lifeTokens = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
-        lifeTokens.setForeground(Color.WHITE);
-        dmgTokens = new JLabel("DamageTokens: " + player.getDamageTokens(), SwingConstants.CENTER);
-        dmgTokens.setForeground(Color.WHITE);
-        position = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
-        position.setForeground(Color.WHITE);
-        done = new JButton("Done");
-        done.addActionListener(this);
-        nextTurn = new JButton("Next Turn");
-        nextTurn.addActionListener(this);
-
-        statusView.add(powerDown);
-        statusView.add(lifeTokens);
-        statusView.add(dmgTokens);
-        statusView.add(position);
-        statusView.add(done);
-        statusView.add(nextTurn);
+    }
+    private void resetRegisterCards() {
+        for (RegisterCardIcon icon : registerCardIcons) {
+            icon.removeCard();
+        }
     }
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
@@ -152,7 +171,10 @@ public class ControlView extends JPanel implements ActionListener{
     }
     public void newCardsToPick(Player player) {
         newCardsToPick = convertToArray(player.getDealtCards());
+        resetRegisterCards();
         refreshNewCardButtons();
+        doneButton.setEnabled(true);
+        nextTurnButton.setEnabled(false);
         revalidate();
         repaint();
     }
@@ -257,15 +279,16 @@ public class ControlView extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == done) {
+        if (e.getSource() == doneButton) {
             if (programmedCardsIsValid()) {
                 EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, getProgrammedCards(), null);
-                nextTurn.setEnabled(true);
+                doneButton.setEnabled(false);
+                nextTurnButton.setEnabled(true);
             } else {
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
             }
         }
-        if (e.getSource() == nextTurn){
+        if (e.getSource() == nextTurnButton){
             EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
         }
     }
