@@ -1,14 +1,12 @@
 package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.maps.GameBoard;
-import edu.chl.roborally.model.maps.MapFactory;
 import edu.chl.roborally.utilities.EventTram;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -212,13 +210,13 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(newGameButton)) {
-            EventTram.getInstance().publish(EventTram.Event.SELECT_PLAYERS, null, null);
+            EventTram.getInstance().publish(EventTram.Event.SHOW_MENU, null, null);
         } else if(e.getSource().equals(optionsButton)) {
 
         } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
-            EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
+            EventTram.getInstance().publish(EventTram.Event.SET_ROBOTS, chooser.getValue(), null);
         } else if (e.getSource() == chooseMapButton) {
             EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {
