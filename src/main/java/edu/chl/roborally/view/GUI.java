@@ -45,7 +45,7 @@ public class GUI implements IEventHandler {
     }
 
     /**
-     * Choose Map
+     * This method will create a panel where you will be able to choose map
      * @param maps
      */
     public void chooseMap(ArrayList<GameBoard> maps) {
@@ -111,11 +111,6 @@ public class GUI implements IEventHandler {
                 for(GamePanel panel : gamePanels)
                     panel.getBoardView().repaint();
                 break;
-            //showCardsAndStatus not used yet --> Status View not initialized
-            /*case UPDATE_STATUS:
-                for(GamePanel panel : gamePanels)
-                    panel.getControlView().getStatusView().repaint();
-                break;*/
         }
     }
 }
