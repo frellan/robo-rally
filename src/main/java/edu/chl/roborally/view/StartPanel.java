@@ -264,7 +264,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             this.setLayout(layoutManager);
             this.setOpaque(true);
             this.setBackground(Color.DARK_GRAY);
-            this.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK));
+            this.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLACK));
         }
     }
 

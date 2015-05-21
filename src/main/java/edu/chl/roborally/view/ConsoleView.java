@@ -33,7 +33,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
         jTextPane = new JTextPane();
         jTextPane.setEditable(false);
         jTextPane.setBackground(Color.DARK_GRAY);
-        jTextPane.setForeground(Color.GREEN);
+        jTextPane.setForeground(Color.WHITE);
 
         EventTram.getInstance().register(this);
 
