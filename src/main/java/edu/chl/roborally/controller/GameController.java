@@ -40,7 +40,6 @@ public class GameController extends Thread implements IEventHandler {
     private void createModel() {
         if (tempNbrOfRobots != null && tempMapIndex != null && model == null) {
             this.model = new RoboRally(createRobots(tempNbrOfRobots), MapFactory.getInstance().getMap(tempMapIndex));
-            System.out.println("New roborally created");
             EventTram.getInstance().publish(EventTram.Event.NEW_MODEL_CREATED, model, null);
         }
     }

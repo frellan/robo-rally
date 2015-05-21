@@ -69,7 +69,6 @@ public class RoboRally implements IEventHandler{
             player.setCheckpoint(start.get(index));
             player.backToCheckpoint();
             index++;
-            System.out.println(player.getName() + " is at " + player.getPosition());
         }
     }
 
