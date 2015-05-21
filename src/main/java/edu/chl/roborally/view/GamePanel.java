@@ -2,6 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.maps.GameBoard;
+import edu.chl.roborally.utilities.LargeImageHolder;
 
 import javax.imageio.ImageIO;
 
@@ -24,6 +25,7 @@ public class GamePanel extends JPanel {
     private Player player;
 
     public GamePanel(GameBoard board, ArrayList<Player> players, Player player){
+        imageBG = LargeImageHolder.getInstance().getMainBackgroundImage();
         initImages();
         setOpaque(false);
         setLayout(null);
@@ -69,7 +71,6 @@ public class GamePanel extends JPanel {
 
     private void initImages() {
         try {
-            imageBG = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
             componentsBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background.png"));
             textBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
         } catch (java.io.IOException | NullPointerException e){

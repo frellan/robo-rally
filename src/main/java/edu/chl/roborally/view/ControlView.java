@@ -163,8 +163,6 @@ public class ControlView extends JPanel implements ActionListener{
     public void newCardsToPick(Player player) {
         newCardsToPick = convertToArray(player.getDealtCards());
         refreshNewCardButtons();
-        revalidate();
-        repaint();
     }
     public void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
