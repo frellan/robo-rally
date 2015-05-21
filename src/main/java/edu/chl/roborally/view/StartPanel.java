@@ -216,7 +216,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
-            EventTram.getInstance().publish(EventTram.Event.SET_NBR_OF_ROBOTS, chooser.getValue(), null);
+            EventTram.getInstance().publish(EventTram.Event.SET_ROBOTS, chooser.getValue(), null);
         } else if (e.getSource() == chooseMapButton) {
             EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {

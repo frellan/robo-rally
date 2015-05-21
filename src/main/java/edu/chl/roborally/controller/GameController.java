@@ -91,14 +91,14 @@ public class GameController extends Thread implements IEventHandler {
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
+            case SET_ROBOTS:
+                this.tempNbrOfRobots = (Integer) o;
+                robotsReady = true;
+                readyForGame();
+                break;
             case SET_MAP:
                 this.tempMapIndex = (Integer) o;
                 mapReady = true;
-                readyForGame();
-                break;
-            case SET_NBR_OF_ROBOTS:
-                this.tempNbrOfRobots = (Integer) o;
-                robotsReady = true;
                 readyForGame();
                 break;
             case CREATE_MODEL:

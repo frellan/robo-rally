@@ -88,7 +88,7 @@ public class GUI implements IEventHandler {
             case SHOW_MENU:
                 selectPlayers();
                 break;
-            case SET_NBR_OF_ROBOTS:
+            case SET_ROBOTS:
                 chooseMap(MapFactory.getInstance().getMaps());
                 break;
             case NEW_MODEL_CREATED:

@@ -60,7 +60,6 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Class Methods
      */
-
     private void createRegisterView() {
         registerView = new JPanel(null);
         registerView.setSize(521, 146);
@@ -160,7 +159,6 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
-
     public ArrayList<RegisterCard> getProgrammedCards() {
         ArrayList<RegisterCard> temp = new ArrayList<>();
         for (RegisterCardIcon icon : registerCardIcons) {
@@ -189,7 +187,6 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Help Methods and Classes
      */
-
     private RegisterCard[] convertToArray(ArrayList<RegisterCard> input) {
         RegisterCard[] temp = new RegisterCard[9];
         for (int i = 0; i < 9; i++) {

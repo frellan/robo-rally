@@ -17,6 +17,12 @@ public class EventTram {
     }
 
     public enum Event {
+
+        /**
+         * Main event to send text to ConsoleView.
+         */
+        PRINT_MESSAGE,
+
         /**
          * This event tells the GUI to show the menu
          */
@@ -25,7 +31,7 @@ public class EventTram {
         /**
          * These events are used during setup to set name and map in model
          */
-        SET_NBR_OF_ROBOTS,
+        SET_ROBOTS,
         SET_MAP,
 
         /**
@@ -59,23 +65,8 @@ public class EventTram {
          * has choosen the cards to play.
          *
          * It return a arraylist with RegisterCards
-         *
          */
         PLAYER_PICKED_CARDS,
-
-        /**
-         * Is fired when the model starts a new turn.
-         */
-        NEW_TURN,
-
-        EXECUTE_TILE_ACTION,
-
-        /**
-         * Use this event to reapint the gameboeard
-         */
-        UPDATE_BOARD,
-
-        UPDATE_STATUS,
 
         /**
          * If a player chooses to powerdown, this event is fired
@@ -83,7 +74,23 @@ public class EventTram {
          */
         POWER_DOWN,
 
-        PRINT_MESSAGE,
+        /**
+         * Is fired when the model starts a new turn.
+         */
+        NEW_TURN,
+
+        /**
+         * Is fired when a tile action for a player needs to happen.
+         */
+        EXECUTE_TILE_ACTION,
+
+        /**
+         * Use this event to repaint the gameboard
+         */
+        UPDATE_BOARD,
+
+        UPDATE_STATUS,
+
         /**
          * This event is fired by the attribute which holds the last checkpoint
          * the event should include a player
