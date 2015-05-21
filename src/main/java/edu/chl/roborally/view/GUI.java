@@ -16,76 +16,70 @@ import java.util.ArrayList;
  */
 public class GUI implements IEventHandler {
 
-    private JFrame main;
-    private StartPanel start;
+    private JFrame mainFrame;
+    private StartPanel startPanel;
     private RoboRally model;
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
     private JTabbedPane tabbedPane = new JTabbedPane();
 
     public GUI() {
-        main = new MainFrame();
+        mainFrame = new MainFrame();
         EventTram.getInstance().register(this);
-        menu();
+        showStartPanel();
     }
 
-    /**
-     * Shows start menu
+    /*
+    Menu related methods
      */
-    public void menu() {
-        start = new StartPanel();
-        main.add(start, BorderLayout.CENTER);
-        main.revalidate();
+    public void showStartPanel() {
+        startPanel = new StartPanel();
+        mainFrame.add(startPanel, BorderLayout.CENTER);
+        mainFrame.revalidate();
     }
-
-    /**
-     * Set how many players the game should have
-     */
     public void selectPlayers() {
-        start.nbrOfPlayers();
+        startPanel.nbrOfPlayers();
     }
-
-    /**
-     * This method will create a panel where you will be able to choose map
-     * @param maps
-     */
     public void chooseMap(ArrayList<GameBoard> maps) {
-        start.chooseMap(maps);
+        startPanel.chooseMap(maps);
     }
-
     private void showSummary() {
-        start.summary(model.getPlayerNames());
+        startPanel.summary(model.getPlayerNames());
     }
 
+    /*
+    Create game screens
+     */
     private void createGamePanels() {
         for (Player player : model.getPlayers()) {
             gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
         }
         createTabbedPane();
     }
-
     private void createTabbedPane() {
         for (GamePanel panel : gamePanels) {
             tabbedPane.addTab(panel.getPlayer().getName(),panel);
         }
         showGamePanels();
     }
-
     private void showGamePanels() {
-        main.remove(start);
-        main.add(tabbedPane, BorderLayout.CENTER);
-        main.setSize(1022, 790);
-        main.revalidate();
-        main.repaint();
+        mainFrame.remove(startPanel);
+        mainFrame.add(tabbedPane, BorderLayout.CENTER);
+        mainFrame.setSize(1022, 790);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
+    /*
+    Game related methods
+     */
     public void pickCards(Player player) {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
                 panel.pickCards();
             }
         }
-        main.revalidate();
-        main.repaint();
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
     @Override
