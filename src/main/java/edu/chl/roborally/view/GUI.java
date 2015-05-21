@@ -91,7 +91,7 @@ public class GUI implements IEventHandler {
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
-            case SELECT_PLAYERS:
+            case SHOW_MENU:
                 selectPlayers();
                 break;
             case SET_NBR_OF_ROBOTS:

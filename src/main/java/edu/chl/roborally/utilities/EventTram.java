@@ -10,7 +10,7 @@ public class EventTram {
     private static EventTram tram;
 
     public static EventTram getInstance(){
-        if(tram == null){
+        if (tram == null){
             tram = new EventTram();
         }
         return tram;
@@ -20,7 +20,7 @@ public class EventTram {
         /**
          * This event tells the GUI to show the menu
          */
-        SELECT_PLAYERS,
+        SHOW_MENU,
 
         /**
          * These events are used during setup to set name and map in model
@@ -110,11 +110,11 @@ public class EventTram {
     //Call this method to publish an event
     public void publish(Event evt, Object data, Object data2){
 
-        if(trace){
+        if (trace){
             System.out.println(evt);
         }
-        for (int i = 0; i<handlers.size(); i++) {
-            handlers.get(i).onEvent(evt, data, data2);
+        for (IEventHandler handler : handlers) {
+            handler.onEvent(evt, data, data2);
         }
     }
 
