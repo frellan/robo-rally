@@ -5,6 +5,8 @@ import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
+
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -53,6 +55,10 @@ public class Round implements IEventHandler {
     }
 
     private void dealCards() {
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n" + "New Round" + "\n"
+                + Constants.UNDER_LINE + "\n", Color.MAGENTA);
+
         for (Player p : players) {
             if (p.isPowerDown()) {
                 p.setDealtCards(deck.getCards(0));

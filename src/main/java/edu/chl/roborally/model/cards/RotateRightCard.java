@@ -26,7 +26,7 @@ public class RotateRightCard extends RegisterCard{
         new RotatePlayer(p,Constants.Directions.EAST);
 
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints() + ": Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , Color.BLUE);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Right" + "\n", null);
     }
 }

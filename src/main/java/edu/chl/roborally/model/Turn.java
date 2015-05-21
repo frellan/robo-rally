@@ -67,6 +67,8 @@ public class Turn{
     }
 
     private void executeActiveCards() {
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "ANALYZING CARDS" + "\n", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
@@ -79,7 +81,7 @@ public class Turn{
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
 
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"INITIALIZING TILEACTIONS" + "\n" ,null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"TILEACTIONS" + "\n" ,null);
 
         for (Player player : players) {
             if (player.isAlive()) {
@@ -167,6 +169,6 @@ public class Turn{
 
     private void printFireMsg(Player p, Player enemy) {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName() + "\n"
-                + enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens" , Color.RED);
+                + enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens" + "\n", Color.RED);
     }
 }
