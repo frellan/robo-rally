@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.maps;
 
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.Position;
 
 /**
  * Created by axel on 2015-03-30.
@@ -24,6 +25,13 @@ public class BlankMap extends GameBoard {
                                     { 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0}};
 
     public BlankMap(){
+        //Set startpositions
+        startPositions.add(new Position(1, 5));
+        startPositions.add(new Position(1, 6));
+        startPositions.add(new Position(1, 3));
+        startPositions.add(new Position(1, 8));
+        startPositions.add(new Position(1, 1));
+
         this.name = "Blank Map";
         this.difficulty = Constants.Difficulty.MEDIUM;
         this.players = "2-4";
