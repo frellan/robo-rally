@@ -69,19 +69,5 @@ public abstract class GameBoard implements IEventHandler{
     public abstract String getDifficulty();
     public abstract String getNbrOfPlayers();
     public abstract String getMapIcon();
-
-    @Override
-    public void onEvent(EventTram.Event evt, Object o, Object o2) {
-        if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {
-            Player player = (Player) o;
-            try {
-                this.getTile(player.getPosition()).getAction(player);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                // If player is out of bounds we kill him
-                System.out.println("Player fell of board and died");
-                player.kill();
-            }
-        }
-    }
 }
 

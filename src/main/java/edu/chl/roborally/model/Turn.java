@@ -85,7 +85,13 @@ public class Turn{
 
         for (Player player : players) {
             if (player.isAlive()) {
-                model.getGameBoard().getTile(player.getPosition()).getAction(player);
+                try {
+                    model.getGameBoard().getTile(player.getPosition()).getAction(player);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // If player is out of bounds we kill him
+                    System.out.println("Player fell of board and died");
+                    player.kill();
+                }
             }
         }
     }
