@@ -56,7 +56,7 @@ public class Round implements IEventHandler {
     private void dealCards() {
 
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n" + "New Round" + "\n"
-                + Constants.UNDER_LINE + "\n", Color.MAGENTA);
+                                                                     + Constants.UNDER_LINE + "\n", Color.MAGENTA);
 
         for (Player p : players) {
             if (p.isPowerDown()) {
