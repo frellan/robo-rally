@@ -22,11 +22,6 @@ public class RotationAttribute implements Attribute {
         this.d = d;
     }
 
-    @Override
-    public void beforeAction(Player player) {
-
-    }
-
     public void doAction(Player p){
         new RotatePlayer(p,d);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);

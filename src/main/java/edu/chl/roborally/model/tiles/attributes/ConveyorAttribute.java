@@ -23,12 +23,6 @@ public class ConveyorAttribute implements Attribute {
         this.speed = speed;
     }
 
-
-    @Override
-    public void beforeAction(Player player) {
-
-    }
-
     @Override
     public void doAction(Player p){
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);

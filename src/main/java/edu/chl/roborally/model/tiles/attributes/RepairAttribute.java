@@ -15,11 +15,6 @@ import java.awt.image.BufferedImage;
 public class RepairAttribute implements Attribute {
 
     @Override
-    public void beforeAction(Player player) {
-
-    }
-
-    @Override
     public void doAction(Player player) {
         new RepairPlayer(player);
 

@@ -21,12 +21,6 @@ public class WallAttribute implements Attribute {
         this.d = d;
     }
 
-
-    @Override
-    public void beforeAction(Player player) {
-
-    }
-
     public void doAction(Player p) {
         if (p.getDirection() == this.d) {
             new StopPlayer(p);

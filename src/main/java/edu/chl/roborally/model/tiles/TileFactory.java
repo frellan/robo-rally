@@ -78,41 +78,41 @@ public class TileFactory {
             //Straight ConveyerNORTH with WALL
             case 112:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
             case 113:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
             case 114:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.NORTH,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
             //ConveyerWEST with WALL
             case 121:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.NORTH));
                 break;
             case 123:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
             case 124:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.WEST,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
             //ConveySOUTH with WALL
             case 132:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
 
             //ConveyerEAST with WALL
             case 143:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.EAST,1));
-                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
 
             //Dubbelspeed Conveyers
@@ -127,7 +127,7 @@ public class TileFactory {
             //DubbleSpeed ConveyersSOUTH with WALL
             case 232:
                 tile.addAttribute(new ConveyorAttribute(Constants.Directions.SOUTH,2));
-                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
 
             //Turning Conveyers
@@ -146,24 +146,24 @@ public class TileFactory {
             //Walls
             case 31:
                 tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.NORTH));
                 break;
             case 32:
                 tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.WEST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.WEST));
                 break;
             case 33:
                 tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 break;
             case 34:
                 tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.EAST));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.EAST));
                 break;
 
             //Pit
             case 4:
-                tile.addAttribute(new PitAttribute());
+                tile.addBeforeAttribute(new PitAttribute());
                 break;
 
             //Repair
@@ -173,7 +173,7 @@ public class TileFactory {
             //Repair with WALL
             case 61:
                 tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.NORTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.NORTH));
                 tile.addAttribute(new RepairAttribute());
                 break;
             //Checkpoint
@@ -196,7 +196,7 @@ public class TileFactory {
             //Checkpoint with WALL
             case 703:
                 tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new WallAttribute(Constants.Directions.SOUTH));
+                tile.addBeforeAttribute(new WallAttribute(Constants.Directions.SOUTH));
                 tile.addAttribute(new CheckpointAttribute(0));
                 break;
         }

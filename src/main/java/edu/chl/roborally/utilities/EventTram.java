@@ -88,6 +88,7 @@ public class EventTram {
          * Is fired when a tile action for a player needs to happen.
          */
         EXECUTE_TILE_ACTION,
+        EXECUTE_TILE_ACTION_BEFORE,
 
         /**
          * Use this event to repaint the gameboard

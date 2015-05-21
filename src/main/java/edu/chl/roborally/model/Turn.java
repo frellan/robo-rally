@@ -2,9 +2,7 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
-import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,7 +65,7 @@ public class Turn{
     }
 
     private void executeActiveCards() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "    ANALYZING CARDS" + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYZING CARDS" + "\n", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
@@ -78,7 +76,7 @@ public class Turn{
 
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "    TILEACTIONS" + "\n" ,null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- TILEACTIONS" + "\n" ,null);
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);

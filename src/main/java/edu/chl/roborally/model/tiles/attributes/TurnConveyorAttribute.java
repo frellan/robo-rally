@@ -20,11 +20,6 @@ public class TurnConveyorAttribute implements Attribute {
     }
 
     @Override
-    public void beforeAction(Player player) {
-
-    }
-
-    @Override
     public void doAction(Player player) {
         new MovePlayer(player, d);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Moving and Rotating ", null);

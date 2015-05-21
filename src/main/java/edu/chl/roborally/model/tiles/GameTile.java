@@ -13,10 +13,12 @@ import java.util.ArrayList;
 public class GameTile {
 
     private ArrayList<Attribute> attributes;
+    private ArrayList<Attribute> beforeAttributes;
 
     protected Dimension size = new Dimension(Constants.TILE_SIZE,Constants.TILE_SIZE);
 
     public GameTile() {
+        beforeAttributes = new ArrayList<>();
         attributes = new ArrayList<>();
 
     }
@@ -25,8 +27,18 @@ public class GameTile {
         attributes.add(attribute);
     }
 
+    public void addBeforeAttribute(Attribute attribute) {
+        beforeAttributes.add(attribute);
+    }
+
     public void getAction(Player player) {
         for (Attribute attribute : this.attributes) {
+            attribute.doAction(player);
+        }
+    }
+
+    public void getBeforeAction(Player player) {
+        for (Attribute attribute : this.beforeAttributes) {
             attribute.doAction(player);
         }
     }

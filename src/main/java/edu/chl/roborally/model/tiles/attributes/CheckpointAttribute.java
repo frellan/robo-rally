@@ -20,11 +20,6 @@ public class CheckpointAttribute implements Attribute {
     }
 
     @Override
-    public void beforeAction(Player player) {
-
-    }
-
-    @Override
     public void doAction(Player player) {
 
         if (id == 0) {
