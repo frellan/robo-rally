@@ -23,8 +23,6 @@ public abstract class GameBoard implements IEventHandler{
     public GameBoard() {
 
         this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
-
-        EventTram.getInstance().register(this);
     }
 
     //Used to create a specific gameboard
@@ -73,9 +71,10 @@ public abstract class GameBoard implements IEventHandler{
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {
-            Player player = (Player) o;
+            Player player = null;
+            player = (Player) o;
             try {
-                this.getTile(player.getPosition()).getAction(player);
+                board[player.getPosition().getX()][player.getPosition().getY()].getAction(player);
             } catch (ArrayIndexOutOfBoundsException e) {
                 // If player is out of bounds we kill him
                 System.out.println("Player fell of board and died");
