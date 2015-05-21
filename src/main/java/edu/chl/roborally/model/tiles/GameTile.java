@@ -20,7 +20,6 @@ public class GameTile {
     public GameTile() {
         beforeAttributes = new ArrayList<>();
         attributes = new ArrayList<>();
-
     }
 
     public void addAttribute(Attribute attribute) {
@@ -38,8 +37,10 @@ public class GameTile {
     }
 
     public void getBeforeAction(Player player) {
-        for (Attribute attribute : this.beforeAttributes) {
-            attribute.doAction(player);
+        if (!beforeAttributes.isEmpty()) {
+            for (Attribute attribute : this.beforeAttributes) {
+                attribute.doAction(player);
+            }
         }
     }
 

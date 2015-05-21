@@ -16,7 +16,7 @@ public class MovePlayer extends GameAction {
         super(p);
         this.d = d;
         action();
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,null,null);
+        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 
     public MovePlayer(Player p) {
