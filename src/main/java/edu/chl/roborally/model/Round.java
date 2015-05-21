@@ -31,6 +31,7 @@ public class Round implements IEventHandler {
     }
 
     public void startRound() {
+        EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
         putBackPlayers();
         deck.shuffle();
         dealCards();
