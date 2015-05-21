@@ -41,7 +41,7 @@ public class GameController extends Thread implements IEventHandler {
         if (tempNbrOfRobots != null && tempMapIndex != null && model == null) {
             this.model = new RoboRally(createRobots(tempNbrOfRobots), MapFactory.getInstance().getMap(tempMapIndex));
             System.out.println("New roborally created");
-            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL, model, null);
+            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL_CREATED, model, null);
         }
     }
 
@@ -55,17 +55,18 @@ public class GameController extends Thread implements IEventHandler {
             System.out.println("The model did not think that the game should continue");
         }
         else if (newRound) {
+            EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
             new Round(model);
-            System.out.println("New round");
             newRound = false;
             turnIndex = 0;
         } else if (turnIndex < 5 && newTurn) {
             new Turn(model,turnIndex);
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN,null,null);
             turnIndex++;
             newTurn = false;
 
             if(turnIndex == 5) {
-                model.returnCardsTodeck();
+                model.returnCardsToDeck();
                 newRound = true;
             }
         }
@@ -91,14 +92,14 @@ public class GameController extends Thread implements IEventHandler {
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
+            case SET_ROBOTS:
+                this.tempNbrOfRobots = (Integer) o;
+                robotsReady = true;
+                readyForGame();
+                break;
             case SET_MAP:
                 this.tempMapIndex = (Integer) o;
                 mapReady = true;
-                readyForGame();
-                break;
-            case SET_NBR_OF_ROBOTS:
-                this.tempNbrOfRobots = (Integer) o;
-                robotsReady = true;
                 readyForGame();
                 break;
             case CREATE_MODEL:
@@ -109,7 +110,7 @@ public class GameController extends Thread implements IEventHandler {
                 newRound = true;
                 this.runGame();
                 break;
-            case NEW_TURN:
+            case READY_FOR_NEW_TURN:
                 newTurn = true;
                 runGame();
                 break;
