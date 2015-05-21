@@ -101,7 +101,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         nbrPanel.setLocation(400,250);
         this.repaint();
         this.revalidate();
-        
+
     }
 
     public void chooseMap(ArrayList<GameBoard> maps) {
@@ -168,20 +168,36 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         revalidate();
     }
 
-    public void summary(ArrayList<String> names, String mapName) {
+    public void summary(ArrayList<String> names) {
         this.removeAll();
-        JPanel sumPanel = new StyledJPanel(new GridLayout(5,0));
-        sumPanel.setSize(200,200);
-        sumPanel.add(new JLabel("We are now ready for this game!!!"));
+        int verticalGap = 10;
+        JPanel sumPanel = new StyledJPanel(null);
+        sumPanel.setSize(300,400);
+
+        sumPanel.add(mapName);
+        sumPanel.add(mapIcon);
+
+        mapName.setLocation(50,10);
+        mapIcon.setLocation(50,40);
+
+        StyledLabel robots = new StyledLabel("Robots: ");
+        sumPanel.add(robots);
+        robots.setLocation(50, 250);
+
         for (String s : names) {
-            sumPanel.add(new JLabel(s));
+            StyledLabel robotNames = new StyledLabel(s);
+            sumPanel.add(robotNames);
+            robotNames.setLocation(100, 240 + verticalGap);
+            verticalGap = verticalGap + 20;
         }
-        sumPanel.add(new JLabel(mapName));
+
         startGameBtn = new Button("start_btn.png", "start_btn_hover.png");
         startGameBtn.addActionListener(this);
+        startGameBtn.setSize(200, 50);
         sumPanel.add(startGameBtn);
+        startGameBtn.setLocation(50,330);
         this.add(sumPanel);
-        sumPanel.setLocation(400, 250);
+        sumPanel.setLocation(350, 180);
         this.repaint();
         this.revalidate();
     }
