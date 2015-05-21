@@ -81,13 +81,7 @@ public class Turn{
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "    TILEACTIONS" + "\n" ,null);
         for (Player player : players) {
             if (player.isAlive()) {
-                try {
-                    model.getGameBoard().getTile(player.getPosition()).getAction(player);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // If player is out of bounds we kill him
-                    System.out.println("Player fell of board and died");
-                    player.kill();
-                }
+                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);
             }
         }
     }
