@@ -64,6 +64,10 @@ public class Player {
         return iD;
     }
 
+    public Color getColor(){
+        return robot.getColor();
+    }
+
     public Position getPosition() {
         return position;
     }

@@ -9,6 +9,7 @@ import edu.chl.roborally.utilities.Position;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -24,7 +25,7 @@ public class CheckpointAttributeTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(1,new Robot("Test Robot"));
+        player = new Player(1,new Robot("Test Robot", Color.ORANGE));
         player.setCheckpointId(0);
         map = new IslandKingMap();
         ArrayList<Player> players = new ArrayList<>();
