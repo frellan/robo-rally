@@ -19,7 +19,7 @@ public class LargeImageHolder {
             System.out.println("board_tiles.png could not be read");
         }
         try {
-            mainBackgroundImage = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.png"));
+            mainBackgroundImage = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("board_tiles.png could not be read");
         }
