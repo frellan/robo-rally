@@ -12,9 +12,12 @@ import java.awt.*;
 public class MainFrame extends JFrame{
 
     public MainFrame() {
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image img = kit.createImage(this.getClass().getClassLoader().getResource("icon.png"));
+        setIconImage(img);
         setTitle("RoboRally");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1010, 778);
+        setSize(1011, 778);
         setLayout(new BorderLayout());
         setResizable(false);
         setVisible(true);

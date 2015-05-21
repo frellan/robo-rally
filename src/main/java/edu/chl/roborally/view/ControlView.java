@@ -6,6 +6,8 @@ import edu.chl.roborally.model.cards.RegisterCardIcon;
 import edu.chl.roborally.utilities.EventTram;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
@@ -101,6 +103,7 @@ public class ControlView extends JPanel implements ActionListener{
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
         pickCardsView.setSize(138, 171);
+        pickCardsView.setBorder(new MatteBorder(0,2,0,2,Color.BLACK));
         pickCardsView.setOpaque(false);
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);

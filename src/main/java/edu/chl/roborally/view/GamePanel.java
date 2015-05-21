@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
         controlView = new ControlView(player);
         consoleView = new ConsoleView();
         add(boardView);
-        boardView.setLocation(7, 23);
+        boardView.setLocation(8, 23);
         add(consoleView);
         consoleView.setLocation(678, 23);
         add(controlView);
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(imageBG, 0, 0, 1000, 730, this);
+        g.drawImage(imageBG, 0, 0, 1001, 730, this);
         paintBorders(g);
     }
     @Override
