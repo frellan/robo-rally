@@ -101,6 +101,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         nbrPanel.setLocation(400,250);
         this.repaint();
         this.revalidate();
+        
     }
 
     public void chooseMap(ArrayList<GameBoard> maps) {
