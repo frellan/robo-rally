@@ -4,6 +4,7 @@ import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
+import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.LargeImageHolder;
 
 import java.awt.*;
@@ -30,11 +31,15 @@ public class ConveyorAttribute implements Attribute {
 
     @Override
     public void doAction(Player p){
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         if (speed == 2) {
             new MovePlayer(p, d);
             new MovePlayer(p, d);
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Two Tiles" + "\n", null);
         } else {
             new MovePlayer(p, d);
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
         }
         //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
     }

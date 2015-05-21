@@ -4,6 +4,7 @@ import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
+import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.LargeImageHolder;
 
 import java.awt.*;
@@ -28,6 +29,12 @@ public class RotationAttribute implements Attribute {
 
     public void doAction(Player p){
         new RotatePlayer(p,d);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        if(d == Constants.Directions.WEST)
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Left" + "\n", null);
+        if(d == Constants.Directions.EAST)
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Right" + "\n", null);
     }
 
     public String toString() {

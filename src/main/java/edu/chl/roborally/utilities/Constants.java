@@ -14,7 +14,8 @@ public class Constants {
     public static final int NUM_ROWS = 12;
 
     //Console
-    public static final String UNDER_LINE = "-------------------------------------------------------------------------";
+    public static final String UNDER_LINE = "--------------------------------------" +
+                                            "--------------------------------------";
 
     // Player & tile directions
     public enum Directions {

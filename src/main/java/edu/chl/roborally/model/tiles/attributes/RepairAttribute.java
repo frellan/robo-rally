@@ -3,6 +3,7 @@ package edu.chl.roborally.model.tiles.attributes;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RepairPlayer;
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.LargeImageHolder;
 
 import java.awt.*;
@@ -21,6 +22,9 @@ public class RepairAttribute implements Attribute {
     @Override
     public void doAction(Player player) {
         new RepairPlayer(player);
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Repairing ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() , player.getColor());
     }
 
     @Override
