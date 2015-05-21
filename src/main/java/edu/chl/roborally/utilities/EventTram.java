@@ -75,7 +75,12 @@ public class EventTram {
         POWER_DOWN,
 
         /**
-         * Is fired when the model starts a new turn.
+         * Is fired when the Model is ready for new turn.
+         */
+        READY_FOR_NEW_TURN,
+
+        /**
+         * Is fired when the GameController starts a new turn.
          */
         NEW_TURN,
 
@@ -120,7 +125,8 @@ public class EventTram {
         if (trace){
             System.out.println(evt);
         }
-        for (IEventHandler handler : handlers) {
+        for (int i = 0; i < handlers.size(); i++) {
+            IEventHandler handler = handlers.get(i);
             handler.onEvent(evt, data, data2);
         }
     }

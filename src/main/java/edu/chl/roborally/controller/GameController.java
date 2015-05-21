@@ -56,16 +56,17 @@ public class GameController extends Thread implements IEventHandler {
         }
         else if (newRound) {
             new Round(model);
-            System.out.println("New round");
+            EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
             newRound = false;
             turnIndex = 0;
         } else if (turnIndex < 5 && newTurn) {
             new Turn(model,turnIndex);
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN,null,null);
             turnIndex++;
             newTurn = false;
 
             if(turnIndex == 5) {
-                model.returnCardsTodeck();
+                model.returnCardsToDeck();
                 newRound = true;
             }
         }
@@ -109,7 +110,7 @@ public class GameController extends Thread implements IEventHandler {
                 newRound = true;
                 this.runGame();
                 break;
-            case NEW_TURN:
+            case READY_FOR_NEW_TURN:
                 newTurn = true;
                 runGame();
                 break;

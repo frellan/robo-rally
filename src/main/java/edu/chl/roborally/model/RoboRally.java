@@ -47,7 +47,7 @@ public class RoboRally implements IEventHandler{
         }
     }
 
-    public void returnCardsTodeck() {
+    public void returnCardsToDeck() {
         for (Player player : players) {
             for (RegisterCard card : player.getProgrammedCards()) {
                 deck.addCard(card);

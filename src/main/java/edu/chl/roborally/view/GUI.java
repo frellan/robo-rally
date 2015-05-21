@@ -53,13 +53,11 @@ public class GUI implements IEventHandler {
         for (Player player : model.getPlayers()) {
             gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
         }
-        createTabbedPane();
     }
     private void createTabbedPane() {
         for (GamePanel panel : gamePanels) {
             tabbedPane.addTab(panel.getPlayer().getName(),panel);
         }
-        showGamePanels();
     }
     private void showGamePanels() {
         mainFrame.remove(startPanel);
@@ -72,14 +70,24 @@ public class GUI implements IEventHandler {
     /*
     Game related methods
      */
-    public void pickCards(Player player) {
+    private void setGamePanelsForNewRound() {
+        for (GamePanel panel : gamePanels) {
+            panel.getControlView().setNextTurnButtonEnabled(false);
+        }
+    }
+    private void pickCards(Player player) {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
-                panel.pickCards();
+                panel.getControlView().newCardsToPick(player);
+                panel.getControlView().setDoneButtonEnabled(true);
             }
         }
-        mainFrame.revalidate();
-        mainFrame.repaint();
+    }
+    private void setGamePanelsForNewTurn() {
+        for (GamePanel panel : gamePanels) {
+            panel.getControlView().setDoneButtonEnabled(false);
+            panel.getControlView().setNextTurnButtonEnabled(true);
+        }
     }
 
     @Override
@@ -97,9 +105,17 @@ public class GUI implements IEventHandler {
                 break;
             case SHOW_GAMEPANEL:
                 createGamePanels();
+                createTabbedPane();
+                showGamePanels();
+                break;
+            case NEW_ROUND:
+                setGamePanelsForNewRound();
                 break;
             case PICK_CARDS:
                 pickCards((Player) o);
+                break;
+            case NEW_TURN:
+                setGamePanelsForNewTurn();
                 break;
             case UPDATE_BOARD:
                 for(GamePanel panel : gamePanels)

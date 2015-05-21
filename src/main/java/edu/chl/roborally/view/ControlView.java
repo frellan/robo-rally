@@ -117,6 +117,7 @@ public class ControlView extends JPanel implements ActionListener{
         positionLabel = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
         positionLabel.setForeground(Color.WHITE);
         doneButton = new JButton("Done");
+        doneButton.setEnabled(false);
         doneButton.addActionListener(this);
         nextTurnButton = new JButton("Next Turn");
         nextTurnButton.addActionListener(this);
@@ -159,6 +160,23 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
+    public void newCardsToPick(Player player) {
+        newCardsToPick = convertToArray(player.getDealtCards());
+        resetRegisterCards();
+        refreshNewCardButtons();
+        revalidate();
+        repaint();
+    }
+    public void setDoneButtonEnabled(boolean b) {
+        doneButton.setEnabled(b);
+    }
+    public void setNextTurnButtonEnabled(boolean b) {
+        nextTurnButton.setEnabled(b);
+    }
+
+    /*
+    Getters
+     */
     public ArrayList<RegisterCard> getProgrammedCards() {
         ArrayList<RegisterCard> temp = new ArrayList<>();
         for (RegisterCardIcon icon : registerCardIcons) {
@@ -166,15 +184,10 @@ public class ControlView extends JPanel implements ActionListener{
         }
         return temp;
     }
-    public void newCardsToPick(Player player) {
-        newCardsToPick = convertToArray(player.getDealtCards());
-        resetRegisterCards();
-        refreshNewCardButtons();
-        doneButton.setEnabled(true);
-        nextTurnButton.setEnabled(false);
-        revalidate();
-        repaint();
-    }
+
+    /*
+    Help Methods and Classes
+     */
     public boolean programmedCardsIsValid() {
         for (RegisterCardIcon card : registerCardIcons) {
             if (card.getCard() == null) {
@@ -183,10 +196,6 @@ public class ControlView extends JPanel implements ActionListener{
         }
         return true;
     }
-
-    /*
-    Help Methods and Classes
-     */
     private RegisterCard[] convertToArray(ArrayList<RegisterCard> input) {
         RegisterCard[] temp = new RegisterCard[9];
         for (int i = 0; i < 9; i++) {
@@ -278,14 +287,12 @@ public class ControlView extends JPanel implements ActionListener{
         if (e.getSource() == doneButton) {
             if (programmedCardsIsValid()) {
                 EventTram.getInstance().publish(EventTram.Event.PLAYER_PICKED_CARDS, getProgrammedCards(), null);
-                doneButton.setEnabled(false);
-                nextTurnButton.setEnabled(true);
             } else {
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
             }
         }
         if (e.getSource() == nextTurnButton){
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
+            EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
         }
     }
 }

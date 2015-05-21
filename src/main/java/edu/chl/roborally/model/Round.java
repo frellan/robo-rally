@@ -16,7 +16,6 @@ public class Round implements IEventHandler {
     private RoboRally model;
     private CardDeck deck;
     private ArrayList<Player> players;
-    private boolean nextPlayer = false;
     final int STANDARD_CARD_AMOUNT = 9;
     private Player chooser;
     private int chooserIndex = 0;
@@ -31,11 +30,10 @@ public class Round implements IEventHandler {
     }
 
     public void startRound() {
-        EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
         putBackPlayers();
         deck.shuffle();
         dealCards();
-        chooseCardsToPlay();
+        makePlayerPickCards();
     }
 
     //Help methods
@@ -65,14 +63,12 @@ public class Round implements IEventHandler {
         }
     }
 
-    private void chooseCardsToPlay() {
-        System.out.println("Number of players " + model.getPlayers().size());
+    private void makePlayerPickCards() {
         if (chooserIndex < model.getPlayers().size()) {
             chooser = model.getPlayers().get(chooserIndex);
             EventTram.getInstance().publish(EventTram.Event.PICK_CARDS,chooser, null);
         } else {
-            System.out.println("All Players have choosen their cards, fire event");
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, null, null);
+            EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
         }
     }
 
@@ -84,7 +80,7 @@ public class Round implements IEventHandler {
                 chooser.setProgrammedCard(i,cards.get(i));
             }
             chooserIndex++;
-            chooseCardsToPlay();
+            makePlayerPickCards();
         }
     }
 }
