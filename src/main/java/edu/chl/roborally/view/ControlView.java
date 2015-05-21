@@ -287,8 +287,9 @@ public class ControlView extends JPanel implements ActionListener{
         if (e.getSource() == doneButton) {
             if (programmedCardsIsValid()) {
                 EventTram.getInstance().publish(EventTram.Event.PLAYER_PICKED_CARDS, getProgrammedCards(), null);
+                doneButton.setEnabled(false);
             } else {
-                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", null);
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Please choose 5 cards", Color.RED);
             }
         }
         if (e.getSource() == nextTurnButton){
