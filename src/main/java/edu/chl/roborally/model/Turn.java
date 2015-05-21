@@ -100,7 +100,7 @@ public class Turn{
                 case NORTH:
                     //If x is equal and y is bigger
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
+                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
                         }
@@ -109,7 +109,7 @@ public class Turn{
                 case SOUTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
+                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p,enemy);
                         }
