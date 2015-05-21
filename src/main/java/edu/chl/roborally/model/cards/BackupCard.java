@@ -3,6 +3,7 @@ package edu.chl.roborally.model.cards;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.*;
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,5 +27,8 @@ public class BackupCard extends RegisterCard{
     public void doAction(Player p) {
         //TODO
        new BackUpPlayer(p);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints() + ": Backed Up ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
     }
 }

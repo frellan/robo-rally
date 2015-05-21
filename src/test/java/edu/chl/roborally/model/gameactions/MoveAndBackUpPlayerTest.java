@@ -7,6 +7,8 @@ import edu.chl.roborally.utilities.Position;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -18,7 +20,7 @@ public class MoveAndBackUpPlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, new Robot("Test Robot"));
+        player = new Player(0, new Robot("Test Robot", Color.ORANGE));
         player.setPosition(new Position(4,6));
         player.setDirection(Constants.Directions.NORTH);
         System.out.println(player.getName() + " starts at position " + player.getPosition());

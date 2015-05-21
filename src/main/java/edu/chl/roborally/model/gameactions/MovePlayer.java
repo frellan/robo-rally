@@ -2,7 +2,6 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
 
 /**
@@ -16,9 +15,6 @@ public class MovePlayer extends GameAction {
         super(p);
         this.d = d;
         action();
-
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,"Moved " + p.getName() + "\n" +
-                                        "New position " + p.getPosition().toString() + "\n", null);
     }
 
     public MovePlayer(Player p) {
@@ -35,10 +31,10 @@ public class MovePlayer extends GameAction {
                 super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
                 break;
             case EAST:
-                super.player.setPosition(new Position(super.player.getPosition().getX()+1, super.player.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX() + 1, super.player.getPosition().getY()));
                 break;
             case WEST:
-                super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX() - 1, super.player.getPosition().getY()));
                 break;
             case WEST_NORTH:
                 super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
@@ -53,16 +49,16 @@ public class MovePlayer extends GameAction {
                 super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
                 break;
             case NORTH_EAST:
-                super.player.setPosition(new Position(super.player.getPosition().getX()+1, super.player.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX() + 1, super.player.getPosition().getY()));
                 break;
             case SOUTH_EAST:
-                super.player.setPosition(new Position(super.player.getPosition().getX()+1, super.player.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX() + 1, super.player.getPosition().getY()));
                 break;
             case NORTH_WEST:
-                super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX() - 1, super.player.getPosition().getY()));
                 break;
             case SOUTH_WEST:
-                super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX() - 1, super.player.getPosition().getY()));
                 break;
         }
     }

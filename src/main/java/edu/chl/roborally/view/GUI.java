@@ -16,106 +16,111 @@ import java.util.ArrayList;
  */
 public class GUI implements IEventHandler {
 
-    private JFrame main;
-    private StartPanel start;
+    private JFrame mainFrame;
+    private StartPanel startPanel;
     private RoboRally model;
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
     private JTabbedPane tabbedPane = new JTabbedPane();
 
     public GUI() {
-        main = new MainFrame();
+        mainFrame = new MainFrame();
         EventTram.getInstance().register(this);
-        menu();
+        showStartPanel();
     }
 
-    /**
-     * Shows start menu
+    /*
+    Menu related methods
      */
-    public void menu() {
-        start = new StartPanel();
-        main.add(start, BorderLayout.CENTER);
-        main.revalidate();
+    public void showStartPanel() {
+        startPanel = new StartPanel();
+        mainFrame.add(startPanel, BorderLayout.CENTER);
+        mainFrame.revalidate();
     }
-
-    /**
-     * Set how many players the game should have
-     */
     public void selectPlayers() {
-        start.nbrOfPlayers();
+        startPanel.nbrOfPlayers();
     }
-
-    /**
-     * Choose Map
-     * @param maps
-     */
     public void chooseMap(ArrayList<GameBoard> maps) {
-        start.chooseMap(maps);
+        startPanel.chooseMap(maps);
     }
-
     private void showSummary() {
-        start.summary(model.getPlayerNames());
+        startPanel.summary(model.getPlayerNames());
     }
 
+    /*
+    Create game screens
+     */
     private void createGamePanels() {
         for (Player player : model.getPlayers()) {
             gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
         }
-        createTabbedPane();
     }
-
     private void createTabbedPane() {
         for (GamePanel panel : gamePanels) {
             tabbedPane.addTab(panel.getPlayer().getName(),panel);
         }
-        showGamePanels();
     }
-
     private void showGamePanels() {
-        main.remove(start);
-        main.add(tabbedPane, BorderLayout.CENTER);
-        main.setSize(1022, 790);
-        main.revalidate();
-        main.repaint();
+        mainFrame.remove(startPanel);
+        mainFrame.add(tabbedPane, BorderLayout.CENTER);
+        mainFrame.setSize(1022, 790);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
-    public void pickCards(Player player) {
+    /*
+    Game related methods
+     */
+    private void setGamePanelsForNewRound() {
+        for (GamePanel panel : gamePanels) {
+            panel.getControlView().setNextTurnButtonEnabled(false);
+        }
+    }
+    private void pickCards(Player player) {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
-                panel.pickCards();
+                panel.getControlView().newCardsToPick(player);
+                panel.getControlView().setDoneButtonEnabled(true);
             }
         }
-        main.revalidate();
-        main.repaint();
+    }
+    private void setGamePanelsForNewTurn() {
+        for (GamePanel panel : gamePanels) {
+            panel.getControlView().setDoneButtonEnabled(false);
+            panel.getControlView().setNextTurnButtonEnabled(true);
+        }
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
-            case SELECT_PLAYERS:
+            case SHOW_MENU:
                 selectPlayers();
                 break;
-            case SET_NBR_OF_ROBOTS:
+            case SET_ROBOTS:
                 chooseMap(MapFactory.getInstance().getMaps());
                 break;
-            case NEW_MODEL:
+            case NEW_MODEL_CREATED:
                 this.model = (RoboRally) o;
                 showSummary();
                 break;
             case SHOW_GAMEPANEL:
                 createGamePanels();
+                createTabbedPane();
+                showGamePanels();
                 break;
-            case CHOOSE_CARDS:
+            case NEW_ROUND:
+                setGamePanelsForNewRound();
+                break;
+            case PICK_CARDS:
                 pickCards((Player) o);
+                break;
+            case NEW_TURN:
+                setGamePanelsForNewTurn();
                 break;
             case UPDATE_BOARD:
                 for(GamePanel panel : gamePanels)
                     panel.getBoardView().repaint();
                 break;
-            //showCardsAndStatus not used yet --> Status View not initialized
-            /*case UPDATE_STATUS:
-                for(GamePanel panel : gamePanels)
-                    panel.getControlView().getStatusView().repaint();
-                break;*/
         }
     }
 }

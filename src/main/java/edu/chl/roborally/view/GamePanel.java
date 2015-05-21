@@ -40,38 +40,27 @@ public class GamePanel extends JPanel {
     }
 
     /*
-    Class methods
-     */
-
-    public void pickCards() {
-        controlView.newCardsToPick(player);
-        revalidate();
-        repaint();
-    }
-
-    /*
     Getters
      */
-
-    public Player getPlayer() {
-        return player;
-    }
     public BoardView getBoardView(){
         return this.boardView;
     }
     public ControlView getControlView(){
         return this.controlView;
     }
+    public Player getPlayer() {
+        return player;
+    }
 
-    // Draw background
+    /*
+    Painters
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
         g.drawImage(componentsBG, 0, 1, 1000, 730, this);
     }
-
-    // Draw background
     @Override
     public void paintChildren(Graphics g) {
         super.paintChildren(g);

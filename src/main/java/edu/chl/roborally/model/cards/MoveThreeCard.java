@@ -2,6 +2,7 @@ package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
+import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 
@@ -23,5 +24,9 @@ public class MoveThreeCard extends RegisterCard{
         new MovePlayer(p);
         new MovePlayer(p);
         new MovePlayer(p);
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints() + ": Moving ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Three Tiles" + "\n", null);
     }
 }

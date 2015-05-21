@@ -7,6 +7,8 @@ import edu.chl.roborally.utilities.Position;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 public class KillPlayerTest {
@@ -15,7 +17,7 @@ public class KillPlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, new Robot("Test Robot"));
+        player = new Player(0, new Robot("Test Robot", Color.ORANGE));
         player.setPosition(new Position(3,5));
     }
     @Test

@@ -6,6 +6,8 @@ import edu.chl.roborally.model.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 public class RotatePlayerTest {
@@ -14,7 +16,7 @@ public class RotatePlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(0, new Robot("Rotate TestPlayer"));
+        player = new Player(0, new Robot("Rotate TestPlayer", Color.ORANGE));
     }
 
     @Test

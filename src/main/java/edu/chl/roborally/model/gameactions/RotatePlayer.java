@@ -11,12 +11,10 @@ public class RotatePlayer extends GameAction {
 
     private Constants.Directions d;
 
-    public RotatePlayer(Player p, Constants.Directions d){
+    public RotatePlayer(Player p, Constants.Directions d) {
         super(p);
         this.d = d;
         action();
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotated " + p.getName() + "\n" +
-                "New direction " + p.getDirection().toString() + "\n", null);
     }
 
     @Override
