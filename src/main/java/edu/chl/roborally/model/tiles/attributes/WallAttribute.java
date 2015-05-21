@@ -27,8 +27,12 @@ public class WallAttribute implements Attribute {
 
     }
 
-    public void doAction(Player p){
-        new StopPlayer(p);
+    public void doAction(Player p) {
+        if (p.getDirection() == this.d) {
+            new StopPlayer(p);
+        } else {
+            System.out.println("No wall ahead");
+        }
     }
 
     public String toString() {
