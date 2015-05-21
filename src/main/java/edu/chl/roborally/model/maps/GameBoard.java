@@ -18,17 +18,11 @@ import java.util.List;
 public abstract class GameBoard implements IEventHandler{
 
     private GameTile[][] board;
-    private List<Position> startPositions = new ArrayList<>();
+    protected List<Position> startPositions = new ArrayList<>();
 
     public GameBoard() {
 
         this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
-
-        startPositions.add(new Position(1, 5));
-        startPositions.add(new Position(1, 6));
-        startPositions.add(new Position(1, 3));
-        startPositions.add(new Position(1, 8));
-        startPositions.add(new Position(1, 1));
 
         EventTram.getInstance().register(this);
     }

@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.maps;
 
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.Position;
 
 /**
  * Created by Pertta on 15-05-20.
@@ -24,11 +25,23 @@ public class RiskyExchangeMap extends GameBoard {
                                     {  0, 11,  0, 70, 61, 13, 33, 11, 33,213, 11, 33,213, 33, 11, 0}};
 
     public RiskyExchangeMap() {
+        //Set start positions
+        super.startPositions.add(new Position(0,5));
+        super.startPositions.add(new Position(0,6));
+        super.startPositions.add(new Position(1,3));
+        super.startPositions.add(new Position(1,8));
+        super.startPositions.add(new Position(2,1));
+        super.startPositions.add(new Position(2,10));
+        super.startPositions.add(new Position(3,0));
+        super.startPositions.add(new Position(3,11));
+
         this.name = "Risky Exchange";
         this.difficulty = Constants.Difficulty.EASY;
         this.players = "2-8";
         generateMap(map);
     }
+
+
 
     @Override
     public String getName() {
