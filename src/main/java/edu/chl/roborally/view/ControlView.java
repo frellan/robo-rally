@@ -280,7 +280,7 @@ public class ControlView extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == doneButton) {
             if (programmedCardsIsValid()) {
-                EventTram.getInstance().publish(EventTram.Event.PLAYER_CHOOSEN_CARDS, getProgrammedCards(), null);
+                EventTram.getInstance().publish(EventTram.Event.PLAYER_PICKED_CARDS, getProgrammedCards(), null);
                 doneButton.setEnabled(false);
                 nextTurnButton.setEnabled(true);
             } else {

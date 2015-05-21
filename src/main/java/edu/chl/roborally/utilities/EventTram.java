@@ -36,18 +36,23 @@ public class EventTram {
         /**
          * This event is fired when a new model is created
          */
-        NEW_MODEL,
+        NEW_MODEL_CREATED,
 
         RUN_GAME,
+        SHOW_GAMEPANEL,
+
+        /**
+         * Is fired when the model starts a new round.
+         */
+        NEW_ROUND,
 
         /**
          * Round executes this event when a player should
-         * choose cards.
+         * pick cards.
          *
          * The object is an Arraylist with ReisterCards
-         *
          */
-        CHOOSE_CARDS,
+        PICK_CARDS,
 
         /**
          * The view fires this event when the player
@@ -56,10 +61,14 @@ public class EventTram {
          * It return a arraylist with RegisterCards
          *
          */
-        PLAYER_CHOOSEN_CARDS,
+        PLAYER_PICKED_CARDS,
 
-        SHOW_GAMEPANEL,
+        /**
+         * Is fired when the model starts a new turn.
+         */
         NEW_TURN,
+
+        EXECUTE_TILE_ACTION,
 
         /**
          * Use this event to reapint the gameboeard
@@ -74,7 +83,6 @@ public class EventTram {
          */
         POWER_DOWN,
 
-        EXECUTE_TILE_ACTION,
         PRINT_MESSAGE,
         /**
          * This event is fired by the attribute which holds the last checkpoint

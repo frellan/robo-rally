@@ -97,14 +97,14 @@ public class GUI implements IEventHandler {
             case SET_NBR_OF_ROBOTS:
                 chooseMap(MapFactory.getInstance().getMaps());
                 break;
-            case NEW_MODEL:
+            case NEW_MODEL_CREATED:
                 this.model = (RoboRally) o;
                 showSummary();
                 break;
             case SHOW_GAMEPANEL:
                 createGamePanels();
                 break;
-            case CHOOSE_CARDS:
+            case PICK_CARDS:
                 pickCards((Player) o);
                 break;
             case UPDATE_BOARD:
