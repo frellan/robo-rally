@@ -15,9 +15,9 @@ public class MoveOneCard extends RegisterCard{
     public MoveOneCard(int points, boolean isHidden) {
         super(points,isHidden, "Move One");
         try {
-            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("tupp.jpg"));
+            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1.png"));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("Card image could not be read");
+            System.out.println("Move one card image could not be read");
         }
     }
 

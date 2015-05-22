@@ -123,7 +123,7 @@ public class EventTram {
     //Call this method to publish an event
     public void publish(Event evt, Object data, Object data2){
 
-        if (trace){
+        if (trace && evt != Event.PRINT_MESSAGE){
             System.out.println(evt);
         }
         for (int i = 0; i < handlers.size(); i++) {

@@ -9,12 +9,18 @@ import java.awt.image.BufferedImage;
 public class LargeImageHolder {
 
     private static LargeImageHolder lih;
+    private BufferedImage mainBackgroundImage;
     private BufferedImage boardTileImage;
 
-    public LargeImageHolder() {
+    private LargeImageHolder() {
         try {
             boardTileImage = ImageIO.read(this.getClass().getClassLoader().getResource("board_tiles.png"));
-        }catch(java.io.IOException | NullPointerException e){
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("board_tiles.png could not be read");
+        }
+        try {
+            mainBackgroundImage = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
+        } catch (java.io.IOException | NullPointerException e){
             System.out.println("board_tiles.png could not be read");
         }
     }
@@ -26,6 +32,9 @@ public class LargeImageHolder {
         return lih;
     }
 
+    public BufferedImage getMainBackgroundImage() {
+        return mainBackgroundImage;
+    }
     public BufferedImage getBoardTileImage() {
         return boardTileImage;
     }

@@ -2,6 +2,8 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.LargeImageHolder;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -29,20 +31,15 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JSpinner chooser;
     private JPanel mapInfo;
 
-    private BufferedImage bi;
+    private BufferedImage imageBG;
     private ArrayList<GameBoard> maps;
 
     private int mapIndex;
 
     public StartPanel(){
 
-        this.setLayout(null);
-
-        try {
-            bi = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
-        }catch(java.io.IOException | NullPointerException e){
-            System.out.println("Image could not be read");
-        }
+        imageBG = LargeImageHolder.getInstance().getMainBackgroundImage();
+        setLayout(null);
 
         JPanel buttonPanel= new StyledJPanel(new GridLayout(0,1,0,5));
         buttonPanel.setSize(200,200);
@@ -204,7 +201,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(bi, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
     }
 
     @Override
