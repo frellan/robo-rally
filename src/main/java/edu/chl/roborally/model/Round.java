@@ -46,9 +46,9 @@ public class Round implements IEventHandler {
     */
     private void putBackPlayers() {
         for (Player p : players) {
-                if (!p.isAlive() && !p.isKaput()) {
-                    p.backToCheckpoint();
+                if (p.isDead() && !p.isKaput()) {
                     p.setStatus(Constants.Status.ALIVE);
+                    p.backToCheckpoint();
                 }
         }
     }
@@ -75,6 +75,7 @@ public class Round implements IEventHandler {
             EventTram.getInstance().publish(EventTram.Event.PICK_CARDS,chooser, null);
         } else {
             EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
+            EventTram.getInstance().unRegister(this);
         }
     }
 

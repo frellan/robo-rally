@@ -121,6 +121,10 @@ public class Player {
         return this.status != Constants.Status.KAPUT;
     }
 
+    public boolean isDead() {
+        return this.status == Constants.Status.DEAD;
+    }
+
     public boolean isPowerDown() {
         return this.status == Constants.Status.POWERDOWN;
     }
@@ -202,7 +206,7 @@ public class Player {
      */
 
     public void loseLifeToken() {
-        this.lifeTokens = lifeTokens -1;
+        this.lifeTokens = lifeTokens - 1;
         if (this.lifeTokens == -1) {
             setStatus(Constants.Status.KAPUT);
             System.out.println(this.robot.getName() + " is now Kaput and lost");

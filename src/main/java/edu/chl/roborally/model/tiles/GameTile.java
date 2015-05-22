@@ -37,15 +37,16 @@ public class GameTile {
     }
 
     public void getBeforeAction(Player player) {
-        if (!beforeAttributes.isEmpty()) {
-            for (Attribute attribute : this.beforeAttributes) {
-                attribute.doAction(player);
-            }
+        for (Attribute attribute : this.beforeAttributes) {
+            attribute.doAction(player);
         }
     }
 
     public void draw(Graphics g, int x, int y) {
         for (Attribute attribute : this.attributes) {
+            attribute.draw(g,x,y);
+        }
+        for (Attribute attribute : this.beforeAttributes) {
             attribute.draw(g,x,y);
         }
     }
