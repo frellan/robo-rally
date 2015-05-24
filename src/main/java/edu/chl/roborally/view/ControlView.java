@@ -73,9 +73,11 @@ public class ControlView extends JPanel implements ActionListener{
             temp.addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    RegisterCardIcon icon = (RegisterCardIcon) e.getSource();
-                    TransferHandler handle = icon.getTransferHandler();
-                    handle.exportAsDrag(icon, e, TransferHandler.COPY);
+                    if (!temp.getCard().isLocked()) {
+                        RegisterCardIcon icon = (RegisterCardIcon) e.getSource();
+                        TransferHandler handle = icon.getTransferHandler();
+                        handle.exportAsDrag(icon, e, TransferHandler.COPY);
+                    }
                 }
             });
             registerView.add(temp).setLocation(gap, 6);
@@ -172,9 +174,13 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
-    public void resetRegisterCards() {
-        for (RegisterCardIcon icon : registerCardIcons) {
-            icon.removeCard();
+    public void resetRegisterCards(Player player) {
+        for (int i = 0; i < 5; i++) {
+            if (player.getProgrammedCard(i) != null) {
+                registerCardIcons[i].setCard(player.getProgrammedCard(i));
+            } else {
+                registerCardIcons[i].removeCard();
+            }
         }
     }
     public void newCardsToPick(Player player) {
@@ -226,7 +232,6 @@ public class ControlView extends JPanel implements ActionListener{
                 turnLabel5.setForeground(Color.RED);
                 break;
         }
-        turnIndicatorView.repaint();
     }
     public void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);

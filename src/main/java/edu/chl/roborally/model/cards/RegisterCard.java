@@ -51,10 +51,10 @@ public abstract class RegisterCard {
     public ImageIcon getPickIconRollover() {
         return new ImageIcon(pickImageRollover);
     }
-    public boolean getLocked() {
+    public boolean isLocked() {
         return isLocked;
     }
-    public boolean getHidden() {
+    public boolean isHidden() {
         return isHidden;
     }
 

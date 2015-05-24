@@ -115,7 +115,7 @@ public class Player {
     public void emptyProgrammedCards() {
         ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
         for (int i = 0; i<programmedCards.length; i++) {
-            if (programmedCards[i].getLocked()) {
+            if (programmedCards[i].isLocked()) {
                 tempLockedCards.add(0,programmedCards[i]);
             }
         }
