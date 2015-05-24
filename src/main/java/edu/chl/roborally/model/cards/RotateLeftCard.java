@@ -16,7 +16,7 @@ public class RotateLeftCard extends RegisterCard{
     public RotateLeftCard(int points, boolean isHidden) {
         super(points,isHidden, "Rotate Left");
         try {
-            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("tupp.jpg"));
+            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left.png"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card image could not be read");
         }
