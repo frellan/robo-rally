@@ -5,8 +5,10 @@ import edu.chl.roborally.model.Turn;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Pertta on 15-05-12.
@@ -33,42 +35,48 @@ public class TurnConveyorAttribute implements Attribute {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        char[] message;
-        g.setColor(Color.BLUE);
-        g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(Color.BLACK);
+        BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
+        BufferedImage currentTile;
         switch (d) {
             case NORTH_WEST:
-                message = "CNW".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        3*Constants.TILE_SIZE, 7*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case NORTH_EAST:
-                message = "CNE".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        Constants.TILE_SIZE, 8*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case WEST_NORTH:
-                message = "CWN".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        0, 7*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case WEST_SOUTH:
-                message = "CWS".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        2*Constants.TILE_SIZE, 8*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case SOUTH_WEST:
-                message = "CSW".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        3*Constants.TILE_SIZE, 8*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case SOUTH_EAST:
-                message = "CSE".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        Constants.TILE_SIZE, 8*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case EAST_NORTH:
-                message = "CEN".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        0, 7*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
             case EAST_SOUTH:
-                message = "CES".toCharArray();
-                g.drawChars(message, 0, message.length, x, y + 10);
+                currentTile = allTiles.getSubimage(
+                        2*Constants.TILE_SIZE, 8*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
                 break;
         }
 
