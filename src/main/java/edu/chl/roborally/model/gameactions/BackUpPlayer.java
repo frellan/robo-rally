@@ -16,8 +16,6 @@ public class BackUpPlayer extends GameAction {
         super(p);
         this.d = d;
         action();
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Backed up " + p.getName() + "\n" +
-                "New position " + p.getPosition().toString() + "\n", null);
     }
 
     public BackUpPlayer(Player p) {

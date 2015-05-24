@@ -29,6 +29,13 @@ public class Robot {
             } catch (java.io.IOException | NullPointerException e){
                 System.out.println("board_tiles.png could not be read");
             }
+        }
+        if (name.equals("Frellster")) {
+            try {
+                image = ImageIO.read(this.getClass().getClassLoader().getResource("robots/frellster.png"));
+            } catch (java.io.IOException | NullPointerException e){
+                System.out.println("board_tiles.png could not be read");
+            }
         } else {
             // No mainImage
         }

@@ -23,9 +23,8 @@ public class BackupCard extends RegisterCard{
     }
 
     public void doAction(Player p) {
-        //TODO
-       new BackUpPlayer(p);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints() + ": Backed Up ", null);
+        new BackUpPlayer(p);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Backed Up ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
     }

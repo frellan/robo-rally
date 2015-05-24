@@ -56,7 +56,7 @@ public class Turn{
             card.setHidden(false);
             activeCards.add(card);
             activeCardPlayer.put(card,player);
-            System.out.println("Picked card with index " + turnIndex + " from " + player.getName());
+            System.out.println("picked card with index " + turnIndex + " from " + player.getName());
         }
     }
 
@@ -65,7 +65,7 @@ public class Turn{
     }
 
     private void executeActiveCards() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYZING CARDS" + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYSING CARDS" + "\n", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
@@ -76,7 +76,7 @@ public class Turn{
 
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- TILEACTIONS" + "\n" ,null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- TILE ACTIONS" + "\n" ,null);
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);

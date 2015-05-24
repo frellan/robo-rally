@@ -27,8 +27,8 @@ public class UTurnCard extends RegisterCard{
         new RotatePlayer(p, Constants.Directions.EAST);
         new RotatePlayer(p, Constants.Directions.EAST);
 
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "CardPriority " + getPoints(), null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Made a U-Turn" + "\n", null);
     }
 }

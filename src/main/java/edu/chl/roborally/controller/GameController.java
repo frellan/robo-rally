@@ -75,7 +75,7 @@ public class GameController extends Thread implements IEventHandler {
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 0; i<j; i++) {
             players.add(new Player(i, RobotFactory.getInstance().constructRobot(i)));
-            System.out.println("Created new Player named: " + players.get(i).getName());
+            System.out.println("NEW PLAYER NAMED: " + players.get(i).getName());
         }
         return players;
     }
