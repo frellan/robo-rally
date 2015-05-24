@@ -229,15 +229,6 @@ public class ControlView extends JPanel implements ActionListener{
             setIconTextGap(0);
             setContentAreaFilled(false);
             setRolloverIcon(card.getPickIconRollover());
-            addMouseListener(new MouseAdapter() {
-                public void mouseEntered(MouseEvent me) {
-                    setCursor(new Cursor(Cursor.HAND_CURSOR));
-                }
-
-                public void mouseExited(MouseEvent me) {
-                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
         }
 
         @Override
