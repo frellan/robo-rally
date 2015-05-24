@@ -74,9 +74,9 @@ public class ControlView extends JPanel implements ActionListener{
             temp.addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    RegisterCardIcon button = (RegisterCardIcon) e.getSource();
-                    TransferHandler handle = button.getTransferHandler();
-                    handle.exportAsDrag(button, e, TransferHandler.COPY);
+                    RegisterCardIcon icon = (RegisterCardIcon) e.getSource();
+                    TransferHandler handle = icon.getTransferHandler();
+                    handle.exportAsDrag(icon, e, TransferHandler.COPY);
                 }
             });
             registerView.add(temp).setLocation(gap, 6);
@@ -103,8 +103,9 @@ public class ControlView extends JPanel implements ActionListener{
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
         pickCardsView.setSize(138, 171);
-        pickCardsView.setBorder(new MatteBorder(0,2,0,2,Color.BLACK));
+        pickCardsView.setBorder(new MatteBorder(0, 2, 0, 2, Color.BLACK));
         pickCardsView.setOpaque(false);
+        resetRegisterCards();
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);
     }
