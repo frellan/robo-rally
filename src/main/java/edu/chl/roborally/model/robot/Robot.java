@@ -1,10 +1,6 @@
 package edu.chl.roborally.model.robot;
 
-import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.utilities.LargeImageHolder;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

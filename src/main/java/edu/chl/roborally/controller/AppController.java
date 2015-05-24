@@ -1,7 +1,5 @@
 package edu.chl.roborally.controller;
 
-import edu.chl.roborally.utilities.LargeImageHolder;
-
 public class AppController {
 
     private GameController gameController;

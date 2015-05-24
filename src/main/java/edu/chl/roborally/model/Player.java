@@ -4,7 +4,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.utilities.LargeImageHolder;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 import edu.chl.roborally.utilities.Position;
 
 import java.awt.*;
@@ -234,7 +234,7 @@ public class Player {
      */
 
     public void draw(Graphics g, int x, int y) {
-        BufferedImage robotDirections = LargeImageHolder.getInstance().getRobotDirections();
+        BufferedImage robotDirections = GlobalImageHolder.getInstance().getRobotDirections();
         BufferedImage currentRobot = robot.getImage();
         BufferedImage currentDirection;
         g.drawImage(currentRobot, x, y, null);

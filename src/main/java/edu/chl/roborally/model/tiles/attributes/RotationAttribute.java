@@ -1,11 +1,10 @@
 package edu.chl.roborally.model.tiles.attributes;
 
-import edu.chl.roborally.model.tiles.GameTile;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
 import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.LargeImageHolder;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,7 +37,7 @@ public class RotationAttribute implements Attribute {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        BufferedImage allTiles = LargeImageHolder.getInstance().getBoardTileImage();
+        BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
         BufferedImage currentTile;
         switch (d) {
             case WEST:

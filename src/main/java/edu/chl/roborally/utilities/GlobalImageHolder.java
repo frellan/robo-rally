@@ -6,14 +6,14 @@ import java.awt.image.BufferedImage;
 /**
  * Created by frellAn on 2015-05-20.
  */
-public class LargeImageHolder {
+public class GlobalImageHolder {
 
-    private static LargeImageHolder lih;
+    private static GlobalImageHolder lih;
     private BufferedImage mainBackgroundImage;
     private BufferedImage boardTileImage;
     private BufferedImage robotDirections;
 
-    private LargeImageHolder() {
+    private GlobalImageHolder() {
         try {
             boardTileImage = ImageIO.read(this.getClass().getClassLoader().getResource("maps/board_tiles.png"));
         } catch (java.io.IOException | NullPointerException e){
@@ -31,9 +31,9 @@ public class LargeImageHolder {
         }
     }
 
-    public static LargeImageHolder getInstance(){
+    public static GlobalImageHolder getInstance(){
         if(lih == null){
-            lih = new LargeImageHolder();
+            lih = new GlobalImageHolder();
         }
         return lih;
     }

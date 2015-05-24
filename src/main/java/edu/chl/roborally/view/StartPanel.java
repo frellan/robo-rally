@@ -2,7 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.LargeImageHolder;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +38,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     public StartPanel(){
 
-        imageBG = LargeImageHolder.getInstance().getMainBackgroundImage();
+        imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
 
         JPanel buttonPanel= new StyledJPanel(new GridLayout(0,1,0,5));
