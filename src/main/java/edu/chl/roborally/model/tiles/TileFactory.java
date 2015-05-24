@@ -178,19 +178,24 @@ public class TileFactory {
                 break;
             //Checkpoint
             case 70:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(0));
                 break;
             case 71:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(1));
                 break;
             case 72:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(2));
                 break;
             case 73:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(3));
                 break;
             //Final Checkpoint
             case 75:
+                tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(5));
                 break;
             //Checkpoint with WALL
