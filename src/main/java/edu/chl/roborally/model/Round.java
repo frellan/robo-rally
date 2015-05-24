@@ -69,9 +69,15 @@ public class Round implements IEventHandler {
             chooser = model.getPlayers().get(chooserIndex);
             EventTram.getInstance().publish(EventTram.Event.PICK_CARDS,chooser, null);
         } else {
-            EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
-            EventTram.getInstance().unRegister(this);
+            prepareForFirstTurn();
         }
+    }
+    private void prepareForFirstTurn() {
+        for (Player player : players) {
+            // TODO
+        }
+        EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
+        EventTram.getInstance().unRegister(this);
     }
 
     @Override

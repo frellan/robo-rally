@@ -10,6 +10,7 @@ import java.awt.*;
 public class RegisterCardIcon extends JLabel {
 
     private RegisterCard card;
+    private boolean isChangeable = true;
 
     public RegisterCardIcon() {
         setBorder(new LineBorder(Color.BLACK, 2));
@@ -28,6 +29,12 @@ public class RegisterCardIcon extends JLabel {
     public void setCard(RegisterCard card) {
         this.card = card;
         setIcon(card.getMainIcon());
+    }
+    public void setChangeable(boolean b) {
+        isChangeable = b;
+    }
+    public boolean isChangeable() {
+        return isChangeable;
     }
     public void removeCard() {
         card = null;

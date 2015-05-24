@@ -111,7 +111,6 @@ public class Player {
     /*
     Commands
     */
-
     public void emptyProgrammedCards() {
         ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
         for (int i = 0; i<programmedCards.length; i++) {
@@ -172,7 +171,6 @@ public class Player {
     /*
     Helpers to kill player
      */
-
     public void kill() {
         setStatus(Constants.Status.DEAD);
         loseLifeToken();
@@ -201,7 +199,6 @@ public class Player {
     /*
     Setters
      */
-
     public void setPosition(Position p) {
         this.position = p;
     }
@@ -232,7 +229,6 @@ public class Player {
     /*
     Graphics
      */
-
     public void draw(Graphics g, int x, int y) {
         BufferedImage robotDirections = GlobalImageHolder.getInstance().getRobotDirections();
         BufferedImage currentRobot = robot.getImage();

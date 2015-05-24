@@ -75,6 +75,7 @@ public class GUI implements IEventHandler {
             panel.getControlView().setTurnIndicator(0);
             panel.getControlView().resetRegisterCards();
             panel.getControlView().resetNewCardButtons();
+            panel.getControlView().setRegisterCardIconsChangeable(true);
             panel.getControlView().setNextTurnButtonEnabled(false);
         }
         turnIndex = 1;
@@ -90,6 +91,7 @@ public class GUI implements IEventHandler {
     private void setGamePanelsForNewTurn() {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(turnIndex);
+            panel.getControlView().setRegisterCardIconsChangeable(false);
             panel.getControlView().setDoneButtonEnabled(false);
             panel.getControlView().setNextTurnButtonEnabled(true);
         }

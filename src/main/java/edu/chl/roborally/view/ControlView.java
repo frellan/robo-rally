@@ -67,21 +67,21 @@ public class ControlView extends JPanel implements ActionListener{
         registerView.setOpaque(false);
         int gap = 6;
         for (int i = 0; i < 5; i++) {
-            RegisterCardIcon temp = new RegisterCardIcon();
-            registerCardIcons[i] = temp;
-            temp.setTransferHandler(new StringTransferHandler(null));
-            temp.addMouseMotionListener(new MouseAdapter() {
+            RegisterCardIcon icon = new RegisterCardIcon();
+            registerCardIcons[i] = icon;
+            icon.setTransferHandler(new StringTransferHandler(null));
+            icon.addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    if (!temp.getCard().isLocked()) {
+                    if (icon.isChangeable()) {
                         RegisterCardIcon icon = (RegisterCardIcon) e.getSource();
                         TransferHandler handle = icon.getTransferHandler();
                         handle.exportAsDrag(icon, e, TransferHandler.COPY);
                     }
                 }
             });
-            registerView.add(temp).setLocation(gap, 6);
-            gap += temp.getWidth() + CARD_GAP;
+            registerView.add(icon).setLocation(gap, 6);
+            gap += icon.getWidth() + CARD_GAP;
         }
         add(registerView).setLocation(0, 0);
     }
@@ -193,6 +193,11 @@ public class ControlView extends JPanel implements ActionListener{
     public void newCardsToPick(Player player) {
         newCardsToPick = convertToArray(player.getDealtCards());
         refreshNewCardButtons();
+    }
+    public void setRegisterCardIconsChangeable(boolean b) {
+        for (RegisterCardIcon icon : registerCardIcons) {
+            icon.setChangeable(b);
+        }
     }
     public void setTurnIndicator(int turn) {
         switch (turn) {
@@ -327,7 +332,6 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Export stuff
          */
-
         @Override
         public int getSourceActions(JComponent c) {
             return DnDConstants.ACTION_COPY_OR_MOVE;
@@ -348,7 +352,6 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Import stuff
          */
-
         @Override
         public boolean canImport(TransferHandler.TransferSupport support) {
             return support.isDataFlavorSupported(SUPPORTED_DATE_FLAVOR);
