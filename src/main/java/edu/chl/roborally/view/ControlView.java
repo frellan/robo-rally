@@ -174,13 +174,20 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
-    public void resetRegisterCards(Player player) {
+    public void resetRegisterCards() {
         for (int i = 0; i < 5; i++) {
             if (player.getProgrammedCard(i) != null) {
                 registerCardIcons[i].setCard(player.getProgrammedCard(i));
             } else {
                 registerCardIcons[i].removeCard();
             }
+        }
+    }
+    public void resetNewCardButtons() {
+        pickCardsView.removeAll();
+        for (int index = 0; index < 9; index++) {
+            JButton btn = new JButton("Empty");
+            pickCardsView.add(btn);
         }
     }
     public void newCardsToPick(Player player) {

@@ -26,11 +26,13 @@ public class Round implements IEventHandler {
         this.model = r;
         this.deck = model.getDeck();
         this.players = model.getPlayers();
-
         EventTram.getInstance().register(this);
         startRound();
     }
 
+    /*
+    Main method
+     */
     public void startRound() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n" + "New Round" + "\n"
                 + Constants.UNDER_LINE + "\n", Color.MAGENTA);
@@ -40,12 +42,9 @@ public class Round implements IEventHandler {
         makePlayerPickCards();
     }
 
-    //Help methods
-
-    /**
-    * If player is dead, we put them back on the last checkpoint
-    * when we initGameController a new round
-    */
+    /*
+    Help methods
+     */
     private void putBackPlayers() {
         for (Player p : players) {
                 if (p.isDead() && !p.isKaput()) {
@@ -54,7 +53,6 @@ public class Round implements IEventHandler {
                 }
         }
     }
-
     private void dealCards() {
         for (Player p : players) {
             if (p.isPowerDown()) {
@@ -66,9 +64,8 @@ public class Round implements IEventHandler {
             }
         }
     }
-
     private void makePlayerPickCards() {
-        if (chooserIndex < model.getPlayers().size()) {
+        if (chooserIndex < players.size()) {
             chooser = model.getPlayers().get(chooserIndex);
             EventTram.getInstance().publish(EventTram.Event.PICK_CARDS,chooser, null);
         } else {
