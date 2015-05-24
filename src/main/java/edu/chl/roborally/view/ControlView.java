@@ -4,6 +4,7 @@ import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardIcon;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -102,11 +103,11 @@ public class ControlView extends JPanel implements ActionListener{
     }
     private void createPickCardsView() {
         pickCardsView = new JPanel(new GridLayout(9,1));
-        pickCardsView.setSize(138, 171);
+        pickCardsView.setSize(142, 171);
         pickCardsView.setBorder(new MatteBorder(0, 2, 0, 2, Color.BLACK));
         pickCardsView.setOpaque(false);
         refreshNewCardButtons();
-        add(pickCardsView).setLocation(522, 0);
+        add(pickCardsView).setLocation(521, 0);
     }
     private void createStatusView() {
         statusView = new JPanel(new GridLayout(6,1));
@@ -136,15 +137,10 @@ public class ControlView extends JPanel implements ActionListener{
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
             if (newCardsToPick[index] != null) {
-                JButton btn = new JButton(newCardsToPick[index].toString());
-                btn.setBorderPainted(false);
-                btn.setIcon(newCardsToPick[index].getPickIcon());
-                btn.setIconTextGap(0);
-                System.out.print(btn.getWidth());
-                btn.setContentAreaFilled(false);
+                RegisterCard card = newCardsToPick[index];
+                PickNewCardButton btn = new PickNewCardButton(card);
                 pickCardsView.add(btn);
                 btn.setTransferHandler(new StringTransferHandler(newCardsToPick[index].toString()));
-
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
                     public void mouseDragged(MouseEvent e) {
@@ -219,6 +215,39 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
         return null;
+    }
+    private class PickNewCardButton extends JButton {
+
+        private RegisterCard card;
+
+        public PickNewCardButton(RegisterCard card) {
+            this.card = card;
+            setText(card.toString());
+            setBorderPainted(false);
+            setFocusPainted(true);
+            setIcon(card.getPickIcon());
+            setIconTextGap(0);
+            setContentAreaFilled(false);
+            setRolloverIcon(card.getPickIconRollover());
+            addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent me) {
+                    setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                public void mouseExited(MouseEvent me) {
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            //g.setColor(new Color(213, 49, 41));
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+            g.drawString(Integer.toString(card.getPoints()),110,15);
+        }
     }
     private class StringTransferHandler extends TransferHandler {
 

@@ -16,6 +16,7 @@ public class MoveOneCard extends RegisterCard{
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1_pick.png"));
+            super.pickImageRollover = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1_pick_rollover.png"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Move one card images could not be read");
         }

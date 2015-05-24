@@ -16,6 +16,7 @@ public abstract class RegisterCard {
     private String name;
     protected BufferedImage mainImage;
     protected BufferedImage pickImage;
+    protected BufferedImage pickImageRollover;
 
     public RegisterCard(int points, boolean isHidden, String name ) {
         this.points = points;
@@ -46,6 +47,9 @@ public abstract class RegisterCard {
     }
     public ImageIcon getPickIcon() {
         return new ImageIcon(pickImage);
+    }
+    public ImageIcon getPickIconRollover() {
+        return new ImageIcon(pickImageRollover);
     }
     public boolean getLocked() {
         return isLocked;

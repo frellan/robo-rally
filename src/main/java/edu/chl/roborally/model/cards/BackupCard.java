@@ -15,7 +15,8 @@ public class BackupCard extends RegisterCard{
         super(points, isHidden, "Back Up");
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup.png"));
-            super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1_pick.png"));
+            super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup_pick.png"));
+            super.pickImageRollover = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup_pick_rollover.png"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }

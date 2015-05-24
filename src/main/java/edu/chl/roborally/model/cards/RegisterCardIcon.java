@@ -40,9 +40,9 @@ public class RegisterCardIcon extends JLabel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (card != null) {
-            g.setColor(new Color(255, 188, 62));
+            g.setColor(Color.WHITE);
             g.setFont(new Font("Impact", Font.PLAIN, 20));
-            g.drawString(Integer.toString(card.getPoints()), 35, 27);
+            g.drawString(Integer.toString(card.getPoints()), 34, 27);
         }
     }
 }

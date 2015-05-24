@@ -33,12 +33,6 @@ public class GlobalImageHolder {
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("robots/directions.png could not be read");
         }
-        // Hover images for card buttons
-        try {
-            pickCardBtnHover = ImageIO.read(this.getClass().getClassLoader().getResource("cards/hover_small.png"));
-        } catch (java.io.IOException | NullPointerException e){
-            System.out.println("cards/hover_small.png could not be read");
-        }
     }
 
     public static GlobalImageHolder getInstance(){
@@ -59,8 +53,5 @@ public class GlobalImageHolder {
     }
     public BufferedImage getRobotDirections() {
         return robotDirections;
-    }
-    public BufferedImage getPickCardBtnHover() {
-        return pickCardBtnHover;
     }
 }
