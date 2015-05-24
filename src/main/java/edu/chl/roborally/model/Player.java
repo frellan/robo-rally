@@ -2,20 +2,19 @@ package edu.chl.roborally.model;
 
 
 import edu.chl.roborally.model.cards.RegisterCard;
-import edu.chl.roborally.model.robot.*;
 import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
+import edu.chl.roborally.utilities.LargeImageHolder;
 import edu.chl.roborally.utilities.Position;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
  * Created by Pertta on 15-03-26.
  */
 public class Player {
-
-    //Variables
 
     private Robot robot;
     private int lifeTokens;
@@ -30,8 +29,6 @@ public class Player {
     private Constants.Status status;
     private int laserPower;
 
-    //Constructor
-
     public Player(int iD, Robot robot) {
         this.iD = iD;
         this.robot = robot;
@@ -44,54 +41,43 @@ public class Player {
         this.checkpointId = 0;
     }
 
-    /**
-     * Getters
+    /*
+    Getters
      */
 
     public String getName() {
         return robot.getName();
     }
-
     public int getLifeTokens() {
         return lifeTokens;
     }
-
     public int getDamageTokens() {
         return damageTokens;
     }
-
     public int getiD() {
         return iD;
     }
-
     public Color getColor(){
         return robot.getColor();
     }
-
     public Position getPosition() {
         return position;
     }
-
     public Position getCheckpoint() {
         return checkpoint;
     }
-
     public int getCheckpointId() {
         return checkpointId;
     }
-
     public Constants.Directions getDirection() {
         return direction;
     }
-
     public RegisterCard getDealtCard(int index) {
         return dealtCards.get(index);
     }
-
     public ArrayList<RegisterCard> getDealtCards() {
         return dealtCards;
     }
-
     public RegisterCard getProgrammedCard(int index) {
         if (index >= 0 && index < 5) {
             return programmedCards[index];
@@ -100,38 +86,31 @@ public class Player {
             throw new IllegalArgumentException("Index must be between 0 and 4");
         }
     }
-
     public RegisterCard[] getProgrammedCards() {
         return programmedCards;
     }
-
     public Constants.Status getStatus() {
         return this.status;
     }
-
     public int getLaserPower() {
         return laserPower;
     }
-
     public boolean isAlive() {
         return this.status != Constants.Status.DEAD;
     }
-
     public boolean isKaput() {
         return this.status != Constants.Status.KAPUT;
     }
-
     public boolean isDead() {
         return this.status == Constants.Status.DEAD;
     }
-
     public boolean isPowerDown() {
         return this.status == Constants.Status.POWERDOWN;
     }
 
-    /**
-     * Commands
-     */
+    /*
+    Commands
+    */
 
     public void emptyProgrammedCards() {
         ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
@@ -170,7 +149,6 @@ public class Player {
             this.damageTokens = 0;
         }
     }
-
     public void lockCards() {
         switch (this.damageTokens) {
             case 4:
@@ -191,20 +169,16 @@ public class Player {
         }
     }
 
-    /**
-     * Kill player
+    /*
+    Helpers to kill player
      */
+
     public void kill() {
         setStatus(Constants.Status.DEAD);
         loseLifeToken();
         backToCheckpoint();
         resetDamageTokens();
     }
-
-    /**
-     * Helpers to kill player
-     */
-
     public void loseLifeToken() {
         this.lifeTokens = lifeTokens - 1;
         if (this.lifeTokens == -1) {
@@ -212,41 +186,34 @@ public class Player {
             System.out.println(this.robot.getName() + " is now Kaput and lost");
         }
     }
-
     public void setCheckpointId(int id) {
         this.checkpointId = id;
     }
-
     public void backToCheckpoint() {
         if (checkpoint != null) {
             this.position = checkpoint;
         }
     }
-
     public void resetDamageTokens() {
         this.damageTokens = 0;
     }
 
-    /**
-     * Setters
+    /*
+    Setters
      */
 
     public void setPosition(Position p) {
         this.position = p;
     }
-
     public void setCheckpoint(Position p) {
         this.checkpoint = p;
     }
-
     public void setDirection(Constants.Directions d) {
         this.direction = d;
     }
-
     public void setDealtCards(ArrayList<RegisterCard> cards) {
         this.dealtCards = cards;
     }
-
     public void setProgrammedCard(int index, RegisterCard c) {
         if (index >= 0 && index < 5) {
             programmedCards[index] = c;
@@ -255,26 +222,38 @@ public class Player {
             throw new IllegalArgumentException("Index must be between 0 and 4");
         }
     }
-
     public void setStatus(Constants.Status s) {
         this.status = s;
     }
-
     public void setLaserPower(int upgrade) {
         this.laserPower = upgrade;
     }
 
-    /**
-     * Graphics method
+    /*
+    Graphics
      */
 
     public void draw(Graphics g, int x, int y) {
-        g.setColor(Color.YELLOW);
-        g.fillOval(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(Color.BLACK);
-        g.drawString(robot.getName() + " " + getDirection(), x+15, y+15);
-        char[] position = getPosition().toString().toCharArray();
-        g.drawChars(position, 0, position.length,
-                x-2, y+30);
+        BufferedImage robotDirections = LargeImageHolder.getInstance().getRobotDirections();
+        BufferedImage currentRobot = robot.getImage();
+        BufferedImage currentDirection;
+        g.drawImage(currentRobot, x, y, null);
+        switch (direction) {
+            case NORTH:
+                currentDirection = robotDirections.getSubimage(0, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                break;
+            case SOUTH:
+                currentDirection = robotDirections.getSubimage(Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                break;
+            case WEST:
+                currentDirection = robotDirections.getSubimage(2*Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                break;
+            case EAST:
+                currentDirection = robotDirections.getSubimage(3*Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                break;
+            default:
+                currentDirection = null;
+        }
+        g.drawImage(currentDirection, x, y, null);
     }
 }
