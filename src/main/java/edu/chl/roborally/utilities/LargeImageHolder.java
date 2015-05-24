@@ -11,6 +11,7 @@ public class LargeImageHolder {
     private static LargeImageHolder lih;
     private BufferedImage mainBackgroundImage;
     private BufferedImage boardTileImage;
+    private BufferedImage twitchIcons;
 
     private LargeImageHolder() {
         try {
@@ -21,7 +22,12 @@ public class LargeImageHolder {
         try {
             mainBackgroundImage = ImageIO.read(this.getClass().getClassLoader().getResource("roborally_start.jpg"));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("board_tiles.png could not be read");
+            System.out.println("roborally_start.jpg could not be read");
+        }
+        try {
+            twitchIcons = ImageIO.read(this.getClass().getClassLoader().getResource("robots/twitch.png"));
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("robots/twitch.png could not be read");
         }
     }
 
@@ -37,5 +43,8 @@ public class LargeImageHolder {
     }
     public BufferedImage getBoardTileImage() {
         return boardTileImage;
+    }
+    public BufferedImage getTwitchIcons() {
+        return twitchIcons;
     }
 }
