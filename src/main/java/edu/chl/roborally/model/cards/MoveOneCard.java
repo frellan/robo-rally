@@ -5,7 +5,6 @@ import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 
 /**
  * Created by fredrikkindstrom on 31/03/15.
@@ -15,9 +14,9 @@ public class MoveOneCard extends RegisterCard{
     public MoveOneCard(int points, boolean isHidden) {
         super(points,isHidden, "Move One");
         try {
-            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1.png"));
+            super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1.png"));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("Move one card image could not be read");
+            System.out.println("Move one card mainImage could not be read");
         }
     }
 

@@ -6,7 +6,6 @@ import edu.chl.roborally.model.gameactions.RotatePlayer;
 import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 
 /**
  * Created by fredrikkindstrom on 31/03/15.
@@ -16,9 +15,9 @@ public class RotateLeftCard extends RegisterCard{
     public RotateLeftCard(int points, boolean isHidden) {
         super(points,isHidden, "Rotate Left");
         try {
-            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left.png"));
+            super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left.png"));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("Card image could not be read");
+            System.out.println("Card mainImage could not be read");
         }
     }
 

@@ -138,6 +138,7 @@ public class ControlView extends JPanel implements ActionListener{
         for (int index = 0; index < 9; index++) {
             if (newCardsToPick[index] != null) {
                 JButton btn = new JButton(newCardsToPick[index].toString());
+                btn.setIcon();
                 pickCardsView.add(btn);
                 btn.setTransferHandler(new StringTransferHandler(newCardsToPick[index].toString()));
 

@@ -34,7 +34,7 @@ public class Robot {
                 System.out.println("board_tiles.png could not be read");
             }
         } else {
-            // No image
+            // No mainImage
         }
     }
 

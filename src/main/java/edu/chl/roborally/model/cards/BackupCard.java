@@ -2,13 +2,9 @@ package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.*;
-import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Created by fredrikkindstrom on 31/03/15.
@@ -18,9 +14,9 @@ public class BackupCard extends RegisterCard{
     public BackupCard(int points, boolean isHidden) {
         super(points, isHidden, "Back Up");
         try {
-            super.image = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup.png"));
+            super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup.png"));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("Card image could not be read");
+            System.out.println("Card mainImage could not be read");
         }
     }
 

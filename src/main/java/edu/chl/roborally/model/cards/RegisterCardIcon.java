@@ -3,8 +3,6 @@ package edu.chl.roborally.model.cards;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Created by fredrikkindstrom on 19/05/15.
@@ -29,7 +27,7 @@ public class RegisterCardIcon extends JLabel {
     }
     public void setCard(RegisterCard card) {
         this.card = card;
-        setIcon(card.getIcon());
+        setIcon(card.getMainIcon());
     }
     public void removeCard() {
         card = null;
