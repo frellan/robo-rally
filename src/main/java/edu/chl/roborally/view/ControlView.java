@@ -183,8 +183,9 @@ public class ControlView extends JPanel implements ActionListener{
      */
     public void resetRegisterCards() {
         for (int i = 0; i < 5; i++) {
-            if (player.getProgrammedCard(i) != null) {
+            if (player.getProgrammedCard(i) != null && player.getProgrammedCard(i).isLocked()) {
                 registerCardIcons[i].setCard(player.getProgrammedCard(i));
+                registerCardIcons[i].setChangeable(false);
             } else {
                 registerCardIcons[i].removeCard();
             }
@@ -329,7 +330,7 @@ public class ControlView extends JPanel implements ActionListener{
             if (card != null) {
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-                g.drawString(Integer.toString(card.getPoints()), 110, 15);
+                g.drawString(Integer.toString(card.getPoints()), 111, 15);
             }
         }
     }

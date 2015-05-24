@@ -92,6 +92,7 @@ public class GUI implements IEventHandler {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(turnIndex);
             panel.getControlView().setRegisterCardIconsChangeable(false);
+            panel.getControlView().resetNewCardButtons();
             panel.getControlView().setDoneButtonEnabled(false);
             panel.getControlView().setNextTurnButtonEnabled(true);
         }
