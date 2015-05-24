@@ -15,7 +15,7 @@ public class LargeImageHolder {
 
     private LargeImageHolder() {
         try {
-            boardTileImage = ImageIO.read(this.getClass().getClassLoader().getResource("board_tiles.png"));
+            boardTileImage = ImageIO.read(this.getClass().getClassLoader().getResource("maps/board_tiles.png"));
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("board_tiles.png could not be read");
         }

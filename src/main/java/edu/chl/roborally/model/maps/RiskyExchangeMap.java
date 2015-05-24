@@ -60,6 +60,6 @@ public class RiskyExchangeMap extends GameBoard {
 
     @Override
     public String getMapIcon() {
-        return "Exchange.png";
+        return "maps/Exchange.png";
     }
 }

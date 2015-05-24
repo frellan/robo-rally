@@ -55,6 +55,6 @@ public class IslandKingMap extends GameBoard {
 
     @Override
     public String getMapIcon() {
-        return "Island.king.png";
+        return "maps/Island.king.png";
     }
 }
