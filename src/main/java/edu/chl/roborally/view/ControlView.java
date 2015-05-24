@@ -105,7 +105,6 @@ public class ControlView extends JPanel implements ActionListener{
         pickCardsView.setSize(138, 171);
         pickCardsView.setBorder(new MatteBorder(0, 2, 0, 2, Color.BLACK));
         pickCardsView.setOpaque(false);
-        resetRegisterCards();
         refreshNewCardButtons();
         add(pickCardsView).setLocation(522, 0);
     }
@@ -138,7 +137,11 @@ public class ControlView extends JPanel implements ActionListener{
         for (int index = 0; index < 9; index++) {
             if (newCardsToPick[index] != null) {
                 JButton btn = new JButton(newCardsToPick[index].toString());
-                btn.setIcon();
+                btn.setIconTextGap(0);
+                btn.setIcon(newCardsToPick[index].getPickIcon());
+                btn.setBorderPainted(false);
+                System.out.print(btn.getWidth());
+                btn.setContentAreaFilled(false);
                 pickCardsView.add(btn);
                 btn.setTransferHandler(new StringTransferHandler(newCardsToPick[index].toString()));
 
