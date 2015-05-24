@@ -87,6 +87,26 @@ public class ConveyorAttribute implements Attribute {
                         0, 5*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.drawImage(currentTile, x, y, null);
                 break;
+            case WEST_NORTH:
+                currentTile = allTiles.getSubimage(
+                        0, 5*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case WEST_SOUTH:
+                currentTile = allTiles.getSubimage(
+                        3*Constants.TILE_SIZE, 4*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case EAST_NORTH:
+                currentTile = allTiles.getSubimage(
+                        2*Constants.TILE_SIZE, 5*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case EAST_SOUTH:
+                currentTile = allTiles.getSubimage(
+                        0, 4*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
         }
     }
 }
