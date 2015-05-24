@@ -4,8 +4,10 @@ import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.CheckpointPlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.LargeImageHolder;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Pertta on 15-05-13.
@@ -51,29 +53,39 @@ public class CheckpointAttribute implements Attribute {
 
     @Override
     public void draw(Graphics g, int x, int y) {
-        if (id == 0) {
-            g.setColor(Color.MAGENTA);
-            g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            g.setColor(Color.BLACK);
-            String text = "START";
-            char[] message = text.toCharArray();
-            g.drawChars(message, 0, message.length, x, y + 10);
-        }
-        else if (id == 5) {
-            g.setColor(Color.WHITE);
-            g.fillRect(x, y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            g.setColor(Color.BLACK);
-            String text = "FINAL";
-            char[] message = text.toCharArray();
-            g.drawChars(message, 0, message.length, x, y + 10);
-
-        } else {
-            g.setColor(Color.RED);
-            g.fillRect(x,y, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            g.setColor(Color.BLACK);
-            String text = "CP: " + this.id;
-            char[] message = text.toCharArray();
-            g.drawChars(message,0,message.length,x,y+10);
+        BufferedImage allTiles = LargeImageHolder.getInstance().getBoardTileImage();
+        BufferedImage currentTile;
+        switch (id) {
+            case 0:
+                currentTile = allTiles.getSubimage(
+                        0, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case 1:
+                currentTile = allTiles.getSubimage(
+                        Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case 2:
+                currentTile = allTiles.getSubimage(
+                        2*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case 3:
+                currentTile = allTiles.getSubimage(
+                        3*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case 4:
+                currentTile = allTiles.getSubimage(
+                        Constants.TILE_SIZE, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
+            case 5:
+                currentTile = allTiles.getSubimage(
+                        0, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawImage(currentTile, x, y, null);
+                break;
         }
     }
 }
