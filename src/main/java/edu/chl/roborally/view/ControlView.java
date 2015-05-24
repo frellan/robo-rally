@@ -5,6 +5,7 @@ import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardIcon;
 import edu.chl.roborally.utilities.EventTram;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class ControlView extends JPanel implements ActionListener{
 
     private Player player;
+    private ImageIcon emptyNewCardIcon;
 
     private JPanel registerView;
     private JPanel turnIndicatorView;
@@ -48,6 +50,11 @@ public class ControlView extends JPanel implements ActionListener{
     private static final int CARD_GAP = 7;
 
     public ControlView(Player player) {
+        try {
+            emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("cards/empty_pick.png could not be read");
+        }
         this.player = player;
         setLayout(null);
         setSize(984, 171);
@@ -165,7 +172,7 @@ public class ControlView extends JPanel implements ActionListener{
                     }
                 });
             } else {
-                JButton btn = new JButton("Empty");
+                PickNewCardButton btn = new PickNewCardButton();
                 pickCardsView.add(btn);
             }
         }
@@ -186,7 +193,7 @@ public class ControlView extends JPanel implements ActionListener{
     public void resetNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
-            JButton btn = new JButton("Empty");
+            PickNewCardButton btn = new PickNewCardButton();
             pickCardsView.add(btn);
         }
     }
@@ -297,6 +304,14 @@ public class ControlView extends JPanel implements ActionListener{
 
         private RegisterCard card;
 
+        public PickNewCardButton() {
+            setText("");
+            setBorderPainted(false);
+            setFocusPainted(true);
+            setIcon(emptyNewCardIcon);
+            setIconTextGap(0);
+            setContentAreaFilled(false);
+        }
         public PickNewCardButton(RegisterCard card) {
             this.card = card;
             setText(card.toString());
@@ -311,9 +326,11 @@ public class ControlView extends JPanel implements ActionListener{
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-            g.drawString(Integer.toString(card.getPoints()),110,15);
+            if (card != null) {
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+                g.drawString(Integer.toString(card.getPoints()), 110, 15);
+            }
         }
     }
     private class StringTransferHandler extends TransferHandler {

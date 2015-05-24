@@ -2,6 +2,7 @@ package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
