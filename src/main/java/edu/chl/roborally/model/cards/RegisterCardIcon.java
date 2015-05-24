@@ -30,14 +30,21 @@ public class RegisterCardIcon extends JLabel {
     public void setCard(RegisterCard card) {
         this.card = card;
         setIcon(card.getIcon());
-        this.getGraphics().setColor(new Color(213, 60, 44));
-        this.getGraphics().setFont(new Font("Impact", Font.PLAIN, 20));
-        this.getGraphics().drawString(Integer.toString(card.getPoints()),40,20);
     }
     public void removeCard() {
         card = null;
         setIcon(null);
         setBackground(Color.WHITE);
         setText("<html>Drop card<br>here</html>");
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (card != null) {
+            g.setColor(new Color(255, 188, 62));
+            g.setFont(new Font("Impact", Font.PLAIN, 20));
+            g.drawString(Integer.toString(card.getPoints()), 35, 27);
+        }
     }
 }
