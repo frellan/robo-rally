@@ -21,6 +21,7 @@ public class GUI implements IEventHandler {
     private RoboRally model;
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
     private JTabbedPane tabbedPane = new JTabbedPane();
+    private int turnIndex = 1;
 
     public GUI() {
         mainFrame = new MainFrame();
@@ -71,9 +72,11 @@ public class GUI implements IEventHandler {
      */
     private void setGamePanelsForNewRound() {
         for (GamePanel panel : gamePanels) {
+            panel.getControlView().setTurnIndicator(0);
             panel.getControlView().resetRegisterCards();
             panel.getControlView().setNextTurnButtonEnabled(false);
         }
+        turnIndex = 1;
     }
     private void pickCards(Player player) {
         for (GamePanel panel : gamePanels) {
@@ -85,9 +88,11 @@ public class GUI implements IEventHandler {
     }
     private void setGamePanelsForNewTurn() {
         for (GamePanel panel : gamePanels) {
+            panel.getControlView().setTurnIndicator(turnIndex);
             panel.getControlView().setDoneButtonEnabled(false);
             panel.getControlView().setNextTurnButtonEnabled(true);
         }
+        turnIndex++;
     }
 
     @Override

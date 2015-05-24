@@ -4,10 +4,8 @@ import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardIcon;
 import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -34,11 +32,11 @@ public class ControlView extends JPanel implements ActionListener{
     private RegisterCard[] newCardsToPick = new RegisterCard[9];
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
-    private JLabel firstTurnLabel;
-    private JLabel secondTurnLabel;
-    private JLabel thirdTurnLabel;
-    private JLabel fourthTurnLabel;
-    private JLabel fifthTurnLabel;
+    private JLabel turnLabel1;
+    private JLabel turnLabel2;
+    private JLabel turnLabel3;
+    private JLabel turnLabel4;
+    private JLabel turnLabel5;
 
     private JButton powerDownButton;
     private JLabel lifeTokensLabel;
@@ -86,19 +84,34 @@ public class ControlView extends JPanel implements ActionListener{
         add(registerView).setLocation(0, 0);
     }
     private void createTurnIndicatorView() {
-        turnIndicatorView = new JPanel(new GridLayout(1, 5));
+        turnIndicatorView = new JPanel(null);
         turnIndicatorView.setSize(508, 26);
         turnIndicatorView.setOpaque(false);
-        firstTurnLabel = new JLabel("Turn 1", SwingConstants.CENTER);
-        secondTurnLabel = new JLabel("Turn 2", SwingConstants.CENTER);
-        thirdTurnLabel = new JLabel("Turn 3", SwingConstants.CENTER);
-        fourthTurnLabel = new JLabel("Turn 4", SwingConstants.CENTER);
-        fifthTurnLabel = new JLabel("Turn 5", SwingConstants.CENTER);
-        turnIndicatorView.add(firstTurnLabel).setForeground(Color.WHITE);
-        turnIndicatorView.add(secondTurnLabel).setForeground(Color.WHITE);
-        turnIndicatorView.add(thirdTurnLabel).setForeground(Color.WHITE);
-        turnIndicatorView.add(fourthTurnLabel).setForeground(Color.WHITE);
-        turnIndicatorView.add(fifthTurnLabel).setForeground(Color.WHITE);
+        turnLabel1 = new JLabel("Turn 1");
+        turnLabel1.setForeground(Color.WHITE);
+        turnLabel1.setSize(100, 22);
+        turnLabel1.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
+        turnLabel2 = new JLabel("Turn 2");
+        turnLabel2.setForeground(Color.WHITE);
+        turnLabel2.setSize(100, 22);
+        turnLabel2.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
+        turnLabel3 = new JLabel("Turn 3");
+        turnLabel3.setForeground(Color.WHITE);
+        turnLabel3.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
+        turnLabel3.setSize(100, 22);
+        turnLabel4 = new JLabel("Turn 4");
+        turnLabel4.setForeground(Color.WHITE);
+        turnLabel4.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
+        turnLabel4.setSize(100, 22);
+        turnLabel5 = new JLabel("Turn 5");
+        turnLabel5.setForeground(Color.WHITE);
+        turnLabel5.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
+        turnLabel5.setSize(100, 22);
+        turnIndicatorView.add(turnLabel1).setLocation(25, 0);
+        turnIndicatorView.add(turnLabel2).setLocation(128, 0);
+        turnIndicatorView.add(turnLabel3).setLocation(232, 0);
+        turnIndicatorView.add(turnLabel4).setLocation(335, 0);
+        turnIndicatorView.add(turnLabel5).setLocation(437, 0);
         add(turnIndicatorView).setLocation(6, 146);
     }
     private void createPickCardsView() {
@@ -168,6 +181,53 @@ public class ControlView extends JPanel implements ActionListener{
         newCardsToPick = convertToArray(player.getDealtCards());
         refreshNewCardButtons();
     }
+    public void setTurnIndicator(int turn) {
+        switch (turn) {
+            case 0:
+                turnLabel1.setForeground(Color.WHITE);
+                turnLabel2.setForeground(Color.WHITE);
+                turnLabel3.setForeground(Color.WHITE);
+                turnLabel4.setForeground(Color.WHITE);
+                turnLabel5.setForeground(Color.WHITE);
+                break;
+            case 1:
+                turnLabel1.setForeground(Color.RED);
+                turnLabel2.setForeground(Color.WHITE);
+                turnLabel3.setForeground(Color.WHITE);
+                turnLabel4.setForeground(Color.WHITE);
+                turnLabel5.setForeground(Color.WHITE);
+                break;
+            case 2:
+                turnLabel1.setForeground(Color.WHITE);
+                turnLabel2.setForeground(Color.RED);
+                turnLabel3.setForeground(Color.WHITE);
+                turnLabel4.setForeground(Color.WHITE);
+                turnLabel5.setForeground(Color.WHITE);
+                break;
+            case 3:
+                turnLabel1.setForeground(Color.WHITE);
+                turnLabel2.setForeground(Color.WHITE);
+                turnLabel3.setForeground(Color.RED);
+                turnLabel4.setForeground(Color.WHITE);
+                turnLabel5.setForeground(Color.WHITE);
+                break;
+            case 4:
+                turnLabel1.setForeground(Color.WHITE);
+                turnLabel2.setForeground(Color.WHITE);
+                turnLabel3.setForeground(Color.WHITE);
+                turnLabel4.setForeground(Color.RED);
+                turnLabel5.setForeground(Color.WHITE);
+                break;
+            case 5:
+                turnLabel1.setForeground(Color.WHITE);
+                turnLabel2.setForeground(Color.WHITE);
+                turnLabel3.setForeground(Color.WHITE);
+                turnLabel4.setForeground(Color.WHITE);
+                turnLabel5.setForeground(Color.RED);
+                break;
+        }
+        turnIndicatorView.repaint();
+    }
     public void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
     }
@@ -234,7 +294,6 @@ public class ControlView extends JPanel implements ActionListener{
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            //g.setColor(new Color(213, 49, 41));
             g.setColor(Color.WHITE);
             g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
             g.drawString(Integer.toString(card.getPoints()),110,15);
