@@ -25,7 +25,6 @@ public class IslandKingMap extends GameBoard {
                                     { 0, 70,  0,  0,  0,  0, 33,  0, 33,  0,  0, 33,  0, 33,  0,  6}};
 
     public IslandKingMap() {
-        //Set startpositions
         startPositions.add(new Position(1, 5));
         startPositions.add(new Position(1, 6));
         startPositions.add(new Position(1, 3));
@@ -42,17 +41,14 @@ public class IslandKingMap extends GameBoard {
     public String getName() {
         return this.name;
     }
-
     @Override
     public String getDifficulty() {
         return difficulty.toString();
     }
-
     @Override
     public String getNbrOfPlayers() {
         return players;
     }
-
     @Override
     public String getMapIcon() {
         return "maps/Island.king.png";

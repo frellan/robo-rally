@@ -25,7 +25,6 @@ public class RiskyExchangeMap extends GameBoard {
                                     {  0, 11,  0, 70, 61, 13, 33, 11, 33,213, 11, 33,213, 33, 11, 0}};
 
     public RiskyExchangeMap() {
-        //Set start positions
         super.startPositions.add(new Position(0,5));
         super.startPositions.add(new Position(0,6));
         super.startPositions.add(new Position(1,3));
@@ -41,23 +40,18 @@ public class RiskyExchangeMap extends GameBoard {
         generateMap(map);
     }
 
-
-
     @Override
     public String getName() {
         return this.name;
     }
-
     @Override
     public String getDifficulty() {
         return this.difficulty.toString();
     }
-
     @Override
     public String getNbrOfPlayers() {
         return players;
     }
-
     @Override
     public String getMapIcon() {
         return "maps/Exchange.png";
