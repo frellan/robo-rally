@@ -74,7 +74,7 @@ public class ControlView extends JPanel implements ActionListener{
         registerView.setOpaque(false);
         int gap = 6;
         for (int i = 0; i < 5; i++) {
-            RegisterCardIcon icon = new RegisterCardIcon();
+            final RegisterCardIcon icon = new RegisterCardIcon();
             registerCardIcons[i] = icon;
             icon.setTransferHandler(new StringTransferHandler(null));
             icon.addMouseMotionListener(new MouseAdapter() {
