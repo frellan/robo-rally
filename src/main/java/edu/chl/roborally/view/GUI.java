@@ -83,7 +83,7 @@ public class GUI implements IEventHandler {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
                 panel.getControlView().newCardsToPick(player);
-                panel.getControlView().setRegisterCardIconsChangeable(true);
+                panel.getControlView().setRegisterCardIconsChangeable();
                 panel.getControlView().setDoneButtonEnabled(true);
             }
         }
@@ -91,7 +91,7 @@ public class GUI implements IEventHandler {
     private void setGamePanelsForNewTurn() {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(turnIndex);
-            panel.getControlView().setRegisterCardIconsChangeable(false);
+            panel.getControlView().setRegisterCardIconsNotChangeable();
             panel.getControlView().resetNewCardButtons();
             panel.getControlView().setDoneButtonEnabled(false);
             panel.getControlView().setNextTurnButtonEnabled(true);

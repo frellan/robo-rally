@@ -150,19 +150,19 @@ public class Player {
     }
     public void lockCards() {
         switch (this.damageTokens) {
-            case 4:
+            case 5:
                 programmedCards[4].setLocked(true);
                 break;
-            case 5:
+            case 6:
                 programmedCards[3].setLocked(true);
                 break;
-            case 6:
+            case 7:
                 programmedCards[2].setLocked(true);
                 break;
-            case 7:
+            case 8:
                 programmedCards[1].setLocked(true);
                 break;
-            case 8:
+            case 9:
                 programmedCards[0].setLocked(true);
                 break;
         }

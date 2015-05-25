@@ -202,9 +202,16 @@ public class ControlView extends JPanel implements ActionListener{
         newCardsToPick = convertToArray(player.getDealtCards());
         refreshNewCardButtons();
     }
-    public void setRegisterCardIconsChangeable(boolean b) {
+    public void setRegisterCardIconsChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
-            icon.setChangeable(b);
+            if (icon.getCard() != null && !icon.getCard().isLocked()) {
+                icon.setChangeable(true);
+            }
+        }
+    }
+    public void setRegisterCardIconsNotChangeable() {
+        for (RegisterCardIcon icon : registerCardIcons) {
+            icon.setChangeable(false);
         }
     }
     public void setTurnIndicator(int turn) {
