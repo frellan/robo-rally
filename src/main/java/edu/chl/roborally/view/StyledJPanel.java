@@ -5,6 +5,8 @@ import java.awt.*;
 
 /**
  * Created by axel on 2015-05-26.
+ *
+ * A styled JPanel created used throughout the GUI
  */
 public class StyledJPanel extends JPanel {
 

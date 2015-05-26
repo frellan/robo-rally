@@ -76,6 +76,9 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
         nbrPanel.setLocation(400,250);
     }
 
+    /*
+    EventHandlers
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseNbrOfPlayers) {
@@ -120,13 +123,18 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
 
     }
 
-    // Draw background
+    /*
+    Painter
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
     }
 
+    /*
+    Image-creater
+     */
     private ImageIcon createIcon(URL url){
         BufferedImage bi;
         try {
