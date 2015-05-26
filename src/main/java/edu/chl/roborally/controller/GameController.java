@@ -50,7 +50,7 @@ public class GameController extends Thread implements IEventHandler {
      * should continue
      */
     private void runGame() {
-        if (!model.shouldIContinue()) {
+        if (!model.isGameRunning()) {
             System.out.println("The model did not think that the game should continue");
         }
         else if (newRound) {

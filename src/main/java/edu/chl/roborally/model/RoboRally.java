@@ -12,17 +12,13 @@ import java.util.*;
  * Created by Henrik.
  *
  * Our model which holds the status of the game
- *
  */
 public class RoboRally implements IEventHandler{
 
-    // Variables
     private GameBoard gameBoard;
     private ArrayList<Player> players;
     private CardDeck deck;
-    private boolean isGameRunning;
-
-    // Constructor
+    private boolean gameRunning;
 
     public RoboRally(ArrayList<Player> players, GameBoard map) {
         this.players = players;
@@ -33,13 +29,14 @@ public class RoboRally implements IEventHandler{
         //set start positions
         setStartPositions();
         //Init game
-        this.isGameRunning = true;
+        this.gameRunning = true;
 
         EventTram.getInstance().register(this);
     }
 
-    // Game logic
-
+    /*
+    Game logic
+     */
     private void resetDeck() {
         if (deck == null) {
             deck = new CardDeck();
@@ -47,21 +44,6 @@ public class RoboRally implements IEventHandler{
             deck.reset();
         }
     }
-
-    public void returnCardsToDeck() {
-        for (Player player : players) {
-            for (RegisterCard card : player.getProgrammedCards()) {
-                deck.addCard(card);
-            }
-            player.emptyProgrammedCards();
-        }
-    }
-
-    public boolean shouldIContinue() {
-        return isGameRunning;
-    }
-
-    // Set startpostions and put players on the board
     private void setStartPositions() {
         ArrayList<Position> start = gameBoard.getStartPositions(players.size());
         int index = 0;
@@ -72,20 +54,33 @@ public class RoboRally implements IEventHandler{
         }
     }
 
-    // Getters
+    /*
+    Commands
+     */
+    public void returnCardsToDeck() {
+        for (Player player : players) {
+            for (RegisterCard card : player.getProgrammedCards()) {
+                deck.addCard(card);
+            }
+            player.emptyProgrammedCards();
+        }
+    }
 
+    /*
+    Getters
+     */
+    public boolean isGameRunning() {
+        return gameRunning;
+    }
     public CardDeck getDeck() {
         return deck;
     }
-
     public ArrayList<Player> getPlayers() {
         return players;
     }
-
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-
     public ArrayList<String> getPlayerNames() {
         ArrayList<String> names = new ArrayList<>();
         for (Player p : players) {
@@ -94,10 +89,13 @@ public class RoboRally implements IEventHandler{
         return names;
     }
 
+    /*
+    Events
+     */
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if(EventTram.Event.VICTORY == evt) {
-            isGameRunning = false;
+            gameRunning = false;
             System.out.println("Player: " + (Player) o + " won the game");
             System.out.println("Fire event so that the GUI know that we should end the game");
         }

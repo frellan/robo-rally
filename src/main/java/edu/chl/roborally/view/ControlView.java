@@ -485,7 +485,6 @@ public class ControlView extends JPanel implements ActionListener{
         private void setPickedCard(RegisterCard card, boolean b) {
             for (PickNewCardButton btn : newCardsToPickButtons) {
                 if (btn.getText().equals(card.toString())) {
-                    System.out.println(b);
                     btn.setPicked(b);
                 }
             }
