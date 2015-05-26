@@ -3,6 +3,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.GameAction;
+import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
 import java.awt.*;
 import java.util.ArrayList;
@@ -73,8 +74,14 @@ public class Turn{
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": Moving ", null);
                 for (GameAction action : actions) {
-                    System.out.println("Doing action");
                     action.doAction(player);
+                    for (Player otherPlayer : players) {
+                        if (player.getPosition().equals(otherPlayer.getPosition()) && !player.equals(otherPlayer)) {
+                            GameAction pushAction = new MovePlayer(player.getDirection());
+                            pushAction.doAction(otherPlayer);
+                            System.out.println(player.getName() + " pushed " + otherPlayer.getName());
+                        }
+                    }
                 }
             }
         }
