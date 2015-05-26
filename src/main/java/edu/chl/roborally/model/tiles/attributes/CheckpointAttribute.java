@@ -2,6 +2,7 @@ package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.CheckpointPlayer;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.GlobalImageHolder;
@@ -12,17 +13,18 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Pertta on 15-05-13.
  */
-public class CheckpointAttribute implements Attribute {
+public class CheckpointAttribute extends Attribute {
 
     private String name = "CP";
     private final int id;
 
     public CheckpointAttribute(int id) {
+        super.setAction(new CheckpointPlayer());
         this.id = id;
     }
 
     @Override
-    public void doAction(Player player) {
+    public void doAttribute(Player player) {
 
         if (id == 0) {
             System.out.println("Standing on START-tile");
@@ -30,7 +32,9 @@ public class CheckpointAttribute implements Attribute {
         else if (player.getCheckpointId() == (id - 1)) {
             if (id < 3) {
                 player.setCheckpointId(id);
-                new CheckpointPlayer(player);
+                for (GameAction action : super.getActions()) {
+                    action.doAction(player);
+                }
                 System.out.println("It worked, new checkpoint set");
             }
             else if (id == 3) {
