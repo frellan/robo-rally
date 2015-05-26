@@ -24,7 +24,6 @@ public class PitAttribute extends Attribute {
         return name;
     }
 
-    @Override
     public void doAttribute(Player player) {
         
     }
