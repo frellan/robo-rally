@@ -10,9 +10,22 @@ import edu.chl.roborally.utilities.Position;
  */
 public class MovePlayer implements GameAction {
 
+    private Constants.Directions direction;
+
+    public MovePlayer() {
+        this.direction = null;
+    }
+
+    public MovePlayer(Constants.Directions direction) {
+        this.direction = direction;
+    }
+
     @Override
     public void doAction(Player p) {
-        switch (p.getDirection()) {
+        if (direction == null) {
+            direction = p.getDirection();
+        }
+        switch (direction) {
             case NORTH:
                 p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
                 break;
