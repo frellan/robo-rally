@@ -9,7 +9,6 @@ import edu.chl.roborally.utilities.Position;
  * Created by henriknilson on 31/03/15.
  */
 public class MovePlayer implements GameAction {
-
     private Constants.Directions direction;
 
     public MovePlayer() {
@@ -63,11 +62,8 @@ public class MovePlayer implements GameAction {
                 p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
         }
-
-
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
-
         EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }
