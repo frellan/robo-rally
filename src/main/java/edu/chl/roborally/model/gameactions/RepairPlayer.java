@@ -9,7 +9,7 @@ import edu.chl.roborally.model.tiles.GameTile;
 public class RepairPlayer implements GameAction {
 
     @Override
-    public void action(Player p) {
+    public void doAction(Player p) {
         p.repair();
     }
 }
