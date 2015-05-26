@@ -10,7 +10,7 @@ import edu.chl.roborally.utilities.EventTram;
 public class RotatePlayer implements GameAction {
 
     @Override
-    public void action(Player p) {
+    public void doAction(Player p) {
         switch(p.getDirection()) {
 
             // Turn Right

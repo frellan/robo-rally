@@ -9,7 +9,7 @@ import edu.chl.roborally.utilities.Position;
 public class BackUpPlayer implements GameAction {
 
     @Override
-    public void action(Player p) {
+    public void doAction(Player p) {
         switch (p.getDirection()) {
             case NORTH:
                 p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
