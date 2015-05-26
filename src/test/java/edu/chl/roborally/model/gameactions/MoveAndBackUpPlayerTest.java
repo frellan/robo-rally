@@ -17,6 +17,8 @@ import static org.junit.Assert.*;
 public class MoveAndBackUpPlayerTest {
 
     private Player player;
+    private GameAction action;
+    private GameAction nextAction;
 
     @Before
     public void setUp() throws Exception {
@@ -28,13 +30,15 @@ public class MoveAndBackUpPlayerTest {
 
     @Test
     public void testMovePlayer() throws Exception {
-        new MovePlayer(player);
+        action = new MovePlayer();
+        action.doAction(player);
         assertTrue(player.getPosition().getY() == 5 && player.getPosition().getX() == 4);
     }
 
     @Test
     public void testBackUpPlayer() throws Exception {
-        new BackUpPlayer(player);
+        nextAction = new BackUpPlayer();
+        nextAction.doAction(player);
         assertTrue(player.getPosition().getY() == 7 && player.getPosition().getX() == 4);
     }
 }
