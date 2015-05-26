@@ -266,47 +266,27 @@ public class ControlView extends JPanel implements ActionListener{
      * @param turn The turn to be displayed
      */
     protected void setTurnIndicator(int turn) {
+        turnLabel1.setForeground(Color.WHITE);
+        turnLabel2.setForeground(Color.WHITE);
+        turnLabel3.setForeground(Color.WHITE);
+        turnLabel4.setForeground(Color.WHITE);
+        turnLabel5.setForeground(Color.WHITE);
         switch (turn) {
             case 0:
-                turnLabel1.setForeground(Color.WHITE);
-                turnLabel2.setForeground(Color.WHITE);
-                turnLabel3.setForeground(Color.WHITE);
-                turnLabel4.setForeground(Color.WHITE);
-                turnLabel5.setForeground(Color.WHITE);
                 break;
             case 1:
                 turnLabel1.setForeground(Color.RED);
-                turnLabel2.setForeground(Color.WHITE);
-                turnLabel3.setForeground(Color.WHITE);
-                turnLabel4.setForeground(Color.WHITE);
-                turnLabel5.setForeground(Color.WHITE);
                 break;
             case 2:
-                turnLabel1.setForeground(Color.WHITE);
                 turnLabel2.setForeground(Color.RED);
-                turnLabel3.setForeground(Color.WHITE);
-                turnLabel4.setForeground(Color.WHITE);
-                turnLabel5.setForeground(Color.WHITE);
                 break;
             case 3:
-                turnLabel1.setForeground(Color.WHITE);
-                turnLabel2.setForeground(Color.WHITE);
                 turnLabel3.setForeground(Color.RED);
-                turnLabel4.setForeground(Color.WHITE);
-                turnLabel5.setForeground(Color.WHITE);
                 break;
             case 4:
-                turnLabel1.setForeground(Color.WHITE);
-                turnLabel2.setForeground(Color.WHITE);
-                turnLabel3.setForeground(Color.WHITE);
                 turnLabel4.setForeground(Color.RED);
-                turnLabel5.setForeground(Color.WHITE);
                 break;
             case 5:
-                turnLabel1.setForeground(Color.WHITE);
-                turnLabel2.setForeground(Color.WHITE);
-                turnLabel3.setForeground(Color.WHITE);
-                turnLabel4.setForeground(Color.WHITE);
                 turnLabel5.setForeground(Color.RED);
                 break;
         }
