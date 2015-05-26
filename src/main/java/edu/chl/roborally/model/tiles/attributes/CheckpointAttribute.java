@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class CheckpointAttribute implements Attribute {
 
     private String name = "CP";
-    private int id;
+    private final int id;
 
     public CheckpointAttribute(int id) {
         this.id = id;

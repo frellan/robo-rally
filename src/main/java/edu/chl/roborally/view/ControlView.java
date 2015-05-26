@@ -74,7 +74,7 @@ public class ControlView extends JPanel implements ActionListener{
         registerView.setOpaque(false);
         int gap = 6;
         for (int i = 0; i < 5; i++) {
-            RegisterCardIcon icon = new RegisterCardIcon();
+            final RegisterCardIcon icon = new RegisterCardIcon();
             registerCardIcons[i] = icon;
             icon.setTransferHandler(new StringTransferHandler(null));
             icon.addMouseMotionListener(new MouseAdapter() {
@@ -202,9 +202,16 @@ public class ControlView extends JPanel implements ActionListener{
         newCardsToPick = convertToArray(player.getDealtCards());
         refreshNewCardButtons();
     }
-    public void setRegisterCardIconsChangeable(boolean b) {
+    public void setRegisterCardIconsChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
-            icon.setChangeable(b);
+            if (icon.getCard() != null && !icon.getCard().isLocked()) {
+                icon.setChangeable(true);
+            }
+        }
+    }
+    public void setRegisterCardIconsNotChangeable() {
+        for (RegisterCardIcon icon : registerCardIcons) {
+            icon.setChangeable(false);
         }
     }
     public void setTurnIndicator(int turn) {

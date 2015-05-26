@@ -96,10 +96,10 @@ public class Player {
         return laserPower;
     }
     public boolean isAlive() {
-        return this.status != Constants.Status.DEAD;
+        return Constants.Status.ALIVE == this.status;
     }
     public boolean isKaput() {
-        return this.status != Constants.Status.KAPUT;
+        return this.status == Constants.Status.KAPUT;
     }
     public boolean isDead() {
         return this.status == Constants.Status.DEAD;
@@ -150,19 +150,19 @@ public class Player {
     }
     public void lockCards() {
         switch (this.damageTokens) {
-            case 4:
+            case 5:
                 programmedCards[4].setLocked(true);
                 break;
-            case 5:
+            case 6:
                 programmedCards[3].setLocked(true);
                 break;
-            case 6:
+            case 7:
                 programmedCards[2].setLocked(true);
                 break;
-            case 7:
+            case 8:
                 programmedCards[1].setLocked(true);
                 break;
-            case 8:
+            case 9:
                 programmedCards[0].setLocked(true);
                 break;
         }
@@ -179,7 +179,7 @@ public class Player {
     }
     public void loseLifeToken() {
         this.lifeTokens = lifeTokens - 1;
-        if (this.lifeTokens == -1) {
+        if (this.lifeTokens < 0) {
             setStatus(Constants.Status.KAPUT);
             System.out.println(this.robot.getName() + " is now Kaput and lost");
         }
@@ -187,9 +187,10 @@ public class Player {
     public void setCheckpointId(int id) {
         this.checkpointId = id;
     }
+
     public void backToCheckpoint() {
         if (checkpoint != null) {
-            this.position = checkpoint;
+            this.position = this.checkpoint;
         }
     }
     public void resetDamageTokens() {
