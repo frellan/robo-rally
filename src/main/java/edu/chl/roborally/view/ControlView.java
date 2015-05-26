@@ -53,7 +53,7 @@ public class ControlView extends JPanel implements ActionListener{
     /**
      * Creates the control view which is used by every player to control and program the robot.
      * Also contains information about the current status of the game.
-     * @param player The current player to create controls for
+     * @param player The unique player to create controls for.
      */
     protected ControlView(Player player) {
         try {
@@ -263,7 +263,7 @@ public class ControlView extends JPanel implements ActionListener{
 
     /**
      * Sets which turn to be displayed in the interface.
-     * @param turn The turn to be displayed
+     * @param turn The turn to be displayed.
      */
     protected void setTurnIndicator(int turn) {
         turnLabel1.setForeground(Color.WHITE);
@@ -294,7 +294,7 @@ public class ControlView extends JPanel implements ActionListener{
 
     /**
      * Sets if the done button should be enabled.
-     * @param b Either true or false
+     * @param b True if enabled, false if not.
      */
     protected void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
@@ -302,7 +302,7 @@ public class ControlView extends JPanel implements ActionListener{
 
     /**
      * Sets if the next turn button should be enabled.
-     * @param b Either true or false
+     * @param b True if enabled, false if not.
      */
     protected void setNextTurnButtonEnabled(boolean b) {
         nextTurnButton.setEnabled(b);
@@ -325,7 +325,7 @@ public class ControlView extends JPanel implements ActionListener{
     /**
      * Is used to check if the player have chosen the required amount
      * of register cards before sending them of to the model.
-     * @return True if correct amount, false if not
+     * @return True if correct amount, false if not.
      */
     private boolean programmedCardsIsValid() {
         for (RegisterCardIcon card : registerCardIcons) {
@@ -338,7 +338,7 @@ public class ControlView extends JPanel implements ActionListener{
 
     /**
      * Is used to package the chosen register cards to an ArrayList.
-     * @return The cards currently in the register panel
+     * @return The cards currently in the register panel.
      */
     private ArrayList<RegisterCard> getProgrammedCards() {
         ArrayList<RegisterCard> temp = new ArrayList<>();

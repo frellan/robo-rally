@@ -23,6 +23,13 @@ public class GamePanel extends JPanel {
     private ControlView controlView;
     private Player player;
 
+    /**
+     * Creates the game panel which is unique for every player and contains the board,
+     * the controls, the console and the status for a given player.
+     * @param board The board to be drawn inside the panel. Is unique for the game and is the same for all players.
+     * @param players The list of players that are in the game. This is used to be able to draw them.
+     * @param player The unique player to create components for.
+     */
     protected GamePanel(GameBoard board, ArrayList<Player> players, Player player){
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         initImages();
@@ -43,18 +50,37 @@ public class GamePanel extends JPanel {
     /*
     Getters
      */
+
+    /**
+     * Return the board within the game panel.
+     * @return The board view within the game panel.
+     */
     protected BoardView getBoardView(){
         return this.boardView;
     }
+
+    /**
+     * Return the control view within the game panel.
+     * @return The control view within the game panel.
+     */
     protected ControlView getControlView(){
         return this.controlView;
     }
+
+    /**
+     * Return the player associated with the game panel.
+     * @return The player associated with the game panel.
+     */
     protected Player getPlayer() {
         return player;
     }
 
     /*
     Help methods and classes
+     */
+
+    /**
+     * Sets the image variables used in the game panel.
      */
     private void initImages() {
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
@@ -65,8 +91,9 @@ public class GamePanel extends JPanel {
         }
     }
 
-    /*
-    Painters
+    /**
+     * Paints the black outlines of the components inside the game panel.
+     * @param g The graphics object to use when painting.
      */
     private void paintBorders(Graphics g) {
         g.setColor(Color.BLACK);
@@ -74,6 +101,11 @@ public class GamePanel extends JPanel {
         g.fillRect(674, 19, 322, 500);
         g.fillRect(4, 539, 992, 179);
     }
+
+    /*
+    Painters
+     */
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
