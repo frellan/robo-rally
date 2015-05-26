@@ -14,6 +14,8 @@ public class MoveThreeCard extends RegisterCard{
     public MoveThreeCard(int points, boolean isHidden) {
         super(points,isHidden, "Move Three");
         super.setAction(new MovePlayer());
+        super.setAction(new MovePlayer());
+        super.setAction(new MovePlayer());
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move3.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move3_pick.png"));
