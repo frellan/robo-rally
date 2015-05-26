@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  * Created by Pertta on 15-05-11.
  */
 public class BlankAttribute extends Attribute {
-
+    
     @Override
     public void draw(Graphics g, int x, int y) {
         BufferedImage temp = GlobalImageHolder.getInstance().getBoardTileImage().getSubimage(

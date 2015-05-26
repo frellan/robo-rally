@@ -53,8 +53,14 @@ public class CheckpointAttributeTest {
         //Player goes to third checkpoint
         player.setPosition(new Position(9, 5));
         System.out.println(player.getName() + "New position " + player.getPosition());
+<<<<<<< HEAD
         executeAction(player);
+=======
+        map.getTile(player.getPosition()).getAction(player);
+>>>>>>> 1245c9740ba977b91852639790422ef0d16dcdae
         assertTrue(player.getCheckpoint() != player.getPosition());
+        System.out.println("  ");
+
         System.out.println("  ");
 
         //Player goes to first checkpoint
@@ -69,7 +75,11 @@ public class CheckpointAttributeTest {
         //Player2 goes to first checkpoint
         player2.setPosition(new Position(11, 5));
         System.out.println(player2.getName() + " New position " + player2.getPosition());
+<<<<<<< HEAD
         executeAction(player2);
+=======
+        map.getTile(player2.getPosition()).getAction(player2);
+>>>>>>> 1245c9740ba977b91852639790422ef0d16dcdae
         System.out.println("New Checkpoint " + player2.getCheckpoint());
         assertTrue(player2.getCheckpoint() == player2.getPosition());
 
@@ -78,7 +88,11 @@ public class CheckpointAttributeTest {
         //Player2 goes to second checkpoint
         player2.setPosition(new Position(8, 7));
         System.out.println(player2.getName() + "New position " + player2.getPosition());
+<<<<<<< HEAD
         executeAction(player2);
+=======
+        map.getTile(player2.getPosition()).getAction(player2);
+>>>>>>> 1245c9740ba977b91852639790422ef0d16dcdae
         assertTrue(player2.getCheckpoint() == player2.getPosition());
 
         System.out.println("  ");
@@ -86,7 +100,11 @@ public class CheckpointAttributeTest {
         //Player2 goes to first checkpoint
         player2.setPosition(new Position(11, 5));
         System.out.println(player2.getName() + "New position " + player2.getPosition());
+<<<<<<< HEAD
         executeAction(player2);
+=======
+        map.getTile(player2.getPosition()).getAction(player2);
+>>>>>>> 1245c9740ba977b91852639790422ef0d16dcdae
         assertTrue(player2.getCheckpoint() != player2.getPosition());
 
 

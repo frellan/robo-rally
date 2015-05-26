@@ -23,6 +23,30 @@ public class CheckpointAttribute extends Attribute {
         this.id = id;
     }
 
+    public void doAttribute(Player player) {
+
+        if (id == 0) {
+            System.out.println("Standing on START-tile");
+        }
+        else if (player.getCheckpointId() == (id - 1)) {
+            if (id < 3) {
+                player.setCheckpointId(id);
+                for (GameAction action : super.getActions()) {
+                    //action.doAction(player);
+                }
+                System.out.println("It worked, new checkpoint set");
+            }
+            else if (id == 3) {
+                EventTram.getInstance().publish(EventTram.Event.VICTORY, player, null);
+            }
+        } else if (player.getCheckpointId() >= id) {
+            System.out.println("Wrong checkpoint, you've been at " + getId() + " before");
+        } else {
+            System.out.println("Wrong checkpoint, go to " + (player.getCheckpointId() + 1) + " first");
+
+        }
+    }
+
     public int getId() {
         return id;
     }

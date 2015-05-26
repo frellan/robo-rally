@@ -22,6 +22,7 @@ public class RotationAttribute extends Attribute {
         this.d = d;
         super.setAction(new RotatePlayer(d));
     }
+
     public String toString() {
         return name;
     }
