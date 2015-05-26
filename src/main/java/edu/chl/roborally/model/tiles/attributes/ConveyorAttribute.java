@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
@@ -12,7 +13,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by axel on 2015-03-30.
  */
-public class ConveyorAttribute implements Attribute {
+public class ConveyorAttribute extends Attribute {
 
     private Constants.Directions d;
     private int speed;
@@ -20,21 +21,26 @@ public class ConveyorAttribute implements Attribute {
     public ConveyorAttribute(Constants.Directions d, int speed){
         this.d = d;
         this.speed = speed;
+
+        if (speed == 2) {
+            //TODO If player is outside conveyer don't move two steps!
+            super.setAction(new MovePlayer(d), new MovePlayer(d));
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Two Tiles" + "\n", null);
+        } else {
+            super.setAction(new MovePlayer(d));
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
+        }
     }
 
     @Override
-    public void doAction(Player p){
+    public void doAttribute(Player p){
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        if (speed == 2) {
-            //TODO If player is outside conveyer don't move two steps!
-            new MovePlayer(p, d);
-            new MovePlayer(p, d);
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Two Tiles" + "\n", null);
-        } else {
-            new MovePlayer(p, d);
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
+
+        for (GameAction action : super.getActions()) {
+            action.doAction(p);
         }
+
         //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
     }
 

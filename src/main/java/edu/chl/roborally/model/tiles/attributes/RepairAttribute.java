@@ -1,6 +1,8 @@
 package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.gameactions.RepairPlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
@@ -12,11 +14,18 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Pertta on 15-05-12.
  */
-public class RepairAttribute implements Attribute {
+public class RepairAttribute extends Attribute {
+
+    public RepairAttribute() {
+        super.setAction(new RepairPlayer());
+    }
 
     @Override
-    public void doAction(Player player) {
-        new RepairPlayer(player);
+    public void doAttribute(Player player) {
+
+        for (GameAction action : super.getActions()) {
+            action.doAction(player);
+        }
 
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Repairing ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() , player.getColor());
