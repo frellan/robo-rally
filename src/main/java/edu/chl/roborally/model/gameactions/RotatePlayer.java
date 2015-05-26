@@ -2,17 +2,21 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
 
 /**
  * Created by henriknilson on 31/03/15.
  */
 public class RotatePlayer implements GameAction {
 
+    private Constants.Directions d;
+
+    public RotatePlayer(Constants.Directions d) {
+        this.d = d;
+    }
+
     @Override
     public void doAction(Player p) {
-        switch(p.getDirection()) {
-
+        switch(d) {
             // Turn Right
             case EAST:
                 switch (p.getDirection()) {

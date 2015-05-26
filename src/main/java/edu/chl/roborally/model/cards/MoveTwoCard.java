@@ -13,6 +13,7 @@ public class MoveTwoCard extends RegisterCard{
 
     public MoveTwoCard(int points, boolean isHidden) {
         super(points,isHidden, "Move Two");
+        super.setAction(new MovePlayer());
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move2.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move2_pick.png"));
@@ -20,14 +21,5 @@ public class MoveTwoCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }
-    }
-
-    public void doAction(Player p) {
-        new MovePlayer(p);
-        new MovePlayer(p);
-
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Moving ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Two Tiles" + "\n", null);
     }
 }

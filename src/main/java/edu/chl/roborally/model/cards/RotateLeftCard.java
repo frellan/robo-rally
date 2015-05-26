@@ -14,6 +14,7 @@ public class RotateLeftCard extends RegisterCard{
 
     public RotateLeftCard(int points, boolean isHidden) {
         super(points,isHidden, "Rotate Left");
+        super.setAction(new RotatePlayer(Constants.Directions.WEST));
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left_pick.png"));
@@ -21,12 +22,5 @@ public class RotateLeftCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }
-    }
-
-    public void doAction(Player p) {
-        new RotatePlayer(p,Constants.Directions.WEST);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Left" + "\n", null);
     }
 }
