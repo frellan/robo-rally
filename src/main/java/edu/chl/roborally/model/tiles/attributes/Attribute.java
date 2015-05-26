@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Pertta on 15-05-11.
  */
-abstract class Attribute {
+public abstract class Attribute {
 
     private ArrayList<GameAction> actions = new ArrayList<>();
 
