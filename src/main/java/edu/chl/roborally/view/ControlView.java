@@ -169,9 +169,11 @@ public class ControlView extends JPanel implements ActionListener{
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
                     public void mouseDragged(MouseEvent e) {
-                        JButton btn = (JButton) e.getSource();
-                        TransferHandler handle = btn.getTransferHandler();
-                        handle.exportAsDrag(btn, e, TransferHandler.COPY);
+                        if (!btn.isPicked()) {
+                            JButton btn = (JButton) e.getSource();
+                            TransferHandler handle = btn.getTransferHandler();
+                            handle.exportAsDrag(btn, e, TransferHandler.COPY);
+                        }
                     }
                 });
                 newCardsToPickButtons.add(btn);
@@ -297,6 +299,7 @@ public class ControlView extends JPanel implements ActionListener{
     private class PickNewCardButton extends JButton {
 
         private RegisterCard card;
+        private boolean picked;
 
         public PickNewCardButton() {
             setText("");
@@ -315,6 +318,23 @@ public class ControlView extends JPanel implements ActionListener{
             setIconTextGap(0);
             setContentAreaFilled(false);
             setRolloverIcon(card.getPickIconRollover());
+        }
+
+        public RegisterCard getCard() {
+            return card;
+        }
+        public boolean isPicked() {
+            return picked;
+        }
+        public void setPicked(boolean b) {
+            if (b) {
+                setIcon(emptyNewCardIcon);
+                setRolloverEnabled(false);
+            } else {
+                setIcon(card.getPickIcon());
+                setRolloverEnabled(true);
+            }
+            picked = b;
         }
 
         @Override
@@ -358,7 +378,7 @@ public class ControlView extends JPanel implements ActionListener{
             super.exportDone(source, data, action);
             if (source.getClass() == PickNewCardButton.class) {
                 if (action != TransferHandler.NONE) {
-                    setEnabledPickedCard(((PickNewCardButton) source).card, false);
+                    setPickedCard(((PickNewCardButton) source).getCard(), true);
                 }
             }
             if (source.getClass() == RegisterCardIcon.class) {
@@ -387,7 +407,7 @@ public class ControlView extends JPanel implements ActionListener{
                         if (component instanceof RegisterCardIcon) {
                             RegisterCardIcon icon = ((RegisterCardIcon) component);
                             if (icon.getCard() != null) {
-                                setEnabledPickedCard(icon.getCard(), true);
+                                setPickedCard(icon.getCard(), false);
                             }
                             icon.setCard(getMatchingCard((String) value));
                             icon.setTransferHandler
@@ -413,10 +433,11 @@ public class ControlView extends JPanel implements ActionListener{
             }
             return null;
         }
-        private void setEnabledPickedCard(RegisterCard card, boolean b) {
+        private void setPickedCard(RegisterCard card, boolean b) {
             for (PickNewCardButton btn : newCardsToPickButtons) {
                 if (btn.getText().equals(card.toString())) {
-                    btn.setEnabled(b);
+                    System.out.println(b);
+                    btn.setPicked(b);
                 }
             }
         }
