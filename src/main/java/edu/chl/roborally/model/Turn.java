@@ -74,19 +74,18 @@ public class Turn{
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYSING CARDS" + "\n", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
-            //ArrayList<GameAction> actions = card.getActions();
             if (player.isAlive()) {
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": Moving ", null);
                 for (GameAction action : actions) {
                     executeActionIndex = 1;
-                    executeAction(player,action);
+                    executeCardAction(player,action);
                 }
             }
         }
     }
 
-    private void executeAction(Player player, GameAction action) {
+    private void executeCardAction(Player player, GameAction action) {
         player.setBeforePosition(player.getPosition().clone());
         try {
             action.doAction(player);
@@ -94,13 +93,14 @@ public class Turn{
                 if (player.getPosition().equals(otherPlayer.getPosition()) && !player.equals(otherPlayer) && executeActionIndex < players.size()) {
                     executeActionIndex++;
                     GameAction pushAction = new MovePlayer(player.getDirection());
-                    executeAction(otherPlayer, pushAction);
+
+                    executeCardAction(otherPlayer, pushAction);
+
                     EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,otherPlayer,null);
                 }
             }
         } catch (WallException e) {
             player.setPosition(player.getBeforePosition().clone());
-            System.out.println(e + " In turn");
         }
     }
 

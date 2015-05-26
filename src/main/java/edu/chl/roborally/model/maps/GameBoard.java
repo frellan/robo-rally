@@ -82,16 +82,13 @@ public abstract class GameBoard implements IEventHandler{
                 player.kill();
             } catch (WallException e) {
                 player.setPosition(player.getBeforePosition());
-                System.out.println(e + " In tile action");
             }
         } else if (EventTram.Event.EXECUTE_TILE_ACTION_BEFORE == evt) {
             Player player = (Player) o;
-            System.out.println(player.getName() + " has before pos: " + player.getBeforePosition() + " should be equla to curr pos " + player.getPosition());
             ArrayList<GameAction> actions = getTile(player.getPosition()).getBeforeAction();
             for (GameAction action : actions) {
                 try {
                     action.doAction(player);
-                    System.out.println(player.getName() + " has now moved to pos: " + player.getPosition());
                 } catch(ArrayIndexOutOfBoundsException e){
                     // If player is out of bounds we kill him
                     System.out.println("Player fell of board and died");
@@ -99,8 +96,6 @@ public abstract class GameBoard implements IEventHandler{
                 } catch(WallException e){
 
                     player.setPosition(player.getBeforePosition());
-
-                    System.out.println(player.getName() + " Hit wall and moved back to  " + player.getBeforePosition() + " now pos should be equal " + player.getPosition());
                 }
             }
         }

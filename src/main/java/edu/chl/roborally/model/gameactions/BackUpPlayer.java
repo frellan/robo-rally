@@ -16,11 +16,13 @@ public class BackUpPlayer implements GameAction {
                 break;
             case SOUTH:
                 p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
+                break;
             case EAST:
-                p.setPosition(new Position(p.getPosition().getX()-1, p.getPosition().getY()));
+                p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
             case WEST:
-                p.setPosition(new Position(p.getPosition().getX()+1, p.getPosition().getY()));
+                p.setPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
+                break;
         }
     }
 }
