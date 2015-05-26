@@ -18,7 +18,7 @@ public class RotatePlayer implements GameAction {
 
     @Override
     public void doAction(Player p) {
-        switch(p.getDirection()) {
+        switch(d) {
 
             // Turn Right
             case EAST:
