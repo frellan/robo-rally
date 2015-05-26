@@ -6,8 +6,6 @@ import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 import edu.chl.roborally.utilities.Position;
-import javafx.geometry.Pos;
-import sun.jvm.hotspot.runtime.posix.POSIXSignals;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
