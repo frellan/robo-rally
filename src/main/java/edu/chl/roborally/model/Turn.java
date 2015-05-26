@@ -76,6 +76,7 @@ public class Turn{
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": Moving ", null);
                 for (GameAction action : actions) {
+                    System.out.println("Doing action");
                     action.doAction(player);
                 }
             }
