@@ -8,7 +8,7 @@ import edu.chl.roborally.model.Player;
 public class KillPlayer implements GameAction{
 
     @Override
-    public void action(Player p) {
+    public void doAction(Player p) {
         p.kill();
     }
 }
