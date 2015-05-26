@@ -19,6 +19,16 @@ public class MovePlayer implements GameAction {
         this.direction = direction;
     }
 
+    private Constants.Directions direction;
+
+    public MovePlayer() {
+        this.direction = null;
+    }
+
+    public MovePlayer(Constants.Directions direction) {
+        this.direction = direction;
+    }
+
     @Override
     public void doAction(Player p) {
         if (direction == null) {

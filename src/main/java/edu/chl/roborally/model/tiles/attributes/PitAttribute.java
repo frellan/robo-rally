@@ -20,14 +20,13 @@ public class PitAttribute extends Attribute {
         super.setAction(new KillPlayer());
     }
 
-    public void doAttribute(Player p){
-         for (GameAction action : super.getActions()) {
-             action.doAction(p);
-         }
-    }
-
     public String toString() {
         return name;
+    }
+
+    @Override
+    public void doAttribute(Player player) {
+        
     }
 
     @Override
