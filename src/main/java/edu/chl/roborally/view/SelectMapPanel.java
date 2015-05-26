@@ -1,5 +1,6 @@
 package edu.chl.roborally.view;
 
+import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.GlobalImageHolder;
@@ -106,11 +107,11 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     }
 
     //Shows a summary after a map has been selected
-    public void summary(ArrayList<String> names) {
+    public void summary(ArrayList<Player> players) {
         this.removeAll();
         int verticalGap = 10;
         JPanel sumPanel = new StyledJPanel(null);
-        sumPanel.setSize(300,400);
+        sumPanel.setSize(300,450);
 
         sumPanel.add(mapName);
         sumPanel.add(mapIcon);
@@ -118,24 +119,30 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
         mapName.setLocation(50,10);
         mapIcon.setLocation(50,40);
 
-        StyledLabel robots = new StyledLabel("Robots: ");
-        sumPanel.add(robots);
-        robots.setLocation(50, 250);
+        JPanel robotContainer = new JPanel(new GridLayout(4,2));
+        robotContainer.setOpaque(false);
+        robotContainer.setSize(200,150);
 
-        for (String s : names) {
-            StyledLabel robotNames = new StyledLabel(s);
-            sumPanel.add(robotNames);
-            robotNames.setLocation(100, 240 + verticalGap);
-            verticalGap = verticalGap + 20;
+        for (Player p : players) {
+            StyledLabel robotNames = new StyledLabel(p.getName());
+            robotNames.setSize(80, 20);
+            robotContainer.add(robotNames);
+
+            JLabel robotIcon = new JLabel();
+            robotIcon.setIcon(new ImageIcon(p.getImage()));
+            robotIcon.setSize(40,40);
+            robotContainer.add(robotIcon);
         }
 
+        sumPanel.add(robotContainer);
+        robotContainer.setLocation(80, 245);
         startGameBtn = new Button("start_btn.png", "start_btn_hover.png");
         startGameBtn.addActionListener(this);
         startGameBtn.setSize(200, 50);
         sumPanel.add(startGameBtn);
-        startGameBtn.setLocation(50,330);
+        startGameBtn.setLocation(50,390);
         this.add(sumPanel);
-        sumPanel.setLocation(350, 180);
+        sumPanel.setLocation(350, 170);
         this.repaint();
         this.revalidate();
     }

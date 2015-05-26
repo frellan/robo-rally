@@ -95,6 +95,7 @@ public class Player {
     public int getLaserPower() {
         return laserPower;
     }
+    public BufferedImage getImage(){return robot.getImage();}
     public boolean isAlive() {
         return Constants.Status.ALIVE == this.status;
     }

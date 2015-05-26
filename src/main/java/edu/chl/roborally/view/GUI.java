@@ -54,7 +54,7 @@ public class GUI implements IEventHandler {
         mainFrame.repaint();
     }
     private void showSummary() {
-        selectMapPanel.summary(model.getPlayerNames());
+        selectMapPanel.summary(model.getPlayers());
     }
 
     /*
