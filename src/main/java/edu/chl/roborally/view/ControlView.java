@@ -50,6 +50,11 @@ public class ControlView extends JPanel implements ActionListener{
 
     private static final int CARD_GAP = 7;
 
+    /**
+     * Creates the control view which is used by every player to control and program the robot.
+     * Also contains information about the current status of the game.
+     * @param player The current player to create controls for
+     */
     protected ControlView(Player player) {
         try {
             emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
@@ -68,6 +73,11 @@ public class ControlView extends JPanel implements ActionListener{
 
     /*
     Class Methods
+     */
+
+    /**
+     * These methods creates the individual panels of the
+     * ControlView and adds them to the layout.
      */
     private void createRegisterView() {
         registerView = new JPanel(null);
@@ -156,6 +166,11 @@ public class ControlView extends JPanel implements ActionListener{
         statusView.add(nextTurnButton);
         add(statusView).setLocation(668, 0);
     }
+
+    /**
+     * When the player receives new cards this method is called to update
+     * the list of cards to choose from with new data.
+     */
     private void refreshNewCardButtons() {
         newCardsToPickButtons.clear();
         pickCardsView.removeAll();
@@ -186,6 +201,12 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
+
+    /**
+     * Is called by the GUI class when a new round is initiated
+     * to reset the register card panel. This is done to prepare for the new
+     * cards that will be placed there.
+     */
     protected void resetRegisterCards() {
         for (int i = 0; i < 5; i++) {
             if (player.getProgrammedCard(i) != null && player.getProgrammedCard(i).isLocked()) {
@@ -196,6 +217,11 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
     }
+
+    /**
+     * Is called by the GUI class when a new round is initiated
+     * to reset the list of cards to choose from before receiving new ones.
+     */
     protected void resetNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
@@ -203,10 +229,20 @@ public class ControlView extends JPanel implements ActionListener{
             pickCardsView.add(btn);
         }
     }
+
+    /**
+     * Is called by the GUI class when the PICK_CARDS event is fired.
+     * It tells this class to update necessary components with the new data.
+     */
     protected void newCardsToPick() {
         newCardsToPick = player.getDealtCards();
         refreshNewCardButtons();
     }
+
+    /**
+     * Sets the register card icons to be changeable.
+     * This means you can drag n drop onto them.
+     */
     protected void setRegisterCardIconsChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
             if (icon.getCard() != null && !icon.getCard().isLocked()) {
@@ -214,11 +250,21 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
     }
+
+    /**
+     * Sets the register card icons to not be changeable.
+     * This means you can't drag n drop onto them.
+     */
     protected void setRegisterCardIconsNotChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
             icon.setChangeable(false);
         }
     }
+
+    /**
+     * Sets which turn to be displayed in the interface.
+     * @param turn The turn to be displayed
+     */
     protected void setTurnIndicator(int turn) {
         switch (turn) {
             case 0:
@@ -265,12 +311,27 @@ public class ControlView extends JPanel implements ActionListener{
                 break;
         }
     }
+
+    /**
+     * Sets if the done button should be enabled.
+     * @param b Either true or false
+     */
     protected void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
     }
+
+    /**
+     * Sets if the next turn button should be enabled.
+     * @param b Either true or false
+     */
     protected void setNextTurnButtonEnabled(boolean b) {
         nextTurnButton.setEnabled(b);
     }
+
+    /**
+     * Updates the data inside the status view
+     * i.e damage tokens, player positions etc.
+     */
     protected void updateStatusView() {
         lifeTokensLabel.setText("LifeTokens: " + player.getLifeTokens());
         dmgTokensLabel.setText("DamageTokens: " + player.getDamageTokens());
@@ -278,18 +339,13 @@ public class ControlView extends JPanel implements ActionListener{
     }
 
     /*
-    Getters
-     */
-    protected ArrayList<RegisterCard> getProgrammedCards() {
-        ArrayList<RegisterCard> temp = new ArrayList<>();
-        for (RegisterCardIcon icon : registerCardIcons) {
-            temp.add(icon.getCard());
-        }
-        return temp;
-    }
-
-    /*
     Help Methods and Classes
+     */
+
+    /**
+     * Is used to check if the player have chosen the required amount
+     * of register cards before sending them of to the model.
+     * @return True if correct amount, false if not
      */
     private boolean programmedCardsIsValid() {
         for (RegisterCardIcon card : registerCardIcons) {
@@ -299,6 +355,22 @@ public class ControlView extends JPanel implements ActionListener{
         }
         return true;
     }
+
+    /**
+     * Is used to package the chosen register cards to an ArrayList.
+     * @return The cards currently in the register panel
+     */
+    private ArrayList<RegisterCard> getProgrammedCards() {
+        ArrayList<RegisterCard> temp = new ArrayList<>();
+        for (RegisterCardIcon icon : registerCardIcons) {
+            temp.add(icon.getCard());
+        }
+        return temp;
+    }
+
+    /**
+     * A modifed JLabel component used to display the register cards in the register panel.
+     */
     private class RegisterCardIcon extends JLabel {
 
         private RegisterCard card;
@@ -345,6 +417,10 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
     }
+
+    /**
+     * A modified JButton component used to display the register card to choose from.
+     */
     private class PickNewCardButton extends JButton {
 
         private RegisterCard card;
@@ -396,6 +472,11 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
     }
+
+    /**
+     * A modified TransferHandler used to transfer register card information between panels.
+     * This is done using strings.
+     */
     private class RegisterCardTransferHandler extends TransferHandler {
 
         public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
