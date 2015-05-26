@@ -6,15 +6,10 @@ import edu.chl.roborally.model.tiles.GameTile;
 /**
  * Created by Pertta on 15-05-12.
  */
-public class RepairPlayer extends GameAction {
-
-    public RepairPlayer(Player p) {
-        super(p);
-        action();
-    }
+public class RepairPlayer implements GameAction {
 
     @Override
-    public void action() {
-        super.player.repair();
+    public void action(Player p) {
+        p.repair();
     }
 }
