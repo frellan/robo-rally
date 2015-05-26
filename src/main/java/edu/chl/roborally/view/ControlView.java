@@ -2,11 +2,11 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
-import edu.chl.roborally.model.cards.RegisterCardIcon;
 import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -26,8 +26,6 @@ public class ControlView extends JPanel implements ActionListener{
 
     private Player player;
     private ImageIcon emptyNewCardIcon;
-
-    private RegisterCard exportedCard;
 
     private JPanel registerView;
     private JPanel turnIndicatorView;
@@ -288,13 +286,59 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Help Methods and Classes
      */
-    public boolean programmedCardsIsValid() {
+    private boolean programmedCardsIsValid() {
         for (RegisterCardIcon card : registerCardIcons) {
             if (card.getCard() == null) {
                 return false;
             }
         }
         return true;
+    }
+    private class RegisterCardIcon extends JLabel {
+
+        private RegisterCard card;
+        private boolean isChangeable = true;
+
+        public RegisterCardIcon() {
+            setBorder(new LineBorder(Color.BLACK, 2));
+            setHorizontalAlignment(SwingConstants.CENTER);
+            setVerticalAlignment(SwingConstants.CENTER);
+            setBackground(Color.WHITE);
+            setForeground(Color.BLACK);
+            setOpaque(true);
+            setText("<html>Drop card<br>here</html>");
+            setSize(96, 140);
+        }
+
+        public RegisterCard getCard() {
+            return card;
+        }
+        public void setCard(RegisterCard card) {
+            this.card = card;
+            setIcon(card.getMainIcon());
+        }
+        public void setChangeable(boolean b) {
+            isChangeable = b;
+        }
+        public boolean isChangeable() {
+            return isChangeable;
+        }
+        public void removeCard() {
+            card = null;
+            setIcon(null);
+            setBackground(Color.WHITE);
+            setText("<html>Drop card<br>here</html>");
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (card != null) {
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Impact", Font.PLAIN, 20));
+                g.drawString(Integer.toString(card.getPoints()), 34, 27);
+            }
+        }
     }
     private class PickNewCardButton extends JButton {
 
@@ -304,7 +348,7 @@ public class ControlView extends JPanel implements ActionListener{
         public PickNewCardButton() {
             setText("");
             setBorderPainted(false);
-            setFocusPainted(true);
+            setFocusPainted(false);
             setIcon(emptyNewCardIcon);
             setIconTextGap(0);
             setContentAreaFilled(false);
@@ -313,7 +357,7 @@ public class ControlView extends JPanel implements ActionListener{
             this.card = card;
             setText(card.toString());
             setBorderPainted(false);
-            setFocusPainted(true);
+            setFocusPainted(false);
             setIcon(card.getPickIcon());
             setIconTextGap(0);
             setContentAreaFilled(false);
@@ -329,9 +373,11 @@ public class ControlView extends JPanel implements ActionListener{
         public void setPicked(boolean b) {
             if (b) {
                 setIcon(emptyNewCardIcon);
+                setIconTextGap(0);
                 setRolloverEnabled(false);
             } else {
                 setIcon(card.getPickIcon());
+                setIconTextGap(0);
                 setRolloverEnabled(true);
             }
             picked = b;
