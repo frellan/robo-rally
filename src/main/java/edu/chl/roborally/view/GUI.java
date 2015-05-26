@@ -138,7 +138,7 @@ public class GUI implements IEventHandler {
                 break;
             case UPDATE_BOARD:
                 for(GamePanel panel : gamePanels)
-                    panel.getBoardView().repaint();
+                    panel.getBoardView().update();
                 break;
         }
     }

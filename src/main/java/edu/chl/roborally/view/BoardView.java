@@ -31,14 +31,9 @@ public class BoardView extends JPanel {
         setSize(width, height);
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        drawGrid(g);
-        drawTiles(g);
-        drawPlayers(g);
-    }
-
+    /*
+    Class methods
+     */
     private void drawGrid(Graphics g) {
         // Vertical Lines
         g.drawLine(0,0,0,height);
@@ -57,7 +52,6 @@ public class BoardView extends JPanel {
             y += tileSize;
         }
     }
-
     private void drawTiles(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for(int j = 0; j < rows; j++) {
@@ -65,7 +59,6 @@ public class BoardView extends JPanel {
             }
         }
     }
-
     private void drawPlayers(Graphics g) {
         for (Player player : players) {
             Position pos = player.getPosition();
@@ -73,5 +66,23 @@ public class BoardView extends JPanel {
                 player.draw(g, (pos.getX() * tileSize) + pos.getX() + 1, (pos.getY() * tileSize) + pos.getY() + 1);
             }
         }
+    }
+
+    /*
+    Commands
+     */
+    public void update() {
+        repaint();
+    }
+
+    /*
+    Painters
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        drawGrid(g);
+        drawTiles(g);
+        drawPlayers(g);
     }
 }

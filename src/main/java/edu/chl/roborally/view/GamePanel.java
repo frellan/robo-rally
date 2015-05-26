@@ -54,6 +54,18 @@ public class GamePanel extends JPanel {
     }
 
     /*
+    Help methods and classes
+     */
+    private void initImages() {
+        imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
+        try {
+            textBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("Images could not be read");
+        }
+    }
+
+    /*
     Painters
      */
     private void paintBorders(Graphics g) {
@@ -72,14 +84,5 @@ public class GamePanel extends JPanel {
     public void paintChildren(Graphics g) {
         super.paintChildren(g);
         g.drawImage(textBG, 0, 1, 1000, 730, this);
-    }
-
-    private void initImages() {
-        imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
-        try {
-            textBG = ImageIO.read(this.getClass().getClassLoader().getResource("game_background_text.png"));
-        } catch (java.io.IOException | NullPointerException e){
-            System.out.println("Images could not be read");
-        }
     }
 }

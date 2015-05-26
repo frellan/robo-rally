@@ -373,11 +373,9 @@ public class ControlView extends JPanel implements ActionListener{
         public void setPicked(boolean b) {
             if (b) {
                 setIcon(emptyNewCardIcon);
-                setIconTextGap(0);
                 setRolloverEnabled(false);
             } else {
                 setIcon(card.getPickIcon());
-                setIconTextGap(0);
                 setRolloverEnabled(true);
             }
             picked = b;
