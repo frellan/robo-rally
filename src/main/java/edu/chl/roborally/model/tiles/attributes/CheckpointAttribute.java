@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class CheckpointAttribute implements Attribute {
 
     private String name = "CP";
-    private int id;
+    private final int id;
 
     public CheckpointAttribute(int id) {
         this.id = id;
@@ -28,16 +28,19 @@ public class CheckpointAttribute implements Attribute {
             System.out.println("Standing on START-tile");
         }
         else if (player.getCheckpointId() == (id - 1)) {
-            if (id < 5) {
+            if (id < 3) {
                 player.setCheckpointId(id);
                 new CheckpointPlayer(player);
                 System.out.println("It worked, new checkpoint set");
             }
-            else if (id == 5) {
+            else if (id == 3) {
                 EventTram.getInstance().publish(EventTram.Event.VICTORY, player, null);
             }
+        } else if (player.getCheckpointId() >= id) {
+            System.out.println("Wrong checkpoint, you've been at " + getId() + " before");
         } else {
-            System.out.println("Wrong checkpoint, go to " + (id - 1) + " first");
+            System.out.println("Wrong checkpoint, go to " + (player.getCheckpointId() + 1) + " first");
+
         }
     }
 
@@ -71,17 +74,17 @@ public class CheckpointAttribute implements Attribute {
                         2*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.drawImage(currentTile, x, y, null);
                 break;
+            //case 3:
+              //  currentTile = allTiles.getSubimage(
+                //        3*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                //g.drawImage(currentTile, x, y, null);
+               // break;
+            //case 4:
+              //  currentTile = allTiles.getSubimage(
+                //        Constants.TILE_SIZE, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+               // g.drawImage(currentTile, x, y, null);
+               // break;
             case 3:
-                currentTile = allTiles.getSubimage(
-                        3*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.drawImage(currentTile, x, y, null);
-                break;
-            case 4:
-                currentTile = allTiles.getSubimage(
-                        Constants.TILE_SIZE, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.drawImage(currentTile, x, y, null);
-                break;
-            case 5:
                 currentTile = allTiles.getSubimage(
                         0, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.drawImage(currentTile, x, y, null);

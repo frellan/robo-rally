@@ -20,12 +20,14 @@ import static org.junit.Assert.*;
 public class CheckpointAttributeTest {
 
     private Player player;
+    private Player player2;
     private RoboRally model;
     private GameBoard map;
 
     @Before
     public void setUp() throws Exception {
         player = new Player(1,new Robot("Test Robot", Color.ORANGE));
+        player2 = new Player(1,new Robot("Test Another Robot", Color.ORANGE));
         player.setCheckpointId(0);
         map = new IslandKingMap();
         ArrayList<Player> players = new ArrayList<>();
@@ -36,11 +38,13 @@ public class CheckpointAttributeTest {
 
     @Test
     public void testDoAction() throws Exception {
-        //Player goes to wrong third checkpoint
+        //Player goes to third checkpoint
         player.setPosition(new Position(9, 5));
-        System.out.println("New position " + player.getPosition());
+        System.out.println(player.getName() + "New position " + player.getPosition());
         map.getTile(player.getPosition()).getAction(player);
         assertTrue(player.getCheckpoint() != player.getPosition());
+
+        System.out.println("  ");
 
         //Player goes to first checkpoint
         player.setPosition(new Position(11, 5));
@@ -48,5 +52,32 @@ public class CheckpointAttributeTest {
         map.getTile(player.getPosition()).getAction(player);
         System.out.println("New Checkpoint " + player.getCheckpoint());
         assertTrue(player.getCheckpoint() == player.getPosition());
+
+        System.out.println("  ");
+
+        //Player2 goes to first checkpoint
+        player2.setPosition(new Position(11, 5));
+        System.out.println(player2.getName() + " New position " + player2.getPosition());
+        map.getTile(player2.getPosition()).getAction(player2);
+        System.out.println("New Checkpoint " + player2.getCheckpoint());
+        assertTrue(player2.getCheckpoint() == player2.getPosition());
+
+        System.out.println("  ");
+
+        //Player2 goes to second checkpoint
+        player2.setPosition(new Position(8, 7));
+        System.out.println(player2.getName() + "New position " + player2.getPosition());
+        map.getTile(player2.getPosition()).getAction(player2);
+        assertTrue(player2.getCheckpoint() == player2.getPosition());
+
+        System.out.println("  ");
+
+        //Player2 goes to first checkpoint
+        player2.setPosition(new Position(11, 5));
+        System.out.println(player2.getName() + "New position " + player2.getPosition());
+        map.getTile(player2.getPosition()).getAction(player2);
+        assertTrue(player2.getCheckpoint() != player2.getPosition());
+
+
     }
 }
