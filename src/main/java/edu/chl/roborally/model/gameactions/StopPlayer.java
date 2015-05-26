@@ -9,7 +9,7 @@ import edu.chl.roborally.utilities.Position;
 public class StopPlayer implements GameAction {
 
     @Override
-    public void action(Player p) {
+    public void doAction(Player p) {
         p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()));
     }
 }
