@@ -31,7 +31,7 @@ public class TileFactory {
      * RepairTile = 6
      * Repair with wall N = 61
      * StartCheckpoint = 70
-     * FinalCheckpoint = 75
+     * FinalCheckpoint = 73
      * Checkpoint 1,2,3,4 = 71,72,73
      * StartCheckpoint with WALL CP1_SOUTH = 703
      */
@@ -189,14 +189,10 @@ public class TileFactory {
                 tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(2));
                 break;
+            //Final Checkpoint
             case 73:
                 tile.addAttribute(new BlankAttribute());
                 tile.addAttribute(new CheckpointAttribute(3));
-                break;
-            //Final Checkpoint
-            case 75:
-                tile.addAttribute(new BlankAttribute());
-                tile.addAttribute(new CheckpointAttribute(5));
                 break;
             //Checkpoint with WALL
             case 703:
