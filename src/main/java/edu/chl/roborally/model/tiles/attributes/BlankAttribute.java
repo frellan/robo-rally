@@ -10,10 +10,10 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Pertta on 15-05-11.
  */
-public class BlankAttribute implements Attribute {
+public class BlankAttribute extends Attribute {
 
     @Override
-    public void doAction(Player player) {
+    public void doAttribute(Player player) {
 
     }
 
