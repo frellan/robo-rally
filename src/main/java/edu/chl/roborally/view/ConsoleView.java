@@ -24,7 +24,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
 
     private JTextPane textPane;
 
-    public ConsoleView(){
+    protected ConsoleView(){
         setLayout(new BorderLayout());
         setSize(314, 492);
         EventTram.getInstance().register(this);

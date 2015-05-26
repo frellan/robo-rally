@@ -71,7 +71,7 @@ public class BoardView extends JPanel {
     /*
     Commands
      */
-    public void update() {
+    protected void update() {
         repaint();
     }
 

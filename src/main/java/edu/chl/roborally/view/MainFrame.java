@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame{
 
-    public MainFrame() {
+    protected MainFrame() {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.createImage(this.getClass().getClassLoader().getResource("icon.png"));
         setIconImage(img);

@@ -41,7 +41,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
 
     private int mapIndex;
 
-    public SelectMapPanel(ArrayList<GameBoard> maps){
+    protected SelectMapPanel(ArrayList<GameBoard> maps){
 
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
@@ -107,7 +107,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     }
 
     //Shows a summary after a map has been selected
-    public void summary(ArrayList<Player> players) {
+    protected void summary(ArrayList<Player> players) {
         this.removeAll();
         int verticalGap = 10;
         JPanel sumPanel = new StyledJPanel(null);
@@ -149,7 +149,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
 
     // Draw background
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
     }

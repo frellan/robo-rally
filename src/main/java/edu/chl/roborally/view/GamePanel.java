@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
     private ControlView controlView;
     private Player player;
 
-    public GamePanel(GameBoard board, ArrayList<Player> players, Player player){
+    protected GamePanel(GameBoard board, ArrayList<Player> players, Player player){
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         initImages();
         setOpaque(false);
@@ -43,13 +43,13 @@ public class GamePanel extends JPanel {
     /*
     Getters
      */
-    public BoardView getBoardView(){
+    protected BoardView getBoardView(){
         return this.boardView;
     }
-    public ControlView getControlView(){
+    protected ControlView getControlView(){
         return this.controlView;
     }
-    public Player getPlayer() {
+    protected Player getPlayer() {
         return player;
     }
 
@@ -75,13 +75,13 @@ public class GamePanel extends JPanel {
         g.fillRect(4, 539, 992, 179);
     }
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, 1001, 730, this);
         paintBorders(g);
     }
     @Override
-    public void paintChildren(Graphics g) {
+    protected void paintChildren(Graphics g) {
         super.paintChildren(g);
         g.drawImage(textBG, 0, 1, 1000, 730, this);
     }

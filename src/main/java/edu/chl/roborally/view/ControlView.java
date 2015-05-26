@@ -45,12 +45,12 @@ public class ControlView extends JPanel implements ActionListener{
     private JLabel lifeTokensLabel;
     private JLabel dmgTokensLabel;
     private JLabel positionLabel;
-    protected JButton doneButton;
-    protected JButton nextTurnButton;
+    private JButton doneButton;
+    private JButton nextTurnButton;
 
     private static final int CARD_GAP = 7;
 
-    public ControlView(Player player) {
+    protected ControlView(Player player) {
         try {
             emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
         } catch (java.io.IOException | NullPointerException e){
@@ -186,7 +186,7 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Command Methods
      */
-    public void resetRegisterCards() {
+    protected void resetRegisterCards() {
         for (int i = 0; i < 5; i++) {
             if (player.getProgrammedCard(i) != null && player.getProgrammedCard(i).isLocked()) {
                 registerCardIcons[i].setCard(player.getProgrammedCard(i));
@@ -196,30 +196,30 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
     }
-    public void resetNewCardButtons() {
+    protected void resetNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
             PickNewCardButton btn = new PickNewCardButton();
             pickCardsView.add(btn);
         }
     }
-    public void newCardsToPick() {
+    protected void newCardsToPick() {
         newCardsToPick = player.getDealtCards();
         refreshNewCardButtons();
     }
-    public void setRegisterCardIconsChangeable() {
+    protected void setRegisterCardIconsChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
             if (icon.getCard() != null && !icon.getCard().isLocked()) {
                 icon.setChangeable(true);
             }
         }
     }
-    public void setRegisterCardIconsNotChangeable() {
+    protected void setRegisterCardIconsNotChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
             icon.setChangeable(false);
         }
     }
-    public void setTurnIndicator(int turn) {
+    protected void setTurnIndicator(int turn) {
         switch (turn) {
             case 0:
                 turnLabel1.setForeground(Color.WHITE);
@@ -265,13 +265,13 @@ public class ControlView extends JPanel implements ActionListener{
                 break;
         }
     }
-    public void setDoneButtonEnabled(boolean b) {
+    protected void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
     }
-    public void setNextTurnButtonEnabled(boolean b) {
+    protected void setNextTurnButtonEnabled(boolean b) {
         nextTurnButton.setEnabled(b);
     }
-    public void updateStatusView() {
+    protected void updateStatusView() {
         lifeTokensLabel.setText("LifeTokens: " + player.getLifeTokens());
         dmgTokensLabel.setText("DamageTokens: " + player.getDamageTokens());
         positionLabel.setText("PlayerPosition: " + player.getPosition());
@@ -280,7 +280,7 @@ public class ControlView extends JPanel implements ActionListener{
     /*
     Getters
      */
-    public ArrayList<RegisterCard> getProgrammedCards() {
+    protected ArrayList<RegisterCard> getProgrammedCards() {
         ArrayList<RegisterCard> temp = new ArrayList<>();
         for (RegisterCardIcon icon : registerCardIcons) {
             temp.add(icon.getCard());
