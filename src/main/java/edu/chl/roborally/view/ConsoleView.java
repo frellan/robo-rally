@@ -43,6 +43,7 @@ public class ConsoleView extends JPanel implements IEventHandler {
         scrollPane.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
         scrollPane.getHorizontalScrollBar().setBackground(Color.DARK_GRAY);
 
+
         this.add(scrollPane, BorderLayout.CENTER);
 
         this.setSize(314, 492);

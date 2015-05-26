@@ -24,8 +24,8 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JButton chooseNbrOfPlayers;
     private JButton startGameBtn;
     private JButton chooseMapButton;
-    private JButton plusButton;
-    private JButton minusButton;
+    private JLabel plusLabel;
+    private JLabel minusLabel;
     private JLabel players;
     private JLabel mapName;
     private JLabel mapDifficulty;
@@ -34,7 +34,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JPanel mapInfo;
     private JPanel nbrPanel;
 
-
+    private JList<String> mapList;
     private BufferedImage imageBG;
     private ArrayList<GameBoard> maps;
 
@@ -77,22 +77,24 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         msgLabel.setLocation(9,40);
 
         //Custom Spinner
-        plusButton = new JButton();
-        plusButton.setSize(50,30);
-        plusButton.addActionListener(this);
+        plusLabel = new JLabel();
+        plusLabel.setSize(30, 30);
+        plusLabel.setIcon(createIcon(this.getClass().getClassLoader().getResource("plus-4x.png")));
+        plusLabel.addMouseListener(this);
 
-        minusButton = new JButton();
-        minusButton.setSize(50,30);
-        minusButton.addActionListener(this);
+        minusLabel = new JLabel();
+        minusLabel.setSize(30, 30);
+        minusLabel.setIcon(createIcon(this.getClass().getClassLoader().getResource("minus-4x.png")));
+        minusLabel.addMouseListener(this);
 
         players = new StyledLabel(Integer.toString(playerIndex));
         players.setSize(50, 50);
-        players.setFont(new Font("", Font.BOLD, 50));
+        players.setFont(new Font("", Font.BOLD, 60));
 
-        nbrPanel.add(plusButton);
-        plusButton.setLocation(140,90);
-        nbrPanel.add(minusButton);
-        minusButton.setLocation(10,90);
+        nbrPanel.add(plusLabel);
+        plusLabel.setLocation(140, 93);
+        nbrPanel.add(minusLabel);
+        minusLabel.setLocation(30, 93);
         nbrPanel.add(players);
         players.setLocation(85,80);
 
@@ -126,7 +128,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             listModel.addElement(map.getName());
         }
 
-        JList<String> mapList = new JList<>(listModel);
+        mapList = new JList<>(listModel);
         mapList.setForeground(Color.WHITE);
         mapList.setBackground(Color.DARK_GRAY);
         mapList.addMouseListener(this);
@@ -228,32 +230,36 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
             EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {
             EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
-        } else if (e.getSource() == plusButton){
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+        if(e.getSource() == mapList) {
+            JList list = (JList) e.getSource();
+            if (e.getClickCount() == 1) {
+                mapIndex = list.locationToIndex(e.getPoint());
+                mapName.setText("MapName: " + maps.get(mapIndex).getName());
+                mapDifficulty.setText("Difficulty: " + maps.get(mapIndex).getDifficulty());
+                mapPlayers.setText("NbrOfRobots: " + maps.get(mapIndex).getNbrOfPlayers());
+                mapIcon.setIcon(createIcon(this.getClass().getClassLoader().getResource(maps.get(mapIndex).getMapIcon())));
+                mapInfo.repaint();
+            }
+        }else if (e.getSource() == plusLabel){
             if(!(playerIndex >= 4)){
                 playerIndex ++;
                 players.setText(Integer.toString(playerIndex));
                 nbrPanel.repaint();
             }
-        } else if (e.getSource() == minusButton){
+        } else if (e.getSource() == minusLabel){
             if(!(playerIndex <= 2)){
                 playerIndex --;
                 players.setText(Integer.toString(playerIndex));
                 nbrPanel.repaint();
             }
         }
-    }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        JList list = (JList) e.getSource();
-        if (e.getClickCount() == 1) {
-            mapIndex = list.locationToIndex(e.getPoint());
-            mapName.setText("MapName: " + maps.get(mapIndex).getName());
-            mapDifficulty.setText("Difficulty: " + maps.get(mapIndex).getDifficulty());
-            mapPlayers.setText("NbrOfRobots: " + maps.get(mapIndex).getNbrOfPlayers());
-            mapIcon.setIcon(createIcon(this.getClass().getClassLoader().getResource(maps.get(mapIndex).getMapIcon())));
-            mapInfo.repaint();
-        }
     }
 
     @Override
