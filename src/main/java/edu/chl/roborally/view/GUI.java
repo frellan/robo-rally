@@ -92,7 +92,7 @@ public class GUI implements IEventHandler {
     private void pickCards(Player player) {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
-                panel.getControlView().newCardsToPick(player);
+                panel.getControlView().newCardsToPick();
                 panel.getControlView().setRegisterCardIconsChangeable();
                 panel.getControlView().setDoneButtonEnabled(true);
             }

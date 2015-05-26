@@ -27,11 +27,14 @@ public class ControlView extends JPanel implements ActionListener{
     private Player player;
     private ImageIcon emptyNewCardIcon;
 
+    private RegisterCard exportedCard;
+
     private JPanel registerView;
     private JPanel turnIndicatorView;
     private JPanel pickCardsView;
     private JPanel statusView;
     private ArrayList<RegisterCard> newCardsToPick = new ArrayList<>();
+    private ArrayList<PickNewCardButton> newCardsToPickButtons = new ArrayList<>();
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
     private JLabel turnLabel1;
@@ -76,7 +79,7 @@ public class ControlView extends JPanel implements ActionListener{
         for (int i = 0; i < 5; i++) {
             final RegisterCardIcon icon = new RegisterCardIcon();
             registerCardIcons[i] = icon;
-            icon.setTransferHandler(new StringTransferHandler(null));
+            icon.setTransferHandler(new RegisterCardTransferHandler(null));
             icon.addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e) {
@@ -156,20 +159,22 @@ public class ControlView extends JPanel implements ActionListener{
         add(statusView).setLocation(668, 0);
     }
     private void refreshNewCardButtons() {
+        newCardsToPickButtons.clear();
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
             try {
                 RegisterCard card = newCardsToPick.get(index);
                 PickNewCardButton btn = new PickNewCardButton(card);
-                btn.setTransferHandler(new StringTransferHandler(newCardsToPick.get(index).toString()));
+                btn.setTransferHandler(new RegisterCardTransferHandler(newCardsToPick.get(index).toString()));
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
                     public void mouseDragged(MouseEvent e) {
-                        JButton button = (JButton) e.getSource();
-                        TransferHandler handle = button.getTransferHandler();
-                        handle.exportAsDrag(button, e, TransferHandler.COPY);
+                        JButton btn = (JButton) e.getSource();
+                        TransferHandler handle = btn.getTransferHandler();
+                        handle.exportAsDrag(btn, e, TransferHandler.COPY);
                     }
                 });
+                newCardsToPickButtons.add(btn);
                 pickCardsView.add(btn);
             } catch (IndexOutOfBoundsException e) {
                 PickNewCardButton btn = new PickNewCardButton();
@@ -198,7 +203,7 @@ public class ControlView extends JPanel implements ActionListener{
             pickCardsView.add(btn);
         }
     }
-    public void newCardsToPick(Player player) {
+    public void newCardsToPick() {
         newCardsToPick = player.getDealtCards();
         refreshNewCardButtons();
     }
@@ -289,14 +294,6 @@ public class ControlView extends JPanel implements ActionListener{
         }
         return true;
     }
-    private RegisterCard getMatchingCard(String value) {
-        for (RegisterCard card : newCardsToPick) {
-            if (card.toString().equals(value)) {
-                return card;
-            }
-        }
-        return null;
-    }
     private class PickNewCardButton extends JButton {
 
         private RegisterCard card;
@@ -330,12 +327,13 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
     }
-    private class StringTransferHandler extends TransferHandler {
+    private class RegisterCardTransferHandler extends TransferHandler {
 
         public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
+
         private String value;
 
-        public StringTransferHandler(String value) {
+        public RegisterCardTransferHandler(String value) {
             this.value = value;
         }
 
@@ -358,13 +356,20 @@ public class ControlView extends JPanel implements ActionListener{
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
             super.exportDone(source, data, action);
-            try {
-                ((RegisterCardIcon) source).removeCard();
-            } catch (ClassCastException e) {}
+            if (source.getClass() == PickNewCardButton.class) {
+                if (action != TransferHandler.NONE) {
+                    setEnabledPickedCard(((PickNewCardButton) source).card, false);
+                }
+            }
+            if (source.getClass() == RegisterCardIcon.class) {
+                if (action != TransferHandler.NONE) {
+                    ((RegisterCardIcon) source).removeCard();
+                }
+            }
         }
 
         /*
-        Import stuff
+        Transfer stuff
          */
         @Override
         public boolean canImport(TransferHandler.TransferSupport support) {
@@ -380,9 +385,13 @@ public class ControlView extends JPanel implements ActionListener{
                     if (value instanceof String) {
                         Component component = support.getComponent();
                         if (component instanceof RegisterCardIcon) {
-                            ((RegisterCardIcon) component).setCard(getMatchingCard((String) value));
-                            ((RegisterCardIcon) component).setTransferHandler
-                                    (new StringTransferHandler(((RegisterCardIcon) component).getCard().toString()));
+                            RegisterCardIcon icon = ((RegisterCardIcon) component);
+                            if (icon.getCard() != null) {
+                                setEnabledPickedCard(icon.getCard(), true);
+                            }
+                            icon.setCard(getMatchingCard((String) value));
+                            icon.setTransferHandler
+                                    (new RegisterCardTransferHandler(icon.getCard().toString()));
                             accept = true;
                         }
                     }
@@ -393,6 +402,24 @@ public class ControlView extends JPanel implements ActionListener{
             return accept;
         }
 
+        /*
+        Helper methods
+         */
+        private RegisterCard getMatchingCard(String value) {
+            for (RegisterCard card : newCardsToPick) {
+                if (card.toString().equals(value)) {
+                    return card;
+                }
+            }
+            return null;
+        }
+        private void setEnabledPickedCard(RegisterCard card, boolean b) {
+            for (PickNewCardButton btn : newCardsToPickButtons) {
+                if (btn.getText().equals(card.toString())) {
+                    btn.setEnabled(b);
+                }
+            }
+        }
     }
 
     @Override
