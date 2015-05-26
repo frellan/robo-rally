@@ -1,8 +1,6 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
-import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 
@@ -13,6 +11,7 @@ public class MoveOneCard extends RegisterCard{
 
     public MoveOneCard(int points, boolean isHidden) {
         super(points,isHidden, "Move One");
+        super.setAction(new MovePlayer());
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1_pick.png"));
