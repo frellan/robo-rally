@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.GameAction;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
