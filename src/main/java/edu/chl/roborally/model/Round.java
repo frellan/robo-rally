@@ -47,10 +47,10 @@ public class Round implements IEventHandler {
      */
     private void putBackPlayers() {
         for (Player p : players) {
-                if (!p.isKaput() && p.isDead()) {
-                    p.setStatus(Constants.Status.ALIVE);
-                    p.backToCheckpoint();
-                }
+            if (!p.isKaput() && p.isDead()) {
+                p.setStatus(Constants.Status.ALIVE);
+                p.backToCheckpoint();
+            }
         }
     }
     private void dealCards() {
