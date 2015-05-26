@@ -48,7 +48,14 @@ public class EventTram {
          */
         NEW_MODEL_CREATED,
 
-        RUN_GAME,
+        /**
+         * Fired when the user starts a game from the summary screen.
+         */
+        START_GAME,
+
+        /**
+         * Fired by game controller when the game has started.
+         */
         SHOW_GAMEPANEL,
 
         /**

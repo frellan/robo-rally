@@ -104,7 +104,7 @@ public class GameController extends Thread implements IEventHandler {
             case CREATE_MODEL:
                 this.createModel();
                 break;
-            case RUN_GAME:
+            case START_GAME:
                 EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null, null);
                 newRound = true;
                 this.runGame();
