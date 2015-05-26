@@ -34,19 +34,19 @@ public class GUI implements IEventHandler {
     /*
     Menu related methods
      */
-    public void showStartPanel() {
+    private void showStartPanel() {
         startPanel = new StartPanel();
         mainFrame.add(startPanel, BorderLayout.CENTER);
         mainFrame.revalidate();
     }
-    public void selectPlayers() {
+    private void selectPlayers() {
         selectPlayersPanel = new SelectPlayersPanel();
         mainFrame.remove(startPanel);
         mainFrame.add(selectPlayersPanel, BorderLayout.CENTER);
         mainFrame.revalidate();
         mainFrame.repaint();
     }
-    public void chooseMap(ArrayList<GameBoard> maps) {
+    private void chooseMap(ArrayList<GameBoard> maps) {
         selectMapPanel = new SelectMapPanel(maps);
         mainFrame.remove(selectPlayersPanel);
         mainFrame.add(selectMapPanel, BorderLayout.CENTER);

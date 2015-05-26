@@ -81,7 +81,7 @@ public class RoboRally implements IEventHandler{
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-    
+
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if(EventTram.Event.VICTORY == evt) {

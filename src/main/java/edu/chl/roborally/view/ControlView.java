@@ -389,7 +389,7 @@ public class ControlView extends JPanel implements ActionListener{
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (card != null) {
+            if (card != null && !picked) {
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
                 g.drawString(Integer.toString(card.getPoints()), 111, 15);
