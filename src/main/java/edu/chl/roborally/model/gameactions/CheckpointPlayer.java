@@ -5,15 +5,10 @@ import edu.chl.roborally.model.Player;
 /**
  * Created by Pertta on 15-05-13.
  */
-public class CheckpointPlayer extends GameAction {
-
-    public CheckpointPlayer(Player player) {
-        super(player);
-        action();
-    }
+public class CheckpointPlayer implements GameAction {
 
     @Override
-    void action() {
-        super.player.setCheckpoint(super.player.getPosition());
+    void action(Player p) {
+        p.setCheckpoint(super.player.getPosition());
     }
 }

@@ -6,14 +6,10 @@ import edu.chl.roborally.utilities.Position;
 /**
  * Created by Pertta on 15-05-12.
  */
-public class StopPlayer extends GameAction {
-
-    public StopPlayer(Player p) {
-        super(p);
-    }
+public class StopPlayer implements GameAction {
 
     @Override
-    void action() {
-        super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY()));
+    void action(Player p) {
+        p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()));
     }
 }

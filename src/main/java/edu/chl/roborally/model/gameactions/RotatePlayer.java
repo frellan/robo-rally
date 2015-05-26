@@ -7,19 +7,11 @@ import edu.chl.roborally.utilities.EventTram;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class RotatePlayer extends GameAction {
-
-    private Constants.Directions d;
-
-    public RotatePlayer(Player p, Constants.Directions d) {
-        super(p);
-        this.d = d;
-        action();
-    }
+public class RotatePlayer implements GameAction {
 
     @Override
-    public void action() {
-        switch(d) {
+    public void action(Player p) {
+        switch(p.getDirection()) {
 
             // Turn Right
             case EAST:
