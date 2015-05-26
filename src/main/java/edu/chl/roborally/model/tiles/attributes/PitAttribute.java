@@ -11,10 +11,11 @@ import java.awt.image.BufferedImage;
 /**
  * Created by axel on 2015-03-31.
  */
-public class PitAttribute implements Attribute {
+public class PitAttribute extends Attribute {
 
     private String name = "P";
 
+    @Override
     public void doAction(Player p){
          new KillPlayer(p);
     }
