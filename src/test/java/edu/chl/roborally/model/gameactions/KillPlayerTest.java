@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class KillPlayerTest {
 
     private Player player;
+    private GameAction action;
 
     @Before
     public void setUp() throws Exception {
@@ -22,7 +23,8 @@ public class KillPlayerTest {
     }
     @Test
     public void testKillPlayer() throws Exception {
-        new KillPlayer(player);
+        action = new KillPlayer();
+        action.doAction(player);
         assertTrue(player.getLifeTokens() == 2);
         assertTrue(player.getStatus() == Constants.Status.DEAD);
         assertTrue(player.getPosition().getX() == 3 && player.getPosition().getY() == 5);
