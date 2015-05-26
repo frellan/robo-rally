@@ -2,6 +2,7 @@ package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.Turn;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
@@ -13,20 +14,24 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Pertta on 15-05-12.
  */
-public class TurnConveyorAttribute implements Attribute {
+public class TurnConveyorAttribute extends Attribute {
 
     private Constants.Directions d;
 
     public TurnConveyorAttribute(Constants.Directions d) {
         this.d = d;
+        super.setAction(new MovePlayer(d));
     }
 
     @Override
-    public void doAction(Player player) {
-        new MovePlayer(player, d);
+    public void doAttribute(Player player) {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Moving and Rotating ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player .getName() , player.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "One Tile + Right" + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "One Tile + " + d +  "\n", null);
+
+        for (GameAction action : super.getActions()) {
+            action.doAction(player);
+        }
     }
 
     public String toString() {
