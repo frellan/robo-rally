@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.Position;
@@ -30,7 +31,9 @@ public class MoveTwoCardTest {
     @Test
     public void testDoAction() throws Exception {
         card = new MoveTwoCard(10,false);
-        card.doAction(player);
+        for (GameAction action : card.getActions()) {
+            action.doAction(player);
+        }
         assertTrue(player.getPosition().getY() == 4 && player.getPosition().getX() == 4);
 
     }
