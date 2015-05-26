@@ -294,7 +294,7 @@ public class ControlView extends JPanel implements ActionListener{
 
     /**
      * Sets if the done button should be enabled.
-     * @param b True if enabled, false if not.
+     * @param b True to enable, false to disable.
      */
     protected void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
@@ -302,7 +302,7 @@ public class ControlView extends JPanel implements ActionListener{
 
     /**
      * Sets if the next turn button should be enabled.
-     * @param b True if enabled, false if not.
+     * @param b True to enable, false to disable.
      */
     protected void setNextTurnButtonEnabled(boolean b) {
         nextTurnButton.setEnabled(b);

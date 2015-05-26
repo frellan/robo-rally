@@ -25,6 +25,10 @@ public class GUI implements IEventHandler {
     private JTabbedPane tabbedPane = new JTabbedPane();
     private int turnIndex = 1;
 
+    /**
+     * Creates the ground stones for the graphical interface of the game.
+     * Registers to listen to events coming from the control and model packages.
+     */
     public GUI() {
         mainFrame = new MainFrame();
         EventTram.getInstance().register(this);
@@ -34,11 +38,21 @@ public class GUI implements IEventHandler {
     /*
     Menu related methods
      */
+
+    /**
+     * Creates a start panel and shows it in the main window.
+     * This is essentially the main menu.
+     */
     private void showStartPanel() {
         startPanel = new StartPanel();
         mainFrame.add(startPanel, BorderLayout.CENTER);
         mainFrame.revalidate();
     }
+
+    /**
+     * Creates a panel to choose the number of players that is
+     * gonna play the game and shows it in the main window.
+     */
     private void selectPlayers() {
         selectPlayersPanel = new SelectPlayersPanel();
         mainFrame.remove(startPanel);
@@ -46,6 +60,13 @@ public class GUI implements IEventHandler {
         mainFrame.revalidate();
         mainFrame.repaint();
     }
+
+    /**
+     * Creates a panel to choose the map to play the game on.
+     * Passes on a list of all the maps available.
+     * That list is coming from the event that issued this method.
+     * @param maps A list of all available maps.
+     */
     private void chooseMap(ArrayList<GameBoard> maps) {
         selectMapPanel = new SelectMapPanel(maps);
         mainFrame.remove(selectPlayersPanel);
@@ -53,6 +74,10 @@ public class GUI implements IEventHandler {
         mainFrame.revalidate();
         mainFrame.repaint();
     }
+
+    /**
+     * Tells the map panel to show a summary of the game that is about to start.
+     */
     private void showSummary() {
         selectMapPanel.summary(model.getPlayers());
     }
@@ -60,16 +85,29 @@ public class GUI implements IEventHandler {
     /*
     Create game screens
      */
+
+    /**
+     * Creates the game panels for the game. One for each player in the game.
+     */
     private void createGamePanels() {
         for (Player player : model.getPlayers()) {
             gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
         }
     }
+
+    /**
+     * Adds the game panels to a tabbed pane to use in the upcoming game screen.
+     * One tab for every player in the game containing that players game panel.
+     */
     private void createTabbedPane() {
         for (GamePanel panel : gamePanels) {
             tabbedPane.addTab(panel.getPlayer().getName(),panel);
         }
     }
+
+    /**
+     * Shows the tabbed pane containing all the players game panels i the main window.
+     */
     private void showGamePanels() {
         mainFrame.remove(selectMapPanel);
         mainFrame.add(tabbedPane, BorderLayout.CENTER);
@@ -80,6 +118,10 @@ public class GUI implements IEventHandler {
     /*
     Game related methods
      */
+
+    /**
+     * Loops through the game panels and sets their components for a new round.
+     */
     private void setGamePanelsForNewRound() {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(0);
@@ -89,6 +131,12 @@ public class GUI implements IEventHandler {
         }
         turnIndex = 1;
     }
+
+    /**
+     * Loops through the game panels to find the panel that belong to the given player.
+     * When found it sets that panel to pick cards for the player.
+     * @param player The player to pick cards.
+     */
     private void newCardsForPlayer(Player player) {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
@@ -98,6 +146,10 @@ public class GUI implements IEventHandler {
             }
         }
     }
+
+    /**
+     * Loops through the game panels and sets their components for a new turn.
+     */
     private void setGamePanelsForNewTurn() {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(turnIndex);

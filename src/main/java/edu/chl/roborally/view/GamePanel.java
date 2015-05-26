@@ -26,7 +26,7 @@ public class GamePanel extends JPanel {
     /**
      * Creates the game panel which is unique for every player and contains the board,
      * the controls, the console and the status for a given player.
-     * @param board The board to be drawn inside the panel. Is unique for the game and is the same for all players.
+     * @param board The board to be drawn inside the panel. Is unique for the game and the same for all players.
      * @param players The list of players that are in the game. This is used to be able to draw them.
      * @param player The unique player to create components for.
      */
