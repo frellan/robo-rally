@@ -38,8 +38,6 @@ public class ConveyorAttribute extends Attribute {
             action.doAction(p);
             EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
         }
-
-        //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
     }
 
     public String toString() {
