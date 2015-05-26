@@ -21,17 +21,6 @@ public class RepairAttribute extends Attribute {
     }
 
     @Override
-    public void doAttribute(Player player) {
-
-        for (GameAction action : super.getActions()) {
-            action.doAction(player);
-        }
-
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Repairing ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() , player.getColor());
-    }
-
-    @Override
     public void draw(Graphics g, int x, int y) {
         BufferedImage temp = GlobalImageHolder.getInstance().getBoardTileImage().getSubimage(
                 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);

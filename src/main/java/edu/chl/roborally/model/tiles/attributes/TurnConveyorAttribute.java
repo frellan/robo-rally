@@ -23,17 +23,6 @@ public class TurnConveyorAttribute extends Attribute {
         super.setAction(new MovePlayer(d));
     }
 
-    @Override
-    public void doAttribute(Player player) {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Moving and Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player .getName() , player.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "One Tile + " + d +  "\n", null);
-
-        for (GameAction action : super.getActions()) {
-            action.doAction(player);
-        }
-    }
-
     public String toString() {
         return "TurnConveyor";
     }

@@ -35,7 +35,7 @@ public class ConveyorAttribute extends Attribute {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
 
         for (GameAction action : super.getActions()) {
-            action.doAction(p);
+            //action.doAction(p);
             EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
         }
     }

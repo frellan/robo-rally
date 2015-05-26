@@ -13,11 +13,6 @@ import java.awt.image.BufferedImage;
 public class BlankAttribute extends Attribute {
 
     @Override
-    public void doAttribute(Player player) {
-
-    }
-
-    @Override
     public void draw(Graphics g, int x, int y) {
         BufferedImage temp = GlobalImageHolder.getInstance().getBoardTileImage().getSubimage(
                 4*Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);

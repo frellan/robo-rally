@@ -6,6 +6,8 @@ import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 import edu.chl.roborally.utilities.Position;
+import javafx.geometry.Pos;
+import sun.jvm.hotspot.runtime.posix.POSIXSignals;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -28,6 +30,7 @@ public class Player {
     private RegisterCard[] programmedCards;
     private Constants.Status status;
     private int laserPower;
+    private Position beforePosition;
 
     public Player(int iD, Robot robot) {
         this.iD = iD;
@@ -47,6 +50,9 @@ public class Player {
 
     public String getName() {
         return robot.getName();
+    }
+    public Position getBeforePosition() {
+        return this.beforePosition;
     }
     public int getLifeTokens() {
         return lifeTokens;
@@ -201,6 +207,9 @@ public class Player {
     /*
     Setters
      */
+    public void setBeforePosition(Position p) {
+        this.beforePosition  = p;
+    }
     public void setPosition(Position p) {
         this.position = p;
     }

@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.tiles;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.utilities.Constants;
 import java.awt.*;
@@ -30,16 +31,24 @@ public class GameTile {
         beforeAttributes.add(attribute);
     }
 
-    public void getAction(Player player) {
-        for (Attribute attribute : this.attributes) {
-            attribute.doAttribute(player);
+    public ArrayList<GameAction> getActions() {
+        ArrayList<GameAction> actions = new ArrayList<>();
+        for (Attribute attribute : attributes) {
+            for (GameAction action : attribute.getActions()) {
+                actions.add(action);
+            }
         }
+        return actions;
     }
 
-    public void getBeforeAction(Player player) {
-        for (Attribute attribute : this.beforeAttributes) {
-            attribute.doAttribute(player);
+    public ArrayList<GameAction> getBeforeAction() {
+        ArrayList<GameAction> actions = new ArrayList<>();
+        for (Attribute attribute : beforeAttributes) {
+            for (GameAction action : attribute.getActions()) {
+                actions.add(action);
+            }
         }
+        return actions;
     }
 
     public void draw(Graphics g, int x, int y) {
