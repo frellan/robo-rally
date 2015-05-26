@@ -106,10 +106,11 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
 
     }
 
-    //Shows a summary after a map has been selected
+    /*
+    Class method, this method creates the summary panel
+     */
     protected void summary(ArrayList<Player> players) {
         this.removeAll();
-        int verticalGap = 10;
         JPanel sumPanel = new StyledJPanel(null);
         sumPanel.setSize(300,450);
 
@@ -147,15 +148,18 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
         this.revalidate();
     }
 
-    // Draw background
+    /*
+    Painters
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
     }
 
-    //EventHandlers
-
+    /*
+    EventHandlers
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseMapButton) {
@@ -198,7 +202,9 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
 
     }
 
-    //Method for imagecreating
+    /*
+    Image-method
+     */
     private ImageIcon createIcon(URL url){
         BufferedImage bi;
         try {

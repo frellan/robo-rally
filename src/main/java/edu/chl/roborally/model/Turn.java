@@ -3,6 +3,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.GameAction;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import java.awt.*;
 import java.util.ArrayList;
@@ -164,7 +165,10 @@ public class Turn{
     }
 
     private void printFireMsg(Player p, Player enemy) {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + " shoot in " + p.getDirection() + " and hit " + enemy.getName() + "\n"
-                + enemy.getName() + " now has " + enemy.getDamageTokens() + " damage tokens" + "\n", Color.RED);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, enemy.getName(), enemy.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," whom now has " + enemy.getDamageTokens() + " damage token(s)" + "\n"
+                                                                      + Constants.UNDER_LINE + "\n", Color.RED);
     }
 }

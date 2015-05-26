@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class StartPanel extends JPanel implements ActionListener{
 
-    //Components
     private JButton newGameButton;
     private JButton optionsButton;
     private JButton exitButton;
@@ -46,7 +45,9 @@ public class StartPanel extends JPanel implements ActionListener{
         buttonPanel.setLocation(400, 250);
     }
 
-    // Draw background
+    /*
+    Painters
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
