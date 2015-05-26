@@ -1,8 +1,6 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
-import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 
@@ -11,8 +9,8 @@ import javax.imageio.ImageIO;
  */
 public class MoveTwoCard extends RegisterCard{
 
-    public MoveTwoCard(int points, boolean isHidden) {
-        super(points,isHidden, "Move Two");
+    public MoveTwoCard(int points) {
+        super(points, "Move Two");
         super.setAction(new MovePlayer());
         super.setAction(new MovePlayer());
         try {

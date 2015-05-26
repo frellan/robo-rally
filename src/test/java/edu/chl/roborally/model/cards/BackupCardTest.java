@@ -30,7 +30,7 @@ public class BackupCardTest {
 
     @Test
     public void testDoAction() throws Exception {
-        card = new BackupCard(10,false);
+        card = new BackupCard(10);
         card.doAction(player);
         assertTrue(player.getPosition().getY() == 7 && player.getPosition().getX() == 4);
     }

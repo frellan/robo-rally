@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
  */
 public class BackupCard extends RegisterCard{
 
-    public BackupCard(int points, boolean isHidden) {
-        super(points, isHidden, "Back Up");
+    public BackupCard(int points) {
+        super(points, "Back Up");
         super.setAction(new BackUpPlayer());
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup.png"));

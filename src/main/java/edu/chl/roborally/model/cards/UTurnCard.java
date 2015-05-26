@@ -1,9 +1,7 @@
 package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
-import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 
@@ -12,8 +10,8 @@ import javax.imageio.ImageIO;
  */
 public class UTurnCard extends RegisterCard{
 
-    public UTurnCard(int points, boolean isHidden) {
-        super(points,isHidden, "U-Turn");
+    public UTurnCard(int points) {
+        super(points, "U-Turn");
         super.setAction(new RotatePlayer(Constants.Directions.EAST));
         super.setAction(new RotatePlayer(Constants.Directions.EAST));
         try {

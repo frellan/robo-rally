@@ -30,7 +30,7 @@ public class MoveTwoCardTest {
 
     @Test
     public void testDoAction() throws Exception {
-        card = new MoveTwoCard(10,false);
+        card = new MoveTwoCard(10);
         for (GameAction action : card.getActions()) {
             action.doAction(player);
         }

@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
  */
 public class MoveOneCard extends RegisterCard{
 
-    public MoveOneCard(int points, boolean isHidden) {
-        super(points,isHidden, "Move One");
+    public MoveOneCard(int points) {
+        super(points, "Move One");
         super.setAction(new MovePlayer());
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/move1.png"));
