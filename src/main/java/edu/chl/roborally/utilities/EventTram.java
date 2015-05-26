@@ -32,6 +32,8 @@ public class EventTram {
 
         /**
          * These events are used during setup to set number of players and map in model.
+         *
+         * The objects are the number of players and the map in question.
          */
         PLAYERS_SELECTED,
         MAP_SELECTED,
@@ -58,7 +60,7 @@ public class EventTram {
          * Round executes this event when a player should
          * pick cards.
          *
-         * The object is an the player that should pick cards.
+         * The object is the player that should pick cards.
          */
         PICK_CARDS,
 
