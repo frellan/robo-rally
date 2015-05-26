@@ -13,6 +13,7 @@ public class BackupCard extends RegisterCard{
 
     public BackupCard(int points, boolean isHidden) {
         super(points, isHidden, "Back Up");
+        super.doAction(new BackUpPlayer());
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/backup_pick.png"));
@@ -23,7 +24,6 @@ public class BackupCard extends RegisterCard{
     }
 
     public void doAction(Player p) {
-        new BackUpPlayer(p);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Backed Up ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
