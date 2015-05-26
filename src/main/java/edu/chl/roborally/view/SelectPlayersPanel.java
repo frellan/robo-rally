@@ -82,7 +82,7 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseNbrOfPlayers) {
-            EventTram.getInstance().publish(EventTram.Event.SET_ROBOTS, Integer.parseInt(players.getText()), null);
+            EventTram.getInstance().publish(EventTram.Event.PLAYERS_SELECTED, Integer.parseInt(players.getText()), null);
         }
     }
 

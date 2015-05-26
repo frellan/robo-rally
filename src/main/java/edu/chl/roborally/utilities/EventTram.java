@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class EventTram {
 
     private static EventTram tram;
+    private boolean trace = true;
+    private final ArrayList<IEventHandler> handlers = new ArrayList<>();
 
     public static EventTram getInstance(){
         if (tram == null){
@@ -24,23 +26,23 @@ public class EventTram {
         PRINT_MESSAGE,
 
         /**
-         * This event tells the GUI to show the menu
+         * This event tells the GUI to select the number of players.
          */
-        SHOW_MENU,
+        SELECT_PLAYERS,
 
         /**
-         * These events are used during setup to set name and map in model
+         * These events are used during setup to set number of players and map in model.
          */
-        SET_ROBOTS,
-        SET_MAP,
+        PLAYERS_SELECTED,
+        MAP_SELECTED,
 
         /**
-         * This event tries to create a new game
+         * This event tries to create a new model for the game.
          */
         CREATE_MODEL,
 
         /**
-         * This event is fired when a new model is created
+         * This event is fired when a new model is created.
          */
         NEW_MODEL_CREATED,
 
@@ -56,71 +58,83 @@ public class EventTram {
          * Round executes this event when a player should
          * pick cards.
          *
-         * The object is an Arraylist with ReisterCards
+         * The object is an the player that should pick cards.
          */
         PICK_CARDS,
 
         /**
          * The view fires this event when the player
-         * has choosen the cards to play.
+         * has picked the cards to play.
          *
-         * It return a arraylist with RegisterCards
+         * The object is the cards that was picked.
          */
         PLAYER_PICKED_CARDS,
 
         /**
-         * If a player chooses to powerdown, this event is fired
-         * and a player is sent with the event
+         * If a player chooses to power down, this event is fired.
+         *
+         * The object is the player that chose to power down.
          */
         POWER_DOWN,
 
         /**
-         * Is fired when the Model is ready for new turn.
+         * Is fired when the model is ready for a new turn.
          */
         READY_FOR_NEW_TURN,
 
         /**
-         * Is fired when the GameController starts a new turn.
+         * Is fired when the game controller issues a new turn.
          */
         NEW_TURN,
 
         /**
          * Is fired when a tile action for a player needs to happen.
+         *
+         * The object is the player in question.
          */
-        EXECUTE_TILE_ACTION,
         EXECUTE_TILE_ACTION_BEFORE,
+        EXECUTE_TILE_ACTION,
 
         /**
-         * Use this event to repaint the gameboard
+         * When this is fired the view repaints game board.
          */
         UPDATE_BOARD,
 
+        /**
+         * When this is fired the view updates the status view.
+         */
         UPDATE_STATUS,
 
         /**
-         * This event is fired by the attribute which holds the last checkpoint
-         * the event should include a player
+         * This event is fired by the attribute which holds the last checkpoint.
+         *
+         * The object is the player that has won the game.
          */
         VICTORY
     }
 
-    //for debugging
-    private boolean trace = true;
-
-    //List of listeners
-    private final ArrayList<IEventHandler> handlers = new ArrayList<>();
-
-    //Register a listener
+    /**
+     * Use this to register a class as a listener for events.
+     * @param handler The class that wants to listen.
+     */
     public void register(IEventHandler handler){
         handlers.add(handler);
     }
 
-    //Unregister a listener
+    /**
+     * Use this to unregister a class as a listener for events.
+     * @param handler The class that doesn't want to listen anymore.
+     */
     public void unRegister(IEventHandler handler){
         handlers.remove(handler);
     }
 
-    //Call this method to publish an event
+    /**
+     * Call this method to publish an event.
+     * @param evt The type of event to issue.
+     * @param data An object of any kind that may prove useful.
+     * @param data2 A second object of any kind that may prove useful.
+     */
     public void publish(Event evt, Object data, Object data2){
 
         if (trace && evt != Event.PRINT_MESSAGE){
@@ -132,7 +146,10 @@ public class EventTram {
         }
     }
 
-    //Set trace-value
+    /**
+     * If this is enabled all the events that occur will be printed to the terminal.
+     * @param b True to enable printing, false to disable.
+     */
     public void setTrace(boolean b){
         this.trace = b;
     }

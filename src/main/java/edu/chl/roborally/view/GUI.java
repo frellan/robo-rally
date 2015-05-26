@@ -164,10 +164,10 @@ public class GUI implements IEventHandler {
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
-            case SHOW_MENU:
+            case SELECT_PLAYERS:
                 selectPlayers();
                 break;
-            case SET_ROBOTS:
+            case PLAYERS_SELECTED:
                 chooseMap(MapFactory.getInstance().getMaps());
                 break;
             case NEW_MODEL_CREATED:

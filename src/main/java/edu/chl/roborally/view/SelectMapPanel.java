@@ -163,7 +163,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseMapButton) {
-            EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
+            EventTram.getInstance().publish(EventTram.Event.MAP_SELECTED, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {
             EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
         }
