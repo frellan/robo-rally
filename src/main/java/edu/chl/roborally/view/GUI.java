@@ -140,6 +140,10 @@ public class GUI implements IEventHandler {
                 for(GamePanel panel : gamePanels)
                     panel.getBoardView().update();
                 break;
+            case UPDATE_STATUS:
+                for(GamePanel panel : gamePanels)
+                    panel.getControlView().updateStatusView();
+                break;
         }
     }
 }

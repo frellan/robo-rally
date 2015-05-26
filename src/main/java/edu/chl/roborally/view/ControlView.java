@@ -271,6 +271,11 @@ public class ControlView extends JPanel implements ActionListener{
     public void setNextTurnButtonEnabled(boolean b) {
         nextTurnButton.setEnabled(b);
     }
+    public void updateStatusView() {
+        lifeTokensLabel.setText("LifeTokens: " + player.getLifeTokens());
+        dmgTokensLabel.setText("DamageTokens: " + player.getDamageTokens());
+        positionLabel.setText("PlayerPosition: " + player.getPosition());
+    }
 
     /*
     Getters
