@@ -2,6 +2,7 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.EventTram;
 import java.awt.*;
 import java.util.ArrayList;
@@ -68,6 +69,7 @@ public class Turn{
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYSING CARDS" + "\n", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
+            //ArrayList<GameAction> actions = card.getActions();
             if (player.isAlive()) {
                 card.doAction(player);
             }

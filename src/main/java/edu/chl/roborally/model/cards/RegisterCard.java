@@ -5,6 +5,7 @@ import edu.chl.roborally.model.Player;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by fredrikkindstrom on 26/03/15.
