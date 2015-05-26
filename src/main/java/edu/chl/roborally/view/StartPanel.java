@@ -24,17 +24,22 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
     private JButton chooseNbrOfPlayers;
     private JButton startGameBtn;
     private JButton chooseMapButton;
+    private JButton plusButton;
+    private JButton minusButton;
+    private JLabel players;
     private JLabel mapName;
     private JLabel mapDifficulty;
     private JLabel mapPlayers;
     private JLabel mapIcon;
-    private JSpinner chooser;
     private JPanel mapInfo;
+    private JPanel nbrPanel;
+
 
     private BufferedImage imageBG;
     private ArrayList<GameBoard> maps;
 
     private int mapIndex;
+    private int playerIndex = 2;
 
     public StartPanel(){
 
@@ -60,7 +65,7 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
 
     public void nbrOfPlayers() {
         this.removeAll();
-        JPanel nbrPanel= new StyledJPanel(null);
+        nbrPanel= new StyledJPanel(null);
         nbrPanel.setSize(200,200);
 
         StyledLabel welcomeLabel = new StyledLabel("WELCOME TO ROBO RALLY!!!");
@@ -71,20 +76,25 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         welcomeLabel.setLocation(16,10);
         msgLabel.setLocation(9,40);
 
-        //Spinner
-        chooser = new JSpinner(new SpinnerNumberModel(2, 2, 5, 1));
-        chooser.setBorder(BorderFactory.createEmptyBorder());
-        chooser.setSize(50,50);
+        //Custom Spinner
+        plusButton = new JButton();
+        plusButton.setSize(50,30);
+        plusButton.addActionListener(this);
 
-        //Customize the spinners textfield
-        Component tf = chooser.getEditor().getComponent(0);
-        tf.setBackground(Color.DARK_GRAY);
-        tf.setForeground(Color.WHITE);
-        tf.setFont(new Font("SansSerif", Font.BOLD, 50));
-        tf.setSize(50,40);
-        
-        nbrPanel.add(chooser);
-        chooser.setLocation(75,90);
+        minusButton = new JButton();
+        minusButton.setSize(50,30);
+        minusButton.addActionListener(this);
+
+        players = new StyledLabel(Integer.toString(playerIndex));
+        players.setSize(50, 50);
+        players.setFont(new Font("", Font.BOLD, 50));
+
+        nbrPanel.add(plusButton);
+        plusButton.setLocation(140,90);
+        nbrPanel.add(minusButton);
+        minusButton.setLocation(10,90);
+        nbrPanel.add(players);
+        players.setLocation(85,80);
 
         chooseNbrOfPlayers = new JButton("Next");
         chooseNbrOfPlayers.addActionListener(this);
@@ -117,8 +127,8 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         }
 
         JList<String> mapList = new JList<>(listModel);
-        mapList.setBackground(Color.DARK_GRAY);
         mapList.setForeground(Color.WHITE);
+        mapList.setBackground(Color.DARK_GRAY);
         mapList.addMouseListener(this);
 
         listHolder.add(mapList);
@@ -213,11 +223,23 @@ public class StartPanel extends JPanel implements ActionListener, MouseListener{
         } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
         } else if (e.getSource() == chooseNbrOfPlayers) {
-            EventTram.getInstance().publish(EventTram.Event.SET_ROBOTS, chooser.getValue(), null);
+            EventTram.getInstance().publish(EventTram.Event.SET_ROBOTS, Integer.parseInt(players.getText()), null);
         } else if (e.getSource() == chooseMapButton) {
             EventTram.getInstance().publish(EventTram.Event.SET_MAP, mapIndex, null);
         } else if (e.getSource() == startGameBtn) {
             EventTram.getInstance().publish(EventTram.Event.RUN_GAME, null, null);
+        } else if (e.getSource() == plusButton){
+            if(!(playerIndex >= 4)){
+                playerIndex ++;
+                players.setText(Integer.toString(playerIndex));
+                nbrPanel.repaint();
+            }
+        } else if (e.getSource() == minusButton){
+            if(!(playerIndex <= 2)){
+                playerIndex --;
+                players.setText(Integer.toString(playerIndex));
+                nbrPanel.repaint();
+            }
         }
     }
 
