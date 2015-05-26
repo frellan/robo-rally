@@ -15,6 +15,10 @@ import java.awt.image.BufferedImage;
 public class PitAttribute extends Attribute {
 
     private String name = "P";
+    
+    public PitAttribute() {
+        super.setAction(new KillPlayer());
+    }
 
     public PitAttribute() {
         super.setAction(new KillPlayer());
