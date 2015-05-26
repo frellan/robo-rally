@@ -32,13 +32,13 @@ public class GameTile {
 
     public void getAction(Player player) {
         for (Attribute attribute : this.attributes) {
-            attribute.doAction(player);
+            attribute.doAttribute(player);
         }
     }
 
     public void getBeforeAction(Player player) {
         for (Attribute attribute : this.beforeAttributes) {
-            attribute.doAction(player);
+            attribute.doAttribute(player);
         }
     }
 
