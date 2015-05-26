@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class RotatePlayerTest {
 
     private Player player;
+    private GameAction action;
 
     @Before
     public void setUp() throws Exception {
@@ -23,32 +24,38 @@ public class RotatePlayerTest {
     public void testAction() throws Exception {
         //Rotate Player from East to North
         player.setDirection(Constants.Directions.EAST);
-        new RotatePlayer(player, Constants.Directions.WEST);
+        action = new RotatePlayer(Constants.Directions.WEST);
+        action.doAction(player);
         System.out.println("Player direction " + player.getDirection());
         assertTrue(player.getDirection() == Constants.Directions.NORTH);
 
         //Rotate Player from North to West
-        new RotatePlayer(player, Constants.Directions.WEST);
+        action = new RotatePlayer(Constants.Directions.WEST);
+        action.doAction(player);
         System.out.println("Player direction " + player.getDirection());
         assertTrue(player.getDirection() == Constants.Directions.WEST);
 
         //Rotate Player from West to South
-        new RotatePlayer(player, Constants.Directions.WEST);
+        action = new RotatePlayer(Constants.Directions.WEST);
+        action.doAction(player);
         System.out.println("Player direction " + player.getDirection());
         assertTrue(player.getDirection() == Constants.Directions.SOUTH);
 
         //Rotate Player from South to East
-        new RotatePlayer(player, Constants.Directions.WEST);
+        action = new RotatePlayer(Constants.Directions.WEST);
+        action.doAction(player);
         System.out.println("Player direction " + player.getDirection());
         assertTrue(player.getDirection() == Constants.Directions.EAST);
 
         //Rotate Player from East to South
-        new RotatePlayer(player, Constants.Directions.EAST);
+        action = new RotatePlayer(Constants.Directions.EAST);
+        action.doAction(player);
         System.out.println("Player direction " + player.getDirection());
         assertTrue(player.getDirection() == Constants.Directions.SOUTH);
 
         //Rotate Player from South to West
-        new RotatePlayer(player, Constants.Directions.EAST);
+        action = new RotatePlayer(Constants.Directions.EAST);
+        action.doAction(player);
         System.out.println("Player direction " + player.getDirection());
         assertTrue(player.getDirection() == Constants.Directions.WEST);
 
