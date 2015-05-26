@@ -164,9 +164,15 @@ public class Turn{
         }
     }
 
+    /**
+     * Prints fire message by sending events to the console
+     *
+     * @param p Player, the shooter
+     * @param enemy Enemy, the one getting shot at
+     */
     private void printFireMsg(Player p, Player enemy) {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, enemy.getName(), enemy.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," whom now has " + enemy.getDamageTokens() + " damage token(s)" + "\n"
                                                                       + Constants.UNDER_LINE + "\n", Color.RED);
