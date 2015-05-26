@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.KillPlayer;
@@ -14,10 +15,15 @@ import java.awt.image.BufferedImage;
 public class PitAttribute extends Attribute {
 
     private String name = "P";
+    
+    public PitAttribute() {
+        super.setAction(new KillPlayer());
+    }
 
-    @Override
-    public void doAction(Player p){
-         new KillPlayer(p);
+    public void doAttribute(Player p){
+         for (GameAction action : super.getActions()) {
+             action.doAction(p);
+         }
     }
 
     public String toString() {

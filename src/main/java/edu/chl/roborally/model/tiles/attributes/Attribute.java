@@ -32,7 +32,6 @@ abstract class Attribute {
      * Commands
      */
     public abstract void doAttribute(Player player);
-    public abstract String toString();
     public abstract void draw(Graphics g, int x, int y);
 
 
