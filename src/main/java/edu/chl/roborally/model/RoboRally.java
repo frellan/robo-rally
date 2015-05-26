@@ -81,17 +81,7 @@ public class RoboRally implements IEventHandler{
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-    public ArrayList<String> getPlayerNames() {
-        ArrayList<String> names = new ArrayList<>();
-        for (Player p : players) {
-            names.add(p.getName());
-        }
-        return names;
-    }
-
-    /*
-    Events
-     */
+    
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if(EventTram.Event.VICTORY == evt) {

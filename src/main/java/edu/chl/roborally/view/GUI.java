@@ -89,7 +89,7 @@ public class GUI implements IEventHandler {
         }
         turnIndex = 1;
     }
-    private void pickCards(Player player) {
+    private void newCardsForPlayer(Player player) {
         for (GamePanel panel : gamePanels) {
             if (panel.getPlayer().getiD() == player.getiD()) {
                 panel.getControlView().newCardsToPick();
@@ -131,7 +131,7 @@ public class GUI implements IEventHandler {
                 setGamePanelsForNewRound();
                 break;
             case PICK_CARDS:
-                pickCards((Player) o);
+                newCardsForPlayer((Player) o);
                 break;
             case NEW_TURN:
                 setGamePanelsForNewTurn();
