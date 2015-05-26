@@ -8,24 +8,11 @@ import edu.chl.roborally.utilities.Position;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class MovePlayer extends GameAction {
-
-    private Constants.Directions d;
-
-    public MovePlayer(Player p, Constants.Directions d) {
-        super(p);
-        this.d = d;
-        action();
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
-    }
-
-    public MovePlayer(Player p) {
-        this(p, p.getDirection());
-    }
+public class MovePlayer implements GameAction {
 
     @Override
-    public void action() {
-        switch (d) {
+    public void action(Player p) {
+        switch (p.getDirection()) {
             case NORTH:
                 super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
                 break;
@@ -63,5 +50,6 @@ public class MovePlayer extends GameAction {
                 super.player.setPosition(new Position(super.player.getPosition().getX() - 1, super.player.getPosition().getY()));
                 break;
         }
+        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }

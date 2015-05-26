@@ -5,16 +5,10 @@ import edu.chl.roborally.model.Player;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class KillPlayer extends GameAction{
-
-    public KillPlayer(Player p) {
-        super(p);
-        action();
-    }
-
+public class KillPlayer implements GameAction{
 
     @Override
-    public void action() {
-        super.player.kill();
+    public void action(Player p) {
+        p.kill();
     }
 }
