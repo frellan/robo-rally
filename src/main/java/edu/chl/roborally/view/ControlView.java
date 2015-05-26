@@ -31,7 +31,7 @@ public class ControlView extends JPanel implements ActionListener{
     private JPanel turnIndicatorView;
     private JPanel pickCardsView;
     private JPanel statusView;
-    private RegisterCard[] newCardsToPick = new RegisterCard[9];
+    private ArrayList<RegisterCard> newCardsToPick = new ArrayList<>();
     private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
     private JLabel turnLabel1;
@@ -158,11 +158,10 @@ public class ControlView extends JPanel implements ActionListener{
     private void refreshNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
-            if (newCardsToPick[index] != null) {
-                RegisterCard card = newCardsToPick[index];
+            try {
+                RegisterCard card = newCardsToPick.get(index);
                 PickNewCardButton btn = new PickNewCardButton(card);
-                pickCardsView.add(btn);
-                btn.setTransferHandler(new StringTransferHandler(newCardsToPick[index].toString()));
+                btn.setTransferHandler(new StringTransferHandler(newCardsToPick.get(index).toString()));
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
                     public void mouseDragged(MouseEvent e) {
@@ -171,7 +170,8 @@ public class ControlView extends JPanel implements ActionListener{
                         handle.exportAsDrag(button, e, TransferHandler.COPY);
                     }
                 });
-            } else {
+                pickCardsView.add(btn);
+            } catch (IndexOutOfBoundsException e) {
                 PickNewCardButton btn = new PickNewCardButton();
                 pickCardsView.add(btn);
             }
@@ -199,7 +199,7 @@ public class ControlView extends JPanel implements ActionListener{
         }
     }
     public void newCardsToPick(Player player) {
-        newCardsToPick = convertToArray(player.getDealtCards());
+        newCardsToPick = player.getDealtCards();
         refreshNewCardButtons();
     }
     public void setRegisterCardIconsChangeable() {
@@ -288,17 +288,6 @@ public class ControlView extends JPanel implements ActionListener{
             }
         }
         return true;
-    }
-    private RegisterCard[] convertToArray(ArrayList<RegisterCard> input) {
-        RegisterCard[] temp = new RegisterCard[9];
-        for (int i = 0; i < 9; i++) {
-            try {
-                temp[i] = input.get(i);
-            } catch (IndexOutOfBoundsException e) {
-                temp[i] = null;
-            }
-        }
-        return temp;
     }
     private RegisterCard getMatchingCard(String value) {
         for (RegisterCard card : newCardsToPick) {
