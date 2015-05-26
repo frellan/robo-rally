@@ -8,7 +8,7 @@ import edu.chl.roborally.model.Player;
 public class CheckpointPlayer implements GameAction {
 
     @Override
-    void action(Player p) {
-        p.setCheckpoint(super.player.getPosition());
+    public void action(Player p) {
+        p.setCheckpoint(p.getPosition());
     }
 }
