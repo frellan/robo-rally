@@ -28,7 +28,7 @@ public class ConveyorAttribute extends Attribute {
             super.setAction(new MovePlayer(d));
         }
     }
-    
+
     public void doAttribute(Player p){
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());

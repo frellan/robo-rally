@@ -9,15 +9,6 @@ import edu.chl.roborally.utilities.Position;
  * Created by henriknilson on 31/03/15.
  */
 public class MovePlayer implements GameAction {
-    private Constants.Directions direction;
-
-    public MovePlayer() {
-        this.direction = null;
-    }
-
-    public MovePlayer(Constants.Directions direction) {
-        this.direction = direction;
-    }
 
     private Constants.Directions direction;
 
