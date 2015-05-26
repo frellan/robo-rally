@@ -5,6 +5,14 @@ import edu.chl.roborally.model.Player;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public interface GameAction {
-    void action(Player p);
+public abstract class GameAction {
+
+    protected Player player;
+
+    public GameAction(Player p) {
+        this.player = p;
+    }
+
+    abstract void action();
+
 }

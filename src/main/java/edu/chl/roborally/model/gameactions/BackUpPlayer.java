@@ -1,26 +1,40 @@
 package edu.chl.roborally.model.gameactions;
 
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
 
 /**
  * Created by henriknilson on 21/04/15.
  */
-public class BackUpPlayer implements GameAction {
+public class BackUpPlayer extends GameAction {
+
+    private Constants.Directions d;
+
+    public BackUpPlayer(Player p, Constants.Directions d) {
+        super(p);
+        this.d = d;
+        action();
+    }
+
+    public BackUpPlayer(Player p) {
+        this(p, p.getDirection());
+    }
 
     @Override
-    public void action(Player p) {
-        switch (p.getDirection()) {
+    public void action() {
+        switch (d) {
             case NORTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() + 1));
                 break;
             case SOUTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
+                super.player.setPosition(new Position(super.player.getPosition().getX(), super.player.getPosition().getY() - 1));
             case EAST:
-                p.setPosition(new Position(p.getPosition().getX()-1, p.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX()-1, super.player.getPosition().getY()));
                 break;
             case WEST:
-                p.setPosition(new Position(p.getPosition().getX()+1, p.getPosition().getY()));
+                super.player.setPosition(new Position(super.player.getPosition().getX()+1, super.player.getPosition().getY()));
         }
     }
 }

@@ -1,7 +1,8 @@
 package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.gameactions.GameAction;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public abstract class RegisterCard {
     protected BufferedImage mainImage;
     protected BufferedImage pickImage;
     protected BufferedImage pickImageRollover;
-    private ArrayList<GameAction> actions;
 
     public RegisterCard(int points, boolean isHidden, String name ) {
         this.points = points;
@@ -30,8 +30,7 @@ public abstract class RegisterCard {
     /*
     Commands
      */
-    public abstract void doAction();
-    public abstract ArrayList<GameAction> getActions();
+    public abstract void doAction(Player p);
     public String toString() {
         return name + " (" + points + ")";
     }
@@ -64,9 +63,6 @@ public abstract class RegisterCard {
     /*
     Setters
      */
-    protected void setAction(GameAction action) {
-        actions.add(action);
-    }
     public void setLocked(boolean b) {
         isLocked = b;
     }

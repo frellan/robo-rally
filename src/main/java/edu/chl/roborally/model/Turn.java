@@ -69,7 +69,7 @@ public class Turn{
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYSING CARDS" + "\n", null);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
-            ArrayList<GameAction> actions = card.getActions();
+            //ArrayList<GameAction> actions = card.getActions();
             if (player.isAlive()) {
                 card.doAction(player);
             }
