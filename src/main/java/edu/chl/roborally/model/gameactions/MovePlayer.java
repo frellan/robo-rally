@@ -11,7 +11,7 @@ import edu.chl.roborally.utilities.Position;
 public class MovePlayer implements GameAction {
 
     @Override
-    public void action(Player p) {
+    public void doAction(Player p) {
         switch (p.getDirection()) {
             case NORTH:
                 p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
@@ -50,6 +50,11 @@ public class MovePlayer implements GameAction {
                 p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
         }
+
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Moving ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
+
         EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }

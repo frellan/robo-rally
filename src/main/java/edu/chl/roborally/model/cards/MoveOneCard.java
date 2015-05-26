@@ -21,12 +21,4 @@ public class MoveOneCard extends RegisterCard{
             System.out.println("Move one card images could not be read");
         }
     }
-
-    public void doAction(Player p) {
-        new MovePlayer(p);
-
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Moving ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
-    }
 }
