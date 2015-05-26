@@ -16,19 +16,16 @@ import java.awt.image.BufferedImage;
 public class ConveyorAttribute extends Attribute {
 
     private Constants.Directions d;
-    private int speed;
 
     public ConveyorAttribute(Constants.Directions d, int speed){
         this.d = d;
-        this.speed = speed;
 
         if (speed == 2) {
             //TODO If player is outside conveyer don't move two steps!
-            super.setAction(new MovePlayer(d), new MovePlayer(d));
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " Two Tiles" + "\n", null);
+            super.setAction(new MovePlayer(d));
+            super.setAction(new MovePlayer(d));
         } else {
             super.setAction(new MovePlayer(d));
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
         }
     }
 
@@ -39,6 +36,7 @@ public class ConveyorAttribute extends Attribute {
 
         for (GameAction action : super.getActions()) {
             action.doAction(p);
+            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
         }
 
         //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly

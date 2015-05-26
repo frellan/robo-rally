@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.gameactions.StopPlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
@@ -11,18 +12,21 @@ import java.awt.image.BufferedImage;
 /**
  * Created by axel on 2015-03-31.
  */
-public class WallAttribute implements Attribute {
+public class WallAttribute extends Attribute {
 
     private Constants.Directions d;
     private String name = "W";
 
     public WallAttribute(Constants.Directions d){
         this.d = d;
+        super.setAction(new StopPlayer());
     }
 
-    public void doAction(Player p) {
+    public void doAttribute(Player p) {
         if (p.getDirection() == this.d) {
-            new StopPlayer(p);
+            for (GameAction action : super.getActions()) {
+                action.doAction(p);
+            }
         } else {
             System.out.println("No wall ahead");
         }
