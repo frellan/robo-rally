@@ -18,7 +18,7 @@ public abstract class RegisterCard {
     protected BufferedImage mainImage;
     protected BufferedImage pickImage;
     protected BufferedImage pickImageRollover;
-    private ArrayList<GameAction> actions;
+    private ArrayList<GameAction> actions = new ArrayList<>();
 
     public RegisterCard(int points, boolean isHidden, String name ) {
         this.points = points;
@@ -30,7 +30,6 @@ public abstract class RegisterCard {
     /*
     Commands
      */
-    public abstract void doAction(Player p);
     public String toString() {
         return name + " (" + points + ")";
     }
