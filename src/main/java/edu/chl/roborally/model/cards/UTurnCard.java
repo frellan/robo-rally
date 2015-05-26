@@ -14,6 +14,8 @@ public class UTurnCard extends RegisterCard{
 
     public UTurnCard(int points, boolean isHidden) {
         super(points,isHidden, "U-Turn");
+        super.setAction(new RotatePlayer(Constants.Directions.EAST));
+        super.setAction(new RotatePlayer(Constants.Directions.EAST));
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/u_turn.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/u_turn_pick.png"));
@@ -21,14 +23,5 @@ public class UTurnCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }
-    }
-
-    public void doAction(Player p) {
-        new RotatePlayer(p, Constants.Directions.EAST);
-        new RotatePlayer(p, Constants.Directions.EAST);
-
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " made a U-Turn" + "\n", null);
     }
 }
