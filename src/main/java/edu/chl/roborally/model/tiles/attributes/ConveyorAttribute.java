@@ -29,19 +29,6 @@ public class ConveyorAttribute extends Attribute {
         }
     }
 
-    @Override
-    public void doAttribute(Player p){
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-
-        for (GameAction action : super.getActions()) {
-            action.doAction(p);
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
-        }
-
-        //TODO Check if oncoming tile is a ConveyerRotateTile and rotate accordingly
-    }
-
     public String toString() {
         return "Conveyor";
     }

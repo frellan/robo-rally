@@ -5,9 +5,11 @@ import edu.chl.roborally.model.gameactions.StopPlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.utilities.GlobalImageHolder;
+import edu.chl.roborally.utilities.WallException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-03-31.
@@ -20,16 +22,6 @@ public class WallAttribute extends Attribute {
     public WallAttribute(Constants.Directions d){
         this.d = d;
         super.setAction(new StopPlayer());
-    }
-
-    public void doAttribute(Player p) {
-        if (p.getDirection() == this.d) {
-            for (GameAction action : super.getActions()) {
-                action.doAction(p);
-            }
-        } else {
-            System.out.println("No wall ahead");
-        }
     }
 
     public String toString() {

@@ -29,6 +29,11 @@ public class Position {
         return this.y;
     }
 
+
+    public Position clone() {
+        return new Position(x,y);
+    }
+
     @Override
     public int hashCode() {
         return 23456789 * this.x + 56789123 * this.y;

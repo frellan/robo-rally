@@ -1,10 +1,8 @@
 package edu.chl.roborally.model.maps;
 
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.IEventHandler;
-import edu.chl.roborally.utilities.Position;
+import edu.chl.roborally.model.gameactions.GameAction;
+import edu.chl.roborally.utilities.*;
 import edu.chl.roborally.model.tiles.*;
 
 import javax.imageio.ImageIO;
@@ -72,21 +70,38 @@ public abstract class GameBoard implements IEventHandler{
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {
             Player player = (Player) o;
+            player.setBeforePosition(player.getPosition());
             try {
-                getTile(player.getPosition()).getAction(player);
+                ArrayList<GameAction> actions = getTile(player.getPosition()).getActions();
+                for (GameAction action : actions) {
+                    action.doAction(player);
+                }
             } catch (ArrayIndexOutOfBoundsException e) {
                 // If player is out of bounds we kill him
                 System.out.println("Player fell of board and died");
                 player.kill();
+            } catch (WallException e) {
+                player.setPosition(player.getBeforePosition());
+                System.out.println(e + " In tile action");
             }
         } else if (EventTram.Event.EXECUTE_TILE_ACTION_BEFORE == evt) {
             Player player = (Player) o;
-            try {
-                getTile(player.getPosition()).getBeforeAction(player);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                // If player is out of bounds we kill him
-                System.out.println("Player fell of board and died");
-                player.kill();
+            System.out.println(player.getName() + " has before pos: " + player.getBeforePosition() + " should be equla to curr pos " + player.getPosition());
+            ArrayList<GameAction> actions = getTile(player.getPosition()).getBeforeAction();
+            for (GameAction action : actions) {
+                try {
+                    action.doAction(player);
+                    System.out.println(player.getName() + " has now moved to pos: " + player.getPosition());
+                } catch(ArrayIndexOutOfBoundsException e){
+                    // If player is out of bounds we kill him
+                    System.out.println("Player fell of board and died");
+                    player.kill();
+                } catch(WallException e){
+
+                    player.setPosition(player.getBeforePosition());
+
+                    System.out.println(player.getName() + " Hit wall and moved back to  " + player.getBeforePosition() + " now pos should be equal " + player.getPosition());
+                }
             }
         }
     }

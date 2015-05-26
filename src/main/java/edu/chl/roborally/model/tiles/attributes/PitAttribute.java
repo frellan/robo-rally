@@ -19,12 +19,7 @@ public class PitAttribute extends Attribute {
     public PitAttribute() {
         super.setAction(new KillPlayer());
     }
-
-    @Override
-    public void doAction(Player p){
-         new KillPlayer(p);
-    }
-
+    
     public String toString() {
         return name;
     }

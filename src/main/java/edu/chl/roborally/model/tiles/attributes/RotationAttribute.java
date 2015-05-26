@@ -22,21 +22,6 @@ public class RotationAttribute extends Attribute {
         this.d = d;
         super.setAction(new RotatePlayer(d));
     }
-
-    public void doAttribute(Player p){
-
-        for (GameAction action : super.getActions()) {
-            action.doAction(p);
-        }
-
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        if(d == Constants.Directions.WEST)
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Left" + "\n", null);
-        if(d == Constants.Directions.EAST)
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Right" + "\n", null);
-    }
-
     public String toString() {
         return name;
     }

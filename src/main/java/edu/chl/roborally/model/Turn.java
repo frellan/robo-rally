@@ -5,6 +5,8 @@ import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.WallException;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +22,7 @@ public class Turn{
     private ArrayList<Player> players;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
+    private int executeActionIndex;
 
     /**
     * The index of the turn, given by round
@@ -75,16 +78,28 @@ public class Turn{
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": Moving ", null);
                 for (GameAction action : actions) {
-                    action.doAction(player);
-                    for (Player otherPlayer : players) {
-                        if (player.getPosition().equals(otherPlayer.getPosition()) && !player.equals(otherPlayer)) {
-                            GameAction pushAction = new MovePlayer(player.getDirection());
-                            pushAction.doAction(otherPlayer);
-                            System.out.println(player.getName() + " pushed " + otherPlayer.getName());
-                        }
-                    }
+                    executeActionIndex = 1;
+                    executeAction(player,action);
                 }
             }
+        }
+    }
+
+    private void executeAction(Player player, GameAction action) {
+        player.setBeforePosition(player.getPosition().clone());
+        try {
+            action.doAction(player);
+            for (Player otherPlayer : players) {
+                if (player.getPosition().equals(otherPlayer.getPosition()) && !player.equals(otherPlayer) && executeActionIndex < players.size()) {
+                    executeActionIndex++;
+                    GameAction pushAction = new MovePlayer(player.getDirection());
+                    executeAction(otherPlayer, pushAction);
+                    EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,otherPlayer,null);
+                }
+            }
+        } catch (WallException e) {
+            player.setPosition(player.getBeforePosition().clone());
+            System.out.println(e + " In turn");
         }
     }
 
