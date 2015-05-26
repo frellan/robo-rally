@@ -18,6 +18,8 @@ public class GUI implements IEventHandler {
 
     private JFrame mainFrame;
     private StartPanel startPanel;
+    private SelectMapPanel selectMapPanel;
+    private SelectPlayersPanel selectPlayersPanel;
     private RoboRally model;
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
     private JTabbedPane tabbedPane = new JTabbedPane();
@@ -38,13 +40,21 @@ public class GUI implements IEventHandler {
         mainFrame.revalidate();
     }
     public void selectPlayers() {
-        startPanel.nbrOfPlayers();
+        selectPlayersPanel = new SelectPlayersPanel();
+        mainFrame.remove(startPanel);
+        mainFrame.add(selectPlayersPanel, BorderLayout.CENTER);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
     public void chooseMap(ArrayList<GameBoard> maps) {
-        startPanel.chooseMap(maps);
+        selectMapPanel = new SelectMapPanel(maps);
+        mainFrame.remove(selectPlayersPanel);
+        mainFrame.add(selectMapPanel, BorderLayout.CENTER);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
     private void showSummary() {
-        startPanel.summary(model.getPlayerNames());
+        selectMapPanel.summary(model.getPlayerNames());
     }
 
     /*
@@ -61,7 +71,7 @@ public class GUI implements IEventHandler {
         }
     }
     private void showGamePanels() {
-        mainFrame.remove(startPanel);
+        mainFrame.remove(selectMapPanel);
         mainFrame.add(tabbedPane, BorderLayout.CENTER);
         mainFrame.revalidate();
         mainFrame.repaint();
