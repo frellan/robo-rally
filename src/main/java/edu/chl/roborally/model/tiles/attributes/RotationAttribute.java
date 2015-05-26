@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.tiles.attributes;
 
+import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
@@ -12,17 +13,22 @@ import java.awt.image.BufferedImage;
 /**
  * Created by axel on 2015-03-30.
  */
-public class RotationAttribute implements Attribute {
+public class RotationAttribute extends Attribute {
 
     private Constants.Directions d;
     private String name = "R";
 
     public RotationAttribute(Constants.Directions d){
         this.d = d;
+        super.setAction(new RotatePlayer(d));
     }
 
-    public void doAction(Player p){
-        new RotatePlayer(p,d);
+    public void doAttribute(Player p){
+
+        for (GameAction action : super.getActions()) {
+            action.doAction(p);
+        }
+
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
         if(d == Constants.Directions.WEST)
