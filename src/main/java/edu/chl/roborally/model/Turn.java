@@ -115,33 +115,32 @@ public class Turn{
                             printFireMsg(p, enemy);
                         }
                     }
-                }
-                break;
-            case SOUTH:
-                //If x is equal and y is smaller
-                for (Player enemy : players) {
-                    if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                        enemy.takeDamage(playerLaserPower);
-                        printFireMsg(p, enemy);
+                    break;
+                case SOUTH:
+                    //If x is equal and y is smaller
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
+                            enemy.takeDamage(playerLaserPower);
+                            printFireMsg(p, enemy);
+                        }
                     }
-                }
-                break;
-            case EAST:
-                //If y is equal and x is bigger
-                for (Player enemy : players) {
-                    if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                        enemy.takeDamage(playerLaserPower);
-                        printFireMsg(p, enemy);
+                    break;
+                case EAST:
+                    //If y is equal and x is bigger
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
+                            enemy.takeDamage(playerLaserPower);
+                            printFireMsg(p, enemy);
+                        }
                     }
-                }
-                break;
-            case WEST:
-                //If y is equal and x is smaller
-                for (Player enemy : players) {
-                    if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                        enemy.takeDamage(playerLaserPower);
-                        printFireMsg(p, enemy);
-                    }
+                    break;
+                case WEST:
+                    //If y is equal and x is smaller
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
+                            enemy.takeDamage(playerLaserPower);
+                            printFireMsg(p, enemy);
+                        }
                     break;
                 }
             }
