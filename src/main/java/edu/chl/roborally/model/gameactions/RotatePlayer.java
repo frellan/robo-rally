@@ -15,35 +15,35 @@ public class RotatePlayer implements GameAction {
 
             // Turn Right
             case EAST:
-                switch (super.player.getDirection()) {
+                switch (p.getDirection()) {
                     case NORTH:
-                        super.player.setDirection(Constants.Directions.EAST);
+                        p.setDirection(Constants.Directions.EAST);
                         break;
                     case EAST:
-                        super.player.setDirection(Constants.Directions.SOUTH);
+                        p.setDirection(Constants.Directions.SOUTH);
                         break;
                     case SOUTH:
-                        super.player.setDirection(Constants.Directions.WEST);
+                        p.setDirection(Constants.Directions.WEST);
                         break;
                     case WEST:
-                        super.player.setDirection(Constants.Directions.NORTH);
+                        p.setDirection(Constants.Directions.NORTH);
                 }
                 break;
 
             // Turn Left
             case WEST:
-                switch (super.player.getDirection()) {
+                switch (p.getDirection()) {
                     case NORTH:
-                        super.player.setDirection(Constants.Directions.WEST);
+                        p.setDirection(Constants.Directions.WEST);
                         break;
                     case WEST:
-                        super.player.setDirection(Constants.Directions.SOUTH);
+                        p.setDirection(Constants.Directions.SOUTH);
                         break;
                     case SOUTH:
-                        super.player.setDirection(Constants.Directions.EAST);
+                        p.setDirection(Constants.Directions.EAST);
                         break;
                     case EAST:
-                        super.player.setDirection(Constants.Directions.NORTH);
+                        p.setDirection(Constants.Directions.NORTH);
                         break;
                 }
                 break;
