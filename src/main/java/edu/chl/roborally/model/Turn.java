@@ -71,7 +71,10 @@ public class Turn{
             Player player = activeCardPlayer.get(card);
             //ArrayList<GameAction> actions = card.getActions();
             if (player.isAlive()) {
-                card.doAction(player);
+                ArrayList<GameAction> actions = card.getActions();
+                for (GameAction action : actions) {
+                    action.doAction(player);
+                }
             }
         }
     }
