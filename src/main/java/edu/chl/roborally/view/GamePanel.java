@@ -30,7 +30,7 @@ public class GamePanel extends JPanel {
      * @param players The list of players that are in the game. This is used to be able to draw them.
      * @param player The unique player to create components for.
      */
-    protected GamePanel(GameBoard board, ArrayList<Player> players, Player player){
+    public GamePanel(GameBoard board, ArrayList<Player> players, Player player){
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         initImages();
         setOpaque(false);
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel {
      * Return the board within the game panel.
      * @return The board view within the game panel.
      */
-    protected BoardView getBoardView(){
+    public BoardView getBoardView(){
         return this.boardView;
     }
 
@@ -63,7 +63,7 @@ public class GamePanel extends JPanel {
      * Return the control view within the game panel.
      * @return The control view within the game panel.
      */
-    protected ControlView getControlView(){
+    public ControlView getControlView(){
         return this.controlView;
     }
 
@@ -71,7 +71,7 @@ public class GamePanel extends JPanel {
      * Return the player associated with the game panel.
      * @return The player associated with the game panel.
      */
-    protected Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 

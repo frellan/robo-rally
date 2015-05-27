@@ -36,12 +36,17 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     private BufferedImage imageBG;
     private int mapIndex;
 
+<<<<<<< HEAD
     /**
      * Creates the SelectMapPanel where the user will be able to select which map to be played. The maps are shown
      * in a JList and the user will be given a short description of the map before selecting it.
      * @param maps An ArrayList containing GameBoards to be shown in the JList.
      */
     protected SelectMapPanel(ArrayList<GameBoard> maps){
+=======
+    public SelectMapPanel(ArrayList<GameBoard> maps){
+
+>>>>>>> b1b2a5c420a20b15c71665ed770dcfe4a24dc356
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
         this.maps=maps;
@@ -94,8 +99,13 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
      * This method creates the summary panel which will be shown after a map is selected.
      * @param players An ArrayList containing the players.
      */
+<<<<<<< HEAD
     protected void summary(ArrayList<Player> players) {
         removeAll();
+=======
+    public void summary(ArrayList<Player> players) {
+        this.removeAll();
+>>>>>>> b1b2a5c420a20b15c71665ed770dcfe4a24dc356
         JPanel sumPanel = new StyledJPanel(null);
         sumPanel.setSize(300,450);
         robotContainer = new JPanel(new GridLayout(4,2));

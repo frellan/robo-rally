@@ -30,10 +30,15 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
     private BufferedImage imageBG;
     private int playerIndex = 2;
 
+<<<<<<< HEAD
     /**
      * Creates the SelectPlayersPanel containing a custom-made spinner.
      */
     protected SelectPlayersPanel(){
+=======
+    public SelectPlayersPanel(){
+
+>>>>>>> b1b2a5c420a20b15c71665ed770dcfe4a24dc356
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
         nbrPanel= new StyledJPanel(null);

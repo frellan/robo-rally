@@ -1,4 +1,4 @@
-package edu.chl.roborally.view;
+package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.EventTram;
@@ -6,6 +6,7 @@ import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.MapFactory;
+import edu.chl.roborally.view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-04-29.
  */
-public class GUI implements IEventHandler {
+public class GUIController implements IEventHandler {
 
     private JFrame mainFrame;
     private StartPanel startPanel;
@@ -29,7 +30,7 @@ public class GUI implements IEventHandler {
      * Creates the ground stones for the graphical interface of the game.
      * Registers to listen to events coming from the control and model packages.
      */
-    public GUI() {
+    public GUIController() {
         mainFrame = new MainFrame();
         EventTram.getInstance().register(this);
         showStartPanel();
