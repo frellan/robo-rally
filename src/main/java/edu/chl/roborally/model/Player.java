@@ -112,6 +112,17 @@ public class Player {
         }
     }
 
+    /**
+     * Kills the robot changing its status, decreasing its lifeTokens, puts the robot back on its checkpoint
+     * and reset damageTokens.
+     */
+    public void kill() {
+        setStatus(Constants.Status.DEAD);
+        loseLifeToken();
+        backToCheckpoint();
+        resetDamageTokens();
+    }
+
     /*
     Getters
      */
@@ -278,17 +289,6 @@ public class Player {
     /*
     Helpers
      */
-
-    /**
-     * Kills the robot changing its status, decreasing its lifeTokens, puts the robot back on its checkpoint
-     * and reset damageTokens.
-     */
-    public void kill() {
-        setStatus(Constants.Status.DEAD);
-        loseLifeToken();
-        backToCheckpoint();
-        resetDamageTokens();
-    }
 
     /**
      * Decreases lifeTokens.

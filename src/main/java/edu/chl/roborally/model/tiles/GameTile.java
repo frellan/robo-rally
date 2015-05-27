@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-03-26.
+ *
+ * Creates a Tile with attributes.
  */
 
 public class GameTile {
