@@ -96,7 +96,7 @@ public class BoardView extends JPanel {
     /**
      * Repaints the entire board panel.
      */
-    protected void update() {
+    public void update() {
         repaint();
     }
 

@@ -259,21 +259,52 @@ public class Player {
     /*
     Setters
      */
+
+    /**
+     * Sets the robots before position.
+     * @param p An  x and y position on the gameboard.
+     */
     public void setBeforePosition(Position p) {
         this.beforePosition  = p;
     }
+
+    /**
+     * Sets the robots current position.
+     * @param p An  x and y position on the gameboard.
+     */
     public void setPosition(Position p) {
         this.position = p;
     }
+
+    /**
+     * Sets a new checkpoint.
+     * @param p An  x and y position on the gameboard.
+     */
     public void setCheckpoint(Position p) {
         this.checkpoint = p;
     }
+
+    /**
+     * Sets a robots direction.
+     * @param d A direction, either NORTH, SOUTH, WEST or EAST.
+     */
     public void setDirection(Constants.Directions d) {
         this.direction = d;
     }
+
+    /**
+     * Sets a robots dealt cards.
+     * @param cards An ArrayList containing dealt cards.
+     */
     public void setDealtCards(ArrayList<RegisterCard> cards) {
         this.dealtCards = cards;
     }
+
+    /**
+     * Sets a robots programmed cards(the cards to be played).
+     * @param index Decides in what orders the cards will be set.
+     * @param c A RegisterCard.
+     */
     public void setProgrammedCard(int index, RegisterCard c) {
         if (index >= 0 && index < 5) {
             programmedCards[index] = c;
@@ -282,15 +313,32 @@ public class Player {
             throw new IllegalArgumentException("Index must be between 0 and 4");
         }
     }
+
+    /**
+     * Sets a robots status.
+     * @param s A status. This can either be ALIVE, DEAD, POWERDOWN or KAPUT.
+     */
     public void setStatus(Constants.Status s) {
         this.status = s;
     }
+
+    /**
+     * Sets a robots laserpower.
+     * @param upgrade An int deciding how much the laser should be upgraded.
+     */
     public void setLaserPower(int upgrade) {
         this.laserPower = upgrade;
     }
 
     /*
     Graphics
+     */
+
+    /**
+     * Draw method which draws the player on the board with the right direction.
+     * @param g Graphics.
+     * @param x X Coordinate.
+     * @param y Y Coordinate.
      */
     public void draw(Graphics g, int x, int y) {
         BufferedImage robotDirections = GlobalImageHolder.getInstance().getRobotDirections();
