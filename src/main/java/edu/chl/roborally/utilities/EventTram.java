@@ -39,14 +39,9 @@ public class EventTram {
         MAP_SELECTED,
 
         /**
-         * This event tries to create a new model for the game.
-         */
-        CREATE_MODEL,
-
-        /**
          * This event is fired when a new model is created.
          */
-        NEW_MODEL_CREATED,
+        MODEL_CREATED,
 
         /**
          * Fired when the user starts a game from the summary screen.

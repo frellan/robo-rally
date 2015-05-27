@@ -10,6 +10,9 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame{
 
+    /**
+     * Creates the main window that serves as the top container for all other panels in the GUI.
+     */
     public MainFrame() {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.createImage(this.getClass().getClassLoader().getResource("icon.png"));

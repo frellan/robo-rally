@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Pertta on 15-03-26.
+ *
+ * Creates a player
  */
 public class Player {
 
@@ -124,21 +126,21 @@ public class Player {
 
     /**
      * Returns the players previous position
-     * @return previous position
+     * @return Previous position
      */
     public Position getBeforePosition() {
         return this.beforePosition;
     }
 
     /**
-     * @return players amount of lifetokens
+     * @return Players amount of lifetokens
      */
     public int getLifeTokens() {
         return lifeTokens;
     }
 
     /**
-     * @return players amount of Damagetokens
+     * @return Players amount of Damagetokens
      */
     public int getDamageTokens() {
         return damageTokens;
@@ -146,22 +148,22 @@ public class Player {
 
     /**
      * Returns this players specific integer ID
-     * @return players ID
+     * @return Players ID
      */
     public int getiD() {
         return iD;
     }
 
     /**
-     * Returns the color of the player, used in consol
-     * @return players color
+     * Returns the color of the player, used in console
+     * @return Players color
      */
     public Color getColor(){
         return robot.getColor();
     }
 
     /**
-     * @return players position
+     * @return Players position
      */
     public Position getPosition() {
         return position;
@@ -169,7 +171,7 @@ public class Player {
 
     /**
      * Returns the position of the players current Checkpoint
-     * @return checkpoint position
+     * @return Checkpoint position
      */
     public Position getCheckpoint() {
         return checkpoint;
@@ -177,25 +179,33 @@ public class Player {
 
     /**
      * Returns the integer ID of players current checkpoint
-     * @return checkpoint ID
+     * @return Checkpoint ID
      */
     public int getCheckpointId() {
         return checkpointId;
     }
 
     /**
-     * 
-     * @return
+     * Returns the direction of the player
+     * @return Player direction
      */
     public Constants.Directions getDirection() {
         return direction;
     }
-    public RegisterCard getDealtCard(int index) {
-        return dealtCards.get(index);
-    }
+
+    /**
+     * Returns the players dealt cards
+     * @return All dealt cards
+     */
     public ArrayList<RegisterCard> getDealtCards() {
         return dealtCards;
     }
+
+    /**
+     * Returns a programmed card from a specified position in the array
+     * @param index
+     * @return Player programmed card
+     */
     public RegisterCard getProgrammedCard(int index) {
         if (index >= 0 && index < 5) {
             return programmedCards[index];
@@ -204,25 +214,63 @@ public class Player {
             throw new IllegalArgumentException("Index must be between 0 and 4");
         }
     }
+
+    /**
+     * Returns players programmed cards.
+     * @return Programmed cards
+     */
     public RegisterCard[] getProgrammedCards() {
         return programmedCards;
     }
+
+    /**
+     * Returns the current status of the player
+     * @return Player status
+     */
     public Constants.Status getStatus() {
         return this.status;
     }
+
+    /**
+     * Returns the players current laserpower
+     * @return Players laserpower
+     */
     public int getLaserPower() {
         return laserPower;
     }
-    public BufferedImage getImage(){return robot.getImage();}
+
+    /**
+     * Returns the image of the Players robot
+     * @return
+     */
+    public BufferedImage getImage(){
+        return robot.getImage();
+    }
+
+    /**
+     * @return True if player is alive
+     */
     public boolean isAlive() {
         return Constants.Status.ALIVE == this.status;
     }
+
+    /**
+     * @return True if player is kaput.
+     */
     public boolean isKaput() {
         return this.status == Constants.Status.KAPUT;
     }
+
+    /**
+     * @return True if player is dead.
+     */
     public boolean isDead() {
         return this.status == Constants.Status.DEAD;
     }
+
+    /**
+     * @return True if player is Powered down.
+     */
     public boolean isPowerDown() {
         return this.status == Constants.Status.POWERDOWN;
     }
