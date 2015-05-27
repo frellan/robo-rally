@@ -12,7 +12,7 @@ public class GlobalImageHolder {
     private BufferedImage mainBackgroundImage;
     private BufferedImage boardTileImage;
     private BufferedImage robotDirections;
-    private BufferedImage pickCardBtnHover;
+    private BufferedImage damageTokens;
 
     private GlobalImageHolder() {
         // Global background image
@@ -35,9 +35,9 @@ public class GlobalImageHolder {
         }
         // Damage tokens
         try {
-            robotDirections = ImageIO.read(this.getClass().getClassLoader().getResource("robots/directions.png"));
+            damageTokens = ImageIO.read(this.getClass().getClassLoader().getResource("dmgtokens.png"));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("robots/directions.png could not be read");
+            System.out.println("dmgtokens.png could not be read");
         }
     }
 
@@ -59,5 +59,8 @@ public class GlobalImageHolder {
     }
     public BufferedImage getRobotDirections() {
         return robotDirections;
+    }
+    public BufferedImage getDamageTokens() {
+        return damageTokens;
     }
 }

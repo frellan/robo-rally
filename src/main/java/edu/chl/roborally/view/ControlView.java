@@ -45,8 +45,8 @@ public class ControlView extends JPanel implements ActionListener{
 
     private JButton powerDownButton;
     private JLabel lifeTokensLabel;
-    private JLabel dmgTokensLabel;
     private JLabel positionLabel;
+    private DamageTokensPanel damageTokensPanel;
     private JButton doneButton;
     private JButton nextTurnButton;
 
@@ -164,23 +164,17 @@ public class ControlView extends JPanel implements ActionListener{
         powerDownButton.setSize(40, 40);
         statusView.add(powerDownButton).setLocation(274, 8);
 
-        positionLabel = new JLabel("Position: " + player.getPosition());
-        positionLabel.setSize(200, 20);
-        positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-        positionLabel.setForeground(Color.WHITE);
-        statusView.add(positionLabel).setLocation(7, 55);
-
         lifeTokensLabel = new JLabel("Life tokens: " + player.getLifeTokens());
         lifeTokensLabel.setSize(200, 20);
         lifeTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         lifeTokensLabel.setForeground(Color.WHITE);
-        statusView.add(lifeTokensLabel).setLocation(7, 75);
+        statusView.add(lifeTokensLabel).setLocation(57, 26);
 
-        dmgTokensLabel = new JLabel("Damage tokens: " + player.getDamageTokens());
-        dmgTokensLabel.setSize(200, 20);
-        dmgTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-        dmgTokensLabel.setForeground(Color.WHITE);
-        statusView.add(dmgTokensLabel).setLocation(7, 95);
+        positionLabel = new JLabel("Position: " + player.getPosition());
+        positionLabel.setSize(200, 20);
+        positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        positionLabel.setForeground(Color.WHITE);
+        statusView.add(positionLabel).setLocation(9, 53);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         buttonPanel.setSize(308, 24);
@@ -192,6 +186,9 @@ public class ControlView extends JPanel implements ActionListener{
         nextTurnButton.addActionListener(this);
         buttonPanel.add(nextTurnButton);
         statusView.add(buttonPanel).setLocation(6, 141);
+
+        damageTokensPanel = new DamageTokensPanel();
+        statusView.add(damageTokensPanel).setLocation(5, 98);
 
         add(statusView).setLocation(663, 0);
     }
@@ -344,7 +341,7 @@ public class ControlView extends JPanel implements ActionListener{
     public void updateStatusView() {
         positionLabel.setText("Position: " + player.getPosition());
         lifeTokensLabel.setText("Life tokens: " + player.getLifeTokens());
-        dmgTokensLabel.setText("Damage tokens: " + player.getDamageTokens());
+        damageTokensPanel.setAmountOfTokens(player.getDamageTokens());
     }
 
     /*
@@ -478,6 +475,88 @@ public class ControlView extends JPanel implements ActionListener{
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
                 g.drawString(Integer.toString(card.getPoints()), 111, 15);
+            }
+        }
+    }
+
+    private class DamageTokensPanel extends JPanel {
+
+        private ImageIcon set1DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(0, 0, 34, 40));
+        private ImageIcon set1EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(34, 0, 34, 40));
+        private ImageIcon set2DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(68, 0, 34, 40));
+        private ImageIcon set2EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(102, 0, 34, 40));
+        private ImageIcon set3DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(136, 0, 34, 40));
+        private ImageIcon set3EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(170, 0, 34, 40));
+
+        private JLabel dmgToken1;
+        private JLabel dmgToken2;
+        private JLabel dmgToken3;
+        private JLabel dmgToken4;
+        private JLabel dmgToken5;
+        private JLabel dmgToken6;
+        private JLabel dmgToken7;
+        private JLabel dmgToken8;
+        private JLabel dmgToken9;
+        private JLabel dmgToken10;
+
+        public DamageTokensPanel() {
+            setSize(340, 40);
+            setLayout(null);
+            setOpaque(false);
+            dmgToken1 = new JLabel(set1DisabledIcon);
+            dmgToken1.setSize(34, 40);
+            add(dmgToken1).setLocation(0, 0);
+            dmgToken2 = new JLabel(set1DisabledIcon);
+            dmgToken2.setSize(34, 40);
+            add(dmgToken2).setLocation(32, 0);
+            dmgToken3 = new JLabel(set1DisabledIcon);
+            dmgToken3.setSize(34, 40);
+            add(dmgToken3).setLocation(64, 0);
+            dmgToken4 = new JLabel(set1DisabledIcon);
+            dmgToken4.setSize(34, 40);
+            add(dmgToken4).setLocation(95, 0);
+            dmgToken5 = new JLabel(set2DisabledIcon);
+            dmgToken5.setSize(34, 40);
+            add(dmgToken5).setLocation(126, 0);
+            dmgToken6 = new JLabel(set2DisabledIcon);
+            dmgToken6.setSize(34, 40);
+            add(dmgToken6).setLocation(156, 0);
+            dmgToken7 = new JLabel(set2DisabledIcon);
+            dmgToken7.setSize(34, 40);
+            add(dmgToken7).setLocation(186, 0);
+            dmgToken8 = new JLabel(set2DisabledIcon);
+            dmgToken8.setSize(34, 40);
+            add(dmgToken8).setLocation(216, 0);
+            dmgToken9 = new JLabel(set2DisabledIcon);
+            dmgToken9.setSize(34, 40);
+            add(dmgToken9).setLocation(246, 0);
+            dmgToken10 = new JLabel(set3DisabledIcon);
+            dmgToken10.setSize(34, 40);
+            add(dmgToken10).setLocation(276, 0);
+        }
+
+        private void setAmountOfTokens(int amount) {
+            dmgToken1.setIcon(set1DisabledIcon);
+            dmgToken2.setIcon(set1DisabledIcon);
+            dmgToken3.setIcon(set1DisabledIcon);
+            dmgToken4.setIcon(set1DisabledIcon);
+            dmgToken5.setIcon(set2DisabledIcon);
+            dmgToken6.setIcon(set2DisabledIcon);
+            dmgToken7.setIcon(set2DisabledIcon);
+            dmgToken8.setIcon(set2DisabledIcon);
+            dmgToken9.setIcon(set2DisabledIcon);
+            dmgToken10.setIcon(set3DisabledIcon);
+            switch (amount) {
+                case 10: dmgToken10.setIcon(set3EnabledIcon);
+                case 9: dmgToken9.setIcon(set2EnabledIcon);
+                case 8: dmgToken8.setIcon(set2EnabledIcon);
+                case 7: dmgToken7.setIcon(set2EnabledIcon);
+                case 6: dmgToken6.setIcon(set2EnabledIcon);
+                case 5: dmgToken5.setIcon(set2EnabledIcon);
+                case 4: dmgToken4.setIcon(set1EnabledIcon);
+                case 3: dmgToken3.setIcon(set1EnabledIcon);
+                case 2: dmgToken2.setIcon(set1EnabledIcon);
+                case 1: dmgToken1.setIcon(set1EnabledIcon);
             }
         }
     }
