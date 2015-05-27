@@ -4,19 +4,23 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-04-23.
+ *
+ * Creates all the maps.
  */
 public class MapFactory {
 
-    private static MapFactory mapFactory;
+    private static MapFactory instance;
     private ArrayList<GameBoard> maps;
 
-    public static MapFactory getInstance(){
-        if (mapFactory == null) {
-            mapFactory = new MapFactory();
+    private MapFactory() {
+        createMaps();
+    }
 
-            mapFactory.createMaps();
+    public static MapFactory getInstance(){
+        if (instance == null) {
+            instance = new MapFactory();
         }
-        return mapFactory;
+        return instance;
     }
 
     private void createMaps() {
@@ -26,11 +30,20 @@ public class MapFactory {
         maps.add(new RiskyExchangeMap());
     }
 
+    /**
+     * Returns all the maps in the game.
+     * @return A list containing all the maps.
+     */
     public ArrayList<GameBoard> getMaps(){
         return maps;
     }
 
-    public GameBoard getMap(int i) {
-        return maps.get(i);
+    /**
+     * Returns a single map with the specied id.
+     * @param id The id of the map to request.
+     * @return The requested map.
+     */
+    public GameBoard getMap(int id) {
+        return maps.get(id);
     }
 }
