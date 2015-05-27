@@ -33,6 +33,12 @@ public class GlobalImageHolder {
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("robots/directions.png could not be read");
         }
+        // Damage tokens
+        try {
+            robotDirections = ImageIO.read(this.getClass().getClassLoader().getResource("robots/directions.png"));
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("robots/directions.png could not be read");
+        }
     }
 
     public static GlobalImageHolder getInstance(){

@@ -3,6 +3,7 @@ package edu.chl.roborally.view;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -143,28 +145,55 @@ public class ControlView extends JPanel implements ActionListener{
         add(pickCardsView).setLocation(521, 0);
     }
     private void createStatusView() {
-        statusView = new JPanel(new GridLayout(6,1));
-        statusView.setSize(320, 171);
+        statusView = new JPanel(null);
+        statusView.setSize(321, 171);
         statusView.setOpaque(false);
-        powerDownButton = new JButton("PowerDown");
-        lifeTokensLabel = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
-        lifeTokensLabel.setForeground(Color.WHITE);
-        dmgTokensLabel = new JLabel("DamageTokens: " + player.getDamageTokens(), SwingConstants.CENTER);
-        dmgTokensLabel.setForeground(Color.WHITE);
-        positionLabel = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
+
+        JLabel robotIcon = new JLabel(new ImageIcon(player.getImage()));
+        robotIcon.setBorder(new LineBorder(Color.BLACK, 2));
+        robotIcon.setSize(44, 44);
+        statusView.add(robotIcon).setLocation(6, 6);
+
+        JLabel playingAs = new JLabel("<html><FONT COLOR=WHITE>Playing as: </FONT>" + player.getName());
+        playingAs.setSize(200, 20);
+        playingAs.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        playingAs.setForeground(player.getColor());
+        statusView.add(playingAs).setLocation(57, 4);
+
+        powerDownButton = new JButton("!");
+        powerDownButton.setSize(40, 40);
+        statusView.add(powerDownButton).setLocation(274, 8);
+
+        positionLabel = new JLabel("Position: " + player.getPosition());
+        positionLabel.setSize(200, 20);
+        positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         positionLabel.setForeground(Color.WHITE);
+        statusView.add(positionLabel).setLocation(7, 55);
+
+        lifeTokensLabel = new JLabel("Life tokens: " + player.getLifeTokens());
+        lifeTokensLabel.setSize(200, 20);
+        lifeTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        lifeTokensLabel.setForeground(Color.WHITE);
+        statusView.add(lifeTokensLabel).setLocation(7, 75);
+
+        dmgTokensLabel = new JLabel("Damage tokens: " + player.getDamageTokens());
+        dmgTokensLabel.setSize(200, 20);
+        dmgTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        dmgTokensLabel.setForeground(Color.WHITE);
+        statusView.add(dmgTokensLabel).setLocation(7, 95);
+
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        buttonPanel.setSize(308, 24);
         doneButton = new JButton("Done");
         doneButton.setEnabled(false);
         doneButton.addActionListener(this);
+        buttonPanel.add(doneButton);
         nextTurnButton = new JButton("Next Turn");
         nextTurnButton.addActionListener(this);
-        statusView.add(powerDownButton);
-        statusView.add(lifeTokensLabel);
-        statusView.add(dmgTokensLabel);
-        statusView.add(positionLabel);
-        statusView.add(doneButton);
-        statusView.add(nextTurnButton);
-        add(statusView).setLocation(668, 0);
+        buttonPanel.add(nextTurnButton);
+        statusView.add(buttonPanel).setLocation(6, 141);
+
+        add(statusView).setLocation(663, 0);
     }
 
     /**
@@ -313,9 +342,9 @@ public class ControlView extends JPanel implements ActionListener{
      * i.e damage tokens, player positions etc.
      */
     public void updateStatusView() {
-        lifeTokensLabel.setText("LifeTokens: " + player.getLifeTokens());
-        dmgTokensLabel.setText("DamageTokens: " + player.getDamageTokens());
-        positionLabel.setText("PlayerPosition: " + player.getPosition());
+        positionLabel.setText("Position: " + player.getPosition());
+        lifeTokensLabel.setText("Life tokens: " + player.getLifeTokens());
+        dmgTokensLabel.setText("Damage tokens: " + player.getDamageTokens());
     }
 
     /*
