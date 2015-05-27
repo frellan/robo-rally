@@ -228,7 +228,12 @@ public class Player {
     }
 
     /*
-    Helpers to kill player
+    Helpers
+     */
+
+    /**
+     * Kills the robot changing its status, decreasing its lifeTokens, puts the robot back on its checkpoint
+     * and reset damageTokens.
      */
     public void kill() {
         setStatus(Constants.Status.DEAD);
@@ -236,6 +241,10 @@ public class Player {
         backToCheckpoint();
         resetDamageTokens();
     }
+
+    /**
+     * Decreases lifeTokens.
+     */
     public void loseLifeToken() {
         this.lifeTokens = lifeTokens - 1;
         if (this.lifeTokens < 0) {
@@ -243,15 +252,20 @@ public class Player {
             System.out.println(this.robot.getName() + " is now Kaput and lost");
         }
     }
-    public void setCheckpointId(int id) {
-        this.checkpointId = id;
-    }
 
+
+    /**
+     * Puts the robot back to its checkpoint.
+     */
     public void backToCheckpoint() {
         if (checkpoint != null) {
             this.position = this.checkpoint;
         }
     }
+
+    /**
+     * Resets the robots damageTokens.
+     */
     public void resetDamageTokens() {
         this.damageTokens = 0;
     }
@@ -259,6 +273,14 @@ public class Player {
     /*
     Setters
      */
+
+    /**
+     * Sets a checkpoint to a robot.
+     * @param id Gives the robot the checkpointId of the checkpoint.
+     */
+    public void setCheckpointId(int id) {
+        this.checkpointId = id;
+    }
 
     /**
      * Sets the robots before position.
