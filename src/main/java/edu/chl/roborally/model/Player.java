@@ -95,6 +95,7 @@ public class Player {
 
     /**
      * Empties the players programmed cards.
+     * If it encounters a locked card it places it back into the register.
      */
     public void emptyProgrammedCards() {
         ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
@@ -104,8 +105,8 @@ public class Player {
             }
         }
         programmedCards = new RegisterCard[5];
-        for (int i = 0; i< tempLockedCards.size(); i++) {
-            programmedCards[4-i] = tempLockedCards.get(i);
+        for (int i = 0; i < tempLockedCards.size(); i++) {
+            programmedCards[4 - i] = tempLockedCards.get(i);
         }
     }
 

@@ -95,7 +95,7 @@ public class GUIController implements IEventHandler {
      */
     private void createGamePanels() {
         for (Player player : model.getPlayers()) {
-            gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
+            gamePanels.add(new GamePanel(model.getBoard(),model.getPlayers(),player));
         }
     }
 
