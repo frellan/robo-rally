@@ -143,7 +143,7 @@ public class GUIController implements IEventHandler {
      */
     private void newCardsForPlayer(Player player) {
         for (GamePanel panel : gamePanels) {
-            if (panel.getPlayer().getiD() == player.getiD()) {
+            if (panel.getPlayer().getID() == player.getID()) {
                 panel.getControlView().newCardsToPick();
                 panel.getControlView().setRegisterCardIconsChangeable();
                 panel.getControlView().setDoneButtonEnabled(true);
