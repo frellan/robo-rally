@@ -42,8 +42,8 @@ public class Round implements IEventHandler {
      */
 
     /**
-     * Main method that issues all the help method to perform the tasks needed for a round.
-     * Also prints to the console that a new round has begun.
+     * Main method that calls all the help methods to perform the tasks needed for a round.
+     * Prints to the console that a new round has begun.
      */
     private void startRound() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n" + "New Round" + "\n"
