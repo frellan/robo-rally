@@ -115,7 +115,7 @@ public class CardDeck {
      * @return The amount of cards.
      */
     public ArrayList<RegisterCard> getCards(int amount) {
-        ArrayList<RegisterCard> tempDeck = new ArrayList<>();;
+        ArrayList<RegisterCard> tempDeck = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             tempDeck.add(deck.get(i));
             deck.remove(i);

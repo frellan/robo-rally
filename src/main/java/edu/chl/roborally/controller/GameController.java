@@ -65,16 +65,15 @@ public class GameController extends Thread implements IEventHandler {
         if (!model.isGameRunning()) {
             System.out.println("Model did not think that the game should continue");
         } else if (readyForNewRound) {
-            EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
             new Round(model);
+            EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
             readyForNewRound = false;
             turnIndex = 0;
         } else if (turnIndex < 5 && readyForNewTurn) {
             new Turn(model, turnIndex);
             EventTram.getInstance().publish(EventTram.Event.NEW_TURN,null,null);
-            turnIndex++;
             readyForNewTurn = false;
-
+            turnIndex++;
             if (turnIndex == 5) {
                 model.returnCardsToDeck();
                 readyForNewRound = true;
