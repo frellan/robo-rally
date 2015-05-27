@@ -7,18 +7,24 @@ import java.awt.*;
  */
 public class RobotFactory {
 
-    private static RobotFactory robotFactory;
+    private static RobotFactory instance;
+
+    private RobotFactory() {}
 
     public static RobotFactory getInstance() {
-        if (robotFactory == null) {
-            robotFactory = new RobotFactory();
+        if (instance == null) {
+            instance = new RobotFactory();
         }
-
-        return robotFactory;
+        return instance;
     }
 
-    public Robot constructRobot(int i) {
-        switch (i) {
+    /**
+     * Constructs a robot character according to its id.
+     * @param id The id of the robot character to create.
+     * @return The created robot.
+     */
+    public Robot constructRobot(int id) {
+        switch (id) {
             case 0:
                 return new Robot("Twitch", Color.GREEN);
             case 1:

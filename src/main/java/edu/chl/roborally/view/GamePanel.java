@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-05-06.
+ *
+ * This class creates the GamePanel which is unique for every player and contains the board,
+ * the controls, the console and the status for a given player.
  */
 public class GamePanel extends JPanel {
 
@@ -24,8 +27,7 @@ public class GamePanel extends JPanel {
     private Player player;
 
     /**
-     * Creates the game panel which is unique for every player and contains the board,
-     * the controls, the console and the status for a given player.
+     * Creates the game panel.
      * @param board The board to be drawn inside the panel. Is unique for the game and the same for all players.
      * @param players The list of players that are in the game. This is used to be able to draw them.
      * @param player The unique player to create components for.
@@ -39,12 +41,9 @@ public class GamePanel extends JPanel {
         boardView = new BoardView(board,players);
         controlView = new ControlView(player);
         consoleView = new ConsoleView();
-        add(boardView);
-        boardView.setLocation(8, 23);
-        add(consoleView);
-        consoleView.setLocation(678, 23);
-        add(controlView);
-        controlView.setLocation(8, 543);
+        add(boardView).setLocation(8, 23);
+        add(consoleView).setLocation(678, 23);
+        add(controlView).setLocation(8, 543);
     }
 
     /*
