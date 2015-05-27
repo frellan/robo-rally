@@ -81,7 +81,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
         chooseMapButton.setSize(200,20);
         mapInfo.add(mapIcon).setLocation(41, 20);
         mapInfo.add(mapName).setLocation(41, 240);
-        mapInfo.add(mapDifficulty).setLocation(41, 240);
+        mapInfo.add(mapDifficulty).setLocation(41, 270);
         mapInfo.add(mapPlayers).setLocation(41, 300);
         mapInfo.add(chooseMapButton).setLocation(41, 340);
         mapChooser.add(mapInfo).setLocation(108, 10);
