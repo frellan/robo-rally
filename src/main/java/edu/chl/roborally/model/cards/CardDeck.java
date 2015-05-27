@@ -100,17 +100,8 @@ public class CardDeck {
      */
 
     /**
-     * Returns the deck in its entirety.
-     * @return All cards.
-     */
-    public ArrayList<RegisterCard> getAllCards() {
-        return deck;
-    }
-
-    /**
      * Return the desired amount of cards and then removes them from the deck.
      * This happens to prevent retrieving doubles of the same card.
-     * Use shuffle() before a new round.
      * @param amount The desired amount of cards.
      * @return The amount of cards.
      */
