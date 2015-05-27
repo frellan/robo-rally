@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-04-29.
+ *
+ * Control class for the entire view package.
+ * This tells the GUI what to display and when to do it.
  */
 public class GUIController implements IEventHandler {
 
@@ -27,8 +30,8 @@ public class GUIController implements IEventHandler {
     private int turnIndex = 1;
 
     /**
-     * Creates the ground stones for the graphical interface of the game.
-     * Registers to listen to events coming from the control and model packages.
+     * Creates the class and creates a main frame to add all the upcoming components to.
+     * Also registers it to listen for events coming from the view and model packages.
      */
     public GUIController() {
         mainFrame = new MainFrame();
@@ -171,7 +174,7 @@ public class GUIController implements IEventHandler {
             case PLAYERS_SELECTED:
                 chooseMap(MapFactory.getInstance().getMaps());
                 break;
-            case NEW_MODEL_CREATED:
+            case MODEL_CREATED:
                 this.model = (RoboRally) o;
                 showSummary();
                 break;
