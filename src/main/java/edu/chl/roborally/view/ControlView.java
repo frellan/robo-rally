@@ -479,6 +479,9 @@ public class ControlView extends JPanel implements ActionListener{
         }
     }
 
+    /**
+     * JPanel containing the damage token icons and the logic for showing the correct amoount.
+     */
     private class DamageTokensPanel extends JPanel {
 
         private ImageIcon set1DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(0, 0, 34, 40));
