@@ -28,17 +28,16 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
     private BufferedImage imageBG;
     private int playerIndex = 2;
 
+    /**
+     * Creates the SelectPlayersPanel where the user will be able to enter the number of players that will be playing.
+     */
     protected SelectPlayersPanel(){
-
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
-
         nbrPanel= new StyledJPanel(null);
         nbrPanel.setSize(200,200);
-
         StyledLabel welcomeLabel = new StyledLabel("WELCOME TO ROBO RALLY!!!");
         StyledLabel msgLabel = new StyledLabel("How many robots will be racing?");
-
         nbrPanel.add(welcomeLabel);
         nbrPanel.add(msgLabel);
         welcomeLabel.setLocation(16,10);
@@ -77,15 +76,45 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
     }
 
     /*
+    Help methods
+     */
+
+    /**
+     * Creates an ImageIcon.
+     * @param url The name of the image in the resource folder.
+     * @return An ImageIcon containing an bufferedImage from the resource folder.
+     */
+    private ImageIcon createIcon(URL url){
+        BufferedImage bi;
+        try {
+            bi = ImageIO.read(url);
+            return new ImageIcon(bi);
+        } catch(java.io.IOException e){
+            System.out.println("Image could not be read");
+        }
+        return null;
+    }
+
+    /*
+    Painter
+     */
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    /*
     EventHandlers
      */
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chooseNbrOfPlayers) {
             EventTram.getInstance().publish(EventTram.Event.PLAYERS_SELECTED, Integer.parseInt(players.getText()), null);
         }
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == plusLabel){
@@ -102,47 +131,20 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
             }
         }
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
 
     }
-
     @Override
     public void mouseReleased(MouseEvent e) {
 
     }
-
     @Override
     public void mouseEntered(MouseEvent e) {
 
     }
-
     @Override
     public void mouseExited(MouseEvent e) {
 
-    }
-
-    /*
-    Painter
-     */
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(imageBG, 0, 0, getWidth(), getHeight(), this);
-    }
-
-    /*
-    Image-creater
-     */
-    private ImageIcon createIcon(URL url){
-        BufferedImage bi;
-        try {
-            bi = ImageIO.read(url);
-            return new ImageIcon(bi);
-        } catch(java.io.IOException e){
-            System.out.println("Image could not be read");
-        }
-        return null;
     }
 }

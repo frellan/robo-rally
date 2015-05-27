@@ -37,15 +37,17 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     private BufferedImage imageBG;
     private int mapIndex;
 
+    /**
+     * Creates the SelectMapPanel where the user will be able to select which map to be played. The maps are shown
+     * in a JList and the user will be given a short description of the map before selecting it.
+     * @param maps An ArrayList containing GameBoards to be shown in the JList.
+     */
     protected SelectMapPanel(ArrayList<GameBoard> maps){
-
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
         this.maps=maps;
         JPanel mapChooser = new StyledJPanel(null);
         mapChooser.setSize(400,400);
-
-        //Create the List with maps
         JPanel listHolder = new JPanel(new BorderLayout());
         listHolder.setOpaque(false);
         listHolder.setSize(100,380);
@@ -62,8 +64,6 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
         mapList.addMouseListener(this);
         listHolder.add(mapList);
         mapChooser.add(listHolder).setLocation(10,10);
-
-        //Create the mapInfo
         mapInfo = new JPanel(null);
         mapInfo.setOpaque(false);
         mapInfo.setSize(282, 380);
@@ -78,7 +78,6 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
         chooseMapButton = new JButton("Choose Map");
         chooseMapButton.addActionListener(this);
         chooseMapButton.setSize(200,20);
-
         mapInfo.add(mapIcon).setLocation(41, 20);
         mapInfo.add(mapName).setLocation(41, 240);
         mapInfo.add(mapDifficulty).setLocation(41, 240);
@@ -139,7 +138,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     }
 
     /**
-     * Creates an ImageIcon
+     * Creates an ImageIcon.
      * @param url The name of the image in the resource folder.
      * @return An ImageIcon containing an bufferedImage from the resource folder.
      */
