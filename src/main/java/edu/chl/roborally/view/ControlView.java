@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel implements ActionListener{
 
-    private Player player;
+    private final Player player;
     private ImageIcon emptyNewCardIcon;
 
     private JPanel registerView;
@@ -461,7 +461,7 @@ public class ControlView extends JPanel implements ActionListener{
 
         public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
 
-        private String value;
+        private final String value;
 
         public RegisterCardTransferHandler(String value) {
             this.value = value;
@@ -474,14 +474,14 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Export stuff
          */
+
         @Override
         public int getSourceActions(JComponent c) {
             return DnDConstants.ACTION_COPY_OR_MOVE;
         }
         @Override
         protected Transferable createTransferable(JComponent c) {
-            Transferable t = new StringSelection(getValue());
-            return t;
+            return new StringSelection(getValue());
         }
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
@@ -501,6 +501,7 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Transfer stuff
          */
+
         @Override
         public boolean canImport(TransferHandler.TransferSupport support) {
             return support.isDataFlavorSupported(SUPPORTED_DATE_FLAVOR);
@@ -535,6 +536,7 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Helper methods
          */
+
         private RegisterCard getMatchingCard(String value) {
             for (RegisterCard card : newCardsToPick) {
                 if (card.toString().equals(value)) {
