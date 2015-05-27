@@ -199,7 +199,7 @@ public class ControlView extends JPanel implements ActionListener{
     }
 
     /*
-    Command Methods
+    Commands
      */
 
     /**
