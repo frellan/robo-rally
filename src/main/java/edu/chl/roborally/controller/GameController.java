@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class GameController extends Thread implements IEventHandler {
 
     private RoboRally model = null;
-    private MapFactory mapFactory;
 
     private Integer tempMapIndex = null;
     private Integer tempNbrOfPlayers = null;
@@ -27,7 +26,6 @@ public class GameController extends Thread implements IEventHandler {
      * Creates the class and registers it as a listener for events coming from the model and view packages.
      */
     public GameController() {
-        this.mapFactory = new MapFactory();
         EventTram.getInstance().register(this);
     }
 
