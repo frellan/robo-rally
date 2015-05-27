@@ -18,7 +18,7 @@ class Button extends JButton {
      * @param normal The name of the image in the resource folder.
      */
     public Button (String normal){
-        this.setIcon(createIcon(this.getClass().getClassLoader().getResource(normal)));
+        this.setIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/" + normal)));
         styleButton();
     }
 
@@ -29,7 +29,7 @@ class Button extends JButton {
      */
     public Button (String normal, String hover){
         this(normal);
-        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource(hover)));
+        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/" + hover)));
     }
 
     /**

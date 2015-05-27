@@ -46,12 +46,12 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
         //Custom Spinner
         plusLabel = new JLabel();
         plusLabel.setSize(30, 30);
-        plusLabel.setIcon(createIcon(this.getClass().getClassLoader().getResource("plus-4x.png")));
+        plusLabel.setIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/plus-4x.png")));
         plusLabel.addMouseListener(this);
 
         minusLabel = new JLabel();
         minusLabel.setSize(30, 30);
-        minusLabel.setIcon(createIcon(this.getClass().getClassLoader().getResource("minus-4x.png")));
+        minusLabel.setIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/minus-4x.png")));
         minusLabel.addMouseListener(this);
 
         players = new StyledLabel(Integer.toString(playerIndex));
