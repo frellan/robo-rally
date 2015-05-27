@@ -43,36 +43,150 @@ public class Player {
     }
 
     /*
+    Commands
+    */
+
+    /**
+     * Empties the players programmed cards
+     */
+    public void emptyProgrammedCards() {
+        ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
+        for (int i = 0; i<programmedCards.length; i++) {
+            if (programmedCards[i].isLocked()) {
+                tempLockedCards.add(0,programmedCards[i]);
+            }
+        }
+        programmedCards = new RegisterCard[5];
+        for (int i = 0; i< tempLockedCards.size(); i++) {
+            programmedCards[4-i] = tempLockedCards.get(i);
+        }
+    }
+
+    /**
+     * Give a player a damage token.
+     * @param amount
+     */
+    public void takeDamage(int amount) {
+        this.damageTokens = damageTokens + amount;
+        if (this.damageTokens > 3) {
+            lockCards();
+        }
+        else if (this.damageTokens == 9) {
+            this.kill();
+        }
+    }
+
+    /**
+     * Repairs and decreases the amount of damage on player
+     */
+    public void repair() {
+        if (this.damageTokens > 0) {
+            this.damageTokens = damageTokens--;
+        } else {
+            this.damageTokens = 0;
+        }
+    }
+
+    /**
+     * Locks cards dependeing on players amount of damage tokens
+     */
+    public void lockCards() {
+        switch (this.damageTokens) {
+            case 5:
+                programmedCards[4].setLocked(true);
+                break;
+            case 6:
+                programmedCards[3].setLocked(true);
+                break;
+            case 7:
+                programmedCards[2].setLocked(true);
+                break;
+            case 8:
+                programmedCards[1].setLocked(true);
+                break;
+            case 9:
+                programmedCards[0].setLocked(true);
+                break;
+        }
+    }
+
+    /*
     Getters
      */
 
+    /**
+     * Returns the name of the player.
+     * @return The player name.
+     */
     public String getName() {
         return robot.getName();
     }
+
+    /**
+     * Returns the players previous position
+     * @return previous position
+     */
     public Position getBeforePosition() {
         return this.beforePosition;
     }
+
+    /**
+     * @return players amount of lifetokens
+     */
     public int getLifeTokens() {
         return lifeTokens;
     }
+
+    /**
+     * @return players amount of Damagetokens
+     */
     public int getDamageTokens() {
         return damageTokens;
     }
+
+    /**
+     * Returns this players specific integer ID
+     * @return players ID
+     */
     public int getiD() {
         return iD;
     }
+
+    /**
+     * Returns the color of the player, used in consol
+     * @return players color
+     */
     public Color getColor(){
         return robot.getColor();
     }
+
+    /**
+     * @return players position
+     */
     public Position getPosition() {
         return position;
     }
+
+    /**
+     * Returns the position of the players current Checkpoint
+     * @return checkpoint position
+     */
     public Position getCheckpoint() {
         return checkpoint;
     }
+
+    /**
+     * Returns the integer ID of players current checkpoint
+     * @return checkpoint ID
+     */
     public int getCheckpointId() {
         return checkpointId;
     }
+
+    /**
+     * 
+     * @return
+     */
     public Constants.Directions getDirection() {
         return direction;
     }
@@ -111,66 +225,6 @@ public class Player {
     }
     public boolean isPowerDown() {
         return this.status == Constants.Status.POWERDOWN;
-    }
-
-    /*
-    Commands
-    */
-    public void emptyProgrammedCards() {
-        ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
-        for (int i = 0; i<programmedCards.length; i++) {
-            if (programmedCards[i].isLocked()) {
-                tempLockedCards.add(0,programmedCards[i]);
-            }
-        }
-        programmedCards = new RegisterCard[5];
-        for (int i = 0; i< tempLockedCards.size(); i++) {
-            programmedCards[4-i] = tempLockedCards.get(i);
-        }
-    }
-
-    /**
-     * Give a player a damage token.
-     * @param amount
-     */
-    public void takeDamage(int amount) {
-        this.damageTokens = damageTokens + amount;
-        if (this.damageTokens > 3) {
-            lockCards();
-        }
-        else if (this.damageTokens == 9) {
-            this.kill();
-        }
-    }
-
-    /**
-     * Repairs and decreases the amount of damage on player
-     */
-    public void repair() {
-        if (this.damageTokens > 0) {
-            this.damageTokens = damageTokens--;
-        } else {
-            this.damageTokens = 0;
-        }
-    }
-    public void lockCards() {
-        switch (this.damageTokens) {
-            case 5:
-                programmedCards[4].setLocked(true);
-                break;
-            case 6:
-                programmedCards[3].setLocked(true);
-                break;
-            case 7:
-                programmedCards[2].setLocked(true);
-                break;
-            case 8:
-                programmedCards[1].setLocked(true);
-                break;
-            case 9:
-                programmedCards[0].setLocked(true);
-                break;
-        }
     }
 
     /*
