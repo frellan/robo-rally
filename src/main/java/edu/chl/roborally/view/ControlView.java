@@ -207,7 +207,7 @@ public class ControlView extends JPanel implements ActionListener{
      * to reset the register card panel. This is done to prepare for the new
      * cards that will be placed there.
      */
-    protected void resetRegisterCards() {
+    public void resetRegisterCards() {
         for (int i = 0; i < 5; i++) {
             if (player.getProgrammedCard(i) != null && player.getProgrammedCard(i).isLocked()) {
                 registerCardIcons[i].setCard(player.getProgrammedCard(i));
@@ -222,7 +222,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Is called by the GUI class when a new round is initiated
      * to reset the list of cards to choose from before receiving new ones.
      */
-    protected void resetNewCardButtons() {
+    public void resetNewCardButtons() {
         pickCardsView.removeAll();
         for (int index = 0; index < 9; index++) {
             PickNewCardButton btn = new PickNewCardButton();
@@ -234,7 +234,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Is called by the GUI class when the PICK_CARDS event is fired.
      * It tells this class to update necessary components with the new data.
      */
-    protected void newCardsToPick() {
+    public void newCardsToPick() {
         newCardsToPick = player.getDealtCards();
         refreshNewCardButtons();
     }
@@ -243,7 +243,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Sets the register card icons to be changeable.
      * This means you can drag n drop onto them.
      */
-    protected void setRegisterCardIconsChangeable() {
+    public void setRegisterCardIconsChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
             if (icon.getCard() != null && !icon.getCard().isLocked()) {
                 icon.setChangeable(true);
@@ -255,7 +255,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Sets the register card icons to not be changeable.
      * This means you can't drag n drop onto them.
      */
-    protected void setRegisterCardIconsNotChangeable() {
+    public void setRegisterCardIconsNotChangeable() {
         for (RegisterCardIcon icon : registerCardIcons) {
             icon.setChangeable(false);
         }
@@ -265,7 +265,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Sets which turn to be displayed in the interface.
      * @param turn The turn to be displayed.
      */
-    protected void setTurnIndicator(int turn) {
+    public void setTurnIndicator(int turn) {
         turnLabel1.setForeground(Color.WHITE);
         turnLabel2.setForeground(Color.WHITE);
         turnLabel3.setForeground(Color.WHITE);
@@ -296,7 +296,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Sets if the done button should be enabled.
      * @param b True to enable, false to disable.
      */
-    protected void setDoneButtonEnabled(boolean b) {
+    public void setDoneButtonEnabled(boolean b) {
         doneButton.setEnabled(b);
     }
 
@@ -304,7 +304,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Sets if the next turn button should be enabled.
      * @param b True to enable, false to disable.
      */
-    protected void setNextTurnButtonEnabled(boolean b) {
+    public void setNextTurnButtonEnabled(boolean b) {
         nextTurnButton.setEnabled(b);
     }
 
@@ -312,7 +312,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Updates the data inside the status view
      * i.e damage tokens, player positions etc.
      */
-    protected void updateStatusView() {
+    public void updateStatusView() {
         lifeTokensLabel.setText("LifeTokens: " + player.getLifeTokens());
         dmgTokensLabel.setText("DamageTokens: " + player.getDamageTokens());
         positionLabel.setText("PlayerPosition: " + player.getPosition());

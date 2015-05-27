@@ -18,7 +18,7 @@ public class StartPanel extends JPanel implements ActionListener{
 
     private BufferedImage imageBG;
 
-    protected StartPanel(){
+    public StartPanel(){
 
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);

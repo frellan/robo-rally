@@ -41,7 +41,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
 
     private int mapIndex;
 
-    protected SelectMapPanel(ArrayList<GameBoard> maps){
+    public SelectMapPanel(ArrayList<GameBoard> maps){
 
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
@@ -109,7 +109,7 @@ public class SelectMapPanel extends JPanel implements ActionListener, MouseListe
     /*
     Class method, this method creates the summary panel
      */
-    protected void summary(ArrayList<Player> players) {
+    public void summary(ArrayList<Player> players) {
         this.removeAll();
         JPanel sumPanel = new StyledJPanel(null);
         sumPanel.setSize(300,450);

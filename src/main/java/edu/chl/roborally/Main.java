@@ -1,7 +1,7 @@
 package edu.chl.roborally;
 
 import edu.chl.roborally.controller.AppController;
-import edu.chl.roborally.view.GUI;
+import edu.chl.roborally.controller.GUIController;
 
 import javax.swing.*;
 
@@ -23,6 +23,6 @@ public final class Main {
             } catch (Exception f) {}
         }
         new AppController();
-		new GUI();
+		new GUIController();
     }
 }

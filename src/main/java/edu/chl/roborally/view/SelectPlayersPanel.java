@@ -28,7 +28,7 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
     private BufferedImage imageBG;
     private int playerIndex = 2;
 
-    protected SelectPlayersPanel(){
+    public SelectPlayersPanel(){
 
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
