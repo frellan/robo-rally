@@ -15,6 +15,8 @@ import java.net.URL;
 
 /**
  * Created by axel on 2015-05-26.
+ *
+ * This class creates a panel where users will be able to enter the numbers of players that will be playing.
  */
 public class SelectPlayersPanel extends JPanel implements ActionListener, MouseListener {
 
@@ -29,7 +31,7 @@ public class SelectPlayersPanel extends JPanel implements ActionListener, MouseL
     private int playerIndex = 2;
 
     /**
-     * Creates the SelectPlayersPanel where the user will be able to enter the number of players that will be playing.
+     * Creates the SelectPlayersPanel containing a custom-made spinner.
      */
     protected SelectPlayersPanel(){
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();

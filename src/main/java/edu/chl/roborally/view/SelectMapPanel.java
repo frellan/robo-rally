@@ -19,8 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-26.
  *
- * This panel lets you select a map.
- * It also contains a summary that can be shown
+ * This panel lets you select a map. It also contains a summary-method which will create a panel to be shown
  * after a map has been selected.
  */
 public class SelectMapPanel extends JPanel implements ActionListener, MouseListener{

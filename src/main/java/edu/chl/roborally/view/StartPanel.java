@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-04-29.
+ *
+ * This class creates the StartPanel which will show the starting menu.
  */
 public class StartPanel extends JPanel implements ActionListener{
 
@@ -18,7 +20,7 @@ public class StartPanel extends JPanel implements ActionListener{
     private BufferedImage imageBG;
 
     /**
-     * Creates the StartPanel which will show the starting menu containing a "Start", "Options" and "Exit"-button.
+     * Creates the panel containing a "Start", "Options" and "Exit"-button.
      */
     protected StartPanel(){
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
