@@ -11,7 +11,7 @@ import java.net.URL;
  * Button with icon.
  *
  */
-public class Button extends JButton {
+class Button extends JButton {
 
     /**
      * Constructor which creates a button without hoover effect.

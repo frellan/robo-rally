@@ -8,7 +8,7 @@ import java.awt.*;
  *
  * A styled JLabel used throughout the GUI
  */
-public class StyledLabel extends JLabel {
+class StyledLabel extends JLabel {
 
     /**
      * Constructor.

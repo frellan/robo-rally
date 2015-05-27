@@ -24,16 +24,16 @@ import java.util.ArrayList;
  */
 public class SelectMapPanel extends JPanel implements ActionListener, MouseListener{
 
-    private JButton chooseMapButton;
+    private final JButton chooseMapButton;
     private JButton startGameBtn;
-    private JLabel mapName;
-    private JLabel mapDifficulty;
-    private JLabel mapPlayers;
-    private JLabel mapIcon;
-    private JPanel mapInfo;
+    private final JLabel mapName;
+    private final JLabel mapDifficulty;
+    private final JLabel mapPlayers;
+    private final JLabel mapIcon;
+    private final JPanel mapInfo;
     private JPanel robotContainer;
-    private ArrayList<GameBoard> maps;
-    private BufferedImage imageBG;
+    private final ArrayList<GameBoard> maps;
+    private final BufferedImage imageBG;
     private int mapIndex;
 
     /**

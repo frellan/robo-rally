@@ -20,14 +20,12 @@ import java.net.URL;
  */
 public class SelectPlayersPanel extends JPanel implements ActionListener, MouseListener {
 
-    private JPanel nbrPanel;
-
-    private JLabel plusLabel;
-    private JLabel minusLabel;
-    private JLabel players;
-
-    private JButton chooseNbrOfPlayers;
-    private BufferedImage imageBG;
+    private final JPanel nbrPanel;
+    private final JLabel plusLabel;
+    private final JLabel minusLabel;
+    private final JLabel players;
+    private final JButton chooseNbrOfPlayers;
+    private final BufferedImage imageBG;
     private int playerIndex = 2;
 
     /**

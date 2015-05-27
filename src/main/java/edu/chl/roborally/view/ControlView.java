@@ -55,7 +55,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Also contains information about the current status of the game.
      * @param player The unique player to create controls for.
      */
-    protected ControlView(Player player) {
+    ControlView(Player player) {
         try {
             emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
         } catch (java.io.IOException | NullPointerException e){
@@ -349,7 +349,7 @@ public class ControlView extends JPanel implements ActionListener{
     }
 
     /**
-     * A modifed JLabel component used to display the register cards in the register panel.
+     * A modified JLabel component used to display the register cards in the register panel.
      */
     private class RegisterCardIcon extends JLabel {
 

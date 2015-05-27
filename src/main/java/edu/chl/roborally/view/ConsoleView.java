@@ -20,11 +20,11 @@ import java.awt.*;
  * If you want to print the message with a custom color, send a Color as the second parameter in the event.
  *
  */
-public class ConsoleView extends JPanel implements IEventHandler {
+class ConsoleView extends JPanel implements IEventHandler {
 
-    private JTextPane textPane;
+    private final JTextPane textPane;
 
-    protected ConsoleView(){
+    ConsoleView(){
         setLayout(new BorderLayout());
         setSize(314, 492);
         EventTram.getInstance().register(this);

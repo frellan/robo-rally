@@ -14,10 +14,10 @@ import java.awt.image.BufferedImage;
  */
 public class StartPanel extends JPanel implements ActionListener{
 
-    private JButton newGameButton;
-    private JButton optionsButton;
-    private JButton exitButton;
-    private BufferedImage imageBG;
+    private final JButton newGameButton;
+    private final JButton optionsButton;
+    private final JButton exitButton;
+    private final BufferedImage imageBG;
 
     /**
      * Creates the panel containing a "Start", "Options" and "Exit"-button.

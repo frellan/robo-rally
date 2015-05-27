@@ -14,13 +14,13 @@ import java.util.ArrayList;
  */
 public class BoardView extends JPanel {
     
-    private GameBoard board;
-    private ArrayList<Player> players;
-    private int tileSize = Constants.TILE_SIZE;
-    private int columns = Constants.NUM_COLS;
-    private int rows = Constants.NUM_ROWS;
-    private int width = (tileSize * columns) + columns;
-    private int height = (tileSize * rows) + rows;
+    private final GameBoard board;
+    private final ArrayList<Player> players;
+    private final int tileSize = Constants.TILE_SIZE;
+    private final int columns = Constants.NUM_COLS;
+    private final int rows = Constants.NUM_ROWS;
+    private final int width = (tileSize * columns) + columns;
+    private final int height = (tileSize * rows) + rows;
 
     /**
      * Contains the board of the game and the players on the board.

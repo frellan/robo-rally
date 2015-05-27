@@ -8,7 +8,7 @@ import java.awt.*;
  *
  * A styled JPanel used throughout the GUI.
  */
-public class StyledJPanel extends JPanel {
+class StyledJPanel extends JPanel {
 
     /**
      * Constructor.
