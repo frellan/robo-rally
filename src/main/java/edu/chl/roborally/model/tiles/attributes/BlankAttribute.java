@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.tiles.attributes;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 

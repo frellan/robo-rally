@@ -2,10 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
-import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.swing.*;

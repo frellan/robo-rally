@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.tiles;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.utilities.Constants;
