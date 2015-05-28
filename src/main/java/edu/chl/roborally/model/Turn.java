@@ -8,6 +8,7 @@ import edu.chl.roborally.model.tiles.attributes.WallAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.Position;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -99,17 +100,36 @@ public class Turn {
         }
     }
 
-    private void executeAction(GameAction action, Player player) {
+    private boolean executeAction(GameAction action, Player player) {
+        action.doAction(player);
         if (action instanceof MovePlayer) {
-            // Set Players next position
-            action.doAction(player);
-            if (checkIfValidMovement(player)) {
-                player.setPosition(player.getNextPosition().clone());
+            if (isValidMovement(player)) {
+                if (enemyAtNextPosition(player.getNextPosition()) != null) {
+                    Player enemy = enemyAtNextPosition(player.getNextPosition());
+                    enemy.setMovingDirection(player.getMovingDirection());
+                    if (executeAction(new MovePlayer(), enemy)) {
+                        player.setPosition(player.getNextPosition().clone());
+                        return true;
+                    }
+                } else {
+                    player.setPosition(player.getNextPosition().clone());
+                    return true;
+                }
             }
         }
+        return false;
     }
 
-    private boolean checkIfValidMovement(Player player) {
+    private Player enemyAtNextPosition(Position position) {
+        for (Player enemy : players) {
+            if (position.equals(enemy.getPosition())) {
+                return enemy;
+            }
+        }
+        return null;
+    }
+
+    private boolean isValidMovement(Player player) {
         for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
