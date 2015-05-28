@@ -8,7 +8,7 @@ import java.awt.*;
  *
  * The Mainframe.
  */
-public class MainFrame extends JFrame{
+class MainFrame extends JFrame{
 
     /**
      * Creates the main window that serves as the top container for all other panels in the GUI.

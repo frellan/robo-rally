@@ -18,7 +18,7 @@ import java.net.URL;
  *
  * This class creates a panel where users will be able to enter the numbers of players that will be playing.
  */
-public class SelectPlayersPanel extends JPanel implements ActionListener, MouseListener {
+class SelectPlayersPanel extends JPanel implements ActionListener, MouseListener {
 
     private final JPanel nbrPanel;
     private final JLabel plusLabel;

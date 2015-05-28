@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by fredrikkindstrom on 21/04/15.
  */
-public class BoardView extends JPanel {
+class BoardView extends JPanel {
     
     private final GameBoard board;
     private final ArrayList<Player> players;
@@ -27,7 +27,7 @@ public class BoardView extends JPanel {
      * @param board The board to be drawn. Is unique for the game and is the same for all players.
      * @param players The list of players that are in the game. This is used to be able to draw them.
      */
-    public BoardView(GameBoard board, ArrayList<Player> players) {
+    BoardView(GameBoard board, ArrayList<Player> players) {
         this.board = board;
         this.players = players;
         setSize(width, height);
