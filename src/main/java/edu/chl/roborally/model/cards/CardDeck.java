@@ -1,7 +1,5 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.cards.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -10,43 +8,15 @@ import java.util.Collections;
  */
 public class CardDeck {
 
-    //Variables
-
     private ArrayList<RegisterCard> deck;
-
-    //Constructor
 
     public CardDeck() {
         reset();
     }
 
-    //Queries
-
-    /**
-     * Returns the deck in its entirety.
-     * @return All cards.
+    /*
+    Commands
      */
-    public ArrayList<RegisterCard> getAllCards() {
-        return deck;
-    }
-
-    /**
-     * Return the desired amount of cards and then removes them from the deck.
-     * This happens to prevent retrieving doubles of the same card.
-     * Use shuffle() before a new round.
-     * @param amount The desired amount of cards.
-     * @return The amount of cards.
-     */
-    public ArrayList<RegisterCard> getCards(int amount) {
-        ArrayList<RegisterCard> tempDeck = new ArrayList<>();;
-        for (int i = 0; i < amount; i++) {
-            tempDeck.add(deck.get(i));
-            deck.remove(i);
-        }
-        return tempDeck;
-    }
-
-    //Commands
 
     /**
      * Resets the deck and recreates all the cards in order. "Unshuffles them".
@@ -59,49 +29,43 @@ public class CardDeck {
         // MOVE_ONE Cards
         int point = 490;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new MoveOneCard(point,true));
+            deck.add(new MoveOneCard(point));
             point = point + 10;
         }
-
         // MOVE_TWO Cards
         point = 670;
         for (int i = 1; i <= 12; i++) {
-            deck.add(new MoveTwoCard(point,true));
+            deck.add(new MoveTwoCard(point));
             point = point + 10;
         }
-
         // MOVE_THREE Cards
         point = 790;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new MoveThreeCard(point,true));
+            deck.add(new MoveThreeCard(point));
             point = point + 10;
         }
-
         // BACKUP Cards
         point = 430;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new BackupCard(point,true));
+            deck.add(new BackupCard(point));
             point = point + 10;
         }
-
         // ROTATE_LEFT Cards
         point = 70;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RotateLeftCard(point,true));
+            deck.add(new RotateLeftCard(point));
             point = point + 20;
         }
-
         // ROTATE_RIGHT Cards
         point = 80;
         for (int i = 1; i <= 18; i++) {
-            deck.add(new RotateRightCard(point,true));
+            deck.add(new RotateRightCard(point));
             point = point + 20;
         }
-
         // U_TURN Cards
         point = 10;
         for (int i = 1; i <= 6; i++) {
-            deck.add(new UTurnCard(point,true));
+            deck.add(new UTurnCard(point));
             point = point + 10;
         }
     }
@@ -130,4 +94,24 @@ public class CardDeck {
             deck.add(card);
         }
     }
+
+    /*
+    Getters
+     */
+
+    /**
+     * Return the desired amount of cards and then removes them from the deck.
+     * This happens to prevent retrieving doubles of the same card.
+     * @param amount The desired amount of cards.
+     * @return The amount of cards.
+     */
+    public ArrayList<RegisterCard> getCards(int amount) {
+        ArrayList<RegisterCard> tempDeck = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            tempDeck.add(deck.get(i));
+            deck.remove(i);
+        }
+        return tempDeck;
+    }
+
 }

@@ -1,9 +1,7 @@
 package edu.chl.roborally.model.cards;
 
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.RotatePlayer;
-import edu.chl.roborally.utilities.EventTram;
 
 import javax.imageio.ImageIO;
 
@@ -12,8 +10,8 @@ import javax.imageio.ImageIO;
  */
 public class RotateRightCard extends RegisterCard{
 
-    public RotateRightCard(int points, boolean isHidden) {
-        super(points,isHidden, "Rotate Right");
+    public RotateRightCard(int points) {
+        super(points, "Rotate Right");
         super.setAction(new RotatePlayer(Constants.Directions.EAST));
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_right.png"));

@@ -19,57 +19,114 @@ public abstract class RegisterCard {
     protected BufferedImage pickImageRollover;
     private ArrayList<GameAction> actions = new ArrayList<>();
 
-    public RegisterCard(int points, boolean isHidden, String name ) {
+    /**
+     * Abstract constructor used by sub-classes to create Register Cards.
+     * @param points The amount of priority points the card should have.
+     * @param name The name of the card.
+     */
+    public RegisterCard(int points, String name) {
         this.points = points;
-        this.isHidden = isHidden;
+        this.isHidden = false;
         this.isLocked = false;
         this.name = name;
     }
 
     /*
-    Commands
+    Getters
      */
+
+    /**
+     * Returns the amount of priority points the card have.
+     * @return The amount of priority points.
+     */
+    public int getPoints() {
+        return points;
+    }
+
+    /**
+     * Returns the main icon for the card.
+     * This icon is used in the register slots.
+     * @return The main icon for the card.
+     */
+    public ImageIcon getMainIcon() {
+        return new ImageIcon(mainImage);
+    }
+
+    /**
+     * Returns the standard pick icon for the card.
+     * This icon is used as the standard icon for a card in the "pick-a-card-list".
+     * @return The standard pick icon for the card.
+     */
+    public ImageIcon getPickIcon() {
+        return new ImageIcon(pickImage);
+    }
+
+    /**
+     * Returns the rollover pick icon for the card.
+     * This icon is used when a player hovers the mouse over a card in the "pick-a-card-list".
+     * @return The rollover pick icon for the card.
+     */
+    public ImageIcon getPickIconRollover() {
+        return new ImageIcon(pickImageRollover);
+    }
+
+    /**
+     * Returns true if the card is locked in the register.
+     * This happens when the player have too much damage tokens.
+     * @return True if the card is in locked state, false if not.
+     */
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    /**
+     * Returns true if the card is hidden.
+     * This is done at the beginning of the round to
+     * slowly reveal the cards as the turn progresses.
+     * @return True if the card is in hidden state, false if not.
+     */
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    /**
+     * Returns a list of actions associated with the card.
+     * This can be "move a player", "rotate a player" etc.
+     * @return A list with all the actions for the card.
+     */
+    public ArrayList<GameAction> getActions() {
+        return this.actions;
+    }
+
     public String toString() {
         return name + " (" + points + ")";
     }
 
     /*
-    Getters
-     */
-    public String getName() {
-        return name;
-    }
-    public int getPoints() {
-        return points;
-    }
-    public ImageIcon getMainIcon() {
-        return new ImageIcon(mainImage);
-    }
-    public ImageIcon getPickIcon() {
-        return new ImageIcon(pickImage);
-    }
-    public ImageIcon getPickIconRollover() {
-        return new ImageIcon(pickImageRollover);
-    }
-    public boolean isLocked() {
-        return isLocked;
-    }
-    public boolean isHidden() {
-        return isHidden;
-    }
-    public ArrayList<GameAction> getActions() {
-        return this.actions;
-    }
-
-    /*
     Setters
+     */
+
+    /**
+     * Adds a new action to the list of actions for the card.
+     * This can be "move a player", "rotate a player" etc.
+     * @param action The action to be added to the list.
      */
     protected void setAction(GameAction action) {
         this.actions.add(action);
     }
+
+    /**
+     * Sets the locked state of the card.
+     * @param b True to mark the card as locked, false to unlock it.
+     */
     public void setLocked(boolean b) {
         isLocked = b;
     }
+
+    /**
+     * Sets the hidden state of the card.
+     * @param b True to mark the card as hidden, false to reveal it.
+     */
     public void setHidden(boolean b) {
         isHidden = b;
     }

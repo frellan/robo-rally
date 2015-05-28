@@ -8,22 +8,35 @@ import java.net.URL;
 /**
  * Created by axel on 2015-05-05.
  *
- * Button for the menu with hover effect
+ * Button with icon.
  *
  */
-public class Button extends JButton {
+class Button extends JButton {
 
+    /**
+     * Constructor which creates a button without hoover effect.
+     * @param normal The name of the image in the resource folder.
+     */
     public Button (String normal){
-        this.setIcon(createIcon(this.getClass().getClassLoader().getResource(normal)));
+        this.setIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/" + normal)));
         styleButton();
     }
 
-
+    /**
+     * Constructor which creates a button with hoover effect.
+     * @param normal The name of the image in the resource folder.
+     * @param hover The name of the image in the resource folder which will be shown when the button is hoovered.
+     */
     public Button (String normal, String hover){
         this(normal);
-        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource(hover)));
+        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/" + hover)));
     }
 
+    /**
+     * Creates an ImageIcon.
+     * @param url The name of the image in the resource folder.
+     * @return An ImageIcon containing an bufferedImage from the resource folder.
+     */
     private ImageIcon createIcon(URL url){
         BufferedImage bi;
         try {

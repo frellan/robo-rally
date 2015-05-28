@@ -13,17 +13,26 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-05-06.
+ *
+ * This class creates the GamePanel which is unique for every player and contains the board,
+ * the controls, the console and the status for a given player.
  */
 public class GamePanel extends JPanel {
 
     private BufferedImage imageBG;
     private BufferedImage textBG;
-    private BoardView boardView;
-    private ConsoleView consoleView;
-    private ControlView controlView;
-    private Player player;
+    private final BoardView boardView;
+    private final ConsoleView consoleView;
+    private final ControlView controlView;
+    private final Player player;
 
-    protected GamePanel(GameBoard board, ArrayList<Player> players, Player player){
+    /**
+     * Creates the game panel.
+     * @param board The board to be drawn inside the panel. Is unique for the game and the same for all players.
+     * @param players The list of players that are in the game. This is used to be able to draw them.
+     * @param player The unique player to create components for.
+     */
+    public GamePanel(GameBoard board, ArrayList<Player> players, Player player){
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         initImages();
         setOpaque(false);
@@ -32,29 +41,45 @@ public class GamePanel extends JPanel {
         boardView = new BoardView(board,players);
         controlView = new ControlView(player);
         consoleView = new ConsoleView();
-        add(boardView);
-        boardView.setLocation(8, 23);
-        add(consoleView);
-        consoleView.setLocation(678, 23);
-        add(controlView);
-        controlView.setLocation(8, 543);
+        add(boardView).setLocation(8, 23);
+        add(consoleView).setLocation(678, 23);
+        add(controlView).setLocation(8, 543);
     }
 
     /*
     Getters
      */
-    protected BoardView getBoardView(){
+
+    /**
+     * Return the board within the game panel.
+     * @return The board view within the game panel.
+     */
+    public BoardView getBoardView(){
         return this.boardView;
     }
-    protected ControlView getControlView(){
+
+    /**
+     * Return the control view within the game panel.
+     * @return The control view within the game panel.
+     */
+    public ControlView getControlView(){
         return this.controlView;
     }
-    protected Player getPlayer() {
+
+    /**
+     * Return the player associated with the game panel.
+     * @return The player associated with the game panel.
+     */
+    public Player getPlayer() {
         return player;
     }
 
     /*
     Help methods and classes
+     */
+
+    /**
+     * Sets the image variables used in the game panel.
      */
     private void initImages() {
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
@@ -65,8 +90,9 @@ public class GamePanel extends JPanel {
         }
     }
 
-    /*
-    Painters
+    /**
+     * Paints the black outlines of the components inside the game panel.
+     * @param g The graphics object to use when painting.
      */
     private void paintBorders(Graphics g) {
         g.setColor(Color.BLACK);
@@ -74,6 +100,11 @@ public class GamePanel extends JPanel {
         g.fillRect(674, 19, 322, 500);
         g.fillRect(4, 539, 992, 179);
     }
+
+    /*
+    Painters
+     */
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

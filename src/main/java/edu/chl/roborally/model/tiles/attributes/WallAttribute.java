@@ -1,15 +1,11 @@
 package edu.chl.roborally.model.tiles.attributes;
 
-import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.gameactions.StopPlayer;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.utilities.GlobalImageHolder;
-import edu.chl.roborally.utilities.WallException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-03-31.

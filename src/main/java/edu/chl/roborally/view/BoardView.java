@@ -2,10 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
-import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.swing.*;
@@ -17,14 +14,19 @@ import java.util.ArrayList;
  */
 public class BoardView extends JPanel {
     
-    private GameBoard board;
-    private ArrayList<Player> players;
-    private int tileSize = Constants.TILE_SIZE;
-    private int columns = Constants.NUM_COLS;
-    private int rows = Constants.NUM_ROWS;
-    private int width = (tileSize * columns) + columns;
-    private int height = (tileSize * rows) + rows;
+    private final GameBoard board;
+    private final ArrayList<Player> players;
+    private final int tileSize = Constants.TILE_SIZE;
+    private final int columns = Constants.NUM_COLS;
+    private final int rows = Constants.NUM_ROWS;
+    private final int width = (tileSize * columns) + columns;
+    private final int height = (tileSize * rows) + rows;
 
+    /**
+     * Contains the board of the game and the players on the board.
+     * @param board The board to be drawn. Is unique for the game and is the same for all players.
+     * @param players The list of players that are in the game. This is used to be able to draw them.
+     */
     public BoardView(GameBoard board, ArrayList<Player> players) {
         this.board = board;
         this.players = players;
@@ -33,6 +35,11 @@ public class BoardView extends JPanel {
 
     /*
     Class methods
+     */
+
+    /**
+     * Draws the grid of black lines that are between the tiles on the board.
+     * @param g The graphics object to use when painting.
      */
     private void drawGrid(Graphics g) {
         // Vertical Lines
@@ -52,6 +59,11 @@ public class BoardView extends JPanel {
             y += tileSize;
         }
     }
+
+    /**
+     * Draws the tiles on the board. This is done using the tiles own draw methods.
+     * @param g The graphics object to use when painting.
+     */
     private void drawTiles(Graphics g) {
         for (int i = 0; i < columns; i++) {
             for(int j = 0; j < rows; j++) {
@@ -59,6 +71,12 @@ public class BoardView extends JPanel {
             }
         }
     }
+
+    /**
+     * Draws the players on their respective positions on the board.
+     * This is done using the players own draw methods.
+     * @param g The graphics object to use when painting.
+     */
     private void drawPlayers(Graphics g) {
         for (Player player : players) {
             Position pos = player.getPosition();
@@ -71,7 +89,11 @@ public class BoardView extends JPanel {
     /*
     Commands
      */
-    protected void update() {
+
+    /**
+     * Repaints the entire board panel.
+     */
+    public void update() {
         repaint();
     }
 

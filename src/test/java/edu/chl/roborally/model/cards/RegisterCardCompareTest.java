@@ -19,11 +19,11 @@ public class RegisterCardCompareTest {
 
     @Before
     public void setUp() throws Exception {
-        RegisterCard card1 = new MoveOneCard(170,false);
-        RegisterCard card2 = new MoveOneCard(150, false);
-        RegisterCard card3 = new MoveOneCard(350, false);
-        RegisterCard card4 = new MoveOneCard(20, false);
-        RegisterCard card5 = new MoveOneCard(890, false);
+        RegisterCard card1 = new MoveOneCard(170);
+        RegisterCard card2 = new MoveOneCard(150);
+        RegisterCard card3 = new MoveOneCard(350);
+        RegisterCard card4 = new MoveOneCard(20);
+        RegisterCard card5 = new MoveOneCard(890);
 
         soretedCards.add(card1);
         soretedCards.add(card2);

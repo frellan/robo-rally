@@ -6,10 +6,14 @@ import java.awt.*;
 /**
  * Created by axel on 2015-05-26.
  *
- * A styled JPanel created used throughout the GUI
+ * A styled JPanel used throughout the GUI.
  */
-public class StyledJPanel extends JPanel {
+class StyledJPanel extends JPanel {
 
+    /**
+     * Constructor.
+     * @param layoutManager The layout that will be given to the panel.
+     */
     public StyledJPanel(LayoutManager layoutManager) {
         this.setLayout(layoutManager);
         this.setOpaque(true);

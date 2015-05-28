@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.tiles;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.utilities.Constants;
@@ -9,6 +8,8 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-03-26.
+ *
+ * Creates a Tile with attributes.
  */
 
 public class GameTile {
@@ -23,14 +24,34 @@ public class GameTile {
         attributes = new ArrayList<>();
     }
 
+    /*
+    Commands
+    */
+
+    /**
+     * Add an attribute to the Tile
+     * @param attribute
+     */
     public void addAttribute(Attribute attribute) {
         attributes.add(attribute);
     }
 
+    /**
+     * Adds a before-attribute to the Tile
+     * @param attribute
+     */
     public void addBeforeAttribute(Attribute attribute) {
         beforeAttributes.add(attribute);
     }
 
+    /*
+    Getters
+    */
+
+    /**
+     * Returns the actions associated with the tile
+     * @return Actions
+     */
     public ArrayList<GameAction> getActions() {
         ArrayList<GameAction> actions = new ArrayList<>();
         for (Attribute attribute : attributes) {
@@ -41,6 +62,10 @@ public class GameTile {
         return actions;
     }
 
+    /**
+     * Returns the actions if there is a need for a before-action
+     * @return Before-actions
+     */
     public ArrayList<GameAction> getBeforeAction() {
         ArrayList<GameAction> actions = new ArrayList<>();
         for (Attribute attribute : beforeAttributes) {
@@ -51,6 +76,16 @@ public class GameTile {
         return actions;
     }
 
+    /*
+    Graphics
+     */
+
+    /**
+     * Draw method which draws the tile
+     * @param g Graphics.
+     * @param x X Coordinate.
+     * @param y Y Coordinate.
+     */
     public void draw(Graphics g, int x, int y) {
         for (Attribute attribute : this.attributes) {
             attribute.draw(g,x,y);

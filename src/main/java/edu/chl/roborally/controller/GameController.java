@@ -10,107 +10,95 @@ import java.util.ArrayList;
 /**
  * Created by Pertta on 15-04-23.
  *
- * The GameController is the game master. The flow of the game
- * is controlled here.
- *
+ * This class is the game master. The flow of the game is controlled here.
  */
 public class GameController extends Thread implements IEventHandler {
 
     private RoboRally model = null;
-    private MapFactory mapFactory;
 
-    // Collect information to init model
     private Integer tempMapIndex = null;
-    private Integer tempNbrOfRobots = null;
-    private boolean mapReady = false;
-    private boolean robotsReady = false;
+    private Integer tempNbrOfPlayers = null;
     private int turnIndex = 0;
-    private boolean newTurn = false;
-    private boolean newRound = true;
+    private boolean readyForNewTurn = false;
+    private boolean readyForNewRound = true;
 
+    /**
+     * Creates the class and registers it as a listener for events coming from the model and view packages.
+     */
     public GameController() {
-        this.mapFactory = new MapFactory();
         EventTram.getInstance().register(this);
     }
 
-    /**
-     * The createModel method setups up all the
-     * dependencies for the game
+    /*
+    Class methods
      */
-    private void createModel() {
-        if (tempNbrOfRobots != null && tempMapIndex != null && model == null) {
-            this.model = new RoboRally(createRobots(tempNbrOfRobots), MapFactory.getInstance().getMap(tempMapIndex));
-            EventTram.getInstance().publish(EventTram.Event.NEW_MODEL_CREATED, model, null);
-        }
-    }
 
     /**
-     * runGame keeps track of rounds and turns
-     * asks the model if the game
-     * should continue
+     * Takes the number of players to be created and then creates that many new players.
+     * @param amountOfPlayers The amount of players to be created.
+     * @return A list containing the players created.
      */
-    private void runGame() {
-        if (!model.isGameRunning()) {
-            System.out.println("The model did not think that the game should continue");
-        }
-        else if (newRound) {
-            EventTram.getInstance().publish(EventTram.Event.NEW_ROUND,null,null);
-            new Round(model);
-            newRound = false;
-            turnIndex = 0;
-        } else if (turnIndex < 5 && newTurn) {
-            new Turn(model,turnIndex);
-            EventTram.getInstance().publish(EventTram.Event.NEW_TURN,null,null);
-            turnIndex++;
-            newTurn = false;
-
-            if(turnIndex == 5) {
-                model.returnCardsToDeck();
-                newRound = true;
-            }
-        }
-    }
-
-    private ArrayList<Player> createRobots(Integer j) {
+    private ArrayList<Player> createPlayers(Integer amountOfPlayers) {
         ArrayList<Player> players = new ArrayList<>();
-        for (int i = 0; i<j; i++) {
+        for (int i = 0; i < amountOfPlayers; i++) {
             players.add(new Player(i, RobotFactory.getInstance().constructRobot(i)));
             System.out.println("NEW PLAYER NAMED: " + players.get(i).getName());
         }
         return players;
     }
 
-    private boolean readyForGame() {
-        if (mapReady && robotsReady) {
-            EventTram.getInstance().publish(EventTram.Event.CREATE_MODEL, null, null);
-            return true;
+    /**
+     * Checks if there is enough data to create a model and then creates it if there is.
+     */
+    private void tryToCreateModel() {
+        if (tempNbrOfPlayers != null && tempMapIndex != null && model == null) {
+            this.model = new RoboRally(createPlayers(tempNbrOfPlayers), MapFactory.getInstance().getMap(tempMapIndex));
+            EventTram.getInstance().publish(EventTram.Event.MODEL_CREATED, model, null);
         }
-        return false;
+    }
+
+    /**
+     * Runs the game loop and keeps track of rounds and turns.
+     * When a round is over it returns the cards to the deck etc.
+     */
+    private void runGame() {
+        if (!model.isGameRunning()) {
+            System.out.println("Model did not think that the game should continue");
+        } else if (readyForNewRound) {
+            EventTram.getInstance().publish(EventTram.Event.NEW_ROUND, null, null);
+            new Round(model);
+            readyForNewRound = false;
+            turnIndex = 0;
+        } else if (turnIndex < 5 && readyForNewTurn) {
+            new Turn(model, turnIndex);
+            EventTram.getInstance().publish(EventTram.Event.NEW_TURN, turnIndex + 1, null);
+            readyForNewTurn = false;
+            turnIndex++;
+            if (turnIndex == 5) {
+                model.returnCardsToDeck();
+                readyForNewRound = true;
+            }
+        }
     }
 
     @Override
     public void onEvent(EventTram.Event evt, Object o, Object o2) {
         switch (evt) {
-            case SET_ROBOTS:
-                this.tempNbrOfRobots = (Integer) o;
-                robotsReady = true;
-                readyForGame();
+            case PLAYERS_SELECTED:
+                tempNbrOfPlayers = (Integer) o;
+                tryToCreateModel();
                 break;
-            case SET_MAP:
-                this.tempMapIndex = (Integer) o;
-                mapReady = true;
-                readyForGame();
+            case MAP_SELECTED:
+                tempMapIndex = (Integer) o;
+                tryToCreateModel();
                 break;
-            case CREATE_MODEL:
-                this.createModel();
-                break;
-            case RUN_GAME:
+            case START_GAME:
                 EventTram.getInstance().publish(EventTram.Event.SHOW_GAMEPANEL, null, null);
-                newRound = true;
-                this.runGame();
+                readyForNewRound = true;
+                runGame();
                 break;
             case READY_FOR_NEW_TURN:
-                newTurn = true;
+                readyForNewTurn = true;
                 runGame();
                 break;
         }

@@ -1,10 +1,7 @@
 package edu.chl.roborally.model.tiles.attributes;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.CheckpointPlayer;
-import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import java.awt.*;
