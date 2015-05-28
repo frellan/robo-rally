@@ -13,15 +13,12 @@ import java.awt.image.BufferedImage;
 public class CheckpointAttribute extends Attribute {
 
     private String name = "CP";
+
     private final int id;
 
     public CheckpointAttribute(int id) {
-        super.setAction(new CheckpointPlayer());
+        super.setAction(new CheckpointPlayer(id));
         this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String toString() {

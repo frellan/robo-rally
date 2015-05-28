@@ -17,6 +17,7 @@ public class StopPlayer implements GameAction {
 
     @Override
     public void doAction(Player p) throws WallException {
-        throw new WallException();
+        System.out.println("Kasta wall");
+        throw new WallException("Wall ahead");
     }
 }

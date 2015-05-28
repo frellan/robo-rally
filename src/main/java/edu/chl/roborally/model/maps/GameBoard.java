@@ -92,7 +92,6 @@ public abstract class GameBoard implements IEventHandler{
                     System.out.println("Player fell of board and died");
                     player.kill();
                 } catch(WallException e){
-
                     player.setPosition(player.getBeforePosition());
                 }
             }
