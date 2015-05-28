@@ -16,28 +16,39 @@ import java.util.Map;
 
 /**
  * Created by henriknilson on 31/03/15.
+ *
+ * This is the class in the model with the most game logic.
+ * Here is where all the players move and interact with each other.
  */
 public class Turn {
 
     private RoboRally model;
     private ArrayList<Player> players;
+    private final int turnIndex;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
     private int executeActionIndex;
     private ArrayList<Player> recursivedPlayers = new ArrayList<>();
 
     /**
-    * The index of the turn, given by round
-    */
-    private final int turnIndex;
-
-    public Turn(RoboRally r, int turnIndex) {
-        this.model = r;
-        this.players = model.getPlayers();
+     * Creates the turn and runs the start method that performs all tasks needed for a turn.
+     * @param model The top model class of the current game that holds useful information.
+     * @param turnIndex The index of the turn in the current round. Can be 1 to 5.
+     */
+    public Turn(RoboRally model, int turnIndex) {
+        this.model = model;
+        this.players = this.model.getPlayers();
         this.turnIndex = turnIndex;
         startTurn();
     }
 
+    /*
+    Main method
+     */
+
+    /**
+     * Main method that calls all the help methods to perform the tasks needed for a turn.
+     */
     private void startTurn() {
         revealProgrammedCards();
         sortActiveCards();
@@ -45,13 +56,13 @@ public class Turn {
         executeBoardElements();
         fireLasers();
         checkIfOnlyOneSurvivor();
-
         EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null, null);
         EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null, null);
-
     }
 
-    // Executing methods
+    /*
+    Help methods
+     */
 
     /**
      * Loop through all player and their cards and set card with the turnIndex
@@ -72,13 +83,13 @@ public class Turn {
     }
 
     private void executeActiveCards() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYSING CARDS" + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "ANALYSING CARDS" + "\n", Color.MAGENTA);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
                 recursivedPlayers = new ArrayList<>();
                 ArrayList<GameAction> actions = card.getActions();
-                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": Moving ", null);
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
                 for (GameAction action : actions) {
                     executeCardAction(player,action);
                 }
@@ -113,7 +124,7 @@ public class Turn {
 
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- TILE ACTIONS" + "\n" ,null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);
@@ -124,7 +135,6 @@ public class Turn {
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
-        //TODO Stop when other player is hit
         for (Player p : players) {
             //Get current laser power for the player
             int playerLaserPower = p.getLaserPower();
@@ -135,35 +145,35 @@ public class Turn {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case SOUTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case EAST:
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case WEST:
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
-                    break;
                 }
             }
         }
@@ -205,6 +215,7 @@ public class Turn {
      * @param enemy Enemy, the one getting shot at
      */
     private void printFireMsg(Player p, Player enemy) {
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, enemy.getName(), enemy.getColor());

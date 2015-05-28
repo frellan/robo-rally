@@ -63,8 +63,8 @@ public class MovePlayer implements GameAction {
                 p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
         }
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + "\n" , p.getColor());
         EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }
