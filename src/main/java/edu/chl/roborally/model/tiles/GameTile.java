@@ -2,10 +2,8 @@ package edu.chl.roborally.model.tiles;
 
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
-import edu.chl.roborally.utilities.Constants;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.jar.Attributes;
 
 /**
  * Created by axel on 2015-03-26.
@@ -17,8 +15,6 @@ public class GameTile {
 
     private ArrayList<Attribute> attributes;
     private ArrayList<Attribute> beforeAttributes;
-
-    protected Dimension size = new Dimension(Constants.TILE_SIZE,Constants.TILE_SIZE);
 
     public GameTile() {
         beforeAttributes = new ArrayList<>();

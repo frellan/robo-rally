@@ -2,7 +2,6 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
 
 /**
  * Created by henriknilson on 31/03/15.

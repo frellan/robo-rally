@@ -25,11 +25,11 @@ import java.util.Map;
  */
 public class Turn {
 
-    private RoboRally model;
-    private ArrayList<Player> players;
+    private final RoboRally model;
+    private final ArrayList<Player> players;
     private final int turnIndex;
-    private ArrayList<RegisterCard> activeCards = new ArrayList<>();
-    private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
+    private final ArrayList<RegisterCard> activeCards = new ArrayList<>();
+    private final Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
 
     /**
      * Creates the turn and runs the start method that performs all tasks needed for a turn.
@@ -123,7 +123,7 @@ public class Turn {
     private boolean executeAction(GameAction action, Player player) {
         action.doAction(player);
         if (action instanceof MovePlayer) {
-            if (isHittingWall(player)) {
+            if (playerIsHittingWall(player)) {
                 if (enemyAtNextPosition(player.getNextPosition()) != null) {
                     Player enemy = enemyAtNextPosition(player.getNextPosition());
                     enemy.setMovingDirection(player.getMovingDirection());
@@ -145,7 +145,7 @@ public class Turn {
      * @param player The player to check.
      * @return True if player would hit a wall, false if not.
      */
-    private boolean isHittingWall(Player player) {
+    private boolean playerIsHittingWall(Player player) {
         for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
@@ -166,7 +166,7 @@ public class Turn {
     /**
      * Check if there is another player at a position and returns that player if there is.
      * @param position The position to check.
-     * @return A player if found, otherwise null
+     * @return A player if found, otherwise null.
      */
     @Nullable
     private Player enemyAtNextPosition(Position position) {
