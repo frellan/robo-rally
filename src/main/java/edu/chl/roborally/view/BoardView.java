@@ -2,10 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.utilities.Position;
-import edu.chl.roborally.model.RoboRally;
 import edu.chl.roborally.model.maps.GameBoard;
 
 import javax.swing.*;
@@ -17,13 +14,13 @@ import java.util.ArrayList;
  */
 public class BoardView extends JPanel {
     
-    private GameBoard board;
-    private ArrayList<Player> players;
-    private int tileSize = Constants.TILE_SIZE;
-    private int columns = Constants.NUM_COLS;
-    private int rows = Constants.NUM_ROWS;
-    private int width = (tileSize * columns) + columns;
-    private int height = (tileSize * rows) + rows;
+    private final GameBoard board;
+    private final ArrayList<Player> players;
+    private final int tileSize = Constants.TILE_SIZE;
+    private final int columns = Constants.NUM_COLS;
+    private final int rows = Constants.NUM_ROWS;
+    private final int width = (tileSize * columns) + columns;
+    private final int height = (tileSize * rows) + rows;
 
     /**
      * Contains the board of the game and the players on the board.

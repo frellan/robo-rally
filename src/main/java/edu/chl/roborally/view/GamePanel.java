@@ -21,10 +21,10 @@ public class GamePanel extends JPanel {
 
     private BufferedImage imageBG;
     private BufferedImage textBG;
-    private BoardView boardView;
-    private ConsoleView consoleView;
-    private ControlView controlView;
-    private Player player;
+    private final BoardView boardView;
+    private final ConsoleView consoleView;
+    private final ControlView controlView;
+    private final Player player;
 
     /**
      * Creates the game panel.

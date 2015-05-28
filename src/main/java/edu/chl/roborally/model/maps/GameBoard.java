@@ -5,8 +5,6 @@ import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.*;
 import edu.chl.roborally.model.tiles.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 

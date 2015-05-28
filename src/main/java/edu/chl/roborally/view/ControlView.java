@@ -3,6 +3,7 @@ package edu.chl.roborally.view;
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.utilities.EventTram;
+import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +26,7 @@ import java.util.ArrayList;
  */
 public class ControlView extends JPanel implements ActionListener{
 
-    private Player player;
+    private final Player player;
     private ImageIcon emptyNewCardIcon;
 
     private JPanel registerView;
@@ -43,8 +45,8 @@ public class ControlView extends JPanel implements ActionListener{
 
     private JButton powerDownButton;
     private JLabel lifeTokensLabel;
-    private JLabel dmgTokensLabel;
     private JLabel positionLabel;
+    private DamageTokensPanel damageTokensPanel;
     private JButton doneButton;
     private JButton nextTurnButton;
 
@@ -55,7 +57,7 @@ public class ControlView extends JPanel implements ActionListener{
      * Also contains information about the current status of the game.
      * @param player The unique player to create controls for.
      */
-    protected ControlView(Player player) {
+    ControlView(Player player) {
         try {
             emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
         } catch (java.io.IOException | NullPointerException e){
@@ -143,28 +145,52 @@ public class ControlView extends JPanel implements ActionListener{
         add(pickCardsView).setLocation(521, 0);
     }
     private void createStatusView() {
-        statusView = new JPanel(new GridLayout(6,1));
-        statusView.setSize(320, 171);
+        statusView = new JPanel(null);
+        statusView.setSize(321, 171);
         statusView.setOpaque(false);
-        powerDownButton = new JButton("PowerDown");
-        lifeTokensLabel = new JLabel("LifeTokens: " + player.getLifeTokens(), SwingConstants.CENTER);
+
+        JLabel robotIcon = new JLabel(new ImageIcon(player.getImage()));
+        robotIcon.setBorder(new LineBorder(Color.BLACK, 2));
+        robotIcon.setSize(44, 44);
+        statusView.add(robotIcon).setLocation(6, 6);
+
+        JLabel playingAs = new JLabel("<html><FONT COLOR=WHITE>Playing as: </FONT>" + player.getName());
+        playingAs.setSize(200, 20);
+        playingAs.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        playingAs.setForeground(player.getColor());
+        statusView.add(playingAs).setLocation(57, 4);
+
+        powerDownButton = new JButton("!");
+        powerDownButton.setSize(40, 40);
+        statusView.add(powerDownButton).setLocation(274, 8);
+
+        lifeTokensLabel = new JLabel("Life tokens: " + player.getLifeTokens());
+        lifeTokensLabel.setSize(200, 20);
+        lifeTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         lifeTokensLabel.setForeground(Color.WHITE);
-        dmgTokensLabel = new JLabel("DamageTokens: " + player.getDamageTokens(), SwingConstants.CENTER);
-        dmgTokensLabel.setForeground(Color.WHITE);
-        positionLabel = new JLabel("PlayerPosition: " + player.getPosition(), SwingConstants.CENTER);
+        statusView.add(lifeTokensLabel).setLocation(57, 26);
+
+        positionLabel = new JLabel("Position: " + player.getPosition());
+        positionLabel.setSize(200, 20);
+        positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         positionLabel.setForeground(Color.WHITE);
+        statusView.add(positionLabel).setLocation(9, 53);
+
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        buttonPanel.setSize(308, 24);
         doneButton = new JButton("Done");
         doneButton.setEnabled(false);
         doneButton.addActionListener(this);
+        buttonPanel.add(doneButton);
         nextTurnButton = new JButton("Next Turn");
         nextTurnButton.addActionListener(this);
-        statusView.add(powerDownButton);
-        statusView.add(lifeTokensLabel);
-        statusView.add(dmgTokensLabel);
-        statusView.add(positionLabel);
-        statusView.add(doneButton);
-        statusView.add(nextTurnButton);
-        add(statusView).setLocation(668, 0);
+        buttonPanel.add(nextTurnButton);
+        statusView.add(buttonPanel).setLocation(6, 141);
+
+        damageTokensPanel = new DamageTokensPanel();
+        statusView.add(damageTokensPanel).setLocation(5, 98);
+
+        add(statusView).setLocation(663, 0);
     }
 
     /**
@@ -199,7 +225,7 @@ public class ControlView extends JPanel implements ActionListener{
     }
 
     /*
-    Command Methods
+    Commands
      */
 
     /**
@@ -313,9 +339,9 @@ public class ControlView extends JPanel implements ActionListener{
      * i.e damage tokens, player positions etc.
      */
     public void updateStatusView() {
-        lifeTokensLabel.setText("LifeTokens: " + player.getLifeTokens());
-        dmgTokensLabel.setText("DamageTokens: " + player.getDamageTokens());
-        positionLabel.setText("PlayerPosition: " + player.getPosition());
+        positionLabel.setText("Position: " + player.getPosition());
+        lifeTokensLabel.setText("Life tokens: " + player.getLifeTokens());
+        damageTokensPanel.setAmountOfTokens(player.getDamageTokens());
     }
 
     /*
@@ -349,7 +375,7 @@ public class ControlView extends JPanel implements ActionListener{
     }
 
     /**
-     * A modifed JLabel component used to display the register cards in the register panel.
+     * A modified JLabel component used to display the register cards in the register panel.
      */
     private class RegisterCardIcon extends JLabel {
 
@@ -454,6 +480,91 @@ public class ControlView extends JPanel implements ActionListener{
     }
 
     /**
+     * JPanel containing the damage token icons and the logic for showing the correct amoount.
+     */
+    private class DamageTokensPanel extends JPanel {
+
+        private ImageIcon set1DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(0, 0, 34, 40));
+        private ImageIcon set1EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(34, 0, 34, 40));
+        private ImageIcon set2DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(68, 0, 34, 40));
+        private ImageIcon set2EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(102, 0, 34, 40));
+        private ImageIcon set3DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(136, 0, 34, 40));
+        private ImageIcon set3EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(170, 0, 34, 40));
+
+        private JLabel dmgToken1;
+        private JLabel dmgToken2;
+        private JLabel dmgToken3;
+        private JLabel dmgToken4;
+        private JLabel dmgToken5;
+        private JLabel dmgToken6;
+        private JLabel dmgToken7;
+        private JLabel dmgToken8;
+        private JLabel dmgToken9;
+        private JLabel dmgToken10;
+
+        public DamageTokensPanel() {
+            setSize(340, 40);
+            setLayout(null);
+            setOpaque(false);
+            dmgToken1 = new JLabel(set1DisabledIcon);
+            dmgToken1.setSize(34, 40);
+            add(dmgToken1).setLocation(0, 0);
+            dmgToken2 = new JLabel(set1DisabledIcon);
+            dmgToken2.setSize(34, 40);
+            add(dmgToken2).setLocation(32, 0);
+            dmgToken3 = new JLabel(set1DisabledIcon);
+            dmgToken3.setSize(34, 40);
+            add(dmgToken3).setLocation(64, 0);
+            dmgToken4 = new JLabel(set1DisabledIcon);
+            dmgToken4.setSize(34, 40);
+            add(dmgToken4).setLocation(95, 0);
+            dmgToken5 = new JLabel(set2DisabledIcon);
+            dmgToken5.setSize(34, 40);
+            add(dmgToken5).setLocation(126, 0);
+            dmgToken6 = new JLabel(set2DisabledIcon);
+            dmgToken6.setSize(34, 40);
+            add(dmgToken6).setLocation(156, 0);
+            dmgToken7 = new JLabel(set2DisabledIcon);
+            dmgToken7.setSize(34, 40);
+            add(dmgToken7).setLocation(186, 0);
+            dmgToken8 = new JLabel(set2DisabledIcon);
+            dmgToken8.setSize(34, 40);
+            add(dmgToken8).setLocation(216, 0);
+            dmgToken9 = new JLabel(set2DisabledIcon);
+            dmgToken9.setSize(34, 40);
+            add(dmgToken9).setLocation(246, 0);
+            dmgToken10 = new JLabel(set3DisabledIcon);
+            dmgToken10.setSize(34, 40);
+            add(dmgToken10).setLocation(276, 0);
+        }
+
+        private void setAmountOfTokens(int amount) {
+            dmgToken1.setIcon(set1DisabledIcon);
+            dmgToken2.setIcon(set1DisabledIcon);
+            dmgToken3.setIcon(set1DisabledIcon);
+            dmgToken4.setIcon(set1DisabledIcon);
+            dmgToken5.setIcon(set2DisabledIcon);
+            dmgToken6.setIcon(set2DisabledIcon);
+            dmgToken7.setIcon(set2DisabledIcon);
+            dmgToken8.setIcon(set2DisabledIcon);
+            dmgToken9.setIcon(set2DisabledIcon);
+            dmgToken10.setIcon(set3DisabledIcon);
+            switch (amount) {
+                case 10: dmgToken10.setIcon(set3EnabledIcon);
+                case 9: dmgToken9.setIcon(set2EnabledIcon);
+                case 8: dmgToken8.setIcon(set2EnabledIcon);
+                case 7: dmgToken7.setIcon(set2EnabledIcon);
+                case 6: dmgToken6.setIcon(set2EnabledIcon);
+                case 5: dmgToken5.setIcon(set2EnabledIcon);
+                case 4: dmgToken4.setIcon(set1EnabledIcon);
+                case 3: dmgToken3.setIcon(set1EnabledIcon);
+                case 2: dmgToken2.setIcon(set1EnabledIcon);
+                case 1: dmgToken1.setIcon(set1EnabledIcon);
+            }
+        }
+    }
+
+    /**
      * A modified TransferHandler used to transfer register card information between panels.
      * This is done using strings.
      */
@@ -461,7 +572,7 @@ public class ControlView extends JPanel implements ActionListener{
 
         public final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
 
-        private String value;
+        private final String value;
 
         public RegisterCardTransferHandler(String value) {
             this.value = value;
@@ -474,14 +585,14 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Export stuff
          */
+
         @Override
         public int getSourceActions(JComponent c) {
             return DnDConstants.ACTION_COPY_OR_MOVE;
         }
         @Override
         protected Transferable createTransferable(JComponent c) {
-            Transferable t = new StringSelection(getValue());
-            return t;
+            return new StringSelection(getValue());
         }
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
@@ -501,6 +612,7 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Transfer stuff
          */
+
         @Override
         public boolean canImport(TransferHandler.TransferSupport support) {
             return support.isDataFlavorSupported(SUPPORTED_DATE_FLAVOR);
@@ -535,6 +647,7 @@ public class ControlView extends JPanel implements ActionListener{
         /*
         Helper methods
          */
+
         private RegisterCard getMatchingCard(String value) {
             for (RegisterCard card : newCardsToPick) {
                 if (card.toString().equals(value)) {

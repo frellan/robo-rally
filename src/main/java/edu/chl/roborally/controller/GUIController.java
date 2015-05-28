@@ -27,7 +27,6 @@ public class GUIController implements IEventHandler {
     private RoboRally model;
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
     private JTabbedPane tabbedPane = new JTabbedPane();
-    private int turnIndex = 1;
 
     /**
      * Creates the class and creates a main frame to add all the upcoming components to.
@@ -95,7 +94,7 @@ public class GUIController implements IEventHandler {
      */
     private void createGamePanels() {
         for (Player player : model.getPlayers()) {
-            gamePanels.add(new GamePanel(model.getGameBoard(),model.getPlayers(),player));
+            gamePanels.add(new GamePanel(model.getBoard(),model.getPlayers(),player));
         }
     }
 
@@ -133,7 +132,6 @@ public class GUIController implements IEventHandler {
             panel.getControlView().resetNewCardButtons();
             panel.getControlView().setNextTurnButtonEnabled(false);
         }
-        turnIndex = 1;
     }
 
     /**
@@ -143,7 +141,7 @@ public class GUIController implements IEventHandler {
      */
     private void newCardsForPlayer(Player player) {
         for (GamePanel panel : gamePanels) {
-            if (panel.getPlayer().getiD() == player.getiD()) {
+            if (panel.getPlayer().getID() == player.getID()) {
                 panel.getControlView().newCardsToPick();
                 panel.getControlView().setRegisterCardIconsChangeable();
                 panel.getControlView().setDoneButtonEnabled(true);
@@ -154,7 +152,7 @@ public class GUIController implements IEventHandler {
     /**
      * Loops through the game panels and sets their components for a new turn.
      */
-    private void setGamePanelsForNewTurn() {
+    private void setGamePanelsForNewTurn(int turnIndex) {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(turnIndex);
             panel.getControlView().setRegisterCardIconsNotChangeable();
@@ -162,7 +160,6 @@ public class GUIController implements IEventHandler {
             panel.getControlView().setDoneButtonEnabled(false);
             panel.getControlView().setNextTurnButtonEnabled(true);
         }
-        turnIndex++;
     }
 
     @Override
@@ -190,7 +187,7 @@ public class GUIController implements IEventHandler {
                 newCardsForPlayer((Player) o);
                 break;
             case NEW_TURN:
-                setGamePanelsForNewTurn();
+                setGamePanelsForNewTurn((int) o);
                 break;
             case UPDATE_BOARD:
                 for(GamePanel panel : gamePanels)

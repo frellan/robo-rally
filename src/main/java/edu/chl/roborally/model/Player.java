@@ -18,13 +18,13 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    private Robot robot;
+    private final Robot robot;
     private int lifeTokens;
     private int damageTokens;
-    private int iD;
+    private final int id;
     private Position position;
     private Position checkpoint;
-    private int checkpointId;
+    private int checkpointID;
     private Constants.Directions direction;
     private ArrayList<RegisterCard> dealtCards;
     private RegisterCard[] programmedCards;
@@ -32,8 +32,8 @@ public class Player {
     private int laserPower;
     private Position beforePosition;
 
-    public Player(int iD, Robot robot) {
-        this.iD = iD;
+    public Player(int id, Robot robot) {
+        this.id = id;
         this.robot = robot;
         this.lifeTokens = 3;
         this.damageTokens = 0;
@@ -41,59 +41,18 @@ public class Player {
         this.programmedCards = new RegisterCard[5];
         this.status = Constants.Status.ALIVE;
         this.laserPower = 1;
-        this.checkpointId = 0;
+        this.checkpointID = 0;
     }
 
     /*
-    Commands
-    */
+    Class methods
+     */
 
     /**
-     * Empties the players programmed cards
+     * Locks cards depending on the amount of damage tokens.
      */
-    public void emptyProgrammedCards() {
-        ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
-        for (int i = 0; i<programmedCards.length; i++) {
-            if (programmedCards[i].isLocked()) {
-                tempLockedCards.add(0,programmedCards[i]);
-            }
-        }
-        programmedCards = new RegisterCard[5];
-        for (int i = 0; i< tempLockedCards.size(); i++) {
-            programmedCards[4-i] = tempLockedCards.get(i);
-        }
-    }
-
-    /**
-     * Give a player a damage token.
-     * @param amount
-     */
-    public void takeDamage(int amount) {
-        this.damageTokens = damageTokens + amount;
-        if (this.damageTokens > 3) {
-            lockCards();
-        }
-        else if (this.damageTokens == 9) {
-            this.kill();
-        }
-    }
-
-    /**
-     * Repairs and decreases the amount of damage on player
-     */
-    public void repair() {
-        if (this.damageTokens > 0) {
-            this.damageTokens = damageTokens--;
-        } else {
-            this.damageTokens = 0;
-        }
-    }
-
-    /**
-     * Locks cards dependeing on players amount of damage tokens
-     */
-    public void lockCards() {
-        switch (this.damageTokens) {
+    private void lockCards() {
+        switch (damageTokens) {
             case 5:
                 programmedCards[4].setLocked(true);
                 break;
@@ -112,6 +71,90 @@ public class Player {
         }
     }
 
+    /**
+     * Decreases life tokens by one.
+     */
+    private void loseLifeToken() {
+        this.lifeTokens = lifeTokens - 1;
+        if (this.lifeTokens < 0) {
+            setStatus(Constants.Status.KAPUT);
+            System.out.println(this.robot.getName() + " is now Kaput and lost");
+        }
+    }
+
+    /**
+     * Resets the damage tokens.
+     */
+    private void resetDamageTokens() {
+        this.damageTokens = 0;
+    }
+
+    /*
+    Commands
+    */
+
+    /**
+     * Empties the players programmed cards.
+     * If it encounters a locked card it places it back into the register.
+     */
+    public void emptyProgrammedCards() {
+        ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
+        for (RegisterCard programmedCard : programmedCards) {
+            if (programmedCard.isLocked()) {
+                tempLockedCards.add(0, programmedCard);
+            }
+        }
+        programmedCards = new RegisterCard[5];
+        for (int i = 0; i < tempLockedCards.size(); i++) {
+            programmedCards[4 - i] = tempLockedCards.get(i);
+        }
+    }
+
+    /**
+     * Give a player damage tokens.
+     * @param amount The amount of damage tokes to give.
+     */
+    public void takeDamage(int amount) {
+        this.damageTokens = damageTokens + amount;
+        if (this.damageTokens > 3) {
+            lockCards();
+        }
+        else if (this.damageTokens == 9) {
+            this.kill();
+        }
+    }
+
+    /**
+     * Repairs and decreases the amount of damage on player.
+     */
+    public void repair() {
+        if (this.damageTokens > 0) {
+            this.damageTokens = damageTokens--;
+        } else {
+            this.damageTokens = 0;
+        }
+    }
+
+    /**
+     * Puts the robot back to its checkpoint.
+     */
+    public void backToCheckpoint() {
+        if (checkpoint != null) {
+            this.position = this.checkpoint;
+        }
+    }
+
+    /**
+     * Kills the robot changing its status. Then removes one life token,
+     * puts the robot back on its checkpoint and resets its damage tokens.
+     */
+    public void kill() {
+        setStatus(Constants.Status.DEAD);
+        loseLifeToken();
+        backToCheckpoint();
+        resetDamageTokens();
+    }
+
     /*
     Getters
      */
@@ -125,86 +168,89 @@ public class Player {
     }
 
     /**
-     * Returns the players previous position
-     * @return Previous position
+     * Returns this players specific integer ID.
+     * @return The players integer ID.
      */
-    public Position getBeforePosition() {
-        return this.beforePosition;
+    public int getID() {
+        return id;
     }
 
     /**
-     * @return Players amount of lifetokens
-     */
-    public int getLifeTokens() {
-        return lifeTokens;
-    }
-
-    /**
-     * @return Players amount of Damagetokens
-     */
-    public int getDamageTokens() {
-        return damageTokens;
-    }
-
-    /**
-     * Returns this players specific integer ID
-     * @return Players ID
-     */
-    public int getiD() {
-        return iD;
-    }
-
-    /**
-     * Returns the color of the player, used in console
-     * @return Players color
+     * Returns the color of the players robot character, used in console.
+     * @return The robot character color.
      */
     public Color getColor(){
         return robot.getColor();
     }
 
     /**
-     * @return Players position
+     * Returns the players previous position.
+     * @return The previous position.
+     */
+    public Position getBeforePosition() {
+        return this.beforePosition;
+    }
+
+    /**
+     * Returns the players current position.
+     * @return The current position.
      */
     public Position getPosition() {
         return position;
     }
 
     /**
-     * Returns the position of the players current Checkpoint
-     * @return Checkpoint position
-     */
-    public Position getCheckpoint() {
-        return checkpoint;
-    }
-
-    /**
-     * Returns the integer ID of players current checkpoint
-     * @return Checkpoint ID
-     */
-    public int getCheckpointId() {
-        return checkpointId;
-    }
-
-    /**
-     * Returns the direction of the player
-     * @return Player direction
+     * Returns the current direction of the player.
+     * @return The players direction.
      */
     public Constants.Directions getDirection() {
         return direction;
     }
 
     /**
-     * Returns the players dealt cards
-     * @return All dealt cards
+     * Returns the players life tokens.
+     * @return The amount of life tokens
+     */
+    public int getLifeTokens() {
+        return lifeTokens;
+    }
+
+    /**
+     * Returns the players damage tokens.
+     * @return The amount of damage tokens
+     */
+    public int getDamageTokens() {
+        return damageTokens;
+    }
+
+    /**
+     * Returns the position of the players current checkpoint.
+     * @return The checkpoint position.
+     */
+    public Position getCheckpoint() {
+        return checkpoint;
+    }
+
+    /**
+     * Returns the integer ID of players current checkpoint.
+     * @return The id of the checkpoint.
+     */
+    public int getCheckpointID() {
+        return checkpointID;
+    }
+
+    /**
+     * Returns the players dealt cards.
+     * @return A list containing all dealt cards.
      */
     public ArrayList<RegisterCard> getDealtCards() {
         return dealtCards;
     }
 
     /**
-     * Returns a programmed card from a specified position in the array
-     * @param index
-     * @return Player programmed card
+     * Returns a programmed card from a specified position in the register array.
+     * @param index The index of the register array.
+     * @return The programmed card at specific index.
      */
     public RegisterCard getProgrammedCard(int index) {
         if (index >= 0 && index < 5) {
@@ -216,106 +262,67 @@ public class Player {
     }
 
     /**
-     * Returns players programmed cards.
-     * @return Programmed cards
+     * Returns all players programmed cards.
+     * @return Array containing all programmed cards.
      */
     public RegisterCard[] getProgrammedCards() {
         return programmedCards;
     }
 
     /**
-     * Returns the current status of the player
-     * @return Player status
+     * Returns the current status of the player.
+     * @return The player status.
      */
     public Constants.Status getStatus() {
-        return this.status;
+        return status;
     }
 
     /**
-     * Returns the players current laserpower
-     * @return Players laserpower
+     * Returns the players current laser power.
+     * @return The current laser power.
      */
     public int getLaserPower() {
         return laserPower;
     }
 
     /**
-     * Returns the image of the Players robot
-     * @return
+     * Returns the image of the players robot character.
+     * @return The image of the players robot character.
      */
     public BufferedImage getImage(){
         return robot.getImage();
     }
 
     /**
-     * @return True if player is alive
+     * Returns if the player is alive or not.
+     * @return True if player is alive, false if not.
      */
     public boolean isAlive() {
-        return Constants.Status.ALIVE == this.status;
+        return status == Constants.Status.ALIVE;
     }
 
     /**
-     * @return True if player is kaput.
+     * Returns if the players is kaput or not.
+     * @return True if player is kaput, false if not.
      */
     public boolean isKaput() {
-        return this.status == Constants.Status.KAPUT;
+        return status == Constants.Status.KAPUT;
     }
 
     /**
-     * @return True if player is dead.
+     * Returns if the player is dead not not.
+     * @return True if player is dead, false if not.
      */
     public boolean isDead() {
-        return this.status == Constants.Status.DEAD;
+        return status == Constants.Status.DEAD;
     }
 
     /**
-     * @return True if player is Powered down.
+     * Returns if the player is powered down.
+     * @return True if player is powered down, false if now.
      */
     public boolean isPowerDown() {
-        return this.status == Constants.Status.POWERDOWN;
-    }
-
-    /*
-    Helpers
-     */
-
-    /**
-     * Kills the robot changing its status, decreasing its lifeTokens, puts the robot back on its checkpoint
-     * and reset damageTokens.
-     */
-    public void kill() {
-        setStatus(Constants.Status.DEAD);
-        loseLifeToken();
-        backToCheckpoint();
-        resetDamageTokens();
-    }
-
-    /**
-     * Decreases lifeTokens.
-     */
-    public void loseLifeToken() {
-        this.lifeTokens = lifeTokens - 1;
-        if (this.lifeTokens < 0) {
-            setStatus(Constants.Status.KAPUT);
-            System.out.println(this.robot.getName() + " is now Kaput and lost");
-        }
-    }
-
-
-    /**
-     * Puts the robot back to its checkpoint.
-     */
-    public void backToCheckpoint() {
-        if (checkpoint != null) {
-            this.position = this.checkpoint;
-        }
-    }
-
-    /**
-     * Resets the robots damageTokens.
-     */
-    public void resetDamageTokens() {
-        this.damageTokens = 0;
+        return status == Constants.Status.POWERDOWN;
     }
 
     /*
@@ -323,39 +330,23 @@ public class Player {
      */
 
     /**
-     * Sets a checkpoint to a robot.
-     * @param id Gives the robot the checkpointId of the checkpoint.
-     */
-    public void setCheckpointId(int id) {
-        this.checkpointId = id;
-    }
-
-    /**
-     * Sets the robots before position.
-     * @param p An  x and y position on the gameboard.
+     * Sets the players previous position.
+     * @param p A position on the game board.
      */
     public void setBeforePosition(Position p) {
         this.beforePosition  = p;
     }
 
     /**
-     * Sets the robots current position.
-     * @param p An  x and y position on the gameboard.
+     * Sets the players current position.
+     * @param p A position on the game board.
      */
     public void setPosition(Position p) {
         this.position = p;
     }
 
     /**
-     * Sets a new checkpoint.
-     * @param p An  x and y position on the gameboard.
-     */
-    public void setCheckpoint(Position p) {
-        this.checkpoint = p;
-    }
-
-    /**
-     * Sets a robots direction.
+     * Sets a the players direction.
      * @param d A direction, either NORTH, SOUTH, WEST or EAST.
      */
     public void setDirection(Constants.Directions d) {
@@ -363,7 +354,23 @@ public class Player {
     }
 
     /**
-     * Sets a robots dealt cards.
+     * Sets a checkpoint to a player.
+     * @param id Gives the player the checkpointID of the checkpoint.
+     */
+    public void setCheckpointID(int id) {
+        this.checkpointID = id;
+    }
+
+    /**
+     * Sets a new checkpoint.
+     * @param p A position on the game board.
+     */
+    public void setCheckpoint(Position p) {
+        this.checkpoint = p;
+    }
+
+    /**
+     * Sets a players dealt cards.
      * @param cards An ArrayList containing dealt cards.
      */
     public void setDealtCards(ArrayList<RegisterCard> cards) {
@@ -371,13 +378,13 @@ public class Player {
     }
 
     /**
-     * Sets a robots programmed cards(the cards to be played).
-     * @param index Decides in what orders the cards will be set.
-     * @param c A RegisterCard.
+     * Sets a players programmed card into its register.
+     * @param index The register index to set the card for.
+     * @param card The card to set.
      */
-    public void setProgrammedCard(int index, RegisterCard c) {
+    public void setProgrammedCard(int index, RegisterCard card) {
         if (index >= 0 && index < 5) {
-            programmedCards[index] = c;
+            programmedCards[index] = card;
         }
         else {
             throw new IllegalArgumentException("Index must be between 0 and 4");
@@ -385,7 +392,7 @@ public class Player {
     }
 
     /**
-     * Sets a robots status.
+     * Sets a players status.
      * @param s A status. This can either be ALIVE, DEAD, POWERDOWN or KAPUT.
      */
     public void setStatus(Constants.Status s) {
@@ -393,7 +400,7 @@ public class Player {
     }
 
     /**
-     * Sets a robots laserpower.
+     * Sets a players laser power.
      * @param upgrade An int deciding how much the laser should be upgraded.
      */
     public void setLaserPower(int upgrade) {
@@ -406,9 +413,9 @@ public class Player {
 
     /**
      * Draw method which draws the player on the board with the right direction.
-     * @param g Graphics.
-     * @param x X Coordinate.
-     * @param y Y Coordinate.
+     * @param g The graphics object to use when painting.
+     * @param x X coordinate on the screen to draw.
+     * @param y Y coodinate on the screen to draw.
      */
     public void draw(Graphics g, int x, int y) {
         BufferedImage robotDirections = GlobalImageHolder.getInstance().getRobotDirections();

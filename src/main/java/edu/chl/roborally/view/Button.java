@@ -11,14 +11,14 @@ import java.net.URL;
  * Button with icon.
  *
  */
-public class Button extends JButton {
+class Button extends JButton {
 
     /**
      * Constructor which creates a button without hoover effect.
      * @param normal The name of the image in the resource folder.
      */
     public Button (String normal){
-        this.setIcon(createIcon(this.getClass().getClassLoader().getResource(normal)));
+        this.setIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/" + normal)));
         styleButton();
     }
 
@@ -29,7 +29,7 @@ public class Button extends JButton {
      */
     public Button (String normal, String hover){
         this(normal);
-        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource(hover)));
+        this.setRolloverIcon(createIcon(this.getClass().getClassLoader().getResource("menu_buttons/" + hover)));
     }
 
     /**
