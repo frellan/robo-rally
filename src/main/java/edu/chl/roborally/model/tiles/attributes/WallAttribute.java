@@ -18,6 +18,7 @@ public class WallAttribute extends Attribute {
     public WallAttribute(Constants.Directions d){
         this.d = d;
         super.setAction(new StopPlayer());
+        tileMessage = "Walked into a Wall";
     }
 
     public String toString() {

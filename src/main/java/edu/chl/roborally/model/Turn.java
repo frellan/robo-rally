@@ -88,6 +88,9 @@ public class Turn {
             if (player.isAlive()) {
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  player.getName() + " ", player.getColor());
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getCardMessage() + "\n", null);
+
                 for (GameAction action : actions) {
                     executeActionIndex = 1;
                     executeCardAction(player,action);

@@ -24,8 +24,10 @@ public class ConveyorAttribute extends Attribute {
             //TODO If player is outside conveyer don't move two steps!
             super.setAction(new MovePlayer(d));
             super.setAction(new MovePlayer(d));
+            tileMessage = "Two Tiles";
         } else {
             super.setAction(new MovePlayer(d));
+            tileMessage = "One Tile";
         }
     }
 

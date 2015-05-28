@@ -21,5 +21,6 @@ public class UTurnCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }
+        cardMessage = "Made a U-Turn";
     }
 }
