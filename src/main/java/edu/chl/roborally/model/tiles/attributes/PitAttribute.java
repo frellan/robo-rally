@@ -17,6 +17,7 @@ public class PitAttribute extends Attribute {
     
     public PitAttribute() {
         super.setAction(new KillPlayer());
+        tileMessage = "Fell into a Pit";
     }
 
     public String toString() {

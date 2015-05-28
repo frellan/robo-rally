@@ -5,6 +5,7 @@ import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.utilities.Constants;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.jar.Attributes;
 
 /**
  * Created by axel on 2015-03-26.
@@ -47,6 +48,12 @@ public class GameTile {
     /*
     Getters
     */
+
+    /**
+     * Returns the beforeAttribute.
+     * @return beforeAttribute.
+     */
+    public ArrayList<Attribute> getBeforeAttributes(){return this.beforeAttributes;}
 
     /**
      * Returns the actions associated with the tile

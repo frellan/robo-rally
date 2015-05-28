@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public abstract class Attribute {
 
     private ArrayList<GameAction> actions = new ArrayList<>();
+    protected String tileMessage;
 
     /**
      * Getters
@@ -18,6 +19,8 @@ public abstract class Attribute {
     public ArrayList<GameAction> getActions() {
         return this.actions;
     }
+
+    public String getTileMessage(){return tileMessage;}
 
     /**
      * Setters
