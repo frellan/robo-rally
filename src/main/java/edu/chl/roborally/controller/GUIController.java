@@ -128,6 +128,7 @@ public class GUIController implements IEventHandler {
     private void setGamePanelsForNewRound() {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(0);
+            panel.getControlView().setRegisterCardIconsChangeable();
             panel.getControlView().resetRegisterCards();
             panel.getControlView().resetNewCardButtons();
             panel.getControlView().setNextTurnButtonEnabled(false);

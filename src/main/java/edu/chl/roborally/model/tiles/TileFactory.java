@@ -8,13 +8,15 @@ import edu.chl.roborally.utilities.Constants;
  */
 public class TileFactory {
 
-    private static TileFactory tileFactory;
+    private static TileFactory instance;
+
+    private TileFactory() {}
 
     public static TileFactory getInstance() {
-        if(tileFactory == null){
-            tileFactory = new TileFactory();
+        if(instance == null){
+            instance = new TileFactory();
         }
-        return tileFactory;
+        return instance;
     }
 
     /**
