@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  *
  * This class creates the StartPanel which will show the starting menu.
  */
-public class StartPanel extends JPanel implements ActionListener{
+class StartPanel extends JPanel implements ActionListener{
 
     private final JButton newGameButton;
     private final JButton optionsButton;

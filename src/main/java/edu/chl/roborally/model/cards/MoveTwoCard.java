@@ -20,5 +20,6 @@ public class MoveTwoCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }
+        cardMessage = "Moved Two Tiles";
     }
 }

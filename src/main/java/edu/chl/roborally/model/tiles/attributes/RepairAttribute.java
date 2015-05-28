@@ -14,6 +14,7 @@ public class RepairAttribute extends Attribute {
 
     public RepairAttribute() {
         super.setAction(new RepairPlayer());
+        tileMessage = "Got repaired, one damage token removed!";
     }
 
     @Override

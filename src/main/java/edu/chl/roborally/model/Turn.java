@@ -90,6 +90,9 @@ public class Turn {
                 recursivedPlayers = new ArrayList<>();
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  player.getName() + " ", player.getColor());
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getCardMessage() + "\n", null);
+
                 for (GameAction action : actions) {
                     executeCardAction(player,action);
                 }

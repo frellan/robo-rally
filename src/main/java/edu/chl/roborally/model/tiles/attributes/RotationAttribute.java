@@ -18,6 +18,7 @@ public class RotationAttribute extends Attribute {
     public RotationAttribute(Constants.Directions d){
         this.d = d;
         super.setAction(new RotatePlayer(d));
+        tileMessage = "Rotated " + d;
     }
     public String toString() {
         return name;

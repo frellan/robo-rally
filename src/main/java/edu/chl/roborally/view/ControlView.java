@@ -24,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-05-06.
  */
-public class ControlView extends JPanel implements ActionListener{
+class ControlView extends JPanel implements ActionListener{
 
     private final Player player;
     private ImageIcon emptyNewCardIcon;
@@ -35,7 +35,7 @@ public class ControlView extends JPanel implements ActionListener{
     private JPanel statusView;
     private ArrayList<RegisterCard> newCardsToPick = new ArrayList<>();
     private ArrayList<PickNewCardButton> newCardsToPickButtons = new ArrayList<>();
-    private RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
+    private final RegisterCardIcon[] registerCardIcons = new RegisterCardIcon[5];
 
     private JLabel turnLabel1;
     private JLabel turnLabel2;
@@ -484,23 +484,23 @@ public class ControlView extends JPanel implements ActionListener{
      */
     private class DamageTokensPanel extends JPanel {
 
-        private ImageIcon set1DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(0, 0, 34, 40));
-        private ImageIcon set1EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(34, 0, 34, 40));
-        private ImageIcon set2DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(68, 0, 34, 40));
-        private ImageIcon set2EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(102, 0, 34, 40));
-        private ImageIcon set3DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(136, 0, 34, 40));
-        private ImageIcon set3EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(170, 0, 34, 40));
+        private final ImageIcon set1DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(0, 0, 34, 40));
+        private final ImageIcon set1EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(34, 0, 34, 40));
+        private final ImageIcon set2DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(68, 0, 34, 40));
+        private final ImageIcon set2EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(102, 0, 34, 40));
+        private final ImageIcon set3DisabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(136, 0, 34, 40));
+        private final ImageIcon set3EnabledIcon = new ImageIcon(GlobalImageHolder.getInstance().getDamageTokens().getSubimage(170, 0, 34, 40));
 
-        private JLabel dmgToken1;
-        private JLabel dmgToken2;
-        private JLabel dmgToken3;
-        private JLabel dmgToken4;
-        private JLabel dmgToken5;
-        private JLabel dmgToken6;
-        private JLabel dmgToken7;
-        private JLabel dmgToken8;
-        private JLabel dmgToken9;
-        private JLabel dmgToken10;
+        private final JLabel dmgToken1;
+        private final JLabel dmgToken2;
+        private final JLabel dmgToken3;
+        private final JLabel dmgToken4;
+        private final JLabel dmgToken5;
+        private final JLabel dmgToken6;
+        private final JLabel dmgToken7;
+        private final JLabel dmgToken8;
+        private final JLabel dmgToken9;
+        private final JLabel dmgToken10;
 
         public DamageTokensPanel() {
             setSize(340, 40);
