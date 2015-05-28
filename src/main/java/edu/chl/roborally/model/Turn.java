@@ -117,7 +117,6 @@ public class Turn{
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
-        //TODO Stop when other player is hit
         for (Player p : players) {
             //Get current laser power for the player
             int playerLaserPower = p.getLaserPower();
@@ -128,35 +127,35 @@ public class Turn{
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case SOUTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case EAST:
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case WEST:
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
-                    break;
                 }
             }
         }
