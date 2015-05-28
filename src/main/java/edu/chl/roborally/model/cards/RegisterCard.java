@@ -40,7 +40,7 @@ public abstract class RegisterCard {
      *Returns the cardMessage, which tells the console what to print.
      * @return the cards message.
      */
-    public String getCardMessage(){return cardMessage;}
+    public String getMessage(){return cardMessage;}
 
     /**
      * Returns the amount of priority points the card have.
