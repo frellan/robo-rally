@@ -12,7 +12,7 @@ import java.util.*;
  * Created by Henrik.
  *
  * Our top level model class which holds the status of the game.
- * This class mainly sets the ground stones fot the game and hold the card deck.
+ * This class mainly sets the ground stones for the game and holds the card deck.
  */
 public class RoboRally implements IEventHandler{
 

@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * This panel lets you select a map. It also contains a summary-method which will create a panel to be shown
  * after a map has been selected.
  */
-public class SelectMapPanel extends JPanel implements ActionListener, MouseListener{
+class SelectMapPanel extends JPanel implements ActionListener, MouseListener{
 
     private final JButton chooseMapButton;
     private JButton startGameBtn;

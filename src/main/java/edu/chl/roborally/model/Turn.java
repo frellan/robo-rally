@@ -28,6 +28,7 @@ public class Turn {
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
     private int executeActionIndex;
+    private ArrayList<Player> recursivedPlayers = new ArrayList<>();
 
     /**
      * Creates the turn and runs the start method that performs all tasks needed for a turn.
@@ -65,7 +66,7 @@ public class Turn {
 
     /**
      * Loop through all player and their cards and set card with the turnIndex
-     * to visible for all players
+     * to visible for all players.
      */
     private void revealProgrammedCards() {
         for (Player player : players) {
@@ -86,13 +87,13 @@ public class Turn {
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
+                recursivedPlayers = new ArrayList<>();
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  player.getName() + " ", player.getColor());
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getCardMessage() + "\n", null);
 
                 for (GameAction action : actions) {
-                    executeActionIndex = 1;
                     executeCardAction(player,action);
                 }
             }
@@ -101,20 +102,26 @@ public class Turn {
 
     private void executeCardAction(Player player, GameAction action) {
         player.setBeforePosition(player.getPosition().clone());
+        recursivedPlayers.add(player);
         try {
             action.doAction(player);
+        } catch (WallException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Fånga wall" + e.getMessage());
+            for (Player p : recursivedPlayers) {
+                System.out.println("Moving back player: " + p.getName() + "to position: " + p.getBeforePosition() + " before" + p.getPosition());
+                p.setPosition(p.getBeforePosition().clone());
+            }
+        } finally {
+            System.out.println("Doing finally");
             for (Player otherPlayer : players) {
-                if (player.getPosition().equals(otherPlayer.getPosition()) && !player.equals(otherPlayer) && executeActionIndex < players.size()) {
-                    executeActionIndex++;
+                if (player.getPosition().equals(otherPlayer.getPosition()) && !recursivedPlayers.contains(otherPlayer)) {
                     GameAction pushAction = new MovePlayer(player.getDirection());
-
                     executeCardAction(otherPlayer, pushAction);
-
-                    EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,otherPlayer,null);
+                    EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, otherPlayer, null);
+                    System.out.println("Executing action");
                 }
             }
-        } catch (WallException e) {
-            player.setPosition(player.getBeforePosition().clone());
         }
     }
 

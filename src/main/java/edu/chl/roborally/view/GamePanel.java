@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * This class creates the GamePanel which is unique for every player and contains the board,
  * the controls, the console and the status for a given player.
  */
-public class GamePanel extends JPanel {
+class GamePanel extends JPanel {
 
     private BufferedImage imageBG;
     private BufferedImage textBG;

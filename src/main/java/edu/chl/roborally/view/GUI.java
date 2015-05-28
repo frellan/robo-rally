@@ -1,4 +1,4 @@
-package edu.chl.roborally.controller;
+package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.utilities.EventTram;
@@ -18,21 +18,21 @@ import java.util.ArrayList;
  * Control class for the entire view package.
  * This tells the GUI what to display and when to do it.
  */
-public class GUIController implements IEventHandler {
+public class GUI implements IEventHandler {
 
-    private JFrame mainFrame;
+    private final JFrame mainFrame;
     private StartPanel startPanel;
     private SelectMapPanel selectMapPanel;
     private SelectPlayersPanel selectPlayersPanel;
     private RoboRally model;
-    private ArrayList<GamePanel> gamePanels = new ArrayList<>();
-    private JTabbedPane tabbedPane = new JTabbedPane();
+    private final ArrayList<GamePanel> gamePanels = new ArrayList<>();
+    private final JTabbedPane tabbedPane = new JTabbedPane();
 
     /**
      * Creates the class and creates a main frame to add all the upcoming components to.
      * Also registers it to listen for events coming from the view and model packages.
      */
-    public GUIController() {
+    public GUI() {
         mainFrame = new MainFrame();
         EventTram.getInstance().register(this);
         showStartPanel();
@@ -128,6 +128,7 @@ public class GUIController implements IEventHandler {
     private void setGamePanelsForNewRound() {
         for (GamePanel panel : gamePanels) {
             panel.getControlView().setTurnIndicator(0);
+            panel.getControlView().setRegisterCardIconsChangeable();
             panel.getControlView().resetRegisterCards();
             panel.getControlView().resetNewCardButtons();
             panel.getControlView().setNextTurnButtonEnabled(false);

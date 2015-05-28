@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.WallException;
 
 /**
@@ -8,9 +9,15 @@ import edu.chl.roborally.utilities.WallException;
  */
 public class StopPlayer implements GameAction {
 
+    private Constants.Directions d;
+
+    public StopPlayer(Constants.Directions d) {
+        this.d = d;
+    }
+
     @Override
     public void doAction(Player p) throws WallException {
-        //p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY()));
-        throw new WallException();
+        System.out.println("Kasta wall");
+        throw new WallException("Wall ahead");
     }
 }

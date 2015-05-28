@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * This part of the model represents and runs a round.
  * It does all the things that need to be done with the game logic for a round to work correctly.
  */
-
 public class Round implements IEventHandler {
 
     private final int STANDARD_CARD_AMOUNT = 9;
