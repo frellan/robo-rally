@@ -14,7 +14,6 @@ public class WallAttribute extends Attribute {
     private Constants.Directions direction;
     private String name = "W";
 
-
     public WallAttribute(Constants.Directions direction){
         this.direction = direction;
         //super.setAction(new StopPlayer(direction));
