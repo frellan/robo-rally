@@ -66,7 +66,7 @@ public class Turn {
 
     /**
      * Loop through all player and their cards and set card with the turnIndex
-     * to visible for all players
+     * to visible for all players.
      */
     private void revealProgrammedCards() {
         for (Player player : players) {
