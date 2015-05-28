@@ -107,7 +107,7 @@ public class Turn {
 
     private boolean checkIfVaildPosition(Player player) {
         // Först om en vägg där man lämnar
-        if ()
+        if (player.getMovingDirection() == )
         // Sen om man kommer till en vägg
         return true;
     }
