@@ -8,21 +8,30 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-31.
+ *
+ * This class represents the wallattribute that can be assigned to a tile
  */
 public class WallAttribute extends Attribute {
 
     private Constants.Directions direction;
     private String name = "W";
-    
+
     public WallAttribute(Constants.Directions direction){
         this.direction = direction;
-        //super.setAction(new StopPlayer(direction));
     }
 
+    /**
+     * Returns the direction in which the wall is located on the tile.
+     * @return the direction in which the wall is located.
+     */
     public Constants.Directions getDirection() {
         return direction;
     }
 
+    /**
+     * Returns the name of the attribute
+     * @return the name on the attribute
+     */
     public String toString() {
         return name;
     }

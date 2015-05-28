@@ -8,7 +8,7 @@ import edu.chl.roborally.model.Player;
 public class RepairPlayer implements GameAction {
 
     @Override
-    public void doAction(Player p) {
-        p.repair();
+    public void doAction(Player player) {
+        player.repair();
     }
 }

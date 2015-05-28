@@ -16,47 +16,47 @@ public class RotatePlayer implements GameAction {
     }
 
     @Override
-    public void doAction(Player p) {
+    public void doAction(Player player) {
         switch(d) {
 
             // Turn Right
             case EAST:
-                switch (p.getDirection()) {
+                switch (player.getDirection()) {
                     case NORTH:
-                        p.setDirection(Constants.Directions.EAST);
+                        player.setDirection(Constants.Directions.EAST);
                         break;
                     case EAST:
-                        p.setDirection(Constants.Directions.SOUTH);
+                        player.setDirection(Constants.Directions.SOUTH);
                         break;
                     case SOUTH:
-                        p.setDirection(Constants.Directions.WEST);
+                        player.setDirection(Constants.Directions.WEST);
                         break;
                     case WEST:
-                        p.setDirection(Constants.Directions.NORTH);
+                        player.setDirection(Constants.Directions.NORTH);
                 }
                 break;
 
             // Turn Left
             case WEST:
-                switch (p.getDirection()) {
+                switch (player.getDirection()) {
                     case NORTH:
-                        p.setDirection(Constants.Directions.WEST);
+                        player.setDirection(Constants.Directions.WEST);
                         break;
                     case WEST:
-                        p.setDirection(Constants.Directions.SOUTH);
+                        player.setDirection(Constants.Directions.SOUTH);
                         break;
                     case SOUTH:
-                        p.setDirection(Constants.Directions.EAST);
+                        player.setDirection(Constants.Directions.EAST);
                         break;
                     case EAST:
-                        p.setDirection(Constants.Directions.NORTH);
+                        player.setDirection(Constants.Directions.NORTH);
                         break;
                 }
                 break;
         }
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() , player.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " " + d + "\n", null);
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
+        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, player,null);
     }
 }
