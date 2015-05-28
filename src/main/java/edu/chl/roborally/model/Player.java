@@ -31,15 +31,6 @@ public class Player {
     private Constants.Status status;
     private int laserPower;
     private Position nextPosition;
-
-    public Constants.Directions getMovingDirection() {
-        return movingDirection;
-    }
-
-    public void setMovingDirection(Constants.Directions movingDirection) {
-        this.movingDirection = movingDirection;
-    }
-
     private Constants.Directions movingDirection;
 
     public Player(int id, Robot robot) {
@@ -210,6 +201,14 @@ public class Player {
     }
 
     /**
+     * Return the current direction that the player is traveling
+     * @return The players moving direction
+     */
+    public Constants.Directions getMovingDirection() {
+        return movingDirection;
+    }
+
+    /**
      * Returns the current direction of the player.
      * @return The players direction.
      */
@@ -361,6 +360,14 @@ public class Player {
      */
     public void setDirection(Constants.Directions d) {
         this.direction = d;
+    }
+
+    /**
+     * Sets the players moving direction.
+     * @param movingDirection the players moving direction.
+     */
+    public void setMovingDirection(Constants.Directions movingDirection) {
+        this.movingDirection = movingDirection;
     }
 
     /**
