@@ -7,6 +7,6 @@ import edu.chl.roborally.utilities.WallException;
  * Created by henriknilson on 31/03/15.
  */
 public interface GameAction {
-    void doAction(Player p) throws WallException;
+    void doAction(Player p);
 
 }

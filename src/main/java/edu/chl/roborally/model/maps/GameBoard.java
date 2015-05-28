@@ -78,8 +78,6 @@ public abstract class GameBoard implements IEventHandler{
                 // If player is out of bounds we kill him
                 System.out.println("Player fell of board and died");
                 player.kill();
-            } catch (WallException e) {
-                player.setPosition(player.getBeforePosition());
             }
         } else if (EventTram.Event.EXECUTE_TILE_ACTION_BEFORE == evt) {
             Player player = (Player) o;
@@ -91,8 +89,6 @@ public abstract class GameBoard implements IEventHandler{
                     // If player is out of bounds we kill him
                     System.out.println("Player fell of board and died");
                     player.kill();
-                } catch(WallException e){
-                    player.setPosition(player.getBeforePosition());
                 }
             }
         }
