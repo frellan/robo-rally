@@ -16,27 +16,38 @@ import java.util.Map;
 
 /**
  * Created by henriknilson on 31/03/15.
+ *
+ * This is the class in the model with the most game logic.
+ * Here is where all the players move and interact with each other.
  */
-public class Turn{
+public class Turn {
 
     private RoboRally model;
     private ArrayList<Player> players;
+    private final int turnIndex;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
     private int executeActionIndex;
 
     /**
-    * The index of the turn, given by round
-    */
-    private final int turnIndex;
-
-    public Turn(RoboRally r, int turnIndex) {
-        this.model = r;
-        this.players = model.getPlayers();
+     * Creates the turn and runs the start method that performs all tasks needed for a turn.
+     * @param model The top model class of the current game that holds useful information.
+     * @param turnIndex The index of the turn in the current round. Can be 1 to 5.
+     */
+    public Turn(RoboRally model, int turnIndex) {
+        this.model = model;
+        this.players = this.model.getPlayers();
         this.turnIndex = turnIndex;
         startTurn();
     }
 
+    /*
+    Main method
+     */
+
+    /**
+     * Main method that calls all the help methods to perform the tasks needed for a turn.
+     */
     private void startTurn() {
         revealProgrammedCards();
         sortActiveCards();
@@ -44,13 +55,13 @@ public class Turn{
         executeBoardElements();
         fireLasers();
         checkIfOnlyOneSurvivor();
-
         EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null, null);
         EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null, null);
-
     }
 
-    // Executing methods
+    /*
+    Help methods
+     */
 
     /**
      * Loop through all player and their cards and set card with the turnIndex
@@ -117,7 +128,6 @@ public class Turn{
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
-        //TODO Stop when other player is hit
         for (Player p : players) {
             //Get current laser power for the player
             int playerLaserPower = p.getLaserPower();
@@ -128,35 +138,35 @@ public class Turn{
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case SOUTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case EAST:
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
                     }
-                    break;
                 case WEST:
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
                             enemy.takeDamage(playerLaserPower);
                             printFireMsg(p, enemy);
+                            break;
                         }
-                    break;
                 }
             }
         }
