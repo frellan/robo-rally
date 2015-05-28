@@ -73,8 +73,6 @@ public abstract class GameBoard implements IEventHandler{
                 ArrayList<GameAction> actions = getTile(player.getPosition()).getActions();
                 for (GameAction action : actions) {
                     action.doAction(player);
-                    EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName(), player.getColor());
-                    EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, getTile(player.getPosition()).get, player.getColor());
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 // If player is out of bounds we kill him
