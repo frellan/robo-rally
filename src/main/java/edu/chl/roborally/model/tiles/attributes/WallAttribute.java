@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.tiles.attributes;
 
-import edu.chl.roborally.model.gameactions.StopPlayer;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 
@@ -12,13 +11,16 @@ import java.awt.image.BufferedImage;
  */
 public class WallAttribute extends Attribute {
 
-    private Constants.Directions d;
+    private Constants.Directions direction;
     private String name = "W";
 
-    public WallAttribute(Constants.Directions d){
-        this.d = d;
-        super.setAction(new StopPlayer(d));
-        tileMessage = "Walked into a Wall";
+    public WallAttribute(Constants.Directions direction){
+        this.direction = direction;
+        //super.setAction(new StopPlayer(direction));
+    }
+
+    public Constants.Directions getDirection() {
+        return direction;
     }
 
     public String toString() {
@@ -29,7 +31,7 @@ public class WallAttribute extends Attribute {
     public void draw(Graphics g, int x, int y) {
         BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
         BufferedImage currentTile;
-        switch (d) {
+        switch (direction) {
             case EAST:
                 currentTile = allTiles.getSubimage(
                         6*Constants.TILE_SIZE, 2*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
