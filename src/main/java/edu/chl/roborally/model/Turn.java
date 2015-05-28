@@ -10,6 +10,7 @@ import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
 
+import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,7 +67,7 @@ public class Turn {
 
     /**
      * Loop through all player and their cards and set card with the turnIndex
-     * to visible for all players.
+     * to visible for all players. Also adds them to a list for sorting.
      */
     private void revealProgrammedCards() {
         for (Player player : players) {
@@ -78,10 +79,17 @@ public class Turn {
         }
     }
 
+    /**
+     * Sorts the active cards to bring the card with highest priority to the top.
+     * This will be the card that will be executed first.
+     */
     private void sortActiveCards() {
         Collections.sort(activeCards, new RegisterCardCompare());
     }
 
+    /**
+     * Loops through the sorted cards and calls the execute method if a player is alive.
+     */
     private void executeActiveCards() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "ANALYSING CARDS" + "\n", Color.MAGENTA);
         for (RegisterCard card : activeCards) {
@@ -90,8 +98,7 @@ public class Turn {
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  player.getName() + " ", player.getColor());
-                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getCardMessage() + "\n", null);
-
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getMessage() + "\n", null);
                 for (GameAction action : actions) {
                     player.setMovingDirection(player.getDirection());
                     executeAction(action,player);
@@ -100,10 +107,23 @@ public class Turn {
         }
     }
 
+    /**
+     * Performs the given action for the given player.
+     * If the action is a move action the method checks if the player can
+     * move there. If it can it checks if there is another player present
+     * at the new position. If there is, it calls itself again on that player.
+     * This creates the "pushing" logic on the board.
+     * If any of these modes fail the methods returns false which causes
+     * all of the movement for all players in the chain to be aborted.
+     * This creates the "hitting a wall" logic on the board.
+     * @param action The game action to be performed.
+     * @param player The player to be affected by the action.
+     * @return True if all whole action chain is good, false if any action fails.
+     */
     private boolean executeAction(GameAction action, Player player) {
         action.doAction(player);
         if (action instanceof MovePlayer) {
-            if (isValidMovement(player)) {
+            if (isHittingWall(player)) {
                 if (enemyAtNextPosition(player.getNextPosition()) != null) {
                     Player enemy = enemyAtNextPosition(player.getNextPosition());
                     enemy.setMovingDirection(player.getMovingDirection());
@@ -120,16 +140,12 @@ public class Turn {
         return false;
     }
 
-    private Player enemyAtNextPosition(Position position) {
-        for (Player enemy : players) {
-            if (position.equals(enemy.getPosition())) {
-                return enemy;
-            }
-        }
-        return null;
-    }
-
-    private boolean isValidMovement(Player player) {
+    /**
+     * Returns if a player is hitting a wall when moving to its new position.
+     * @param player The player to check.
+     * @return True if player would hit a wall, false if not.
+     */
+    private boolean isHittingWall(Player player) {
         for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
@@ -145,6 +161,21 @@ public class Turn {
             }
         }
         return true;
+    }
+
+    /**
+     * Check if there is another player at a position and returns that player if there is.
+     * @param position The position to check.
+     * @return A player if found, otherwise null
+     */
+    @Nullable
+    private Player enemyAtNextPosition(Position position) {
+        for (Player enemy : players) {
+            if (position.equals(enemy.getPosition())) {
+                return enemy;
+            }
+        }
+        return null;
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others

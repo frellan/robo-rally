@@ -54,9 +54,5 @@ public class RotatePlayer implements GameAction {
                 }
                 break;
         }
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " " + d + "\n", null);
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }
