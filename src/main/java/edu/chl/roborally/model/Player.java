@@ -30,7 +30,8 @@ public class Player {
     private RegisterCard[] programmedCards;
     private Constants.Status status;
     private int laserPower;
-    private Position beforePosition;
+    private Position nextPosition;
+    private Constants.Directions movingDirection;
 
     public Player(int id, Robot robot) {
         this.id = id;
@@ -184,11 +185,11 @@ public class Player {
     }
 
     /**
-     * Returns the players previous position.
-     * @return The previous position.
+     * Returns the players next position.
+     * @return The next position.
      */
-    public Position getBeforePosition() {
-        return this.beforePosition;
+    public Position getNextPosition() {
+        return this.nextPosition;
     }
 
     /**
@@ -197,6 +198,14 @@ public class Player {
      */
     public Position getPosition() {
         return position;
+    }
+
+    /**
+     * Return the current direction that the player is traveling
+     * @return The players moving direction
+     */
+    public Constants.Directions getMovingDirection() {
+        return movingDirection;
     }
 
     /**
@@ -330,11 +339,11 @@ public class Player {
      */
 
     /**
-     * Sets the players previous position.
+     * Sets the players next position.
      * @param p A position on the game board.
      */
-    public void setBeforePosition(Position p) {
-        this.beforePosition  = p;
+    public void setNextPosition(Position p) {
+        this.nextPosition  = p;
     }
 
     /**
@@ -351,6 +360,14 @@ public class Player {
      */
     public void setDirection(Constants.Directions d) {
         this.direction = d;
+    }
+
+    /**
+     * Sets the players moving direction.
+     * @param movingDirection the players moving direction.
+     */
+    public void setMovingDirection(Constants.Directions movingDirection) {
+        this.movingDirection = movingDirection;
     }
 
     /**

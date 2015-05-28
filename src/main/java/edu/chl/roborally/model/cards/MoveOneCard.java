@@ -19,5 +19,6 @@ public class MoveOneCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Move one card images could not be read");
         }
+        cardMessage = "Moved One Tile";
     }
 }

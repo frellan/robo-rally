@@ -14,6 +14,7 @@ public abstract class RegisterCard {
     private boolean isHidden;
     private boolean isLocked;
     private String name;
+    protected String cardMessage;
     protected BufferedImage mainImage;
     protected BufferedImage pickImage;
     protected BufferedImage pickImageRollover;
@@ -34,6 +35,12 @@ public abstract class RegisterCard {
     /*
     Getters
      */
+
+    /**
+     *Returns the cardMessage, which tells the console what to print.
+     * @return the cards message.
+     */
+    public String getCardMessage(){return cardMessage;}
 
     /**
      * Returns the amount of priority points the card have.

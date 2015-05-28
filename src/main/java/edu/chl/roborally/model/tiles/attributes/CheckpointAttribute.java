@@ -19,6 +19,7 @@ public class CheckpointAttribute extends Attribute {
     public CheckpointAttribute(int id) {
         super.setAction(new CheckpointPlayer(id));
         this.id = id;
+        tileMessage = "updated its CheckPoint!";
     }
 
     public String toString() {

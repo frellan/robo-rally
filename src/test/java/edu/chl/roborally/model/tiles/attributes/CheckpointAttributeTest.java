@@ -7,7 +7,6 @@ import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.maps.IslandKingMap;
 import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Position;
-import edu.chl.roborally.utilities.WallException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,11 +39,7 @@ public class CheckpointAttributeTest {
 
     public void executeAction(Player player) {
         for (GameAction action : map.getTile(player.getPosition()).getActions()) {
-            try {
-                action.doAction(player);
-            } catch (WallException e) {
-                e.printStackTrace();
-            }
+            action.doAction(player);
         }
     }
 

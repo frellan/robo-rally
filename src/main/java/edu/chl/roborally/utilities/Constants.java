@@ -19,6 +19,7 @@ public class Constants {
 
     // Player & tile directions
     public enum Directions {
+
         NORTH,
         WEST,
         EAST,
@@ -30,7 +31,20 @@ public class Constants {
         WEST_NORTH,
         WEST_SOUTH,
         EAST_NORTH,
-        EAST_SOUTH,
+        EAST_SOUTH;
+
+        private Directions oppositeDirection;
+
+        static {
+            NORTH.oppositeDirection = SOUTH;
+            SOUTH.oppositeDirection = NORTH;
+            WEST.oppositeDirection = EAST;
+            EAST.oppositeDirection = WEST;
+        }
+
+        public Directions getOpposite(){
+            return oppositeDirection;
+        }
     }
 
     // The status of a player

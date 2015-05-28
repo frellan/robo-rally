@@ -1,7 +1,5 @@
 package edu.chl.roborally.model.maps;
 
-import edu.chl.roborally.model.Player;
-import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.*;
 import edu.chl.roborally.model.tiles.*;
 
@@ -11,7 +9,7 @@ import java.util.List;
 /**
  * Created by axel on 2015-03-26.
  */
-public abstract class GameBoard implements IEventHandler{
+public abstract class GameBoard{
 
     private GameTile[][] board;
     protected List<Position> startPositions = new ArrayList<>();
@@ -64,38 +62,5 @@ public abstract class GameBoard implements IEventHandler{
     public abstract String getNbrOfPlayers();
     public abstract String getMapIcon();
 
-    @Override
-    public void onEvent(EventTram.Event evt, Object o, Object o2) {
-        if (EventTram.Event.EXECUTE_TILE_ACTION == evt) {
-            Player player = (Player) o;
-            player.setBeforePosition(player.getPosition());
-            try {
-                ArrayList<GameAction> actions = getTile(player.getPosition()).getActions();
-                for (GameAction action : actions) {
-                    action.doAction(player);
-                }
-            } catch (ArrayIndexOutOfBoundsException e) {
-                // If player is out of bounds we kill him
-                System.out.println("Player fell of board and died");
-                player.kill();
-            } catch (WallException e) {
-                player.setPosition(player.getBeforePosition());
-            }
-        } else if (EventTram.Event.EXECUTE_TILE_ACTION_BEFORE == evt) {
-            Player player = (Player) o;
-            ArrayList<GameAction> actions = getTile(player.getPosition()).getBeforeAction();
-            for (GameAction action : actions) {
-                try {
-                    action.doAction(player);
-                } catch(ArrayIndexOutOfBoundsException e){
-                    // If player is out of bounds we kill him
-                    System.out.println("Player fell of board and died");
-                    player.kill();
-                } catch(WallException e){
-                    player.setPosition(player.getBeforePosition());
-                }
-            }
-        }
-    }
 }
 

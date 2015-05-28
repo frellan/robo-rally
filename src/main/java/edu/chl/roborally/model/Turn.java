@@ -3,10 +3,12 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.GameAction;
+import edu.chl.roborally.model.tiles.attributes.Attribute;
+import edu.chl.roborally.model.tiles.attributes.WallAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.WallException;
+import edu.chl.roborally.utilities.Position;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,8 +29,6 @@ public class Turn {
     private final int turnIndex;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
-    private int executeActionIndex;
-    private ArrayList<Player> recursivedPlayers = new ArrayList<>();
 
     /**
      * Creates the turn and runs the start method that performs all tasks needed for a turn.
@@ -87,39 +87,64 @@ public class Turn {
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
-                recursivedPlayers = new ArrayList<>();
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  player.getName() + " ", player.getColor());
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getCardMessage() + "\n", null);
+
                 for (GameAction action : actions) {
-                    executeCardAction(player,action);
+                    player.setMovingDirection(player.getDirection());
+                    executeAction(action,player);
                 }
             }
         }
     }
 
-    private void executeCardAction(Player player, GameAction action) {
-        player.setBeforePosition(player.getPosition().clone());
-        recursivedPlayers.add(player);
-        try {
-            action.doAction(player);
-        } catch (WallException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Fånga wall" + e.getMessage());
-            for (Player p : recursivedPlayers) {
-                System.out.println("Moving back player: " + p.getName() + "to position: " + p.getBeforePosition() + " before" + p.getPosition());
-                p.setPosition(p.getBeforePosition().clone());
-            }
-        } finally {
-            System.out.println("Doing finally");
-            for (Player otherPlayer : players) {
-                if (player.getPosition().equals(otherPlayer.getPosition()) && !recursivedPlayers.contains(otherPlayer)) {
-                    GameAction pushAction = new MovePlayer(player.getDirection());
-                    executeCardAction(otherPlayer, pushAction);
-                    EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, otherPlayer, null);
-                    System.out.println("Executing action");
+    private boolean executeAction(GameAction action, Player player) {
+        action.doAction(player);
+        if (action instanceof MovePlayer) {
+            if (isValidMovement(player)) {
+                if (enemyAtNextPosition(player.getNextPosition()) != null) {
+                    Player enemy = enemyAtNextPosition(player.getNextPosition());
+                    enemy.setMovingDirection(player.getMovingDirection());
+                    if (executeAction(new MovePlayer(), enemy)) {
+                        player.setPosition(player.getNextPosition().clone());
+                        return true;
+                    }
+                } else {
+                    player.setPosition(player.getNextPosition().clone());
+                    return true;
                 }
             }
         }
+        return false;
+    }
+
+    private Player enemyAtNextPosition(Position position) {
+        for (Player enemy : players) {
+            if (position.equals(enemy.getPosition())) {
+                return enemy;
+            }
+        }
+        return null;
+    }
+
+    private boolean isValidMovement(Player player) {
+        for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
+            if (attribute instanceof WallAttribute) {
+                if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
+                    return false;
+                }
+            }
+        }
+        for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
+            if (attribute instanceof WallAttribute) {
+                if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others

@@ -23,48 +23,45 @@ public class MovePlayer implements GameAction {
     @Override
     public void doAction(Player p) {
         if (direction == null) {
-            direction = p.getDirection();
+            direction = p.getMovingDirection();
         }
         switch (direction) {
             case NORTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
+                p.setNextPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
                 break;
             case SOUTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
+                p.setNextPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
                 break;
             case EAST:
-                p.setPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
+                p.setNextPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
                 break;
             case WEST:
-                p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
+                p.setNextPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
             case WEST_NORTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
+                p.setNextPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
                 break;
             case EAST_NORTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
+                p.setNextPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
                 break;
             case WEST_SOUTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
+                p.setNextPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
                 break;
             case EAST_SOUTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
+                p.setNextPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
                 break;
             case NORTH_EAST:
-                p.setPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
+                p.setNextPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
                 break;
             case SOUTH_EAST:
-                p.setPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
+                p.setNextPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
                 break;
             case NORTH_WEST:
-                p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
+                p.setNextPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
             case SOUTH_WEST:
-                p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
+                p.setNextPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
                 break;
         }
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + "\n" , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }

@@ -21,11 +21,10 @@ public class BackupCard extends RegisterCard{
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("Card mainImage could not be read");
         }
+        cardMessage = "Backed Up";
     }
 
     public void doAction(Player p) {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + getPoints() + ": Backed Up ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
+
     }
 }
