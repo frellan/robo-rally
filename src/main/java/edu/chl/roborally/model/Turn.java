@@ -71,12 +71,12 @@ public class Turn{
     }
 
     private void executeActiveCards() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- ANALYSING CARDS" + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "ANALYSING CARDS" + "\n", Color.MAGENTA);
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
                 ArrayList<GameAction> actions = card.getActions();
-                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": Moving ", null);
+                EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
                 for (GameAction action : actions) {
                     executeActionIndex = 1;
                     executeCardAction(player,action);
@@ -106,7 +106,7 @@ public class Turn{
 
     // TODO Give priority to gametiles so we can execute some tiles before others
     private void executeBoardElements() {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "--- TILE ACTIONS" + "\n" ,null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);
@@ -198,6 +198,7 @@ public class Turn{
      * @param enemy Enemy, the one getting shot at
      */
     private void printFireMsg(Player p, Player enemy) {
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, enemy.getName(), enemy.getColor());

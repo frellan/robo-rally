@@ -2,6 +2,7 @@ package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.utilities.EventTram;
 
 /**
  * Created by henriknilson on 31/03/15.
@@ -53,5 +54,9 @@ public class RotatePlayer implements GameAction {
                 }
                 break;
         }
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " " + d + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
     }
 }
