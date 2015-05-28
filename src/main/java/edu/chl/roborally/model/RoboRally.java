@@ -30,7 +30,6 @@ public class RoboRally implements IEventHandler{
         this.players = players;
         this.board = map;
         EventTram.getInstance().register(this);
-        EventTram.getInstance().register(board);
         resetDeck();
         setStartPositions();
         gameIsRunning = true;

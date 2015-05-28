@@ -8,7 +8,6 @@ import edu.chl.roborally.model.tiles.attributes.WallAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.WallException;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -104,24 +103,23 @@ public class Turn {
         if (action instanceof MovePlayer) {
             // Set Players next position
             action.doAction(player);
-            if (checkIfVaildPosition(player)) {
+            if (checkIfValidMovement(player)) {
                 player.setPosition(player.getNextPosition().clone());
             }
         }
     }
 
-    private boolean checkIfVaildPosition(Player player) {
-        // Först om en vägg där man lämnar
+    private boolean checkIfValidMovement(Player player) {
         for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
-                if (player.getMovingDirection().equals(((WallAttribute) attribute).getDirection())){
+                if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
                     return false;
                 }
             }
         }
         for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
-                if (player.getMovingDirection().equals(((WallAttribute) attribute).getDirection())) {
+                if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
                     return false;
                 }
             }
