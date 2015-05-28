@@ -27,8 +27,6 @@ public class Turn {
     private final int turnIndex;
     private ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
-    private int executeActionIndex;
-    private ArrayList<Player> recursivedPlayers = new ArrayList<>();
 
     /**
      * Creates the turn and runs the start method that performs all tasks needed for a turn.
@@ -87,42 +85,34 @@ public class Turn {
         for (RegisterCard card : activeCards) {
             Player player = activeCardPlayer.get(card);
             if (player.isAlive()) {
-                recursivedPlayers = new ArrayList<>();
                 ArrayList<GameAction> actions = card.getActions();
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Priority " + card.getPoints() + ": \n", null);
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  player.getName() + " ", player.getColor());
                 EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE,  card.getCardMessage() + "\n", null);
 
                 for (GameAction action : actions) {
-                    executeCardAction(player,action);
+                    player.setMovingDirection(player.getDirection());
+                    executeAction(action,player);
                 }
             }
         }
     }
 
-    private void executeCardAction(Player player, GameAction action) {
-        player.setBeforePosition(player.getPosition().clone());
-        recursivedPlayers.add(player);
-        try {
+    private void executeAction(GameAction action, Player player) {
+        if (action instanceof MovePlayer) {
+            // Set Players next position
             action.doAction(player);
-        } catch (WallException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Fånga wall" + e.getMessage());
-            for (Player p : recursivedPlayers) {
-                System.out.println("Moving back player: " + p.getName() + "to position: " + p.getBeforePosition() + " before" + p.getPosition());
-                p.setPosition(p.getBeforePosition().clone());
-            }
-        } finally {
-            System.out.println("Doing finally");
-            for (Player otherPlayer : players) {
-                if (player.getPosition().equals(otherPlayer.getPosition()) && !recursivedPlayers.contains(otherPlayer)) {
-                    GameAction pushAction = new MovePlayer(player.getDirection());
-                    executeCardAction(otherPlayer, pushAction);
-                    EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, otherPlayer, null);
-                    System.out.println("Executing action");
-                }
+            if (checkIfVaildPosition(player)) {
+                player.setPosition(player.getNextPosition().clone());
             }
         }
+    }
+
+    private boolean checkIfVaildPosition(Player player) {
+        // Först om en vägg där man lämnar
+        if ()
+        // Sen om man kommer till en vägg
+        return true;
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others
