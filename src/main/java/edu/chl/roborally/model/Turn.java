@@ -3,6 +3,8 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.GameAction;
+import edu.chl.roborally.model.tiles.attributes.Attribute;
+import edu.chl.roborally.model.tiles.attributes.WallAttribute;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
@@ -110,8 +112,20 @@ public class Turn {
 
     private boolean checkIfVaildPosition(Player player) {
         // Först om en vägg där man lämnar
-        if (player.getMovingDirection() == )
-        // Sen om man kommer till en vägg
+        for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
+            if (attribute instanceof WallAttribute) {
+                if (player.getMovingDirection().equals(((WallAttribute) attribute).getDirection())){
+                    return false;
+                }
+            }
+        }
+        for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
+            if (attribute instanceof WallAttribute) {
+                if (player.getMovingDirection().equals(((WallAttribute) attribute).getDirection())) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
