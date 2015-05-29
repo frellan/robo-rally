@@ -153,12 +153,16 @@ public class Turn {
                 }
             }
         }
-        for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
-            if (attribute instanceof WallAttribute) {
-                if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
-                    return true;
+        try {
+            for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
+                if (attribute instanceof WallAttribute) {
+                    if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
+                        return true;
+                    }
                 }
             }
+        } catch (IndexOutOfBoundsException e) {
+            
         }
         return false;
     }
@@ -183,9 +187,14 @@ public class Turn {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
-                for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
-                    // TODO Set player moving direction from tiles direction
-                    executeAction(action, player);
+                try {
+                    for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
+                        // TODO Set player moving direction from tiles direction
+                        executeAction(action, player);
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Player fell and died");
+                    player.kill();
                 }
             }
         }
