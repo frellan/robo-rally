@@ -364,7 +364,7 @@ public class Player {
 
     /**
      * Sets the players moving direction.
-     * @param movingDirection the players moving direction.
+     * @param movingDirection the players moving direction.`
      */
     public void setMovingDirection(Constants.Directions movingDirection) {
         this.movingDirection = movingDirection;
