@@ -130,7 +130,7 @@ public class Player {
      */
     public void repair() {
         if (this.damageTokens > 0) {
-            this.damageTokens = damageTokens--;
+            this.damageTokens--;
         } else {
             this.damageTokens = 0;
         }

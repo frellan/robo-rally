@@ -55,7 +55,7 @@ public class Turn {
         sortActiveCards();
         executeActiveCards();
         executeBoardElements();
-        fireLasers();
+        activateLasers();
         checkIfOnlyOneSurvivor();
         EventTram.getInstance().publish(EventTram.Event.UPDATE_BOARD, null, null);
         EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null, null);
@@ -191,65 +191,42 @@ public class Turn {
         }
     }
 
-    private void fireLasers() {
+    private void activateLasers() {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
         for (Player p : players) {
+            System.out.println("Lasertracking" + p.getName());
             switch (p.getDirection()) {
                 case NORTH:
-                    //If x is equal and y is smaller
-                    for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX()){
-                            for (int i = p.getPosition().getY(); i >= 0; i--) {
-                                 if (enemy.getPosition().getY() < i) {
-                                     enemy.takeDamage(p.getLaserPower());
-                                     printFireMsg(p, enemy);
-                                     break;
-                                 }
-                            }
-                        }
-                    }
+                    aimAndFire(p, p.getPosition().getY(), 0);
+                    break;
                 case SOUTH:
-                    //If x is equal and y is bigger
-                    for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX()){
-                            for (int i = p.getPosition().getY(); i < Constants.NUM_ROWS; i ++) {
-                                 if(enemy.getPosition().getY() > i) {
-                                    enemy.takeDamage(p.getLaserPower());
-                                    printFireMsg(p, enemy);
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    aimAndFire(p, p.getPosition().getY(), Constants.NUM_ROWS);
+                    break;
                 case EAST:
-                    //If y is equal and x is bigger
-                    for (Player enemy : players) {
-                        if (enemy.getPosition().getY() == p.getPosition().getY()) {
-                            for (int i = p.getPosition().getX(); i < Constants.NUM_COLS; i++) {
-                                if (enemy.getPosition().getX() > i) {
-                                    enemy.takeDamage(p.getLaserPower());
-                                    printFireMsg(p, enemy);
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    aimAndFire(p, p.getPosition().getX(), Constants.NUM_COLS);
+                    break;
                 case WEST:
-                    //If y is equal and x is smaller
-                    for (Player enemy : players) {
-                        if (enemy.getPosition().getY() == p.getPosition().getY()) {
-                            for (int i = p.getPosition().getX(); i >= 0; i--) {
-                                if (enemy.getPosition().getX() < i) {
-                                    enemy.takeDamage(p.getLaserPower());
-                                    printFireMsg(p, enemy);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                    aimAndFire(p, p.getPosition().getX(), 0);
+                    break;
+            }
 
+        }
+    }
+
+    public void aimAndFire(Player player, int playerPos, int iterationStart){
+        outerLoop:
+        for (int i = playerPos; i >= iterationStart; i--){
+            System.out.println(i);
+            System.out.println("now checking enemy positions");
+            for(Player enemy : players){
+                if(!player.equals(enemy) && enemy.getPosition().getY() == i){
+                    System.out.println("found player and shooting");
+                    enemy.takeDamage(player.getLaserPower());
+                    printFireMsg(player, enemy);
+                    break outerLoop;
+                }
+            }
         }
     }
 
