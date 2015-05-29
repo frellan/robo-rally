@@ -179,7 +179,7 @@ public class Turn {
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others
-    private void executeBoardElements() {
+     private void executeBoardElements() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
@@ -199,40 +199,57 @@ public class Turn {
                 case NORTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
-                            enemy.takeDamage(p.getLaserPower());
-                            printFireMsg(p, enemy);
-                            break;
+                        if (enemy.getPosition().getX() == p.getPosition().getX()){
+                            for (int i = p.getPosition().getY(); i >= 0; i--) {
+                                 if (enemy.getPosition().getY() < i) {
+                                     enemy.takeDamage(p.getLaserPower());
+                                     printFireMsg(p, enemy);
+                                     break;
+                                 }
+                            }
                         }
                     }
                 case SOUTH:
                     //If x is equal and y is bigger
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                            enemy.takeDamage(p.getLaserPower());
-                            printFireMsg(p, enemy);
-                            break;
+                        if (enemy.getPosition().getX() == p.getPosition().getX()){
+                            for (int i = p.getPosition().getY(); i < Constants.NUM_ROWS; i ++) {
+                                 if(enemy.getPosition().getY() > i) {
+                                    enemy.takeDamage(p.getLaserPower());
+                                    printFireMsg(p, enemy);
+                                    break;
+                                }
+                            }
                         }
                     }
                 case EAST:
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                            enemy.takeDamage(p.getLaserPower());
-                            printFireMsg(p, enemy);
-                            break;
+                        if (enemy.getPosition().getY() == p.getPosition().getY()) {
+                            for (int i = p.getPosition().getX(); i < Constants.NUM_COLS; i++) {
+                                if (enemy.getPosition().getX() > i) {
+                                    enemy.takeDamage(p.getLaserPower());
+                                    printFireMsg(p, enemy);
+                                    break;
+                                }
+                            }
                         }
                     }
                 case WEST:
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                            enemy.takeDamage(p.getLaserPower());
-                            printFireMsg(p, enemy);
-                            break;
+                        if (enemy.getPosition().getY() == p.getPosition().getY()) {
+                            for (int i = p.getPosition().getX(); i >= 0; i--) {
+                                if (enemy.getPosition().getX() < i) {
+                                    enemy.takeDamage(p.getLaserPower());
+                                    printFireMsg(p, enemy);
+                                    break;
+                                }
+                            }
                         }
+                    }
                 }
-            }
+
         }
     }
 
@@ -272,7 +289,6 @@ public class Turn {
      * @param enemy Enemy, the one getting shot at
      */
     private void printFireMsg(Player p, Player enemy) {
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, enemy.getName(), enemy.getColor());
