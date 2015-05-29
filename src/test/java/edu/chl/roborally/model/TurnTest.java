@@ -35,6 +35,7 @@ public class TurnTest {
         players = new ArrayList<>();
         players.add(player1);
         players.add(player2);
+        players.add(player3);
         model = new RoboRally(players,map);
     }
 
@@ -50,8 +51,9 @@ public class TurnTest {
         System.out.println("player1 has " + player1.getDamageTokens() + " damageTokens");
         System.out.println("player2 has " + player2.getDamageTokens() + " damageTokens");
         System.out.println("player3 has " + player3.getDamageTokens() + " damageTokens");
-
+        System.out.println(" ");
         fireLasers();
+        System.out.println(" ");
         System.out.println("player1 has " + player1.getDamageTokens() + " damageTokens after LASER");
         System.out.println("player2 has " + player2.getDamageTokens() + " damageTokens after LASER");
         System.out.println("player3 has " + player3.getDamageTokens() + " damageTokens after LASER");
@@ -61,51 +63,65 @@ public class TurnTest {
         assertTrue(player2.getDamageTokens() == 1);
         assertTrue(player3.getDamageTokens() == 0);
 
-        //assertTrue(player1.getDamageTokens() == 0);
-        //assertTrue(player2.getDamageTokens() == 0);
+        //Players on same Y different X
     }
 
     private void fireLasers() {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
-        //TODO Stop when other player is hit
         for (Player p : players) {
-            //Get current laser power for the player
-            int playerLaserPower = p.getLaserPower();
             switch (p.getDirection()) {
                 case NORTH:
-                    //If x is equal and y is bigger
-                    for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                            enemy.takeDamage(playerLaserPower);
-                        }
-                    }
-                    break;
-                case SOUTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
-                            enemy.takeDamage(playerLaserPower);
+                        if (enemy.getPosition().getX() == p.getPosition().getX()){
+                            for (int i = p.getPosition().getY(); i >= 0; i--) {
+                                if (enemy.getPosition().getY() < i) {
+                                    enemy.takeDamage(p.getLaserPower());
+                                    break;
+                                }
+                            }
                         }
                     }
-                    break;
+                case SOUTH:
+                    //If x is equal and y is bigger
+                    for (Player enemy : players) {
+                        if (enemy.getPosition().getX() == p.getPosition().getX()){
+                            for (int i = p.getPosition().getY(); i < Constants.NUM_ROWS; i ++) {
+                                if(enemy.getPosition().getY() > i) {
+                                    enemy.takeDamage(p.getLaserPower());
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 case EAST:
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                            enemy.takeDamage(playerLaserPower);
+                        if (enemy.getPosition().getY() == p.getPosition().getY()) {
+                            for (int i = p.getPosition().getX(); i < Constants.NUM_COLS; i++) {
+                                if (enemy.getPosition().getX() > i) {
+                                    System.out.println("Player X,Y = " + p.getPosition().getX() + " " + p.getPosition().getY() + " Enemy X,Y= " + enemy.getPosition().getX() + " " + enemy.getPosition().getY() );
+                                    enemy.takeDamage(p.getLaserPower());
+                                    break;
+                                }
+                            }
                         }
                     }
-                    break;
                 case WEST:
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
-                        if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                            enemy.takeDamage(playerLaserPower);
+                        if (enemy.getPosition().getY() == p.getPosition().getY()) {
+                            for (int i = p.getPosition().getX(); i >= 0; i--) {
+                                if (enemy.getPosition().getX() < i) {
+                                    enemy.takeDamage(p.getLaserPower());
+                                    break;
+                                }
+                            }
                         }
                     }
-                    break;
             }
+
         }
     }
 }
