@@ -61,10 +61,6 @@ public class TurnTest {
         assertTrue(player1.getDamageTokens() == 1);
         assertTrue(player2.getDamageTokens() == 1);
         assertTrue(player3.getDamageTokens() == 0);
-
-
-        //assertTrue(player1.getDamageTokens() == 0);
-        //assertTrue(player2.getDamageTokens() == 0);
     }
 
     private void activateLasers() {
@@ -101,5 +97,4 @@ public class TurnTest {
             }
         }
     }
-
 }
