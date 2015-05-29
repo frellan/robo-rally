@@ -183,7 +183,11 @@ public class Turn {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
-                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);
+                player.setMovingDirection(player.getDirection());
+                for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
+                    // TODO Set player moving direction from tiles direction
+                    executeAction(action, player);
+                }
             }
         }
     }
@@ -192,14 +196,12 @@ public class Turn {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
         for (Player p : players) {
-            //Get current laser power for the player
-            int playerLaserPower = p.getLaserPower();
             switch (p.getDirection()) {
                 case NORTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
@@ -208,7 +210,7 @@ public class Turn {
                     //If x is equal and y is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
@@ -217,7 +219,7 @@ public class Turn {
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
@@ -226,7 +228,7 @@ public class Turn {
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
