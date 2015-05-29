@@ -193,7 +193,7 @@ public class Turn {
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others
-     private void executeBoardElements() {
+    private void executeBoardElements() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
