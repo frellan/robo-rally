@@ -37,7 +37,7 @@ public abstract class RegisterCard {
      */
 
     /**
-     *Returns the cardMessage, which tells the console what to print.
+     * Returns the cardMessage, which tells the console what to print.
      * @return the cards message.
      */
     public String getMessage(){return cardMessage;}

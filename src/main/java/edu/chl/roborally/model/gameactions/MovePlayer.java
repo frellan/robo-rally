@@ -8,7 +8,7 @@ import edu.chl.roborally.utilities.Position;
  * Created by henriknilson on 31/03/15.
  *
  * This class represents the gameaction to change a players position on the
- * gameboard. The new position is validated by the turn class
+ * gameboard. The new position is validated by the turn class.
  */
 public class MovePlayer implements GameAction {
 

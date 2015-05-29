@@ -26,6 +26,7 @@ public class BackupCardTest {
         player = new Player(0, new Robot("Test Robot", Color.ORANGE));
         player.setPosition(new Position(4,6));
         player.setDirection(Constants.Directions.NORTH);
+        player.setMovingDirection(player.getDirection());
         System.out.println(player.getName() + " starts at position " + player.getPosition());
     }
 
@@ -35,6 +36,7 @@ public class BackupCardTest {
         for (GameAction action : card.getActions()) {
             action.doAction(player);
         }
+        player.setPosition(player.getNextPosition().clone());
         assertTrue(player.getPosition().getY() == 7 && player.getPosition().getX() == 4);
     }
 }
