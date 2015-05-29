@@ -20,7 +20,7 @@ public class TileFactory {
     }
 
     /**
-     * ConVey N,W,S,E : NW,NE,SW,SE,WS,WN = 11,12,13,14 : 15,16,17,18,19,120
+     * ConVey N,W,S,E : NW,NE,SW,SE,WS,WN = 11,12,13,14 : 15,16,17,18,19,120 Priority 2
      * ConVey NORTH with wall W,S,E = 112,113,114
      * ConVey WEST with wall N,S,E = 121,123,124
      * DubbleConvey W,S = 212,213
@@ -40,6 +40,9 @@ public class TileFactory {
 
     public GameTile createTile(int tileNbr) {
         GameTile tile = new GameTile();
+
+        setPriorityToTile(tile, tileNbr);
+
         switch (tileNbr) {
             case 0:
                 tile.addAttribute(new BlankAttribute());
@@ -204,6 +207,25 @@ public class TileFactory {
                 break;
         }
         return tile;
+    }
+
+    /**
+     * Set priority to tile, priority decides when the action should be executed
+     * @param tile 
+     * @param tileNbr
+     */
+    private void setPriorityToTile(GameTile tile, int tileNbr) {
+        switch(tileNbr) {
+            case 11: case 12: case 13: case 14:case 15:case 16:case 17: case 18:case 19:case 120:case 112:case 113:case 114:case 121:case 122:case 123:
+                tile.setPriority(2);
+                break;
+            case 212:case 213:case 232:
+                tile.setPriority(1);
+                break;
+            case 6:case 71:case 72:case 73:
+                tile.setPriority(3);
+                break;
+        }
     }
 
 }
