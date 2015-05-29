@@ -10,23 +10,23 @@ import edu.chl.roborally.utilities.Position;
 public class BackUpPlayer implements GameAction {
 
     @Override
-    public void doAction(Player p) {
-        switch (p.getDirection()) {
+    public void doAction(Player player) {
+        switch (player.getDirection()) {
             case NORTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() + 1));
+                player.setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
                 break;
             case SOUTH:
-                p.setPosition(new Position(p.getPosition().getX(), p.getPosition().getY() - 1));
+                player.setPosition(new Position(player.getPosition().getX(), player.getPosition().getY() - 1));
                 break;
             case EAST:
-                p.setPosition(new Position(p.getPosition().getX() - 1, p.getPosition().getY()));
+                player.setPosition(new Position(player.getPosition().getX() - 1, player.getPosition().getY()));
                 break;
             case WEST:
-                p.setPosition(new Position(p.getPosition().getX() + 1, p.getPosition().getY()));
+                player.setPosition(new Position(player.getPosition().getX() + 1, player.getPosition().getY()));
                 break;
         }
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Backing up ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() + "\n", p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE,p,null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() + "\n", player.getColor());
+        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, player,null);
     }
 }

@@ -123,7 +123,7 @@ public class Turn {
     private boolean executeAction(GameAction action, Player player) {
         action.doAction(player);
         if (action instanceof MovePlayer) {
-            if (playerIsHittingWall(player)) {
+            if (!playerIsHittingWall(player)) {
                 if (enemyAtNextPosition(player.getNextPosition()) != null) {
                     Player enemy = enemyAtNextPosition(player.getNextPosition());
                     enemy.setMovingDirection(player.getMovingDirection());
@@ -149,18 +149,18 @@ public class Turn {
         for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
-                    return false;
+                    return true;
                 }
             }
         }
         for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -183,7 +183,10 @@ public class Turn {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
-                EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION,player,null);
+                for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
+                    // TODO Set player moving direction from tiles direction
+                    executeAction(action, player);
+                }
             }
         }
     }
@@ -192,14 +195,12 @@ public class Turn {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
         for (Player p : players) {
-            //Get current laser power for the player
-            int playerLaserPower = p.getLaserPower();
             switch (p.getDirection()) {
                 case NORTH:
                     //If x is equal and y is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() < p.getPosition().getY()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
@@ -208,7 +209,7 @@ public class Turn {
                     //If x is equal and y is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getX() == p.getPosition().getX() && enemy.getPosition().getY() > p.getPosition().getY()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
@@ -217,7 +218,7 @@ public class Turn {
                     //If y is equal and x is bigger
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() > p.getPosition().getX()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }
@@ -226,7 +227,7 @@ public class Turn {
                     //If y is equal and x is smaller
                     for (Player enemy : players) {
                         if (enemy.getPosition().getY() == p.getPosition().getY() && enemy.getPosition().getX() < p.getPosition().getX()) {
-                            enemy.takeDamage(playerLaserPower);
+                            enemy.takeDamage(p.getLaserPower());
                             printFireMsg(p, enemy);
                             break;
                         }

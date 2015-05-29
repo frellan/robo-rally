@@ -1,6 +1,5 @@
 package edu.chl.roborally.model.cards;
 
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.*;
 
 import javax.imageio.ImageIO;
@@ -21,9 +20,5 @@ public class BackupCard extends RegisterCard{
             System.out.println("Card mainImage could not be read");
         }
         cardMessage = "Backed Up";
-    }
-
-    public void doAction(Player p) {
-
     }
 }

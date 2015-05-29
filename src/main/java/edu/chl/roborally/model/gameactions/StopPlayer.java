@@ -15,7 +15,7 @@ public class StopPlayer implements GameAction {
     }
 
     @Override
-    public void doAction(Player p) {
+    public void doAction(Player player) {
         System.out.println("Kasta wall");
     }
 }

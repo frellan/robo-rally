@@ -25,7 +25,6 @@ public abstract class Attribute {
     /**
      * Setters
      */
-
     protected void setAction(GameAction action) {
         this.actions.add(action);
     }

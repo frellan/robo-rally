@@ -11,9 +11,9 @@ import java.awt.*;
 public class KillPlayer implements GameAction{
 
     @Override
-    public void doAction(Player p) {
-        p.kill();
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
+    public void doAction(Player player) {
+        player.kill();
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName(), player.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " HAS DIED" + "\n", Color.RED);
     }
 }
