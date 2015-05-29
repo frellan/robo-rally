@@ -677,6 +677,8 @@ class ControlView extends JPanel implements ActionListener{
         }
         if (e.getSource() == nextTurnButton){
             EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
+        } if (e.getSource() == powerDownButton) {
+            EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, player, null);
         }
     }
 }

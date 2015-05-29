@@ -2,6 +2,7 @@ package edu.chl.roborally.model;
 
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
+import edu.chl.roborally.model.gameactions.BackUpPlayer;
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
@@ -125,7 +126,7 @@ public class Turn {
      */
     private boolean executeAction(GameAction action, Player player) {
         action.doAction(player);
-        if (action instanceof MovePlayer) {
+        if (action instanceof MovePlayer || action instanceof BackUpPlayer) {
             if (!playerIsHittingWall(player)) {
                 if (enemyAtNextPosition(player.getNextPosition()) != null) {
                     Player enemy = enemyAtNextPosition(player.getNextPosition());
@@ -192,7 +193,7 @@ public class Turn {
     }
 
     // TODO Give priority to gametiles so we can execute some tiles before others
-     private void executeBoardElements() {
+    private void executeBoardElements() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
