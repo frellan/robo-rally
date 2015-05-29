@@ -1,7 +1,6 @@
 package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.KillPlayer;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 
@@ -22,10 +21,6 @@ public class PitAttribute extends Attribute {
 
     public String toString() {
         return name;
-    }
-
-    public void doAttribute(Player player) {
-        
     }
 
     @Override

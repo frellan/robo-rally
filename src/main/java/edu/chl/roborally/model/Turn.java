@@ -123,7 +123,7 @@ public class Turn {
     private boolean executeAction(GameAction action, Player player) {
         action.doAction(player);
         if (action instanceof MovePlayer) {
-            if (playerIsHittingWall(player)) {
+            if (!playerIsHittingWall(player)) {
                 if (enemyAtNextPosition(player.getNextPosition()) != null) {
                     Player enemy = enemyAtNextPosition(player.getNextPosition());
                     enemy.setMovingDirection(player.getMovingDirection());
@@ -149,18 +149,18 @@ public class Turn {
         for (Attribute attribute: model.getBoard().getTile(player.getPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection())){
-                    return false;
+                    return true;
                 }
             }
         }
         for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
             if (attribute instanceof WallAttribute) {
                 if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -183,7 +183,6 @@ public class Turn {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
-                player.setMovingDirection(player.getDirection());
                 for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
                     // TODO Set player moving direction from tiles direction
                     executeAction(action, player);

@@ -37,7 +37,11 @@ public class MovePlayer implements GameAction {
     @Override
     public void doAction(Player player) {
         if (direction == null) {
+            // Card move and push
             direction = player.getMovingDirection();
+        } else {
+            // For tile action
+            player.setMovingDirection(direction);
         }
         switch (direction) {
             case NORTH:
