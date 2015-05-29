@@ -1,10 +1,7 @@
 package edu.chl.roborally.model.tiles.attributes;
 
-import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.utilities.Constants;
-import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.gameactions.MovePlayer;
-import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 
 import java.awt.*;
@@ -28,16 +25,6 @@ public class ConveyorAttribute extends Attribute {
         } else {
             super.setAction(new MovePlayer(d));
             tileMessage = "One Tile";
-        }
-    }
-
-    public void doAttribute(Player p){
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Moving ", null);
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName() , p.getColor());
-
-        for (GameAction action : super.getActions()) {
-            //action.doAction(p);
-            EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " One Tile" + "\n", null);
         }
     }
 

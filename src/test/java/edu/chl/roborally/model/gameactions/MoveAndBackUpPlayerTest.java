@@ -25,6 +25,7 @@ public class MoveAndBackUpPlayerTest {
         player = new Player(0, new Robot("Test Robot", Color.ORANGE));
         player.setPosition(new Position(4,6));
         player.setDirection(Constants.Directions.NORTH);
+        player.setMovingDirection(Constants.Directions.NORTH);
         System.out.println(player.getName() + " starts at position " + player.getPosition());
     }
 
@@ -32,6 +33,7 @@ public class MoveAndBackUpPlayerTest {
     public void testMovePlayer() throws Exception {
         action = new MovePlayer();
         action.doAction(player);
+        player.setPosition(player.getNextPosition().clone());
         assertTrue(player.getPosition().getY() == 5 && player.getPosition().getX() == 4);
     }
 
