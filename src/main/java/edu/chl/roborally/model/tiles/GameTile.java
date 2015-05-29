@@ -15,6 +15,7 @@ public class GameTile {
 
     private ArrayList<Attribute> attributes;
     private ArrayList<Attribute> beforeAttributes;
+    private int priority;
 
     public GameTile() {
         beforeAttributes = new ArrayList<>();
@@ -65,6 +66,10 @@ public class GameTile {
         return actions;
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
     /**
      * Returns the actions if there is a need for a before-action
      * @return Before-actions
@@ -77,6 +82,12 @@ public class GameTile {
             }
         }
         return actions;
+    }
+    /*
+    Setters
+    */
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     /*
