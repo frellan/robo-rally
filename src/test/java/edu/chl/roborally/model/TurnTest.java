@@ -93,11 +93,8 @@ public class TurnTest {
     public void aimAndFire(Player player, int playerPos, int iterationStart){
         outerLoop:
         for (int i = playerPos; i >= iterationStart; i--){
-            System.out.println(i);
-            System.out.println("now checking enemy positions");
             for(Player enemy : players){
                 if(!player.equals(enemy) && enemy.getPosition().getY() == i){
-                    System.out.println("found player and shooting");
                     enemy.takeDamage(player.getLaserPower());
                     break outerLoop;
                 }
