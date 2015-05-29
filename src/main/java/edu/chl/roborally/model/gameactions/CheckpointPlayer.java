@@ -17,19 +17,23 @@ public class CheckpointPlayer implements GameAction {
     @Override
     public void doAction(Player player) {
         if (id == 0) {
-            System.out.println("Standing on START-tile");
+                System.out.println("Standing on START-tile");
         }
         else if (player.getCheckpointID() == (id - 1)) {
-            if (id < 5) {
+            if (id < 3) {
                 player.setCheckpointID(id);
                 player.setCheckpoint(player.getPosition());
                 System.out.println("It worked, new checkpoint set");
             }
-            else if (id == 5) {
+            else if (id == 3) {
+                player.setCheckpointID(id);
                 EventTram.getInstance().publish(EventTram.Event.VICTORY, player, null);
             }
+        }
+        else if (player.getCheckpointID() > id) {
+            System.out.println("You've already been on this checkpoint");
         } else {
-            System.out.println("Wrong checkpoint, go to " + (id - 1) + " first");
+            System.out.println("Wrong checkpoint, go to " + (player.getCheckpointID() + 1) + " first");
         }
     }
 }

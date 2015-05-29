@@ -84,6 +84,13 @@ public class CheckpointAttributeTest {
         executeAction(player2);
         assertTrue(player2.getCheckpoint() != player2.getPosition());
 
+        //Player2 goes to final checkpoint
+        player2.setPosition(new Position(9, 5));
+        System.out.println(player2.getName() + "New position " + player2.getPosition());
+        executeAction(player2);
+        assertTrue(model.isGameRunning() == false);
+
+
 
     }
 }

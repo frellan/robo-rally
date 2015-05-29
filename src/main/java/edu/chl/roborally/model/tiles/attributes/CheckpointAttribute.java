@@ -48,16 +48,6 @@ public class CheckpointAttribute extends Attribute {
                         2*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.drawImage(currentTile, x, y, null);
                 break;
-            //case 3:
-              //  currentTile = allTiles.getSubimage(
-                //        3*Constants.TILE_SIZE, 11*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                //g.drawImage(currentTile, x, y, null);
-               // break;
-            //case 4:
-              //  currentTile = allTiles.getSubimage(
-                //        Constants.TILE_SIZE, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-               // g.drawImage(currentTile, x, y, null);
-               // break;
             case 3:
                 currentTile = allTiles.getSubimage(
                         0, 12*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
