@@ -214,35 +214,56 @@ public class Turn {
         }
     }
 
-    public void aimAndFire(Player player, int playerPos, int iterationStart) {
-        if (player.getDirection() == Constants.Directions.NORTH || player.getDirection() == Constants.Directions.SOUTH) {
-            outerLoop:
-            for (int i = playerPos; i >= iterationStart; i--) {
-                System.out.println(i);
-                System.out.println("now checking enemy positions");
-                for (Player enemy : players) {
-                    if (!player.equals(enemy) && enemy.getPosition().getY() == i) {
-                        System.out.println("found player and shooting");
-                        enemy.takeDamage(player.getLaserPower());
-                        break outerLoop;
+    public void aimAndFire(Player player, int playerDirectionPos, int iterationStart) {
+        switch (player.getDirection()) {
+            case NORTH:
+                outerLoop:
+                for (int y = playerDirectionPos; y >= iterationStart; y--) {
+                    Position firePosition = new Position(player.getPosition().getX(), y);
+                    for (Player enemy : players) {
+                        if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
+                            enemy.takeDamage(player.getLaserPower());
+                            break outerLoop;
+                        }
                     }
                 }
-            }
-        }
-
-        else if (player.getDirection() == Constants.Directions.WEST || player.getDirection() == Constants.Directions.EAST) {
-            outerLoop:
-            for (int i = playerPos; i >= iterationStart; i--) {
-                System.out.println(i);
-                System.out.println("now checking enemy positions");
-                for (Player enemy : players) {
-                    if (!player.equals(enemy) && enemy.getPosition().getX() == i) {
-                        System.out.println("found player and shooting");
-                        enemy.takeDamage(player.getLaserPower());
-                        break outerLoop;
+                break;
+            case SOUTH:
+                outerLoop:
+                for (int y = playerDirectionPos; y <= iterationStart; y++) {
+                    Position firePosition = new Position(player.getPosition().getX(), y);
+                    for (Player enemy : players) {
+                        if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
+                            enemy.takeDamage(player.getLaserPower());
+                            break outerLoop;
+                        }
                     }
                 }
-            }
+                break;
+            case EAST:
+                outerLoop:
+                for (int x = playerDirectionPos; x <= iterationStart; x++) {
+                    Position firePosition = new Position(x, player.getPosition().getY());
+                    for (Player enemy : players) {
+                        if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
+                            enemy.takeDamage(player.getLaserPower());
+                            break outerLoop;
+                        }
+                    }
+                }
+                break;
+            case WEST:
+                outerLoop:
+                for (int x = playerDirectionPos; x >= iterationStart; x--) {
+                    Position firePosition = new Position(x, player.getPosition().getY());
+                    for (Player enemy : players) {
+                        if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
+                            enemy.takeDamage(player.getLaserPower());
+                            break outerLoop;
+                        }
+                    }
+                }
+                break;
         }
     }
 
