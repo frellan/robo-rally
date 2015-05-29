@@ -146,6 +146,7 @@ public class Turn {
                             tileBeforeAction.doAction(player);
                         }
                         return true;
+
                     } catch (ArrayIndexOutOfBoundsException e) {
                         // If player is out of bounds we kill him
                         System.out.println("Player fell of board and died");

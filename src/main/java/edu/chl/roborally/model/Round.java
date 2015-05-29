@@ -66,6 +66,7 @@ public class Round implements IEventHandler {
         for (Player p : players) {
             if (!p.isKaput() && p.isDead()) {
                 p.setStatus(Constants.Status.ALIVE);
+                p.setDirection(Constants.Directions.EAST);
                 p.backToCheckpoint();
             }
         }
