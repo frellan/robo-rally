@@ -214,17 +214,33 @@ public class Turn {
         }
     }
 
-    public void aimAndFire(Player player, int playerPos, int iterationStart){
-        outerLoop:
-        for (int i = playerPos; i >= iterationStart; i--){
-            System.out.println(i);
-            System.out.println("now checking enemy positions");
-            for(Player enemy : players){
-                if(!player.equals(enemy) && enemy.getPosition().getY() == i){
-                    System.out.println("found player and shooting");
-                    enemy.takeDamage(player.getLaserPower());
-                    printFireMsg(player, enemy);
-                    break outerLoop;
+    public void aimAndFire(Player player, int playerPos, int iterationStart) {
+        if (player.getDirection() == Constants.Directions.NORTH || player.getDirection() == Constants.Directions.SOUTH) {
+            outerLoop:
+            for (int i = playerPos; i >= iterationStart; i--) {
+                System.out.println(i);
+                System.out.println("now checking enemy positions");
+                for (Player enemy : players) {
+                    if (!player.equals(enemy) && enemy.getPosition().getY() == i) {
+                        System.out.println("found player and shooting");
+                        enemy.takeDamage(player.getLaserPower());
+                        break outerLoop;
+                    }
+                }
+            }
+        }
+
+        else if (player.getDirection() == Constants.Directions.WEST || player.getDirection() == Constants.Directions.EAST) {
+            outerLoop:
+            for (int i = playerPos; i >= iterationStart; i--) {
+                System.out.println(i);
+                System.out.println("now checking enemy positions");
+                for (Player enemy : players) {
+                    if (!player.equals(enemy) && enemy.getPosition().getX() == i) {
+                        System.out.println("found player and shooting");
+                        enemy.takeDamage(player.getLaserPower());
+                        break outerLoop;
+                    }
                 }
             }
         }
