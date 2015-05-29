@@ -3,6 +3,7 @@ package edu.chl.roborally.model;
 import edu.chl.roborally.model.cards.RegisterCard;
 import edu.chl.roborally.model.cards.RegisterCardCompare;
 import edu.chl.roborally.model.gameactions.GameAction;
+import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.tiles.attributes.Attribute;
 import edu.chl.roborally.model.tiles.attributes.WallAttribute;
 import edu.chl.roborally.utilities.Constants;
@@ -30,6 +31,7 @@ public class Turn {
     private final int turnIndex;
     private final ArrayList<RegisterCard> activeCards = new ArrayList<>();
     private final Map<RegisterCard,Player> activeCardPlayer = new HashMap<>();
+    private final GameBoard board;
 
     /**
      * Creates the turn and runs the start method that performs all tasks needed for a turn.
@@ -38,6 +40,7 @@ public class Turn {
      */
     public Turn(RoboRally model, int turnIndex) {
         this.model = model;
+        this.board = model.getBoard();
         this.players = this.model.getPlayers();
         this.turnIndex = turnIndex;
         startTurn();
@@ -129,10 +132,16 @@ public class Turn {
                     enemy.setMovingDirection(player.getMovingDirection());
                     if (executeAction(new MovePlayer(), enemy)) {
                         player.setPosition(player.getNextPosition().clone());
+                        for (GameAction tileBeforeAction : board.getTile(player.getPosition()).getBeforeAction()) {
+                            tileBeforeAction.doAction(player);
+                        }
                         return true;
                     }
                 } else {
                     player.setPosition(player.getNextPosition().clone());
+                    for (GameAction tileBeforeAction : board.getTile(player.getPosition()).getBeforeAction()) {
+                        tileBeforeAction.doAction(player);
+                    }
                     return true;
                 }
             }
@@ -153,12 +162,16 @@ public class Turn {
                 }
             }
         }
-        for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
-            if (attribute instanceof WallAttribute) {
-                if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
-                    return true;
+        try {
+            for (Attribute attribute: model.getBoard().getTile(player.getNextPosition()).getBeforeAttributes()) {
+                if (attribute instanceof WallAttribute) {
+                    if (player.getMovingDirection() == (((WallAttribute) attribute).getDirection().getOpposite())) {
+                        return true;
+                    }
                 }
             }
+        } catch (IndexOutOfBoundsException e) {
+            
         }
         return false;
     }
@@ -183,9 +196,14 @@ public class Turn {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
-                for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
-                    // TODO Set player moving direction from tiles direction
-                    executeAction(action, player);
+                try {
+                    for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
+                        // TODO Set player moving direction from tiles direction
+                        executeAction(action, player);
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Player fell and died");
+                    player.kill();
                 }
             }
         }
