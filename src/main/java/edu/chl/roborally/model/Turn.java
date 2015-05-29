@@ -213,20 +213,22 @@ public class Turn {
         // Loop all players, all players fire lasers in their direction
         //TODO Stop laser if wall_tile in that direction
         for (Player p : players) {
-            System.out.println("Lasertracking" + p.getName());
-            switch (p.getDirection()) {
-                case NORTH:
-                    aimAndFire(p, p.getPosition().getY(), 0);
-                    break;
-                case SOUTH:
-                    aimAndFire(p, p.getPosition().getY(), Constants.NUM_ROWS);
-                    break;
-                case EAST:
-                    aimAndFire(p, p.getPosition().getX(), Constants.NUM_COLS);
-                    break;
-                case WEST:
-                    aimAndFire(p, p.getPosition().getX(), 0);
-                    break;
+            if (p.isAlive()) {
+                System.out.println("Lasertracking" + p.getName());
+                switch (p.getDirection()) {
+                    case NORTH:
+                        aimAndFire(p, p.getPosition().getY(), 0);
+                        break;
+                    case SOUTH:
+                        aimAndFire(p, p.getPosition().getY(), Constants.NUM_ROWS);
+                        break;
+                    case EAST:
+                        aimAndFire(p, p.getPosition().getX(), Constants.NUM_COLS);
+                        break;
+                    case WEST:
+                        aimAndFire(p, p.getPosition().getX(), 0);
+                        break;
+                }
             }
 
         }
@@ -241,6 +243,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
                             enemy.takeDamage(player.getLaserPower());
+                            printFireMsg(player,enemy);
                             break outerLoop;
                         }
                     }
@@ -253,6 +256,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
                             enemy.takeDamage(player.getLaserPower());
+                            printFireMsg(player,enemy);
                             break outerLoop;
                         }
                     }
@@ -265,6 +269,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
                             enemy.takeDamage(player.getLaserPower());
+                            printFireMsg(player,enemy);
                             break outerLoop;
                         }
                     }
@@ -277,6 +282,7 @@ public class Turn {
                     for (Player enemy : players) {
                         if (!player.equals(enemy) && enemy.getPosition().equals(firePosition)) {
                             enemy.takeDamage(player.getLaserPower());
+                            printFireMsg(player,enemy);
                             break outerLoop;
                         }
                     }
