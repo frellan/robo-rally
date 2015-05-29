@@ -183,7 +183,6 @@ public class Turn {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "TILE ACTIONS" + "\n" , Color.MAGENTA);
         for (Player player : players) {
             if (player.isAlive()) {
-                player.setMovingDirection(player.getDirection());
                 for (GameAction action : model.getBoard().getTile(player.getPosition()).getActions()) {
                     // TODO Set player moving direction from tiles direction
                     executeAction(action, player);
