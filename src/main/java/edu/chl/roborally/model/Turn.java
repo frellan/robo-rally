@@ -140,10 +140,17 @@ public class Turn {
                     }
                 } else {
                     player.setPosition(player.getNextPosition().clone());
-                    for (GameAction tileBeforeAction : board.getTile(player.getPosition()).getBeforeAction()) {
-                        tileBeforeAction.doAction(player);
+                    try {
+
+                        for (GameAction tileBeforeAction : board.getTile(player.getPosition()).getBeforeAction()) {
+                            tileBeforeAction.doAction(player);
+                        }
+                        return true;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        // If player is out of bounds we kill him
+                        System.out.println("Player fell of board and died");
+                        player.kill();
                     }
-                    return true;
                 }
             }
         }
