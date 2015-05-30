@@ -18,7 +18,7 @@ public class MovePlayer implements GameAction {
     private Constants.Directions direction;
 
     /**
-     * Default constructor, sets the direction varible to null
+     * Default constructor, sets the direction variable to null
      * and uses the players movingDirection instead.
      */
     public MovePlayer() {
@@ -54,30 +54,6 @@ public class MovePlayer implements GameAction {
                 player.setNextPosition(new Position(player.getPosition().getX() + 1, player.getPosition().getY()));
                 break;
             case WEST:
-                player.setNextPosition(new Position(player.getPosition().getX() - 1, player.getPosition().getY()));
-                break;
-            case WEST_NORTH:
-                player.setNextPosition(new Position(player.getPosition().getX(), player.getPosition().getY() - 1));
-                break;
-            case EAST_NORTH:
-                player.setNextPosition(new Position(player.getPosition().getX(), player.getPosition().getY() - 1));
-                break;
-            case WEST_SOUTH:
-                player.setNextPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
-                break;
-            case EAST_SOUTH:
-                player.setNextPosition(new Position(player.getPosition().getX(), player.getPosition().getY() + 1));
-                break;
-            case NORTH_EAST:
-                player.setNextPosition(new Position(player.getPosition().getX() + 1, player.getPosition().getY()));
-                break;
-            case SOUTH_EAST:
-                player.setNextPosition(new Position(player.getPosition().getX() + 1, player.getPosition().getY()));
-                break;
-            case NORTH_WEST:
-                player.setNextPosition(new Position(player.getPosition().getX() - 1, player.getPosition().getY()));
-                break;
-            case SOUTH_WEST:
                 player.setNextPosition(new Position(player.getPosition().getX() - 1, player.getPosition().getY()));
                 break;
         }
