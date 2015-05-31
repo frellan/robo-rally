@@ -4,7 +4,7 @@ Welcome to RoboRally!
 
 GameGoal:
 To win the game, players have to make their robot move across a map and reach a number of checkpoints. The player
-who's robot reaches the checkpoints first wins the game.
+who's robot reaches all the checkpoints first wins the game.
 
 How to play:
 
