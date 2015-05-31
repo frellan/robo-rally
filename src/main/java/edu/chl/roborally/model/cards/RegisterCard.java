@@ -10,22 +10,22 @@ import java.util.ArrayList;
  */
 public abstract class RegisterCard {
 
-    private int points;
+    private final int points;
     private boolean isHidden;
     private boolean isLocked;
-    private String name;
-    protected String cardMessage;
-    protected BufferedImage mainImage;
-    protected BufferedImage pickImage;
-    protected BufferedImage pickImageRollover;
-    private ArrayList<GameAction> actions = new ArrayList<>();
+    private final String name;
+    String cardMessage;
+    BufferedImage mainImage;
+    BufferedImage pickImage;
+    BufferedImage pickImageRollover;
+    private final ArrayList<GameAction> actions = new ArrayList<>();
 
     /**
      * Abstract constructor used by sub-classes to create Register Cards.
      * @param points The amount of priority points the card should have.
      * @param name The name of the card.
      */
-    public RegisterCard(int points, String name) {
+    RegisterCard(int points, String name) {
         this.points = points;
         this.isHidden = false;
         this.isLocked = false;
@@ -126,7 +126,7 @@ public abstract class RegisterCard {
      * This can be "move a player", "rotate a player" etc.
      * @param action The action to be added to the list.
      */
-    protected void setAction(GameAction action) {
+    void setAction(GameAction action) {
         this.actions.add(action);
     }
 

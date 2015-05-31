@@ -8,9 +8,9 @@ import javax.imageio.ImageIO;
 /**
  * Created by fredrikkindstrom on 31/03/15.
  */
-public class UTurnCard extends RegisterCard{
+class UTurnCard extends RegisterCard{
 
-    public UTurnCard(int points) {
+    UTurnCard(int points) {
         super(points, "U-Turn");
         super.setAction(new RotatePlayer(Constants.Directions.EAST));
         super.setAction(new RotatePlayer(Constants.Directions.EAST));

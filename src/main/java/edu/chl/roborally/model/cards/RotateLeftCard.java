@@ -8,9 +8,9 @@ import javax.imageio.ImageIO;
 /**
  * Created by fredrikkindstrom on 31/03/15.
  */
-public class RotateLeftCard extends RegisterCard{
+class RotateLeftCard extends RegisterCard{
 
-    public RotateLeftCard(int points) {
+    RotateLeftCard(int points) {
         super(points, "Rotate Left");
         super.setAction(new RotatePlayer(Constants.Directions.WEST));
         try {

@@ -85,16 +85,6 @@ public class CardDeck {
         deck.add(card);
     }
 
-    /**
-     * Adds a set of cards back to the deck.
-     * @param cards A set of cards to be added back to the deck.
-     */
-    public void addCards(ArrayList<RegisterCard> cards) {
-        for (RegisterCard card : cards) {
-            deck.add(card);
-        }
-    }
-
     /*
     Getters
      */

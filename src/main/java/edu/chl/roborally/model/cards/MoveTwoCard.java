@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 /**
  * Created by fredrikkindstrom on 31/03/15.
  */
-public class MoveTwoCard extends RegisterCard{
+class MoveTwoCard extends RegisterCard{
 
-    public MoveTwoCard(int points) {
+    MoveTwoCard(int points) {
         super(points, "Move Two");
         super.setAction(new MovePlayer());
         super.setAction(new MovePlayer());

@@ -1,8 +1,6 @@
 package edu.chl.roborally.model.gameactions;
 
 import edu.chl.roborally.model.Player;
-import edu.chl.roborally.utilities.EventTram;
-import edu.chl.roborally.utilities.Position;
 
 /**
  * Created by henriknilson on 21/04/15.

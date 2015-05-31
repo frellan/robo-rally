@@ -9,15 +9,15 @@ import edu.chl.roborally.utilities.EventTram;
  */
 public class RotatePlayer extends GameAction {
 
-    private Constants.Directions d;
+    private final Constants.Directions direction;
 
-    public RotatePlayer(Constants.Directions d) {
-        this.d = d;
+    public RotatePlayer(Constants.Directions direction) {
+        this.direction = direction;
     }
 
     @Override
     public void doAction(Player player) {
-        switch(d) {
+        switch(direction) {
 
             // Turn Right
             case EAST:
@@ -56,7 +56,7 @@ public class RotatePlayer extends GameAction {
         }
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() , player.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " " + d + "\n", null);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " " + direction + "\n", null);
         EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, player,null);
     }
 }

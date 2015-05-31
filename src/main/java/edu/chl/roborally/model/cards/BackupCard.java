@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 /**
  * Created by fredrikkindstrom on 31/03/15.
  */
-public class BackupCard extends RegisterCard{
+class BackupCard extends RegisterCard{
 
-    public BackupCard(int points) {
+    BackupCard(int points) {
         super(points, "Back Up");
         super.setAction(new BackUpPlayer());
         try {
