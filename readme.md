@@ -6,9 +6,14 @@
 To win the game, players have to make their robot move across a map and reach a number of checkpoints. The player
 who's robot reaches all the checkpoints first wins the game.
 
-####How to play
+####How to run the game
+git clone https://github.com/feggak/robo-rally.git
+mvn install
+java -cp target/robo-rally-0.1-SNAPSHOT.jar edu.chl.roborally.Main
 
-Setup a new game
+####How to play the game
+
+#####Setup a new game
 
 1. Press Start.
 
