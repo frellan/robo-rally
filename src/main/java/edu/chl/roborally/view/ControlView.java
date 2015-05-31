@@ -706,6 +706,9 @@ class ControlView extends JPanel implements ActionListener{
                         Component component = support.getComponent();
                         if (component instanceof RegisterCardIcon) {
                             RegisterCardIcon icon = ((RegisterCardIcon) component);
+                            if (icon.getCard() != null && !icon.isChangeable) {
+                                return false;
+                            }
                             if (icon.getCard() != null) {
                                 setPickedCard(icon.getCard(), false);
                             }
