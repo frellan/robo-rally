@@ -37,6 +37,6 @@ public class RotateLeftCardTest {
             action.doAction(player);
         }
         System.out.println("player has direction " + player.getDirection() + " after card");
-        assertTrue(player.getDirection() == Constants.Directions.WEST);
+        assertTrue(player.getDirection().equals(Constants.Directions.WEST));
     }
 }
