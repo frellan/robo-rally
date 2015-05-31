@@ -9,11 +9,14 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-31.
+ *
+ * Represents a pit attribute.
+ * This is a hole in the board and a player dies instantly if he/she walks over it.
  */
 public class PitAttribute extends Attribute {
     
     public PitAttribute() {
-        super.setAction(new KillPlayer());
+        super.addAction(new KillPlayer());
     }
 
     @Override

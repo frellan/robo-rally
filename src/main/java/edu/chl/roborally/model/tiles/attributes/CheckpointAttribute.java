@@ -9,13 +9,15 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by Pertta on 15-05-13.
+ *
+ * Represents a checkpoint attribute. This is the tiles you need to pass in a certain order to win.
  */
 public class CheckpointAttribute extends Attribute {
 
     private final int id;
 
     public CheckpointAttribute(int id) {
-        super.setAction(new CheckpointPlayer(id));
+        super.addAction(new CheckpointPlayer(id));
         this.id = id;
         tileMessage = "updated its CheckPoint!";
     }
