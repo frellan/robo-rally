@@ -2,6 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 
@@ -18,7 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -44,7 +44,7 @@ class ControlView extends JPanel implements ActionListener{
     private JLabel turnLabel5;
 
     private JButton powerDownButton;
-    private JLabel positionLabel;
+    private JLabel robotStatusLabel;
     private JLabel checkpointLabel;
     private LifeTokensPanel lifeTokensPanel;
     private DamageTokensPanel damageTokensPanel;
@@ -161,24 +161,29 @@ class ControlView extends JPanel implements ActionListener{
         playingAs.setForeground(player.getColor());
         statusView.add(playingAs).setLocation(56, 8);
 
-        powerDownButton = new JButton("!");
-        powerDownButton.setSize(40, 40);
-        statusView.add(powerDownButton).setLocation(274, 8);
+        powerDownButton = new JButton("<html>POWER<br>  DOWN</html>");
+        powerDownButton.setSize(75, 40);
+        powerDownButton.setBackground(Color.RED);
+        powerDownButton.setForeground(Color.WHITE);
+        statusView.add(powerDownButton).setLocation(239, 6);
 
         lifeTokensPanel = new LifeTokensPanel();
         statusView.add(lifeTokensPanel).setLocation(56, 32);
 
-        positionLabel = new JLabel("Position: " + player.getPosition());
-        positionLabel.setSize(200, 20);
-        positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-        positionLabel.setForeground(Color.WHITE);
-        statusView.add(positionLabel).setLocation(9, 53);
+        robotStatusLabel = new JLabel("<html><FONT COLOR=WHITE>Status: </FONT>" + player.getStatus());
+        robotStatusLabel.setSize(200, 20);
+        robotStatusLabel.setFont(new Font("Impact", Font.PLAIN, 14));
+        robotStatusLabel.setForeground(Color.GREEN);
+        statusView.add(robotStatusLabel).setLocation(9, 94);
 
         checkpointLabel = new JLabel("Checkpoints cleared: " + player.getCheckpointID() + "/3");
         checkpointLabel.setSize(200, 20);
         checkpointLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         checkpointLabel.setForeground(Color.WHITE);
-        statusView.add(checkpointLabel).setLocation(9, 73);
+        statusView.add(checkpointLabel).setLocation(9, 114);
+
+        damageTokensPanel = new DamageTokensPanel();
+        statusView.add(damageTokensPanel).setLocation(5, 54);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         buttonPanel.setSize(308, 24);
@@ -190,9 +195,6 @@ class ControlView extends JPanel implements ActionListener{
         nextTurnButton.addActionListener(this);
         buttonPanel.add(nextTurnButton);
         statusView.add(buttonPanel).setLocation(6, 141);
-
-        damageTokensPanel = new DamageTokensPanel();
-        statusView.add(damageTokensPanel).setLocation(5, 98);
 
         add(statusView).setLocation(663, 0);
     }
@@ -344,7 +346,21 @@ class ControlView extends JPanel implements ActionListener{
      */
     public void updateStatusView() {
         lifeTokensPanel.setLifeTokens(player.getLifeTokens());
-        positionLabel.setText("Position: " + player.getPosition());
+        robotStatusLabel.setText("<html><FONT COLOR=WHITE>Status: </FONT>" + player.getStatus());
+        switch (player.getStatus()) {
+            case ALIVE:
+                robotStatusLabel.setForeground(Color.GREEN);
+                break;
+            case DEAD:
+                robotStatusLabel.setForeground(Color.ORANGE);
+                break;
+            case POWERDOWN:
+                robotStatusLabel.setForeground(Color.RED);
+                break;
+            case KAPUT:
+                robotStatusLabel.setForeground(Color.BLACK);
+                break;
+        }
         checkpointLabel.setText("Checkpoints cleared: " + player.getCheckpointID() + "/3");
         damageTokensPanel.setDamageTokens(player.getDamageTokens());
     }
