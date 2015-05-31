@@ -453,14 +453,12 @@ class ControlView extends JPanel implements ActionListener{
             super.paintComponent(g);
             if (card != null && !card.isHidden()) {
                 setIcon(card.getMainIcon());
-                repaint();
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Impact", Font.PLAIN, 20));
                 g.drawString(Integer.toString(card.getPoints()), 34, 27);
             }
             if (card != null && card.isHidden()) {
                 setIcon(hiddenCardIcon);
-                repaint();
             }
         }
     }
