@@ -44,7 +44,6 @@ class ControlView extends JPanel implements ActionListener{
     private JLabel turnLabel5;
 
     private JButton powerDownButton;
-    private JLabel lifeTokensLabel;
     private JLabel positionLabel;
     private LifeTokensPanel lifeTokensPanel;
     private DamageTokensPanel damageTokensPanel;
@@ -167,14 +166,6 @@ class ControlView extends JPanel implements ActionListener{
 
         lifeTokensPanel = new LifeTokensPanel();
         statusView.add(lifeTokensPanel).setLocation(56, 32);
-
-        /*
-        lifeTokensLabel = new JLabel("Life tokens: " + player.getLifeTokens());
-        lifeTokensLabel.setSize(200, 20);
-        lifeTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-        lifeTokensLabel.setForeground(Color.WHITE);
-        statusView.add(lifeTokensLabel).setLocation(57, 26);
-        */
 
         positionLabel = new JLabel("Position: " + player.getPosition());
         positionLabel.setSize(200, 20);
