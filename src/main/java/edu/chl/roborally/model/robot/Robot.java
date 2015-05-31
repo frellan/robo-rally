@@ -28,25 +28,29 @@ public class Robot {
                 try {
                     image = ImageIO.read(this.getClass().getClassLoader().getResource("robots/twitch.png"));
                 } catch (java.io.IOException | NullPointerException e) {
-                    System.out.println("board_tiles.png could not be read");
+                    System.out.println("robots/twitch.png could not be read");
                 }
                 break;
             case "Hank The Tank":
                 try {
                     image = ImageIO.read(this.getClass().getClassLoader().getResource("robots/hank.png"));
                 } catch (java.io.IOException | NullPointerException e) {
-                    System.out.println("board_tiles.png could not be read");
+                    System.out.println("robots/hank.png could not be read");
                 }
                 break;
             case "Frellster":
                 try {
                     image = ImageIO.read(this.getClass().getClassLoader().getResource("robots/frellster.png"));
                 } catch (java.io.IOException | NullPointerException e) {
-                    System.out.println("board_tiles.png could not be read");
+                    System.out.println("robots/frellster.png could not be read");
                 }
                 break;
             default:
-                // No mainImage
+                try {
+                    image = ImageIO.read(this.getClass().getClassLoader().getResource("robots/twitch.png"));
+                } catch (java.io.IOException | NullPointerException e) {
+                    System.out.println("robots/twitch.png could not be read");
+                }
                 break;
         }
     }

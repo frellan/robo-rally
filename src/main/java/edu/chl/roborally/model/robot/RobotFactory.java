@@ -4,6 +4,8 @@ import java.awt.*;
 
 /**
  * Created by henriknilson on 19/05/15.
+ *
+ * Singleton class used to create a robot from integer information.
  */
 public class RobotFactory {
 
