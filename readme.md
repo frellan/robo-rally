@@ -46,3 +46,6 @@ Repeat this procedure until you have a winner!
 
 ####Let the race begin!!
 
+Here you can find the complete 
+[Rulebook](https://www.wizards.com/avalonhill/rules/roborally.pdf)
+for RoboRally
