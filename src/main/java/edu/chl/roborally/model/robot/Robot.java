@@ -11,8 +11,8 @@ import java.awt.image.BufferedImage;
  */
 public class Robot {
 
-    private String name;
-    private Color color;
+    private final String name;
+    private final Color color;
     private BufferedImage image;
 
     /**

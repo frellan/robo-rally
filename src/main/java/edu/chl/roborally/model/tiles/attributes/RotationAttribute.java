@@ -12,23 +12,19 @@ import java.awt.image.BufferedImage;
  */
 public class RotationAttribute extends Attribute {
 
-    private Constants.Directions d;
-    private String name = "R";
+    private final Constants.Directions direction;
 
-    public RotationAttribute(Constants.Directions d){
-        this.d = d;
-        super.setAction(new RotatePlayer(d));
-        tileMessage = "Rotated " + d;
-    }
-    public String toString() {
-        return name;
+    public RotationAttribute(Constants.Directions direction){
+        this.direction = direction;
+        super.setAction(new RotatePlayer(direction));
+        tileMessage = "Rotated " + direction;
     }
 
     @Override
     public void draw(Graphics g, int x, int y) {
         BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
         BufferedImage currentTile;
-        switch (d) {
+        switch (direction) {
             case WEST:
                 currentTile = allTiles.getSubimage(
                         4*Constants.TILE_SIZE, 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);

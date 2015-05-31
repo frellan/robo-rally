@@ -11,16 +11,15 @@ import java.util.List;
  */
 public abstract class GameBoard{
 
-    private GameTile[][] board;
-    protected List<Position> startPositions = new ArrayList<>();
+    private final GameTile[][] board;
+    final List<Position> startPositions = new ArrayList<>();
 
-    public GameBoard() {
-
+    GameBoard() {
         this.board = new GameTile[Constants.NUM_COLS][Constants.NUM_ROWS];
     }
 
     //Used to create a specific gameboard
-    public void generateMap(int[][] map) {
+    void generateMap(int[][] map) {
         //Fills the board with BlankTiles
         for (int col = 0; col < Constants.NUM_COLS; col++) {
             for (int row = 0; row < Constants.NUM_ROWS; row++) {

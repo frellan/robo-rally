@@ -12,8 +12,6 @@ import java.awt.image.BufferedImage;
  */
 public class CheckpointAttribute extends Attribute {
 
-    private String name = "CP";
-
     private final int id;
 
     public CheckpointAttribute(int id) {
@@ -21,12 +19,6 @@ public class CheckpointAttribute extends Attribute {
         this.id = id;
         tileMessage = "updated its CheckPoint!";
     }
-
-    public String toString() {
-        return name;
-    }
-
-
 
     @Override
     public void draw(Graphics g, int x, int y) {

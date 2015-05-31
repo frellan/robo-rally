@@ -10,8 +10,8 @@ import java.util.ArrayList;
  */
 public abstract class Attribute {
 
-    private ArrayList<GameAction> actions = new ArrayList<>();
-    protected String tileMessage;
+    private final ArrayList<GameAction> actions = new ArrayList<>();
+    String tileMessage;
 
     /**
      * Getters
@@ -25,7 +25,7 @@ public abstract class Attribute {
     /**
      * Setters
      */
-    protected void setAction(GameAction action) {
+    void setAction(GameAction action) {
         this.actions.add(action);
     }
 

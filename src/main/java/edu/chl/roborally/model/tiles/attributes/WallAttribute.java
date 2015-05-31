@@ -13,8 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class WallAttribute extends Attribute {
 
-    private Constants.Directions direction;
-    private String name = "W";
+    private final Constants.Directions direction;
 
     public WallAttribute(Constants.Directions direction){
         this.direction = direction;
@@ -26,14 +25,6 @@ public class WallAttribute extends Attribute {
      */
     public Constants.Directions getDirection() {
         return direction;
-    }
-
-    /**
-     * Returns the name of the attribute
-     * @return the name on the attribute
-     */
-    public String toString() {
-        return name;
     }
 
     @Override

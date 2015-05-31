@@ -11,15 +11,9 @@ import java.awt.image.BufferedImage;
  * Created by axel on 2015-03-31.
  */
 public class PitAttribute extends Attribute {
-
-    private String name = "P";
     
     public PitAttribute() {
         super.setAction(new KillPlayer());
-    }
-
-    public String toString() {
-        return name;
     }
 
     @Override

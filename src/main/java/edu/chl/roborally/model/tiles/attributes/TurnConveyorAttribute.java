@@ -12,11 +12,11 @@ import java.awt.image.BufferedImage;
  */
 public class TurnConveyorAttribute extends Attribute {
 
-    private Constants.Directions d;
+    private final Constants.Directions direction;
 
-    public TurnConveyorAttribute(Constants.Directions d) {
-        this.d = d;
-        super.setAction(new MovePlayer(d));
+    public TurnConveyorAttribute(Constants.Directions direction) {
+        this.direction = direction;
+        super.setAction(new MovePlayer(direction));
         tileMessage = "Moving and Rotating";
     }
 
@@ -28,7 +28,7 @@ public class TurnConveyorAttribute extends Attribute {
     public void draw(Graphics g, int x, int y) {
         BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
         BufferedImage currentTile;
-        switch (d) {
+        switch (direction) {
             case NORTH_WEST:
                 currentTile = allTiles.getSubimage(
                         3*Constants.TILE_SIZE, 7*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);

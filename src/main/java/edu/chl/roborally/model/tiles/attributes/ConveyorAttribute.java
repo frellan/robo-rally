@@ -12,18 +12,18 @@ import java.awt.image.BufferedImage;
  */
 public class ConveyorAttribute extends Attribute {
 
-    private Constants.Directions d;
+    private final Constants.Directions direction;
 
-    public ConveyorAttribute(Constants.Directions d, int speed){
-        this.d = d;
+    public ConveyorAttribute(Constants.Directions direction, int speed){
+        this.direction = direction;
 
         if (speed == 2) {
             //TODO If player is outside conveyer don't move two steps!
-            super.setAction(new MovePlayer(d));
-            super.setAction(new MovePlayer(d));
+            super.setAction(new MovePlayer(direction));
+            super.setAction(new MovePlayer(direction));
             tileMessage = "Two Tiles";
         } else {
-            super.setAction(new MovePlayer(d));
+            super.setAction(new MovePlayer(direction));
             tileMessage = "One Tile";
         }
     }
@@ -36,7 +36,7 @@ public class ConveyorAttribute extends Attribute {
     public void draw(Graphics g, int x, int y) {
         BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
         BufferedImage currentTile;
-        switch (d) {
+        switch (direction) {
             case EAST:
                 currentTile = allTiles.getSubimage(
                         3*Constants.TILE_SIZE, 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);

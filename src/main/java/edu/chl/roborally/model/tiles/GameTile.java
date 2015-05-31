@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class GameTile {
 
-    private ArrayList<Attribute> attributes;
-    private ArrayList<Attribute> beforeAttributes;
+    private final ArrayList<Attribute> attributes;
+    private final ArrayList<Attribute> beforeAttributes;
     private int priority;
 
     public GameTile() {
