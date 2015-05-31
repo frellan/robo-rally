@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by frellAn on 2015-05-20.
+ *
+ * Singleton class that holds images frequently used by from different classes in the application.
+ * This way they are only created once and loaded once, all in one place and no duplicates.
  */
 public class GlobalImageHolder {
 

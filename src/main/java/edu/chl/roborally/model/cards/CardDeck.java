@@ -5,6 +5,8 @@ import java.util.Collections;
 
 /**
  * Created by fredrikkindstrom on 26/03/15.
+ *
+ * This class creates and holds an entire deck of cards.
  */
 public class CardDeck {
 

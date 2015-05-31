@@ -20,7 +20,9 @@ public final class Main {
             try {
                 UIManager.setLookAndFeel(
                         UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception f) {}
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
         }
         new AppController();
 		new GUI();
