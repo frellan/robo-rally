@@ -19,8 +19,8 @@ class UTurnCard extends RegisterCard{
      */
     UTurnCard(int points) {
         super(points, "U-Turn");
-        super.setAction(new RotatePlayer(Constants.Directions.EAST));
-        super.setAction(new RotatePlayer(Constants.Directions.EAST));
+        super.setAction(new RotatePlayer(Constants.Directions.LEFT));
+        super.setAction(new RotatePlayer(Constants.Directions.LEFT));
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/u_turn.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/u_turn_pick.png"));
