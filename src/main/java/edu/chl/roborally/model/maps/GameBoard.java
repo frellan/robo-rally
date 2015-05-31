@@ -41,11 +41,6 @@ public abstract class GameBoard{
         return tempList;
     }
 
-    //Returns the board array
-    public GameTile[][] getBoard() {
-        return board;
-    }
-
     // Return tile on given Position
     public GameTile getTile(Position pos) throws ArrayIndexOutOfBoundsException {
         return this.board[pos.getX()][pos.getY()];

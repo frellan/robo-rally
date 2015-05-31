@@ -211,8 +211,8 @@ public class TileFactory {
 
     /**
      * Set priority to tile, priority decides when the action should be executed
-     * @param tile
-     * @param tileNbr
+     * @param tile The tile to set priority to.
+     * @param tileNbr The priority to set.
      */
     private void setPriorityToTile(GameTile tile, int tileNbr) {
         switch(tileNbr) {

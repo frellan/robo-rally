@@ -28,7 +28,7 @@ public class GameTile {
 
     /**
      * Add an attribute to the Tile
-     * @param attribute
+     * @param attribute The attribute to add.
      */
     public void addAttribute(Attribute attribute) {
         attributes.add(attribute);
@@ -36,7 +36,7 @@ public class GameTile {
 
     /**
      * Adds a before-attribute to the Tile
-     * @param attribute
+     * @param attribute The before-attribute to add.
      */
     public void addBeforeAttribute(Attribute attribute) {
         beforeAttributes.add(attribute);

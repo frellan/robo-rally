@@ -12,10 +12,9 @@ import java.util.ArrayList;
  *
  * This class is the game master. The flow of the game is controlled here.
  */
-public class GameController extends Thread implements IEventHandler {
+class GameController extends Thread implements IEventHandler {
 
     private RoboRally model = null;
-
     private Integer tempMapIndex = null;
     private Integer tempNbrOfPlayers = null;
     private int turnIndex = 0;
@@ -25,7 +24,7 @@ public class GameController extends Thread implements IEventHandler {
     /**
      * Creates the class and registers it as a listener for events coming from the model and view packages.
      */
-    public GameController() {
+    GameController() {
         EventTram.getInstance().register(this);
     }
 

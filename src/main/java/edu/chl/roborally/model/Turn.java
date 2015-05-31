@@ -243,7 +243,7 @@ public class Turn {
         }
     }
 
-    public void aimAndFire(Player player, int playerDirectionPos, int iterationStart) {
+    private void aimAndFire(Player player, int playerDirectionPos, int iterationStart) {
         switch (player.getDirection()) {
             case NORTH:
                 outerLoop:
@@ -303,7 +303,7 @@ public class Turn {
     /**
      * Checks if only one player is alive and all others Kaput
      */
-    public void checkIfOnlyOneSurvivor() {
+    private void checkIfOnlyOneSurvivor() {
         int nbrPlayersKaput = 0;
         int totalPlayers = players.size();
         for (Player player : players) {
@@ -321,7 +321,7 @@ public class Turn {
     /**
      * Method only called when one player is alive
      */
-    public void endGameSurvivor() {
+    private void endGameSurvivor() {
         for (Player player : players) {
             if (player.isAlive()) {
                 EventTram.getInstance().publish(EventTram.Event.VICTORY, player, null);
