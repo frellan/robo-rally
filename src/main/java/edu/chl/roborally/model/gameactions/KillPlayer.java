@@ -7,6 +7,8 @@ import java.awt.*;
 
 /**
  * Created by henriknilson on 31/03/15.
+ *
+ * Kills a player in the game.
  */
 public class KillPlayer extends GameAction{
 
