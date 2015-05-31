@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 /**
  * Created by fredrikkindstrom on 21/04/15.
+ *
+ * Contains the board of the game and the players on the board.
  */
 class BoardView extends JPanel {
     
