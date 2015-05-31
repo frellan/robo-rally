@@ -217,7 +217,7 @@ class ControlView extends JPanel implements ActionListener{
         for (int index = 0; index < 9; index++) {
             try {
                 RegisterCard card = newCardsToPick.get(index);
-                PickNewCardButton btn = new PickNewCardButton(card);
+                final PickNewCardButton btn = new PickNewCardButton(card);
                 btn.setTransferHandler(new RegisterCardTransferHandler(newCardsToPick.get(index).toString()));
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override
@@ -706,13 +706,17 @@ class ControlView extends JPanel implements ActionListener{
                         Component component = support.getComponent();
                         if (component instanceof RegisterCardIcon) {
                             RegisterCardIcon icon = ((RegisterCardIcon) component);
-                            if (icon.getCard() != null && !icon.isChangeable) {
+                            if (icon.getCard() != null && !icon.isChangeable && icon.card.isLocked()) {
                                 return false;
                             }
                             if (icon.getCard() != null) {
                                 setPickedCard(icon.getCard(), false);
                             }
-                            icon.setCard(getMatchingCard((String) value));
+                            try {
+                                icon.setCard(getMatchingCard((String) value));
+                            } catch (NullPointerException e) {
+                                return false;
+                            }
                             icon.setTransferHandler
                                     (new RegisterCardTransferHandler(icon.getCard().toString()));
                             accept = true;

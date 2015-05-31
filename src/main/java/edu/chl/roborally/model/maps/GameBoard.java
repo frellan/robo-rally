@@ -11,7 +11,7 @@ import java.util.List;
  *
  * Superclass fot representing a full game board with tiles.
  */
-public abstract class GameBoard{
+public abstract class GameBoard {
 
     private final GameTile[][] board;
     final List<Position> startPositions = new ArrayList<>();

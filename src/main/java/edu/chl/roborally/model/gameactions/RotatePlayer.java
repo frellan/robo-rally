@@ -55,6 +55,5 @@ public class RotatePlayer extends GameAction {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, "Rotating ", null);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, player.getName() , player.getColor());
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, " " + direction + "\n", null);
-        EventTram.getInstance().publish(EventTram.Event.EXECUTE_TILE_ACTION_BEFORE, player,null);
     }
 }
