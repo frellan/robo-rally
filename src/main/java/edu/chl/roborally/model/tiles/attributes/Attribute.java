@@ -33,6 +33,4 @@ public abstract class Attribute {
      * Commands
      */
     public abstract void draw(Graphics g, int x, int y);
-
-
 }

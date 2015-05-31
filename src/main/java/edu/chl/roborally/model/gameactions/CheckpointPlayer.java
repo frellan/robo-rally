@@ -6,7 +6,7 @@ import edu.chl.roborally.utilities.EventTram;
 /**
  * Created by Pertta on 15-05-13.
  */
-public class CheckpointPlayer implements GameAction {
+public class CheckpointPlayer extends GameAction {
 
     private final int id;
 

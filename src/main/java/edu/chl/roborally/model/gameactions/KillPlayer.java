@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class KillPlayer implements GameAction{
+public class KillPlayer extends GameAction{
 
     @Override
     public void doAction(Player player) {

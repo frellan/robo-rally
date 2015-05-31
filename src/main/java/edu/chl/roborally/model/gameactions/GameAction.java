@@ -8,12 +8,16 @@ import edu.chl.roborally.model.Player;
  * This interface is used to describe how a GameAction should work.
  */
 
-public interface GameAction {
+public abstract class GameAction implements Cloneable{
 
     /**
      * This method is called when a action should be executed.
      * @param player is the player who is affected by the gameaction.
      */
-    void doAction(Player player);
+    public abstract void doAction(Player player);
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

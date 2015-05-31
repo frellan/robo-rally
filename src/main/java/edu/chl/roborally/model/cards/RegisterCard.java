@@ -102,8 +102,15 @@ public abstract class RegisterCard {
      * @return A list with all the actions for the card.
      */
     public ArrayList<GameAction> getActions() {
-        // This needs to be cloned to fix the weird thing with players moving in the wrong direction
-        return this.actions;
+        ArrayList<GameAction> temp = new ArrayList<>();
+        for (GameAction action : actions) {
+            try {
+                temp.add((GameAction)action.clone());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+        return temp;
     }
 
     public String toString() {

@@ -10,7 +10,7 @@ import edu.chl.roborally.utilities.Position;
  * This class represents the gameaction to change a players position on the
  * gameboard. The new position is validated by the turn class.
  */
-public class MovePlayer implements GameAction {
+public class MovePlayer extends GameAction {
 
     /**
      * The direction variable indicates in which direction the player should move in.

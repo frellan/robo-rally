@@ -7,7 +7,7 @@ import edu.chl.roborally.utilities.Position;
 /**
  * Created by henriknilson on 21/04/15.
  */
-public class BackUpPlayer implements GameAction {
+public class BackUpPlayer extends GameAction {
 
     public BackUpPlayer() {}
 

@@ -7,7 +7,7 @@ import edu.chl.roborally.utilities.EventTram;
 /**
  * Created by henriknilson on 31/03/15.
  */
-public class RotatePlayer implements GameAction {
+public class RotatePlayer extends GameAction {
 
     private Constants.Directions d;
 
