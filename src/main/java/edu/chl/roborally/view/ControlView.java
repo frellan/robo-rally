@@ -45,6 +45,7 @@ class ControlView extends JPanel implements ActionListener{
 
     private JButton powerDownButton;
     private JLabel positionLabel;
+    private JLabel checkpointLabel;
     private LifeTokensPanel lifeTokensPanel;
     private DamageTokensPanel damageTokensPanel;
     private JButton doneButton;
@@ -172,6 +173,12 @@ class ControlView extends JPanel implements ActionListener{
         positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         positionLabel.setForeground(Color.WHITE);
         statusView.add(positionLabel).setLocation(9, 53);
+
+        checkpointLabel = new JLabel("Checkpoints cleared: " + player.getCheckpointID() + "/3");
+        checkpointLabel.setSize(200, 20);
+        checkpointLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        checkpointLabel.setForeground(Color.WHITE);
+        statusView.add(checkpointLabel).setLocation(9, 73);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         buttonPanel.setSize(308, 24);
@@ -336,8 +343,9 @@ class ControlView extends JPanel implements ActionListener{
      * i.e damage tokens, player positions etc.
      */
     public void updateStatusView() {
-        positionLabel.setText("Position: " + player.getPosition());
         lifeTokensPanel.setLifeTokens(player.getLifeTokens());
+        positionLabel.setText("Position: " + player.getPosition());
+        checkpointLabel.setText("Checkpoints cleared: " + player.getCheckpointID() + "/3");
         damageTokensPanel.setDamageTokens(player.getDamageTokens());
     }
 
