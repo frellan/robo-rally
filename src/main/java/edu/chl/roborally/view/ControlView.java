@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 /**
  * Created by axel on 2015-05-06.
+ *
+ * Holds all of the graphical controls for a single player in the game.
  */
 class ControlView extends JPanel implements ActionListener{
 

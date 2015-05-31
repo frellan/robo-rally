@@ -2,13 +2,15 @@ package edu.chl.roborally.utilities;
 
 /**
  * Created by axel on 2015-03-30.
+ *
+ * Represents an x and y position.
  */
 public class Position {
     private final int x;
     private final int y;
 
     /**
-     * Creates an immutable instance of a 2D integer coordinate.
+     * Creates an instance of a 2D integer coordinate.
      */
     public Position(final int x, final int y) {
         this.x = x;

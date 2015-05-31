@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-30.
+ *
+ * Represents a rotation attribute that rotates a player to the left or to the right.
  */
 public class RotationAttribute extends Attribute {
 
