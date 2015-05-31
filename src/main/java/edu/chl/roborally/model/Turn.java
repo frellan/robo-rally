@@ -10,8 +10,6 @@ import edu.chl.roborally.model.tiles.attributes.WallAttribute;
 import edu.chl.roborally.model.gameactions.MovePlayer;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.Position;
-
-import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -189,7 +187,6 @@ public class Turn {
      * @param position The position to check.
      * @return A player if found, otherwise null.
      */
-    @Nullable
     private Player enemyAtNextPosition(Position position) {
         for (Player enemy : players) {
             if (position.equals(enemy.getPosition())) {

@@ -217,7 +217,7 @@ class ControlView extends JPanel implements ActionListener{
         for (int index = 0; index < 9; index++) {
             try {
                 RegisterCard card = newCardsToPick.get(index);
-                PickNewCardButton btn = new PickNewCardButton(card);
+                final PickNewCardButton btn = new PickNewCardButton(card);
                 btn.setTransferHandler(new RegisterCardTransferHandler(newCardsToPick.get(index).toString()));
                 btn.addMouseMotionListener(new MouseAdapter() {
                     @Override

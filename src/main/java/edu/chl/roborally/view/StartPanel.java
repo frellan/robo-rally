@@ -15,7 +15,6 @@ import java.awt.image.BufferedImage;
 class StartPanel extends JPanel implements ActionListener{
 
     private final JButton newGameButton;
-    private final JButton optionsButton;
     private final JButton exitButton;
     private final BufferedImage imageBG;
 
@@ -26,18 +25,15 @@ class StartPanel extends JPanel implements ActionListener{
         imageBG = GlobalImageHolder.getInstance().getMainBackgroundImage();
         setLayout(null);
         JPanel buttonPanel= new StyledJPanel(new GridLayout(0,1,0,5));
-        buttonPanel.setSize(200,200);
+        buttonPanel.setSize(150,100);
         newGameButton = new Button("start_btn.png", "start_btn_hover.png");
         newGameButton.addActionListener(this);
-        optionsButton = new Button("options_btn.png","options_btn_hover.png");
-        optionsButton.addActionListener(this);
         exitButton = new Button("exit_btn.png", "exit_btn_hover.png");
         exitButton.addActionListener(this);
         buttonPanel.add(newGameButton);
-        buttonPanel.add(optionsButton);
         buttonPanel.add(exitButton);
         add(buttonPanel);
-        buttonPanel.setLocation(400, 250);
+        buttonPanel.setLocation(425, 300);
     }
 
     /*
@@ -56,8 +52,6 @@ class StartPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(newGameButton)) {
             EventTram.getInstance().publish(EventTram.Event.SELECT_PLAYERS, null, null);
-        } else if (e.getSource().equals(optionsButton)) {
-
         } else if (e.getSource().equals(exitButton)) {
             System.exit(1);
         }
