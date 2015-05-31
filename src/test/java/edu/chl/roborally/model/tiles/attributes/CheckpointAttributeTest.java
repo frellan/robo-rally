@@ -27,8 +27,8 @@ public class CheckpointAttributeTest {
 
     @Before
     public void setUp() throws Exception {
-        player = new Player(1,new Robot("Test Robot", Color.ORANGE));
-        player2 = new Player(1,new Robot("Test Another Robot", Color.ORANGE));
+        player = new Player(1,new Robot("TestRobot1", Color.ORANGE));
+        player2 = new Player(1,new Robot("TestRobot2", Color.ORANGE));
         player.setCheckpointID(0);
         map = new IslandKingMap();
         ArrayList<Player> players = new ArrayList<>();
