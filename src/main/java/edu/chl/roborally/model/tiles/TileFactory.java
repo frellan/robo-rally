@@ -25,11 +25,11 @@ public class TileFactory {
      * ConVey N,W,S,E : NW,NE,SW,SE,WS,WN = 11,12,13,14 : 15,16,17,18,19,120 Priority 2
      * ConVey NORTH with wall W,S,E = 112,113,114
      * ConVey WEST with wall N,S,E = 121,123,124
-     * DubbleConvey W,S = 212,213
-     * DubbleConveySOUTH with wall W = 232
+     * DubbelConvey W,S = 212,213
+     * DubbelConveySOUTH with wall W = 232
      * TurnConVey NW = 011
      *
-     * RotTile W,E = 21,22
+     * RotTile L,R = 21,22
      * WallTile N,W,S,E = 31,32,33,34
      * PitTile = 4
      * RepairTile = 6
@@ -149,10 +149,10 @@ public class TileFactory {
 
             //Rotation
             case 21:
-                tile.addAttribute(new RotationAttribute(Constants.Directions.RIGHT));
+                tile.addAttribute(new RotationAttribute(Constants.Directions.LEFT));
                 break;
             case 22:
-                tile.addAttribute((new RotationAttribute(Constants.Directions.LEFT)));
+                tile.addAttribute((new RotationAttribute(Constants.Directions.RIGHT)));
                 break;
 
             //Walls

@@ -6,6 +6,7 @@ import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.maps.IslandKingMap;
 import edu.chl.roborally.model.robot.Robot;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.Position;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Pertta on 15-05-31.
  */
-public class ConveyorAttributeTest {
+public class RotationAttributeTest {
 
     private Player player;
     private RoboRally model;
@@ -30,8 +31,9 @@ public class ConveyorAttributeTest {
         map = new IslandKingMap();
         ArrayList<Player> players = new ArrayList<>();
         players.add(player);
+        player.setDirection(Constants.Directions.NORTH);
         model = new RoboRally(players,map);
-        System.out.println(player.getName() + " starts at position " + player.getPosition());
+        System.out.println(player.getName() + " has direction " + player.getDirection());
     }
 
     public void executeAction(Player player) {
@@ -42,13 +44,12 @@ public class ConveyorAttributeTest {
 
     @Test
     public void testDoAction() throws Exception {
-        //Player standing on ConveyerNorth, should move player in direction north
-        player.setPosition(new Position(6, 5));
-        Position expectedPos = new Position(6,4);
-        System.out.println(player.getName() + "New position " + player.getPosition());
+        //Player standing rotation left tile
+        player.setPosition(new Position(7, 3));
         executeAction(player);
-        player.setPosition(player.getNextPosition().clone());
-        assertTrue(player.getPosition().equals(expectedPos));
+        System.out.println(player.getName() + "New direction " + player.getDirection());
+        assertTrue(player.getDirection().equals(Constants.Directions.WEST));
         System.out.println("  ");
     }
+
 }
