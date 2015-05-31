@@ -8,8 +8,7 @@ who's robot reaches all the checkpoints first wins the game.
 
 ####How to run the game
 `git clone https://github.com/feggak/robo-rally.git`
-
-`mvn install`
+`mvn install`  
 `java -cp target/robo-rally-0.1-SNAPSHOT.jar edu.chl.roborally.Main`
 
 ####How to play the game
