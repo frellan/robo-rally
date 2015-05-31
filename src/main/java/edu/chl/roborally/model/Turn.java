@@ -180,7 +180,7 @@ public class Turn {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            
+            e.printStackTrace();
         }
         return false;
     }
