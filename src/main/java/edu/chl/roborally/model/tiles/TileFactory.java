@@ -152,7 +152,7 @@ public class TileFactory {
                 tile.addAttribute(new RotationAttribute(Constants.Directions.RIGHT));
                 break;
             case 22:
-                tile.addAttribute((new RotationAttribute(Constants.Directions.RIGHT)));
+                tile.addAttribute((new RotationAttribute(Constants.Directions.LEFT)));
                 break;
 
             //Walls
