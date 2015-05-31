@@ -47,6 +47,7 @@ public class Round implements IEventHandler {
     private void startRound() {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, Constants.UNDER_LINE + "\n" + "New Round" + "\n"
                 + Constants.UNDER_LINE + "\n", Color.MAGENTA);
+        EventTram.getInstance().publish(EventTram.Event.UPDATE_STATUS, null, null);
         putBackPlayers();
         deck.shuffle();
         dealCards();
