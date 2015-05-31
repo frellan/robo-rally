@@ -16,7 +16,7 @@ public class TurnConveyorAttribute extends Attribute {
 
     public TurnConveyorAttribute(Constants.Directions direction) {
         this.direction = direction;
-        super.setAction(new MovePlayer(direction));
+        super.addAction(new MovePlayer(direction));
         tileMessage = "Moving and Rotating";
     }
 

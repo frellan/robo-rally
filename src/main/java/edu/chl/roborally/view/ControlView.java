@@ -2,6 +2,7 @@ package edu.chl.roborally.view;
 
 import edu.chl.roborally.model.Player;
 import edu.chl.roborally.model.cards.RegisterCard;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.GlobalImageHolder;
 
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 class ControlView extends JPanel implements ActionListener{
 
     private final Player player;
+    private ImageIcon hiddenCardIcon;
     private ImageIcon emptyNewCardIcon;
 
     private JPanel registerView;
@@ -43,8 +45,9 @@ class ControlView extends JPanel implements ActionListener{
     private JLabel turnLabel5;
 
     private JButton powerDownButton;
-    private JLabel lifeTokensLabel;
-    private JLabel positionLabel;
+    private JLabel robotStatusLabel;
+    private JLabel checkpointLabel;
+    private LifeTokensPanel lifeTokensPanel;
     private DamageTokensPanel damageTokensPanel;
     private JButton doneButton;
     private JButton nextTurnButton;
@@ -58,9 +61,10 @@ class ControlView extends JPanel implements ActionListener{
      */
     ControlView(Player player) {
         try {
+            hiddenCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/hidden.png")));
             emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("cards/empty_pick.png could not be read");
+            System.out.println("cards/empty_pick.png or cards/hidden.png could not be read");
         }
         this.player = player;
         setLayout(null);
@@ -106,28 +110,28 @@ class ControlView extends JPanel implements ActionListener{
     }
     private void createTurnIndicatorView() {
         turnIndicatorView = new JPanel(null);
-        turnIndicatorView.setSize(508, 26);
+        turnIndicatorView.setSize(500, 26);
         turnIndicatorView.setOpaque(false);
         turnLabel1 = new JLabel("Turn 1");
         turnLabel1.setForeground(Color.WHITE);
-        turnLabel1.setSize(100, 22);
+        turnLabel1.setSize(60, 22);
         turnLabel1.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
         turnLabel2 = new JLabel("Turn 2");
         turnLabel2.setForeground(Color.WHITE);
-        turnLabel2.setSize(100, 22);
+        turnLabel2.setSize(60, 22);
         turnLabel2.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
         turnLabel3 = new JLabel("Turn 3");
         turnLabel3.setForeground(Color.WHITE);
         turnLabel3.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
-        turnLabel3.setSize(100, 22);
+        turnLabel3.setSize(60, 22);
         turnLabel4 = new JLabel("Turn 4");
         turnLabel4.setForeground(Color.WHITE);
         turnLabel4.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
-        turnLabel4.setSize(100, 22);
+        turnLabel4.setSize(60, 22);
         turnLabel5 = new JLabel("Turn 5");
         turnLabel5.setForeground(Color.WHITE);
         turnLabel5.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
-        turnLabel5.setSize(100, 22);
+        turnLabel5.setSize(60, 22);
         turnIndicatorView.add(turnLabel1).setLocation(25, 0);
         turnIndicatorView.add(turnLabel2).setLocation(128, 0);
         turnIndicatorView.add(turnLabel3).setLocation(232, 0);
@@ -155,25 +159,37 @@ class ControlView extends JPanel implements ActionListener{
 
         JLabel playingAs = new JLabel("<html><FONT COLOR=WHITE>Playing as: </FONT>" + player.getName());
         playingAs.setSize(200, 20);
-        playingAs.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        playingAs.setFont(new Font("Impact", Font.PLAIN, 16));
         playingAs.setForeground(player.getColor());
-        statusView.add(playingAs).setLocation(57, 4);
+        statusView.add(playingAs).setLocation(56, 8);
 
-        powerDownButton = new JButton("!");
-        powerDownButton.setSize(40, 40);
-        statusView.add(powerDownButton).setLocation(274, 8);
+        powerDownButton = new JButton("<html>POWER<br>DOWN</html>");
+        powerDownButton.setSize(52, 40);
+        powerDownButton.setMargin(new Insets(0, 0, 0, 0));
+        powerDownButton.setFocusPainted(false);
+        powerDownButton.setFont(new Font(this.getFont().getName(), Font.BOLD, 11));
+        powerDownButton.setBackground(Color.RED);
+        powerDownButton.setForeground(Color.WHITE);
+        powerDownButton.addActionListener(this);
+        statusView.add(powerDownButton).setLocation(262, 6);
 
-        lifeTokensLabel = new JLabel("Life tokens: " + player.getLifeTokens());
-        lifeTokensLabel.setSize(200, 20);
-        lifeTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-        lifeTokensLabel.setForeground(Color.WHITE);
-        statusView.add(lifeTokensLabel).setLocation(57, 26);
+        lifeTokensPanel = new LifeTokensPanel();
+        statusView.add(lifeTokensPanel).setLocation(56, 32);
 
-        positionLabel = new JLabel("Position: " + player.getPosition());
-        positionLabel.setSize(200, 20);
-        positionLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
-        positionLabel.setForeground(Color.WHITE);
-        statusView.add(positionLabel).setLocation(9, 53);
+        robotStatusLabel = new JLabel("<html><FONT COLOR=WHITE>Status: </FONT>" + player.getStatus());
+        robotStatusLabel.setSize(200, 20);
+        robotStatusLabel.setFont(new Font("Impact", Font.PLAIN, 14));
+        robotStatusLabel.setForeground(Color.GREEN);
+        statusView.add(robotStatusLabel).setLocation(9, 94);
+
+        checkpointLabel = new JLabel("Checkpoints cleared: " + player.getCheckpointID() + "/3");
+        checkpointLabel.setSize(200, 20);
+        checkpointLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        checkpointLabel.setForeground(Color.WHITE);
+        statusView.add(checkpointLabel).setLocation(9, 114);
+
+        damageTokensPanel = new DamageTokensPanel();
+        statusView.add(damageTokensPanel).setLocation(5, 54);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         buttonPanel.setSize(308, 24);
@@ -185,9 +201,6 @@ class ControlView extends JPanel implements ActionListener{
         nextTurnButton.addActionListener(this);
         buttonPanel.add(nextTurnButton);
         statusView.add(buttonPanel).setLocation(6, 141);
-
-        damageTokensPanel = new DamageTokensPanel();
-        statusView.add(damageTokensPanel).setLocation(5, 98);
 
         add(statusView).setLocation(663, 0);
     }
@@ -334,13 +347,36 @@ class ControlView extends JPanel implements ActionListener{
     }
 
     /**
+     * Sets if the power down button should be enabled.
+     * @param b True to enable, false to disable.
+     */
+    public void setPowerDownButtonEnabled(boolean b) {
+        powerDownButton.setEnabled(b);
+    }
+
+    /**
      * Updates the data inside the status view
      * i.e damage tokens, player positions etc.
      */
     public void updateStatusView() {
-        positionLabel.setText("Position: " + player.getPosition());
-        lifeTokensLabel.setText("Life tokens: " + player.getLifeTokens());
-        damageTokensPanel.setAmountOfTokens(player.getDamageTokens());
+        lifeTokensPanel.setLifeTokens(player.getLifeTokens());
+        robotStatusLabel.setText("<html><FONT COLOR=WHITE>Status: </FONT>" + player.getStatus());
+        switch (player.getStatus()) {
+            case ALIVE:
+                robotStatusLabel.setForeground(Color.GREEN);
+                break;
+            case DEAD:
+                robotStatusLabel.setForeground(Color.RED);
+                break;
+            case POWERDOWN:
+                robotStatusLabel.setForeground(Color.ORANGE);
+                break;
+            case KAPUT:
+                robotStatusLabel.setForeground(Color.BLACK);
+                break;
+        }
+        checkpointLabel.setText("Checkpoints cleared: " + player.getCheckpointID() + "/3");
+        damageTokensPanel.setDamageTokens(player.getDamageTokens());
     }
 
     /*
@@ -479,7 +515,7 @@ class ControlView extends JPanel implements ActionListener{
     }
 
     /**
-     * JPanel containing the damage token icons and the logic for showing the correct amoount.
+     * JPanel containing the damage token icons and the logic for showing the correct amount.
      */
     private class DamageTokensPanel extends JPanel {
 
@@ -501,7 +537,7 @@ class ControlView extends JPanel implements ActionListener{
         private final JLabel dmgToken9;
         private final JLabel dmgToken10;
 
-        public DamageTokensPanel() {
+        private DamageTokensPanel() {
             setSize(340, 40);
             setLayout(null);
             setOpaque(false);
@@ -537,7 +573,7 @@ class ControlView extends JPanel implements ActionListener{
             add(dmgToken10).setLocation(276, 0);
         }
 
-        private void setAmountOfTokens(int amount) {
+        private void setDamageTokens(int amount) {
             dmgToken1.setIcon(set1DisabledIcon);
             dmgToken2.setIcon(set1DisabledIcon);
             dmgToken3.setIcon(set1DisabledIcon);
@@ -559,6 +595,47 @@ class ControlView extends JPanel implements ActionListener{
                 case 3: dmgToken3.setIcon(set1EnabledIcon);
                 case 2: dmgToken2.setIcon(set1EnabledIcon);
                 case 1: dmgToken1.setIcon(set1EnabledIcon);
+            }
+        }
+    }
+
+    /**
+     * JPanel containing the life token icons and the logic for showing the correct amount.
+     */
+    private class LifeTokensPanel extends JPanel {
+
+        private final Image emptyHeart = GlobalImageHolder.getInstance().getHeartTokens().getSubimage(0, 0, 7, 7).getScaledInstance(14, 14, Image.SCALE_FAST);
+        private final Image fullHeart = GlobalImageHolder.getInstance().getHeartTokens().getSubimage(7, 0, 7, 7).getScaledInstance(14, 14, Image.SCALE_FAST);
+        private final ImageIcon emptyHeartIcon = new ImageIcon(emptyHeart);
+        private final ImageIcon fullHeartIcon = new ImageIcon(fullHeart);
+
+        private final JLabel lifeToken1;
+        private final JLabel lifeToken2;
+        private final JLabel lifeToken3;
+
+        private LifeTokensPanel() {
+            setSize(50, 14);
+            setLayout(null);
+            setOpaque(false);
+            lifeToken1 = new JLabel(fullHeartIcon);
+            lifeToken1.setSize(14, 14);
+            add(lifeToken1).setLocation(0, 0);
+            lifeToken2 = new JLabel(fullHeartIcon);
+            lifeToken2.setSize(14, 14);
+            add(lifeToken2).setLocation(17, 0);
+            lifeToken3 = new JLabel(fullHeartIcon);
+            lifeToken3.setSize(14, 14);
+            add(lifeToken3).setLocation(34, 0);
+        }
+
+        private void setLifeTokens(int amount) {
+            lifeToken1.setIcon(emptyHeartIcon);
+            lifeToken2.setIcon(emptyHeartIcon);
+            lifeToken3.setIcon(emptyHeartIcon);
+            switch (amount) {
+                case 3: lifeToken3.setIcon(fullHeartIcon);
+                case 2: lifeToken2.setIcon(fullHeartIcon);
+                case 1: lifeToken1.setIcon(fullHeartIcon);
             }
         }
     }
@@ -676,7 +753,8 @@ class ControlView extends JPanel implements ActionListener{
         }
         if (e.getSource() == nextTurnButton){
             EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
-        } if (e.getSource() == powerDownButton) {
+        }
+        if (e.getSource() == powerDownButton) {
             EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, player, null);
         }
     }

@@ -6,6 +6,8 @@ import edu.chl.roborally.utilities.EventTram;
 
 /**
  * Created by henriknilson on 31/03/15.
+ *
+ * This action rotates a player to the left or to the right.
  */
 public class RotatePlayer extends GameAction {
 
@@ -18,9 +20,7 @@ public class RotatePlayer extends GameAction {
     @Override
     public void doAction(Player player) {
         switch(direction) {
-
-            // Turn Right
-            case EAST:
+            case RIGHT:
                 switch (player.getDirection()) {
                     case NORTH:
                         player.setDirection(Constants.Directions.EAST);
@@ -35,9 +35,7 @@ public class RotatePlayer extends GameAction {
                         player.setDirection(Constants.Directions.NORTH);
                 }
                 break;
-
-            // Turn Left
-            case WEST:
+            case LEFT:
                 switch (player.getDirection()) {
                     case NORTH:
                         player.setDirection(Constants.Directions.WEST);

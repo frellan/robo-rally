@@ -6,9 +6,16 @@ import javax.imageio.ImageIO;
 
 /**
  * Created by fredrikkindstrom on 31/03/15.
+ *
+ * Represents a backup card that makes a player move back one step in the game.
  */
 class BackupCard extends RegisterCard{
 
+    /**
+     * Takes a parameter for how many priority points the card should have and sets
+     * the appropriate action to the superclass, also sets the images for the card.
+     * @param points The priority points for the card.
+     */
     BackupCard(int points) {
         super(points, "Back Up");
         super.setAction(new BackUpPlayer());

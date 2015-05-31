@@ -1,6 +1,7 @@
 package edu.chl.roborally.controller;
 
 import edu.chl.roborally.model.robot.RobotFactory;
+import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.utilities.EventTram;
 import edu.chl.roborally.utilities.IEventHandler;
 import edu.chl.roborally.model.*;
@@ -100,6 +101,8 @@ class GameController extends Thread implements IEventHandler {
                 readyForNewTurn = true;
                 runGame();
                 break;
+            case POWER_DOWN:
+                ((Player) o).setStatus(Constants.Status.POWERDOWN);
         }
     }
 }

@@ -13,6 +13,7 @@ public class GlobalImageHolder {
     private BufferedImage boardTileImage;
     private BufferedImage robotDirections;
     private BufferedImage damageTokens;
+    private BufferedImage heartTokens;
 
     private GlobalImageHolder() {
         // Global background image
@@ -39,6 +40,11 @@ public class GlobalImageHolder {
         } catch (java.io.IOException | NullPointerException e){
             System.out.println("dmgtokens.png could not be read");
         }
+        try {
+            heartTokens = ImageIO.read(this.getClass().getClassLoader().getResource("hearts.png"));
+        } catch (java.io.IOException | NullPointerException e){
+            System.out.println("hearts.png could not be read");
+        }
     }
 
     public static GlobalImageHolder getInstance(){
@@ -62,5 +68,8 @@ public class GlobalImageHolder {
     }
     public BufferedImage getDamageTokens() {
         return damageTokens;
+    }
+    public BufferedImage getHeartTokens() {
+        return heartTokens;
     }
 }

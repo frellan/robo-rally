@@ -180,7 +180,7 @@ public class Turn {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            
+            e.printStackTrace();
         }
         return false;
     }
@@ -337,9 +337,10 @@ public class Turn {
      */
     private void printFireMsg(Player p, Player enemy) {
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, p.getName(), p.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() + " direction and hit ", Color.RED);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," shoot in " + p.getDirection() +
+                " direction and hit ", Color.RED);
         EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE, enemy.getName(), enemy.getColor());
-        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," whom now has " + enemy.getDamageTokens() + " damage token(s)" + "\n"
-                                                                      + Constants.UNDER_LINE + "\n", Color.RED);
+        EventTram.getInstance().publish(EventTram.Event.PRINT_MESSAGE," whom now has " + enemy.getDamageTokens() +
+                " damage token(s)" + "\n", Color.RED);
     }
 }

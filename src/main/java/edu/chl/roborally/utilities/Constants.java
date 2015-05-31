@@ -28,7 +28,9 @@ public class Constants {
         WEST_NORTH,
         WEST_SOUTH,
         EAST_NORTH,
-        EAST_SOUTH;
+        EAST_SOUTH,
+        LEFT,
+        RIGHT;
 
         private Directions oppositeDirection;
 
