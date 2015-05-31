@@ -60,15 +60,15 @@ public class Player {
         programmedCards[0].setLocked(false);
         switch (damageTokens) {
             case 9:
-                programmedCards[4].setLocked(true);
+                programmedCards[0].setLocked(true);
             case 8:
-                programmedCards[3].setLocked(true);
+                programmedCards[1].setLocked(true);
             case 7:
                 programmedCards[2].setLocked(true);
             case 6:
-                programmedCards[1].setLocked(true);
+                programmedCards[3].setLocked(true);
             case 5:
-                programmedCards[0].setLocked(true);
+                programmedCards[4].setLocked(true);
         }
     }
 
