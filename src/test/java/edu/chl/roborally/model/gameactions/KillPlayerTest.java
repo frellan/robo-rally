@@ -1,5 +1,6 @@
 package edu.chl.roborally.model.gameactions;
 
+import edu.chl.roborally.model.cards.CardDeck;
 import edu.chl.roborally.model.robot.Robot;
 import edu.chl.roborally.utilities.Constants;
 import edu.chl.roborally.model.Player;
@@ -15,11 +16,18 @@ public class KillPlayerTest {
 
     private Player player;
     private GameAction action;
+    private CardDeck deck;
 
     @Before
     public void setUp() throws Exception {
         player = new Player(0, new Robot("Test Robot", Color.ORANGE));
         player.setPosition(new Position(3,5));
+        deck = new CardDeck();
+        player.setProgrammedCard(0, deck.getCards(1).get(0));
+        player.setProgrammedCard(1, deck.getCards(1).get(0));
+        player.setProgrammedCard(2, deck.getCards(1).get(0));
+        player.setProgrammedCard(3, deck.getCards(1).get(0));
+        player.setProgrammedCard(4, deck.getCards(1).get(0));
     }
     @Test
     public void testKillPlayer() throws Exception {

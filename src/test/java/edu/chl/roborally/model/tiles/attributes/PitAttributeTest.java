@@ -1,6 +1,7 @@
 package edu.chl.roborally.model.tiles.attributes;
 
 import edu.chl.roborally.model.Player;
+import edu.chl.roborally.model.cards.CardDeck;
 import edu.chl.roborally.model.gameactions.GameAction;
 import edu.chl.roborally.model.maps.GameBoard;
 import edu.chl.roborally.model.maps.IslandKingMap;
@@ -19,12 +20,19 @@ public class PitAttributeTest {
 
     private Player player;
     private GameBoard map;
+    private CardDeck deck;
 
     @Before
     public void setUp() throws Exception {
         player = new Player(1,new Robot("Test Robot", Color.ORANGE));
         map = new IslandKingMap();
-        player.setPosition(new Position(5,1));
+        player.setPosition(new Position(5, 1));
+        deck = new CardDeck();
+        player.setProgrammedCard(0, deck.getCards(1).get(0));
+        player.setProgrammedCard(1, deck.getCards(1).get(0));
+        player.setProgrammedCard(2, deck.getCards(1).get(0));
+        player.setProgrammedCard(3, deck.getCards(1).get(0));
+        player.setProgrammedCard(4, deck.getCards(1).get(0));
         System.out.println(player.getName() + " starts at position " + player.getPosition() + " and is " + player.getStatus());
     }
 
