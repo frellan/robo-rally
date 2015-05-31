@@ -16,7 +16,7 @@ public class RotationAttribute extends Attribute {
 
     public RotationAttribute(Constants.Directions direction){
         this.direction = direction;
-        super.setAction(new RotatePlayer(direction));
+        super.addAction(new RotatePlayer(direction));
         tileMessage = "Rotated " + direction;
     }
 
@@ -25,12 +25,12 @@ public class RotationAttribute extends Attribute {
         BufferedImage allTiles = GlobalImageHolder.getInstance().getBoardTileImage();
         BufferedImage currentTile;
         switch (direction) {
-            case WEST:
+            case LEFT:
                 currentTile = allTiles.getSubimage(
                         4*Constants.TILE_SIZE, 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.drawImage(currentTile, x, y, null);
                 break;
-            case EAST:
+            case RIGHT:
                 currentTile = allTiles.getSubimage(
                         5*Constants.TILE_SIZE, 6*Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
                 g.drawImage(currentTile, x, y, null);

@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by axel on 2015-03-30.
+ *
+ * Represents a conveyor attribute. These move the player in a direction at a certain point in the game loop.
  */
 public class ConveyorAttribute extends Attribute {
 
@@ -19,11 +21,11 @@ public class ConveyorAttribute extends Attribute {
 
         if (speed == 2) {
             //TODO If player is outside conveyer don't move two steps!
-            super.setAction(new MovePlayer(direction));
-            super.setAction(new MovePlayer(direction));
+            super.addAction(new MovePlayer(direction));
+            super.addAction(new MovePlayer(direction));
             tileMessage = "Two Tiles";
         } else {
-            super.setAction(new MovePlayer(direction));
+            super.addAction(new MovePlayer(direction));
             tileMessage = "One Tile";
         }
     }

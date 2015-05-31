@@ -7,9 +7,16 @@ import javax.imageio.ImageIO;
 
 /**
  * Created by fredrikkindstrom on 31/03/15.
+ *
+ * Represents a U-Turn card in the game that makes a player do a u turn and face the opposite direction.
  */
 class UTurnCard extends RegisterCard{
 
+    /**
+     * Takes a parameter for how many priority points the card should have and sets
+     * the appropriate action to the superclass, also sets the images for the card.
+     * @param points The priority points for the card.
+     */
     UTurnCard(int points) {
         super(points, "U-Turn");
         super.setAction(new RotatePlayer(Constants.Directions.EAST));

@@ -5,6 +5,8 @@ import edu.chl.roborally.utilities.Constants;
 
 /**
  * Created by Pertta on 15-05-11.
+ *
+ * Singleton class that creates a complete tile from integer information stored in the map classes.
  */
 public class TileFactory {
 
@@ -38,6 +40,11 @@ public class TileFactory {
      * StartCheckpoint with WALL CP1_SOUTH = 703
      */
 
+    /**
+     * Used to create the complete final tile from the numbers provided by the maps.
+     * @param tileNbr The number from the maps.
+     * @return The finished tile.
+     */
     public GameTile createTile(int tileNbr) {
         GameTile tile = new GameTile();
 
@@ -142,10 +149,10 @@ public class TileFactory {
 
             //Rotation
             case 21:
-                tile.addAttribute(new RotationAttribute(Constants.Directions.EAST));
+                tile.addAttribute(new RotationAttribute(Constants.Directions.RIGHT));
                 break;
             case 22:
-                tile.addAttribute((new RotationAttribute(Constants.Directions.WEST)));
+                tile.addAttribute((new RotationAttribute(Constants.Directions.LEFT)));
                 break;
 
             //Walls

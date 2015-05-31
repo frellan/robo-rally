@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Created by fredrikkindstrom on 26/03/15.
+ *
+ * Superclass for all the cards in the game.
  */
 public abstract class RegisterCard {
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by axel on 2015-03-26.
  *
- * Creates a Tile with attributes.
+ * This class represents a full complete tile that consists of attributes.
  */
 
 public class GameTile {
@@ -53,7 +53,7 @@ public class GameTile {
     public ArrayList<Attribute> getBeforeAttributes(){return this.beforeAttributes;}
 
     /**
-     * Returns the actions associated with the tile
+     * Returns the actions associated with the tile.
      * @return Actions
      */
     public ArrayList<GameAction> getActions() {
@@ -66,12 +66,16 @@ public class GameTile {
         return actions;
     }
 
+    /**
+     * Returns a priority number for the tile. To execute tiles in a certain order.
+     * @return The priority number fot the tile.
+     */
     public int getPriority() {
         return priority;
     }
 
     /**
-     * Returns the actions if there is a need for a before-action
+     * Returns the actions if there is a need for a before-action.
      * @return Before-actions
      */
     public ArrayList<GameAction> getBeforeAction() {
@@ -83,9 +87,15 @@ public class GameTile {
         }
         return actions;
     }
+
     /*
     Setters
     */
+
+    /**
+     * Seta the priority number for the tile. To execute tiles in a certain order.
+     * @param priority The priority number to set.
+     */
     public void setPriority(int priority) {
         this.priority = priority;
     }

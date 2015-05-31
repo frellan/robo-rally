@@ -9,7 +9,8 @@ import java.awt.image.BufferedImage;
 /**
  * Created by axel on 2015-03-31.
  *
- * This class represents the wallattribute that can be assigned to a tile
+ * This class represents the wall attribute that can be assigned to a tile.
+ * A player can not walk over a wall from either side.
  */
 public class WallAttribute extends Attribute {
 

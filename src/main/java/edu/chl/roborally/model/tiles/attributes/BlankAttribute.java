@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by Pertta on 15-05-11.
+ *
+ * Represents a blank tile, just a place to go, nothing happens.
  */
 public class BlankAttribute extends Attribute {
 

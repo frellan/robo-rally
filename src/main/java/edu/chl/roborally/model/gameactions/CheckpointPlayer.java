@@ -5,6 +5,8 @@ import edu.chl.roborally.utilities.EventTram;
 
 /**
  * Created by Pertta on 15-05-13.
+ *
+ * Checks the player if they have hit the correct checkpoint and sets it to the player if they have.
  */
 public class CheckpointPlayer extends GameAction {
 
