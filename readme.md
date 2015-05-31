@@ -18,9 +18,9 @@ Setup
 4. After a map has been selected a summary will be shown where the players gets to decide which robot they will play.
 
 GamePlay
-After setup the GamePanel, including the board, a console and some controls, will be shown. Every robot has their own
-GamePanel which is hold inside a tabPane.
-The tab in the upper left corner indicates which robots GamePanel that is shown.
+After setup the GamePanel, which includes the board and a console and some controls, will be shown. Every robot has their own
+GamePanel which is held inside a tabPane.
+The tab in the upper left corner indicates which robot's GamePanel that is shown.
 
 Its now time to initiate a round.
 Each player will be given 9 cards from which they will pick 5 to program their robot. To pick a card, simply drag it
