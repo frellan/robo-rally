@@ -161,11 +161,15 @@ class ControlView extends JPanel implements ActionListener{
         playingAs.setForeground(player.getColor());
         statusView.add(playingAs).setLocation(56, 8);
 
-        powerDownButton = new JButton("<html>POWER<br>  DOWN</html>");
-        powerDownButton.setSize(75, 40);
+        powerDownButton = new JButton("<html>POWER<br>DOWN</html>");
+        powerDownButton.setSize(52, 40);
+        powerDownButton.setMargin(new Insets(0, 0, 0, 0));
+        powerDownButton.setFocusPainted(false);
+        powerDownButton.setFont(new Font(this.getFont().getName(), Font.BOLD, 11));
         powerDownButton.setBackground(Color.RED);
         powerDownButton.setForeground(Color.WHITE);
-        statusView.add(powerDownButton).setLocation(239, 6);
+        powerDownButton.addActionListener(this);
+        statusView.add(powerDownButton).setLocation(262, 6);
 
         lifeTokensPanel = new LifeTokensPanel();
         statusView.add(lifeTokensPanel).setLocation(56, 32);
@@ -739,7 +743,8 @@ class ControlView extends JPanel implements ActionListener{
         }
         if (e.getSource() == nextTurnButton){
             EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
-        } if (e.getSource() == powerDownButton) {
+        }
+        if (e.getSource() == powerDownButton) {
             EventTram.getInstance().publish(EventTram.Event.POWER_DOWN, player, null);
         }
     }
