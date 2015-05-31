@@ -52,23 +52,23 @@ public class Player {
     /**
      * Locks cards depending on the amount of damage tokens.
      */
-    private void lockCards() {
+    private void lockOrUnlockCards() {
+        programmedCards[4].setLocked(false);
+        programmedCards[3].setLocked(false);
+        programmedCards[2].setLocked(false);
+        programmedCards[1].setLocked(false);
+        programmedCards[0].setLocked(false);
         switch (damageTokens) {
-            case 5:
+            case 9:
                 programmedCards[4].setLocked(true);
-                break;
-            case 6:
+            case 8:
                 programmedCards[3].setLocked(true);
-                break;
             case 7:
                 programmedCards[2].setLocked(true);
-                break;
-            case 8:
+            case 6:
                 programmedCards[1].setLocked(true);
-                break;
-            case 9:
+            case 5:
                 programmedCards[0].setLocked(true);
-                break;
         }
     }
 
@@ -77,7 +77,7 @@ public class Player {
      */
     private void loseLifeToken() {
         this.lifeTokens = lifeTokens - 1;
-        if (this.lifeTokens < 0) {
+        if (this.lifeTokens <= 0) {
             setStatus(Constants.Status.KAPUT);
             System.out.println(this.robot.getName() + " is now Kaput and lost");
         }
@@ -88,6 +88,7 @@ public class Player {
      */
     private void resetDamageTokens() {
         this.damageTokens = 0;
+        lockOrUnlockCards();
     }
 
     /*
@@ -102,7 +103,7 @@ public class Player {
         ArrayList<RegisterCard> tempLockedCards = new ArrayList<>();
         for (RegisterCard programmedCard : programmedCards) {
             if (programmedCard.isLocked()) {
-                tempLockedCards.add(0, programmedCard);
+                tempLockedCards.add(programmedCard);
             }
         }
         programmedCards = new RegisterCard[5];
@@ -117,10 +118,10 @@ public class Player {
      */
     public void takeDamage(int amount) {
         this.damageTokens = damageTokens + amount;
-        if (this.damageTokens > 3) {
-            lockCards();
+        if (this.damageTokens > 4) {
+            lockOrUnlockCards();
         }
-        else if (this.damageTokens == 9) {
+        else if (this.damageTokens == 10) {
             this.kill();
         }
     }
@@ -134,6 +135,7 @@ public class Player {
         } else {
             this.damageTokens = 0;
         }
+        lockOrUnlockCards();
     }
 
     /**
