@@ -132,6 +132,7 @@ public class GUI implements IEventHandler {
             panel.getControlView().resetRegisterCards();
             panel.getControlView().resetNewCardButtons();
             panel.getControlView().setNextTurnButtonEnabled(false);
+            panel.getControlView().setPowerDownButtonEnabled(false);
         }
     }
 
@@ -160,6 +161,7 @@ public class GUI implements IEventHandler {
             panel.getControlView().resetNewCardButtons();
             panel.getControlView().setDoneButtonEnabled(false);
             panel.getControlView().setNextTurnButtonEnabled(true);
+            panel.getControlView().setPowerDownButtonEnabled(true);
         }
     }
 

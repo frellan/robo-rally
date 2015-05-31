@@ -345,6 +345,14 @@ class ControlView extends JPanel implements ActionListener{
     }
 
     /**
+     * Sets if the power down button should be enabled.
+     * @param b True to enable, false to disable.
+     */
+    public void setPowerDownButtonEnabled(boolean b) {
+        powerDownButton.setEnabled(b);
+    }
+
+    /**
      * Updates the data inside the status view
      * i.e damage tokens, player positions etc.
      */
