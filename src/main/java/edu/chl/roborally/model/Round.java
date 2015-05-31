@@ -106,6 +106,11 @@ public class Round implements IEventHandler {
      * It tells the game controller that the model is finished with this round.
      */
     private void prepareForFirstTurn() {
+        for (Player player : players) {
+            for (int i = 0; i < player.getProgrammedCards().length; i++) {
+                 player.getProgrammedCards()[i].setHidden(true);
+            }
+        }
         EventTram.getInstance().publish(EventTram.Event.READY_FOR_NEW_TURN, null, null);
         EventTram.getInstance().unRegister(this);
     }

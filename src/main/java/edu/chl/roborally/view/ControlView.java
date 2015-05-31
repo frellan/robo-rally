@@ -27,6 +27,7 @@ import java.util.ArrayList;
 class ControlView extends JPanel implements ActionListener{
 
     private final Player player;
+    private ImageIcon hiddenCardIcon;
     private ImageIcon emptyNewCardIcon;
 
     private JPanel registerView;
@@ -60,9 +61,10 @@ class ControlView extends JPanel implements ActionListener{
      */
     ControlView(Player player) {
         try {
+            hiddenCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/hidden.png")));
             emptyNewCardIcon = new ImageIcon(ImageIO.read(this.getClass().getClassLoader().getResource("cards/empty_pick.png")));
         } catch (java.io.IOException | NullPointerException e){
-            System.out.println("cards/empty_pick.png could not be read");
+            System.out.println("cards/empty_pick.png or cards/hidden.png could not be read");
         }
         this.player = player;
         setLayout(null);
@@ -108,28 +110,28 @@ class ControlView extends JPanel implements ActionListener{
     }
     private void createTurnIndicatorView() {
         turnIndicatorView = new JPanel(null);
-        turnIndicatorView.setSize(508, 26);
+        turnIndicatorView.setSize(500, 26);
         turnIndicatorView.setOpaque(false);
         turnLabel1 = new JLabel("Turn 1");
         turnLabel1.setForeground(Color.WHITE);
-        turnLabel1.setSize(100, 22);
+        turnLabel1.setSize(60, 22);
         turnLabel1.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
         turnLabel2 = new JLabel("Turn 2");
         turnLabel2.setForeground(Color.WHITE);
-        turnLabel2.setSize(100, 22);
+        turnLabel2.setSize(60, 22);
         turnLabel2.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
         turnLabel3 = new JLabel("Turn 3");
         turnLabel3.setForeground(Color.WHITE);
         turnLabel3.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
-        turnLabel3.setSize(100, 22);
+        turnLabel3.setSize(60, 22);
         turnLabel4 = new JLabel("Turn 4");
         turnLabel4.setForeground(Color.WHITE);
         turnLabel4.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
-        turnLabel4.setSize(100, 22);
+        turnLabel4.setSize(60, 22);
         turnLabel5 = new JLabel("Turn 5");
         turnLabel5.setForeground(Color.WHITE);
         turnLabel5.setFont(new Font(turnLabel1.getFont().getName(), Font.BOLD, 14));
-        turnLabel5.setSize(100, 22);
+        turnLabel5.setSize(60, 22);
         turnIndicatorView.add(turnLabel1).setLocation(25, 0);
         turnIndicatorView.add(turnLabel2).setLocation(128, 0);
         turnIndicatorView.add(turnLabel3).setLocation(232, 0);
@@ -364,10 +366,10 @@ class ControlView extends JPanel implements ActionListener{
                 robotStatusLabel.setForeground(Color.GREEN);
                 break;
             case DEAD:
-                robotStatusLabel.setForeground(Color.ORANGE);
+                robotStatusLabel.setForeground(Color.RED);
                 break;
             case POWERDOWN:
-                robotStatusLabel.setForeground(Color.RED);
+                robotStatusLabel.setForeground(Color.ORANGE);
                 break;
             case KAPUT:
                 robotStatusLabel.setForeground(Color.BLACK);
@@ -449,10 +451,16 @@ class ControlView extends JPanel implements ActionListener{
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (card != null) {
+            if (card != null && !card.isHidden()) {
+                setIcon(card.getMainIcon());
+                repaint();
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Impact", Font.PLAIN, 20));
                 g.drawString(Integer.toString(card.getPoints()), 34, 27);
+            }
+            if (card != null && card.isHidden()) {
+                setIcon(hiddenCardIcon);
+                repaint();
             }
         }
     }
