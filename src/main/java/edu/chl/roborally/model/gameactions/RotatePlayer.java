@@ -20,7 +20,7 @@ public class RotatePlayer extends GameAction {
         switch(direction) {
 
             // Turn Right
-            case EAST:
+            case RIGHT:
                 switch (player.getDirection()) {
                     case NORTH:
                         player.setDirection(Constants.Directions.EAST);
@@ -37,7 +37,7 @@ public class RotatePlayer extends GameAction {
                 break;
 
             // Turn Left
-            case WEST:
+            case LEFT:
                 switch (player.getDirection()) {
                     case NORTH:
                         player.setDirection(Constants.Directions.WEST);

@@ -19,7 +19,7 @@ class RotateLeftCard extends RegisterCard{
      */
     RotateLeftCard(int points) {
         super(points, "Rotate Left");
-        super.setAction(new RotatePlayer(Constants.Directions.WEST));
+        super.setAction(new RotatePlayer(Constants.Directions.LEFT));
         try {
             super.mainImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left.png"));
             super.pickImage = ImageIO.read(this.getClass().getClassLoader().getResource("cards/rotate_left_pick.png"));
