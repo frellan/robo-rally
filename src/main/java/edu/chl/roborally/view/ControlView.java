@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -45,6 +46,7 @@ class ControlView extends JPanel implements ActionListener{
     private JButton powerDownButton;
     private JLabel lifeTokensLabel;
     private JLabel positionLabel;
+    private LifeTokensPanel lifeTokensPanel;
     private DamageTokensPanel damageTokensPanel;
     private JButton doneButton;
     private JButton nextTurnButton;
@@ -155,19 +157,24 @@ class ControlView extends JPanel implements ActionListener{
 
         JLabel playingAs = new JLabel("<html><FONT COLOR=WHITE>Playing as: </FONT>" + player.getName());
         playingAs.setSize(200, 20);
-        playingAs.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
+        playingAs.setFont(new Font("Impact", Font.PLAIN, 16));
         playingAs.setForeground(player.getColor());
-        statusView.add(playingAs).setLocation(57, 4);
+        statusView.add(playingAs).setLocation(56, 8);
 
         powerDownButton = new JButton("!");
         powerDownButton.setSize(40, 40);
         statusView.add(powerDownButton).setLocation(274, 8);
 
+        lifeTokensPanel = new LifeTokensPanel();
+        statusView.add(lifeTokensPanel).setLocation(56, 32);
+
+        /*
         lifeTokensLabel = new JLabel("Life tokens: " + player.getLifeTokens());
         lifeTokensLabel.setSize(200, 20);
         lifeTokensLabel.setFont(new Font("Impact", Font.ROMAN_BASELINE, 14));
         lifeTokensLabel.setForeground(Color.WHITE);
         statusView.add(lifeTokensLabel).setLocation(57, 26);
+        */
 
         positionLabel = new JLabel("Position: " + player.getPosition());
         positionLabel.setSize(200, 20);
@@ -339,8 +346,8 @@ class ControlView extends JPanel implements ActionListener{
      */
     public void updateStatusView() {
         positionLabel.setText("Position: " + player.getPosition());
-        lifeTokensLabel.setText("Life tokens: " + player.getLifeTokens());
-        damageTokensPanel.setAmountOfTokens(player.getDamageTokens());
+        lifeTokensPanel.setLifeTokens(player.getLifeTokens());
+        damageTokensPanel.setDamageTokens(player.getDamageTokens());
     }
 
     /*
@@ -479,7 +486,7 @@ class ControlView extends JPanel implements ActionListener{
     }
 
     /**
-     * JPanel containing the damage token icons and the logic for showing the correct amoount.
+     * JPanel containing the damage token icons and the logic for showing the correct amount.
      */
     private class DamageTokensPanel extends JPanel {
 
@@ -501,7 +508,7 @@ class ControlView extends JPanel implements ActionListener{
         private final JLabel dmgToken9;
         private final JLabel dmgToken10;
 
-        public DamageTokensPanel() {
+        private DamageTokensPanel() {
             setSize(340, 40);
             setLayout(null);
             setOpaque(false);
@@ -537,7 +544,7 @@ class ControlView extends JPanel implements ActionListener{
             add(dmgToken10).setLocation(276, 0);
         }
 
-        private void setAmountOfTokens(int amount) {
+        private void setDamageTokens(int amount) {
             dmgToken1.setIcon(set1DisabledIcon);
             dmgToken2.setIcon(set1DisabledIcon);
             dmgToken3.setIcon(set1DisabledIcon);
@@ -559,6 +566,47 @@ class ControlView extends JPanel implements ActionListener{
                 case 3: dmgToken3.setIcon(set1EnabledIcon);
                 case 2: dmgToken2.setIcon(set1EnabledIcon);
                 case 1: dmgToken1.setIcon(set1EnabledIcon);
+            }
+        }
+    }
+
+    /**
+     * JPanel containing the life token icons and the logic for showing the correct amount.
+     */
+    private class LifeTokensPanel extends JPanel {
+
+        private final Image emptyHeart = GlobalImageHolder.getInstance().getHeartTokens().getSubimage(0, 0, 7, 7).getScaledInstance(14, 14, Image.SCALE_FAST);
+        private final Image fullHeart = GlobalImageHolder.getInstance().getHeartTokens().getSubimage(7, 0, 7, 7).getScaledInstance(14, 14, Image.SCALE_FAST);
+        private final ImageIcon emptyHeartIcon = new ImageIcon(emptyHeart);
+        private final ImageIcon fullHeartIcon = new ImageIcon(fullHeart);
+
+        private final JLabel lifeToken1;
+        private final JLabel lifeToken2;
+        private final JLabel lifeToken3;
+
+        private LifeTokensPanel() {
+            setSize(50, 14);
+            setLayout(null);
+            setOpaque(false);
+            lifeToken1 = new JLabel(fullHeartIcon);
+            lifeToken1.setSize(14, 14);
+            add(lifeToken1).setLocation(0, 0);
+            lifeToken2 = new JLabel(fullHeartIcon);
+            lifeToken2.setSize(14, 14);
+            add(lifeToken2).setLocation(17, 0);
+            lifeToken3 = new JLabel(fullHeartIcon);
+            lifeToken3.setSize(14, 14);
+            add(lifeToken3).setLocation(34, 0);
+        }
+
+        private void setLifeTokens(int amount) {
+            lifeToken1.setIcon(emptyHeartIcon);
+            lifeToken2.setIcon(emptyHeartIcon);
+            lifeToken3.setIcon(emptyHeartIcon);
+            switch (amount) {
+                case 3: lifeToken3.setIcon(fullHeartIcon);
+                case 2: lifeToken2.setIcon(fullHeartIcon);
+                case 1: lifeToken1.setIcon(fullHeartIcon);
             }
         }
     }
