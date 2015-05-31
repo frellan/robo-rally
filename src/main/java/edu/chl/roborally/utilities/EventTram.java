@@ -92,14 +92,6 @@ public class EventTram {
         NEW_TURN,
 
         /**
-         * Is fired when a tile action for a player needs to happen.
-         *
-         * The object is the player in question.
-         */
-        EXECUTE_TILE_ACTION_BEFORE,
-        EXECUTE_TILE_ACTION,
-
-        /**
          * When this is fired the view repaints game board.
          */
         UPDATE_BOARD,

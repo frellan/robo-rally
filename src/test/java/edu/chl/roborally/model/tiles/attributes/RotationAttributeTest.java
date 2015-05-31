@@ -44,7 +44,7 @@ public class RotationAttributeTest {
 
     @Test
     public void testDoAction() throws Exception {
-        //Player standing rotation left tile
+        //Player standing rotation left tile, should go from North to West
         player.setPosition(new Position(7, 3));
         executeAction(player);
         System.out.println(player.getName() + "New direction " + player.getDirection());
